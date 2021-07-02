@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Did I Take My Meds?</string>
+    <string name="add">Add</string>
+    <string name="add_medications">Add medications to your list</string>
+    <string name="medication_name">Medication name</string>
+    <string name="new_med">New Medication</string>
+    <string name="description">Description</string>
+    <string name="select_a_time">select a time</string>
+    <string name="time_picker_tag">time_picker</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="pick_a_time">Pick a time before saving</string>
+    <string name="fill_fields">Fill out name before saving</string>
+    <string name="med_saved">Medication saved</string>
+    <string name="cancelled">New medication cancelled</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">Sample Medicine</string>
+    <string name="midnight">12:00AM</string>
+    <string name="sample_description">This is a sample description of a medication. It has multiple sentences and covers multiple lines.</string>
+    <string name="previous_doses">Previous doses:</string>
+    <string name="i_just_took_it">I just took it!</string>
+    <string name="closest_dose_sample">Closest dose: 1:00PM today</string>
+    <string name="med_position_key">medication_position</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="closest_dose_label">Closest dose:</string>
+    <string name="already_took_dose">You already took this dose\nI hope you didn\'t take it again</string>
+    <string name="date_format">MMM d, yyyy</string>
+    <string name="time_taken">Time taken:</string>
+    <string name="delete">delete</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="delete_warning">The medication will be permanently deleted</string>
+    <string name="confirm">confirm</string>
+    <string name="took_this_already">You took this already</string>
+</resources>
