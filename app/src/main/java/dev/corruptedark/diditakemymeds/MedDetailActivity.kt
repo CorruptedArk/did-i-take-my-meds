@@ -29,6 +29,7 @@ import android.view.MenuItem
 import android.widget.ListView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textview.MaterialTextView
@@ -85,6 +86,7 @@ class MedDetailActivity : AppCompatActivity() {
         doseRecordAdapter = DoseRecordListAdapter(this, medication.doseRecord)
 
         previousDosesList.adapter = doseRecordAdapter
+        ViewCompat.setNestedScrollingEnabled(previousDosesList, true)
 
         justTookItButton.setOnClickListener {
             justTookItButtonPressed()
@@ -106,6 +108,7 @@ class MedDetailActivity : AppCompatActivity() {
         {
             justTookItButton.text = getString(R.string.i_just_took_it)
         }
+        medication.doseRecord.sortWith { o1, o2 -> (o2.closestDose - o1.closestDose).sign }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -210,7 +213,7 @@ class MedDetailActivity : AppCompatActivity() {
         {
             val newDose = DoseRecord(System.currentTimeMillis(), closestDose)
             medication.doseRecord.add(newDose)
-            medication.doseRecord.sortWith { o1, o2 -> (o1.closestDose - o2.closestDose).sign }
+            medication.doseRecord.sortWith { o1, o2 -> (o2.closestDose - o1.closestDose).sign }
             doseRecordAdapter.notifyDataSetChanged()
             justTookItButton.text = getString(R.string.took_this_already)
 
