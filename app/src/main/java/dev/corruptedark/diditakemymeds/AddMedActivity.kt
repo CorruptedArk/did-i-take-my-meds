@@ -45,7 +45,7 @@ class AddMedActivity() : AppCompatActivity() {
     @Volatile var pickerIsOpen = false
     var hour = -1
     var minute = -1
-    val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,8 +99,9 @@ class AddMedActivity() : AppCompatActivity() {
             false
         }
         else {
-            val medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString())
+            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString())
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
+            medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
             MainActivity.medications!!.add(medication)
             runOnUiThread {
                 Toast.makeText(this, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()

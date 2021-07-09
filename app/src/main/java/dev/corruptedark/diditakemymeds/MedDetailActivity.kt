@@ -38,6 +38,7 @@ import kotlin.math.*
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import kotlin.NoSuchElementException
 
 class MedDetailActivity : AppCompatActivity() {
@@ -95,17 +96,14 @@ class MedDetailActivity : AppCompatActivity() {
         val lastDose: Long = try {
             medication.doseRecord.first().closestDose
         }
-        catch (except: NoSuchElementException)
-        {
+        catch (except: NoSuchElementException) {
             -1L
         }
         closestDose = calculateClosestDose(medication)
-        if (lastDose == closestDose)
-        {
+        if (lastDose == closestDose) {
             justTookItButton.text = getString(R.string.took_this_already)
         }
-        else
-        {
+        else {
             justTookItButton.text = getString(R.string.i_just_took_it)
         }
         medication.doseRecord.sortWith { o1, o2 -> (o2.closestDose - o1.closestDose).sign }
@@ -135,6 +133,10 @@ class MedDetailActivity : AppCompatActivity() {
                         }
                     }
                     .show()
+                true
+            }
+            R.id.edit -> {
+
                 true
             }
             else -> super.onOptionsItemSelected(item)

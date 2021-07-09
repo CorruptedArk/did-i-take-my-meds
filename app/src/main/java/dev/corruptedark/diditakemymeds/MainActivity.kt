@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     var medicationListAdapter: MedListAdapter? = null
     private lateinit var db: MedicationDB
     private lateinit var medicationDao: MedicationDao
-    val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    private val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         runOnUiThread { medicationListAdapter?.notifyDataSetChanged() }
     }
 

@@ -34,4 +34,5 @@
     <string name="delete_warning">The medication will be permanently deleted</string>
     <string name="confirm">confirm</string>
     <string name="took_this_already">You took this already</string>
+    <string name="edit">Edit</string>
 </resources>
