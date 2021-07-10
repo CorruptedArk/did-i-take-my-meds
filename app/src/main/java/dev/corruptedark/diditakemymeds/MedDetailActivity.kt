@@ -19,6 +19,7 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ListView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import com.google.android.material.button.MaterialButton
@@ -54,6 +56,41 @@ class MedDetailActivity : AppCompatActivity() {
     private var isSystem24Hour: Boolean = false
     private var closestDose: Long = -1L
     private lateinit var executorService: ExecutorService
+    private val editResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        runOnUiThread {
+            executorService.execute {
+                MedicationDB.getInstance(this).medicationDao().updateMedications(medication)
+            }
+
+            calendar.set(Calendar.HOUR_OF_DAY, medication.hour)
+            calendar.set(Calendar.MINUTE, medication.minute)
+
+            nameLabel.text = medication.name
+            timeLabel.text = if (isSystem24Hour)
+                DateFormat.format(getString(R.string.time_24), calendar)
+            else
+                DateFormat.format(getString(R.string.time_12), calendar)
+
+            detailLabel.text = medication.description
+
+            closestDose = calculateClosestDose(medication)
+            closestDoseLabel.text = closestDoseString(closestDose)
+
+            val lastDose: Long = try {
+                medication.doseRecord.first().closestDose
+            }
+            catch (except: NoSuchElementException) {
+                -1L
+            }
+            closestDose = calculateClosestDose(medication)
+            if (lastDose == closestDose) {
+                justTookItButton.text = getString(R.string.took_this_already)
+            }
+            else {
+                justTookItButton.text = getString(R.string.i_just_took_it)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,7 +173,9 @@ class MedDetailActivity : AppCompatActivity() {
                 true
             }
             R.id.edit -> {
-
+                val editIntent = Intent(this, EditMedActivity::class.java)
+                editIntent.putExtra(getString(R.string.med_position_key), intent.getIntExtra(getString(R.string.med_position_key), -1))
+                editResultStarter.launch(editIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

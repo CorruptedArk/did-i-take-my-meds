@@ -5,10 +5,23 @@
         <item name="colorPrimary">@color/purple_700</item>
         <item name="colorPrimaryDark">@color/purple_500</item>
         <item name="colorAccent">@color/purple_200</item>
+        <item name="clockNumberTextColor">@color/purple_200</item>
+        <item name="dialogTheme">@style/Theme.Dialog</item>
+        <item name="alertDialogTheme">@style/Theme.Dialog</item>
+        <item name="materialAlertDialogTheme">@style/Theme.Dialog</item>
+        <item name="materialTimePickerTheme">@style/Theme.TimePicker</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Theme.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorAccent">@color/purple_200</item>
+    </style>
+    <style name="Theme.TimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorAccent">@color/purple_200</item>
     </style>
 
 </resources>
