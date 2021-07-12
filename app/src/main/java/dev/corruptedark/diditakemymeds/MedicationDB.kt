@@ -24,17 +24,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class], version = 1)
+@Database(entities = [Medication::class], version = 2)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
 
     companion object {
         const val DATABASE_NAME = "medications"
+        const val MED_TABLE = "medication"
         @Volatile private var instance: MedicationDB? = null
 
         fun getInstance(context: Context): MedicationDB {
@@ -46,7 +48,14 @@ abstract  class MedicationDB: RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): MedicationDB {
-            return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME).build()
+            val MIGRATION_1_2 = object : Migration(1, 2) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN notify INTEGER DEFAULT 0 NOT NULL")
+                }
+            }
+
+            return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
+                .addMigrations(MIGRATION_1_2).build()
         }
     }
 }

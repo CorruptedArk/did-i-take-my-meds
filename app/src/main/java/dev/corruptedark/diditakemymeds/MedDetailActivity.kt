@@ -19,7 +19,12 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,6 +39,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
 import java.lang.StringBuilder
 import kotlin.math.*
@@ -46,6 +52,7 @@ import kotlin.NoSuchElementException
 class MedDetailActivity : AppCompatActivity() {
     private lateinit var nameLabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
+    private lateinit var notificationSwitch: SwitchMaterial
     private lateinit var detailLabel: MaterialTextView
     private lateinit var closestDoseLabel: MaterialTextView
     private lateinit var justTookItButton: MaterialButton
@@ -89,15 +96,61 @@ class MedDetailActivity : AppCompatActivity() {
             else {
                 justTookItButton.text = getString(R.string.i_just_took_it)
             }
+
+            alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
+                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
+                PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
+            }
+
+            if (medication.notify) {
+                //Set alarm
+                alarmManager?.cancel(alarmIntent)
+
+                val calendar = Calendar.getInstance().apply {
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                    set(Calendar.HOUR_OF_DAY, medication.hour)
+                    set(Calendar.MINUTE, medication.minute)
+                }
+
+                alarmManager?.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    alarmIntent
+                )
+
+                val receiver = ComponentName(this, AlarmReceiver::class.java)
+
+                this.packageManager.setComponentEnabledSetting(
+                    receiver,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP
+                )
+            }
+            else {
+                //Cancel alarm
+                alarmManager?.cancel(alarmIntent)
+            }
         }
     }
+    private var alarmManager: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_detail)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
+        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         isSystem24Hour = DateFormat.is24HourFormat(this)
         medication = MainActivity.medications!![intent.getIntExtra(getString(R.string.med_position_key), -1)]
+
+        alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
+            innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+            innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
+            PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
+        }
 
         executorService = Executors.newSingleThreadExecutor()
 
@@ -106,6 +159,7 @@ class MedDetailActivity : AppCompatActivity() {
 
         nameLabel = findViewById(R.id.name_label)
         timeLabel = findViewById(R.id.time_label)
+        notificationSwitch = findViewById(R.id.notification_switch)
         detailLabel = findViewById(R.id.detail_label)
         closestDoseLabel = findViewById(R.id.closest_dose_label)
         justTookItButton = findViewById(R.id.just_took_it_button)
@@ -116,6 +170,47 @@ class MedDetailActivity : AppCompatActivity() {
             DateFormat.format(getString(R.string.time_24), calendar)
         else
             DateFormat.format(getString(R.string.time_12), calendar)
+
+        notificationSwitch.isChecked = medication.notify
+        notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            medication.notify = isChecked
+
+            executorService.execute {
+                MedicationDB.getInstance(this).medicationDao().updateMedications(medication)
+            }
+
+            if (isChecked) {
+                //Set alarm
+
+                val calendar = Calendar.getInstance().apply {
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                    set(Calendar.HOUR_OF_DAY, medication.hour)
+                    set(Calendar.MINUTE, medication.minute)
+                }
+
+                alarmManager?.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    alarmIntent
+                )
+
+                val receiver = ComponentName(this, AlarmReceiver::class.java)
+
+                this.packageManager.setComponentEnabledSetting(
+                    receiver,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP
+                )
+                Toast.makeText(this, getString(R.string.notifications_enabled), Toast.LENGTH_SHORT).show()
+            }
+            else {
+                //Cancel alarm
+                alarmManager?.cancel(alarmIntent)
+                Toast.makeText(this, getString(R.string.notifications_disabled), Toast.LENGTH_SHORT).show()
+            }
+        }
 
         detailLabel.text = medication.description
 
@@ -166,6 +261,7 @@ class MedDetailActivity : AppCompatActivity() {
                             val db = MedicationDB.getInstance(this)
                             db.medicationDao().delete(medication)
                             MainActivity.medications?.remove(medication)
+                            alarmManager?.cancel(alarmIntent)
                             finish()
                         }
                     }

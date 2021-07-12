@@ -20,12 +20,15 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.AbstractThreadedSyncAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
@@ -41,6 +44,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
+
 class MainActivity : AppCompatActivity() {
     val DOSE_TIME = 79200000L
     val LAST_DOSE_TIME = "last_dose_time"
@@ -53,16 +57,38 @@ class MainActivity : AppCompatActivity() {
     var medicationListAdapter: MedListAdapter? = null
     private lateinit var db: MedicationDB
     private lateinit var medicationDao: MedicationDao
+
+
     private val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         runOnUiThread { medicationListAdapter?.notifyDataSetChanged() }
     }
 
     companion object{
         var medications: MutableList<Medication>? = null
+        const val CHANNEL_ID = "did_i_take_my_meds"
     }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        createNotificationChannel()
         setContentView(R.layout.activity_main)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
         medListView = findViewById(R.id.med_list_view)

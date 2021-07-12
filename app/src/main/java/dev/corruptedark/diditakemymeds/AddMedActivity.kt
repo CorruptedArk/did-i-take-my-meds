@@ -19,7 +19,12 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.app.AlarmManager
 import android.app.Dialog
+import android.app.PendingIntent
+import android.content.ComponentName
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,6 +38,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.TimeFormat
 import java.util.*
@@ -40,14 +46,18 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class AddMedActivity() : AppCompatActivity() {
-    lateinit var nameInput: TextInputEditText
-    lateinit var timePickerButton: MaterialButton
-    lateinit var detailInput: TextInputEditText
+    private lateinit var nameInput: TextInputEditText
+    private lateinit var timePickerButton: MaterialButton
+    private lateinit var notificationSwitch: SwitchMaterial
+    private lateinit var detailInput: TextInputEditText
 
     @Volatile var pickerIsOpen = false
     var hour = -1
     var minute = -1
+    var notify = true
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    private var alarmManager: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +65,15 @@ class AddMedActivity() : AppCompatActivity() {
 
         nameInput = findViewById(R.id.med_name)
         timePickerButton = findViewById(R.id.time_picker_button)
+        notificationSwitch = findViewById(R.id.notification_switch)
         detailInput = findViewById(R.id.med_detail)
 
         timePickerButton.setOnClickListener {
             openTimePicker(it)
+        }
+
+        notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            notify = isChecked
         }
         supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
     }
@@ -101,10 +116,44 @@ class AddMedActivity() : AppCompatActivity() {
             false
         }
         else {
-            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString())
+            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), notify)
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
             MainActivity.medications!!.add(medication)
+
+            alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
+                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
+                PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
+            }
+
+            if (notify) {
+                //Set alarm
+
+                val calendar = Calendar.getInstance().apply {
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                    set(Calendar.HOUR_OF_DAY, medication.hour)
+                    set(Calendar.MINUTE, medication.minute)
+                }
+
+                alarmManager?.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    alarmIntent
+                )
+
+                val receiver = ComponentName(this, AlarmReceiver::class.java)
+
+                this.packageManager.setComponentEnabledSetting(
+                    receiver,
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                    PackageManager.DONT_KILL_APP
+                )
+
+            }
+
             runOnUiThread {
                 Toast.makeText(this, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()
             }

@@ -32,6 +32,9 @@ interface MedicationDao {
     @Delete
     fun delete(medication: Medication)
 
+    @Query("SELECT * FROM MEDICATION WHERE id = :medId LIMIT 1")
+    fun get(medId: Long): Medication
+
     @Query("SELECT * FROM MEDICATION")
     fun getAll(): MutableList<Medication>
 }

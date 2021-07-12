@@ -29,7 +29,8 @@ import androidx.room.TypeConverters
 data class Medication (@ColumnInfo(name = "name") var name: String,
                        @ColumnInfo(name = "hour") var hour: Int,
                        @ColumnInfo(name = "minute") var minute: Int,
-                       @ColumnInfo(name = "description") var description: String) {
+                       @ColumnInfo(name = "description") var description: String,
+                       @ColumnInfo(name = "notify") var notify: Boolean = true) {
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
