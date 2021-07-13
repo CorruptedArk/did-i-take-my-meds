@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import java.util.*
@@ -83,11 +84,30 @@ class AlarmReceiver : BroadcastReceiver() {
                 //Handle alarm
                 val medication =
                     MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key),-1))
-                var builder = NotificationCompat.Builder(context, MainActivity.CHANNEL_ID)
+
+                val actionIntent = Intent(context, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+
+                val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, 0)
+
+                val calendar = Calendar.getInstance()
+                val hour = medication.hour
+                val minute = medication.minute
+                calendar.set(Calendar.HOUR_OF_DAY, hour)
+                calendar.set(Calendar.MINUTE, minute)
+                val isSystem24Hour = DateFormat.is24HourFormat(context)
+                val formattedTime = if (isSystem24Hour) DateFormat.format(context.getString(R.string.time_24), calendar)
+                    else DateFormat.format(context.getString(R.string.time_12), calendar)
+
+                val builder = NotificationCompat.Builder(context, MainActivity.CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
                     .setContentTitle(medication.name)
-                    .setContentText("Time for your dose")
+                    .setSubText(formattedTime)
+                    .setContentText(context.getString(R.string.time_for_your_dose))
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
                 with(NotificationManagerCompat.from(context.applicationContext)) {
                     notify(
                         (System.currentTimeMillis() + medication.name.hashCode()).toInt(),

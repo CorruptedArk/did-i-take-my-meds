@@ -41,4 +41,5 @@
     <string name="channel_name">did_i_take_my_meds</string>
     <string name="channel_description">reminder notifications</string>
     <string name="med_id_key">med_id</string>
+    <string name="time_for_your_dose">Time for your dose</string>
 </resources>
