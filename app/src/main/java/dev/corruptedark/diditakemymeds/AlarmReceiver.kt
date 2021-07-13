@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
@@ -101,7 +102,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     else DateFormat.format(context.getString(R.string.time_12), calendar)
 
                 val builder = NotificationCompat.Builder(context, MainActivity.CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground))
                     .setContentTitle(medication.name)
                     .setSubText(formattedTime)
                     .setContentText(context.getString(R.string.time_for_your_dose))
