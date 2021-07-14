@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="sub_purple">#CCEE00FF</color>
     <color name="background">#222222</color>
+    <color name="liberapay">#FFF6C915</color>
+    <color name="github">#FF4078c0</color>
 </resources>

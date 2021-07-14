@@ -23,8 +23,17 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:layout_alignParentTop="true"
+        app:contentInsetStart="0dp"
+        android:gravity="center_vertical"/>
+
     <ListView
         android:id="@+id/med_list_view"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

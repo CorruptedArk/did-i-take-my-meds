@@ -35,8 +35,10 @@ import android.view.MenuItem
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -50,6 +52,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.NoSuchElementException
 
 class MedDetailActivity : AppCompatActivity() {
+    private lateinit var toolbar: MaterialToolbar
     private lateinit var nameLabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
     private lateinit var notificationSwitch: SwitchMaterial
@@ -141,7 +144,10 @@ class MedDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_detail)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
+
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         isSystem24Hour = DateFormat.is24HourFormat(this)
         medication = MainActivity.medications!![intent.getIntExtra(getString(R.string.med_position_key), -1)]

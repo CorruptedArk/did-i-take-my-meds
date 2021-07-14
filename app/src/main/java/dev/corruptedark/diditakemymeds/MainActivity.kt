@@ -35,9 +35,11 @@ import android.view.*
 import android.widget.*
 import androidx.core.widget.ListViewCompat
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.room.Room
+import com.google.android.material.appbar.MaterialToolbar
 import java.text.FieldPosition
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -46,15 +48,11 @@ import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
-    val DOSE_TIME = 79200000L
-    val LAST_DOSE_TIME = "last_dose_time"
-    val I_DID = "I did take them"
-    val I_DID_NOT = "I did not take them"
-    val DATABASE_NAME = "medications"
-    val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-    lateinit var medListView: ListView
-    lateinit var listEmptyLabel: AppCompatTextView
-    var medicationListAdapter: MedListAdapter? = null
+    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    private lateinit var toolbar: MaterialToolbar
+    private lateinit var medListView: ListView
+    private lateinit var listEmptyLabel: AppCompatTextView
+    private var medicationListAdapter: MedListAdapter? = null
     private lateinit var db: MedicationDB
     private lateinit var medicationDao: MedicationDao
 
@@ -90,9 +88,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         setContentView(R.layout.activity_main)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
         medListView = findViewById(R.id.med_list_view)
         listEmptyLabel = findViewById(R.id.list_empty_label)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
+        toolbar.logo = AppCompatResources.getDrawable(this, R.drawable.bar_logo)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -140,12 +141,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.info -> {
+                openAboutActivity()
+                true
+            }
             R.id.add_med -> {
                 openAddMedActivity()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun openAboutActivity() {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
     }
 
     private fun openAddMedActivity() {

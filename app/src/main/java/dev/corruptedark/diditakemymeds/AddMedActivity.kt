@@ -36,7 +36,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
@@ -46,6 +48,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class AddMedActivity() : AppCompatActivity() {
+    private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
     private lateinit var timePickerButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
@@ -67,6 +70,9 @@ class AddMedActivity() : AppCompatActivity() {
         timePickerButton = findViewById(R.id.time_picker_button)
         notificationSwitch = findViewById(R.id.notification_switch)
         detailInput = findViewById(R.id.med_detail)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
 
         timePickerButton.setOnClickListener {
             openTimePicker(it)
@@ -75,7 +81,6 @@ class AddMedActivity() : AppCompatActivity() {
         notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             notify = isChecked
         }
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -17,10 +17,18 @@
     along with this program.  If not, see https://www.gnu.org/licenses.-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/info"
+        android:orderInCategory="100"
+        android:title="@string/about"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/add_med"
         android:icon="@drawable/add_box"
         android:orderInCategory="100"
-        android:title="@string/add"
+        android:title="@string/new_medication"
         app:showAsAction="ifRoom" />
 </menu>

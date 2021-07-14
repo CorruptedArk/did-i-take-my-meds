@@ -3,7 +3,6 @@
     <string name="add">Add</string>
     <string name="add_medications">Add medications to your list</string>
     <string name="medication_name">Medication name</string>
-    <string name="new_med">New Medication</string>
     <string name="description">Description</string>
     <string name="select_a_time">select a time</string>
     <string name="time_picker_tag">time_picker</string>
@@ -42,4 +41,14 @@
     <string name="channel_description">reminder notifications</string>
     <string name="med_id_key">med_id</string>
     <string name="time_for_your_dose">Time for your dose</string>
+    <string name="new_medication">New Medication</string>
+    <string name="medication_details">Medication Details</string>
+    <string name="edit_medication">Edit Medication</string>
+    <string name="about">About</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nDid I Take My Meds? is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Support me on Liberapay</string>
+    <string name="view_the_project_on_github">View the project on GitHub</string>
+    <string name="github_link">https://github.com/CorruptedArk/did-i-take-my-meds</string>
+    <string name="liberapay_link">https://liberapay.com/CorruptedArk</string>
+
 </resources>

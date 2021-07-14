@@ -27,7 +27,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -37,6 +39,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class EditMedActivity : AppCompatActivity() {
+    private lateinit var toolbar: MaterialToolbar
     lateinit var nameInput: TextInputEditText
     lateinit var timePickerButton: MaterialButton
     lateinit var detailInput: TextInputEditText
@@ -50,6 +53,9 @@ class EditMedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_med)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
 
         medication = MainActivity.medications!![intent.getIntExtra(getString(R.string.med_position_key), -1)]
         nameInput = findViewById(R.id.med_name)
@@ -72,7 +78,6 @@ class EditMedActivity : AppCompatActivity() {
         timePickerButton.setOnClickListener {
             openTimePicker(it)
         }
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null)))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

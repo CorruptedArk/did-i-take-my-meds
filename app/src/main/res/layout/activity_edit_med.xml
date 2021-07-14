@@ -25,6 +25,12 @@
     android:orientation="vertical"
     tools:context=".EditMedActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:gravity="center_vertical"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
