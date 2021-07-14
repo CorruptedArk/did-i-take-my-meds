@@ -1,0 +1,4 @@
+v1.0.1
+
+Fix:
+- Fix notifications not sending
