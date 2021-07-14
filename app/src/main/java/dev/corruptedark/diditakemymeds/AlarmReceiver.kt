@@ -12,6 +12,7 @@ import android.os.Build
 import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.res.ResourcesCompat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -102,7 +103,8 @@ class AlarmReceiver : BroadcastReceiver() {
                     else DateFormat.format(context.getString(R.string.time_12), calendar)
 
                 val builder = NotificationCompat.Builder(context, MainActivity.CHANNEL_ID)
-                    .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher_foreground))
+                    .setSmallIcon(R.drawable.ic_small_notification)
+                    .setColor(ResourcesCompat.getColor(context.resources, R.color.purple_500, context.theme))
                     .setContentTitle(medication.name)
                     .setSubText(formattedTime)
                     .setContentText(context.getString(R.string.time_for_your_dose))
