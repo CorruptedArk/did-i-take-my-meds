@@ -58,7 +58,13 @@ class MainActivity : AppCompatActivity() {
 
 
     private val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        runOnUiThread { medicationListAdapter?.notifyDataSetChanged() }
+        runOnUiThread {
+            medicationListAdapter?.notifyDataSetChanged()
+            if (!medications.isNullOrEmpty())
+                listEmptyLabel.visibility = View.GONE
+            else
+                listEmptyLabel.visibility = View.VISIBLE
+        }
     }
 
     companion object{
@@ -108,6 +114,8 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 if (!medications.isNullOrEmpty())
                     listEmptyLabel.visibility = View.GONE
+                else
+                    listEmptyLabel.visibility = View.VISIBLE
                 medListView.adapter = medicationListAdapter
                 medListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
                     openMedDetailActivity(i)

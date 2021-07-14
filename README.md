@@ -1,8 +1,26 @@
-# Did I Take My Meds?
-## About
-Did I Take My Meds? is a Kotlin Android app to keep track of when to take medications. It is designed to help prevent a user from skipping doses and/or overdosing.
+<img src="fastlane/metadata/android/en-US/images/featureGraphic.png" alt="Banner" width="600" />
 
-Currently, this project is an early work in progress, but it is functional enough to make public and begin testing.
+# Did I Take My Meds?
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/CorruptedArk/did-i-take-my-meds)](https://github.com/CorruptedArk/did-i-take-my-meds/releases)
+[![GitHub](https://img.shields.io/github/license/CorruptedArk/did-i-take-my-meds)](https://github.com/CorruptedArk/did-i-take-my-meds/blob/master/LICENSE)
+[![GitHub Releases](https://img.shields.io/github/downloads/CorruptedArk/did-i-take-my-meds/latest/total)](https://github.com/CorruptedArk/did-i-take-my-meds/releases)
+[![Liberapay Patrons](https://img.shields.io/liberapay/patrons/CorruptedArk.svg?logo=liberapay")](https://liberapay.com/CorruptedArk/)
+
+## About
+Did I Take My Meds? is a Kotlin Android app to keep track of when to take medications. It is designed to help prevent a user from skipping doses and/or overdosing. 
+
+Did I Take My Meds? allows a user save multiple medication doses with different times. Each medication can trigger an independent reminder notification. The unique functionality of this application is that it allows a user to record when they take a dose. As a part of a medication routine, this app can help prevent overdoses and skipped doses.
+
+---
+
+## Screenshots
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Med List" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Detail View" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Edit View" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Edit Clock" width="200" />
+
+---
 
 ## License
 Files in this project are licensed GPLv3+ unless otherwise indicated. Some icon resources are licensed under the Apache License v2.
