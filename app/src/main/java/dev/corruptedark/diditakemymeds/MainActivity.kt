@@ -46,6 +46,25 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
+fun calculateNextDose(medication: Medication): Long {
+    val currentTime = System.currentTimeMillis()
+    val localCalendar = Calendar.getInstance()
+    localCalendar.timeInMillis = currentTime
+    localCalendar.set(Calendar.HOUR_OF_DAY, medication.hour)
+    localCalendar.set(Calendar.MINUTE, medication.minute)
+    localCalendar.set(Calendar.SECOND, 0)
+    localCalendar.set(Calendar.MILLISECOND, 0)
+    val todayDose = localCalendar.timeInMillis
+    localCalendar.add(Calendar.DATE, 1)
+    val tomorrowDose = localCalendar.timeInMillis
+
+    return if (todayDose > currentTime) {
+        todayDose
+    }
+    else {
+        tomorrowDose
+    }
+}
 
 class MainActivity : AppCompatActivity() {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()

@@ -26,6 +26,7 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
@@ -142,12 +143,27 @@ class AddMedActivity() : AppCompatActivity() {
                     set(Calendar.MINUTE, medication.minute)
                 }
 
-                alarmManager?.setInexactRepeating(
+                /*alarmManager?.setRepeating(
                     AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,
                     AlarmManager.INTERVAL_DAY,
                     alarmIntent
-                )
+                )*/
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager?.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        calculateNextDose(medication),
+                        alarmIntent
+                    )
+                }
+                else {
+                    alarmManager?.set(
+                        AlarmManager.RTC_WAKEUP,
+                        calculateNextDose(medication),
+                        alarmIntent
+                    )
+                }
 
                 val receiver = ComponentName(this, AlarmReceiver::class.java)
 

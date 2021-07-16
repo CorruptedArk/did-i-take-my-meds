@@ -73,12 +73,27 @@ class AlarmReceiver : BroadcastReceiver() {
                             set(Calendar.MINUTE, medication.minute)
                         }
 
-                        alarmManager?.setInexactRepeating(
+                        /*alarmManager?.setRepeating(
                             AlarmManager.RTC_WAKEUP,
                             calendar.timeInMillis,
                             AlarmManager.INTERVAL_DAY,
                             alarmIntent
-                        )
+                        )*/
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            alarmManager?.setExactAndAllowWhileIdle(
+                                AlarmManager.RTC_WAKEUP,
+                                calculateNextDose(medication),
+                                alarmIntent
+                            )
+                        }
+                        else {
+                            alarmManager?.set(
+                                AlarmManager.RTC_WAKEUP,
+                                calculateNextDose(medication),
+                                alarmIntent
+                            )
+                        }
 
                     }
                 }
@@ -86,6 +101,40 @@ class AlarmReceiver : BroadcastReceiver() {
                 //Handle alarm
                 val medication =
                     MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key),-1))
+
+                alarmIntent =
+                    Intent(context, AlarmReceiver::class.java).let { innerIntent ->
+                        innerIntent.action = NOTIFY_ACTION
+                        innerIntent.putExtra(context.getString(R.string.med_id_key), medication.id)
+                        PendingIntent.getBroadcast(
+                            context,
+                            medication.id.toInt(),
+                            innerIntent,
+                            0
+                        )
+                    }
+
+                /*alarmManager?.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    alarmIntent
+                )*/
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager?.setExactAndAllowWhileIdle(
+                        AlarmManager.RTC_WAKEUP,
+                        calculateNextDose(medication),
+                        alarmIntent
+                    )
+                }
+                else {
+                    alarmManager?.set(
+                        AlarmManager.RTC_WAKEUP,
+                        calculateNextDose(medication),
+                        alarmIntent
+                    )
+                }
 
                 val actionIntent = Intent(context, MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
