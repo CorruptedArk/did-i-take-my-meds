@@ -1,0 +1,4 @@
+v1.0.2
+
+Change:
+- Make notifications fire at exact times even wile device is idle
