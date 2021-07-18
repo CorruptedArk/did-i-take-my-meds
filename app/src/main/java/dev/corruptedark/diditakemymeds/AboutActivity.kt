@@ -22,13 +22,13 @@ package dev.corruptedark.diditakemymeds
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textview.MaterialTextView
 
 class AboutActivity : AppCompatActivity() {
@@ -53,9 +53,20 @@ class AboutActivity : AppCompatActivity() {
             startActivity(intent)
         }
         supportButton.setOnClickListener {
-            val webpage = Uri.parse(getString(R.string.liberapay_link))
-            val intent = Intent(Intent.ACTION_VIEW, webpage)
-            startActivity(intent)
+            if (BuildConfig.BUILD_TYPE == getString(R.string.play_release)) {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(R.string.sorry))
+                    .setMessage(getString(R.string.cannot_donate_explanation))
+                    .setNeutralButton(getString(R.string.okay)) { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+            else {
+                val webpage = Uri.parse(getString(R.string.liberapay_link))
+                val intent = Intent(Intent.ACTION_VIEW, webpage)
+                startActivity(intent)
+            }
         }
         appDescriptionView.text = getString(R.string.app_description, BuildConfig.VERSION_NAME)
     }
