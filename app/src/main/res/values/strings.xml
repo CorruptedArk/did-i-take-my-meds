@@ -53,6 +53,6 @@
     <string name="play_release">playRelease</string>
     <string name="sorry">Sorry!</string>
     <string name="okay">Okay</string>
-    <string name="cannot_donate_explanation">Google doesn\'t allow developers to place donation links in apps to support themselves if they are not tax exempt charities. If you still want to support me, you can to find CorruptedArk on Liberapay in a separate browser. My GitHub repository is a good place to start.</string>
+    <string name="cannot_donate_explanation">Google doesn\'t allow developers to place donation links in apps to support themselves if they are not tax exempt charities. If you still want to support me, you can find CorruptedArk on Liberapay in a separate browser. My GitHub repository is a good place to start.</string>
 
 </resources>
