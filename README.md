@@ -7,6 +7,8 @@
 [![GitHub Releases](https://img.shields.io/github/downloads/CorruptedArk/did-i-take-my-meds/latest/total)](https://github.com/CorruptedArk/did-i-take-my-meds/releases)
 [![Liberapay Patrons](https://img.shields.io/liberapay/patrons/CorruptedArk.svg?logo=liberapay")](https://liberapay.com/CorruptedArk/)
 
+<a href='https://play.google.com/store/apps/details?id=dev.corruptedark.diditakemymeds&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' height=90 src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+
 ## About
 Did I Take My Meds? is a Kotlin Android app to keep track of when to take medications. It is designed to help prevent a user from skipping doses and/or overdosing. 
 
@@ -23,4 +25,7 @@ Did I Take My Meds? allows a user save multiple medication doses with different 
 ---
 
 ## License
-Files in this project are licensed GPLv3+ unless otherwise indicated. Some icon resources are licensed under the Apache License v2.
+Files in this project are licensed GPLv3+ unless otherwise indicated. Some icon resources are licensed under the Apache License v2
+
+---
+Google Play and the Google Play logo are trademarks of Google LLC.
