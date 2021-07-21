@@ -1,0 +1,4 @@
+v1.0.5
+
+Fix:
+- Fix notification not being set after adding medication
