@@ -23,6 +23,7 @@ import android.app.AlarmManager
 import android.app.Dialog
 import android.app.PendingIntent
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
@@ -66,7 +67,7 @@ class AddMedActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_med)
-
+        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         timePickerButton = findViewById(R.id.time_picker_button)
         notificationSwitch = findViewById(R.id.notification_switch)
@@ -126,6 +127,7 @@ class AddMedActivity() : AppCompatActivity() {
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
             MainActivity.medications!!.add(medication)
+
 
             alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
                 innerIntent.action = AlarmReceiver.NOTIFY_ACTION

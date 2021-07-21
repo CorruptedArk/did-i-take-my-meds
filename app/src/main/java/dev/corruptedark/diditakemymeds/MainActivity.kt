@@ -19,10 +19,7 @@
 
 package dev.corruptedark.diditakemymeds
 
-import android.app.Activity
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.AbstractThreadedSyncAdapter
 import android.content.Context
 import android.content.Intent
@@ -44,6 +41,7 @@ import java.text.FieldPosition
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import java.util.prefs.Preferences
 import kotlin.collections.ArrayList
 
 fun calculateNextDose(medication: Medication): Long {
@@ -139,6 +137,50 @@ class MainActivity : AppCompatActivity() {
                 medListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
                     openMedDetailActivity(i)
                 }
+            }
+
+            val sharedPref = getPreferences(Context.MODE_PRIVATE)
+            if (BuildConfig.VERSION_CODE > sharedPref.getInt(getString(R.string.last_version_used_key), 0)) {
+                val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                var alarmIntent: PendingIntent
+                medications!!.forEach { medication ->
+                    if (medication.notify) {
+                        //Create alarm
+                        alarmIntent =
+                            Intent(this, AlarmReceiver::class.java).let { innerIntent ->
+                                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+                                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
+                                PendingIntent.getBroadcast(
+                                    this,
+                                    medication.id.toInt(),
+                                    innerIntent,
+                                    0
+                                )
+                            }
+
+                        alarmManager.cancel(alarmIntent)
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            alarmManager.setExactAndAllowWhileIdle(
+                                AlarmManager.RTC_WAKEUP,
+                                calculateNextDose(medication),
+                                alarmIntent
+                            )
+                        }
+                        else {
+                            alarmManager.set(
+                                AlarmManager.RTC_WAKEUP,
+                                calculateNextDose(medication),
+                                alarmIntent
+                            )
+                        }
+
+                    }
+                }
+            }
+            with (sharedPref.edit()) {
+                putInt(getString(R.string.last_version_used_key), BuildConfig.VERSION_CODE)
+                apply()
             }
         }
     }
