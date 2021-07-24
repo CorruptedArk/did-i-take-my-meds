@@ -1,11 +1,15 @@
 <img src="fastlane/metadata/android/en-US/images/featureGraphic.png" alt="Banner" width="600" />
 
-# Did I Take My Meds?
+## Did I Take My Meds?
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/CorruptedArk/did-i-take-my-meds)](https://github.com/CorruptedArk/did-i-take-my-meds/releases)
+[![F-Droid Release](https://img.shields.io/f-droid/v/dev.corruptedark.diditakemymeds)](https://f-droid.org/en/packages/dev.corruptedark.diditakemymeds/)
 [![GitHub](https://img.shields.io/github/license/CorruptedArk/did-i-take-my-meds)](https://github.com/CorruptedArk/did-i-take-my-meds/blob/master/LICENSE)
 [![GitHub Releases](https://img.shields.io/github/downloads/CorruptedArk/did-i-take-my-meds/latest/total)](https://github.com/CorruptedArk/did-i-take-my-meds/releases)
 [![Liberapay Patrons](https://img.shields.io/liberapay/patrons/CorruptedArk.svg?logo=liberapay")](https://liberapay.com/CorruptedArk/)
+
+
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/dev.corruptedark.diditakemymeds)
 
 <a href='https://play.google.com/store/apps/details?id=dev.corruptedark.diditakemymeds&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' height=90 src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
