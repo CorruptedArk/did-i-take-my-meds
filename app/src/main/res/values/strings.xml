@@ -55,5 +55,6 @@
     <string name="okay">Okay</string>
     <string name="cannot_donate_explanation">Google doesn\'t allow developers to place donation links in apps to support themselves if they are not tax exempt charities. If you still want to support me, you can find CorruptedArk on Liberapay in a separate browser. My GitHub repository is a good place to start.</string>
     <string name="last_version_used_key">last_version_used</string>
+    <string name="add_another_dose">Add another dose</string>
 
 </resources>
