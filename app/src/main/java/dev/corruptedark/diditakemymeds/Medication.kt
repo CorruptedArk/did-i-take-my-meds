@@ -24,6 +24,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import java.sql.Time
 
 @Entity(tableName = "medication")
 data class Medication (@ColumnInfo(name = "name") var name: String,
@@ -34,4 +35,5 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
+    @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<TimeOfDay> = ArrayList()
 }

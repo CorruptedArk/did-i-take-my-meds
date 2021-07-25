@@ -30,7 +30,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class], version = 2)
+@Database(entities = [Medication::class], version = 3)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
 
@@ -54,8 +54,16 @@ abstract  class MedicationDB: RoomDatabase() {
                 }
             }
 
+            val MIGRATION_2_3 = object : Migration(2, 3) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN moreDosesPerDay TEXT")
+
+                }
+            }
+
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
-                .addMigrations(MIGRATION_1_2).build()
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
         }
     }
 }
