@@ -33,12 +33,11 @@ import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.timepicker.MaterialTimePicker
 import android.text.format.DateFormat
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -48,6 +47,7 @@ import com.google.android.material.timepicker.TimeFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.collections.ArrayList
 
 class AddMedActivity() : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
@@ -55,6 +55,8 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var timePickerButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
     private lateinit var detailInput: TextInputEditText
+    private lateinit var timeButtonsLayout: LinearLayoutCompat
+    private lateinit var timeButtonsRows: ArrayList<LinearLayoutCompat>
 
     @Volatile var pickerIsOpen = false
     var hour = -1
@@ -73,6 +75,9 @@ class AddMedActivity() : AppCompatActivity() {
         notificationSwitch = findViewById(R.id.notification_switch)
         detailInput = findViewById(R.id.med_detail)
         toolbar = findViewById(R.id.toolbar)
+        timeButtonsLayout = findViewById(R.id.time_buttons_layout)
+        timeButtonsRows = ArrayList()
+
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
 
@@ -83,6 +88,9 @@ class AddMedActivity() : AppCompatActivity() {
         notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             notify = isChecked
         }
+
+        //val view = LayoutInflater.from(this).inflate(R.layout.extra_times_template, timeButtonsLayout, true)
+        //timeButtonsRows.add(view as LinearLayoutCompat)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
