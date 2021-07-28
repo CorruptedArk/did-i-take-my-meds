@@ -54,6 +54,7 @@ import kotlin.collections.ArrayList
 class AddMedActivity() : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
+    private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var timePickerButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
     private lateinit var detailInput: TextInputEditText
@@ -79,10 +80,12 @@ class AddMedActivity() : AppCompatActivity() {
         setContentView(R.layout.activity_add_med)
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
+        asNeededSwitch = findViewById(R.id.as_needed_switch)
         timePickerButton = findViewById(R.id.time_picker_button)
         notificationSwitch = findViewById(R.id.notification_switch)
         detailInput = findViewById(R.id.med_detail)
         toolbar = findViewById(R.id.toolbar)
+
         timeButtonsLayout = findViewById(R.id.time_buttons_layout)
         timeButtonsRows = ArrayList()
         extraTimeButton = findViewById(R.id.extra_time_button)
@@ -91,11 +94,35 @@ class AddMedActivity() : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
 
+        asNeededSwitch.setOnCheckedChangeListener { switchView, isChecked ->
+            if (isChecked) {
+                notificationSwitch.isChecked = false
+                notify = false
+                notificationSwitch.visibility = View.GONE
+
+                timeButtonsLayout.removeAllViews()
+                timeButtonsRows.clear()
+                timeOfDayList.clear()
+
+                extraTimeButton.visibility = View.GONE
+
+                timePickerButton.text = getText(R.string.select_a_time)
+                timePickerButton.visibility = View.GONE
+
+                hour = -1
+                minute = -1
+            }
+            else {
+                notificationSwitch.visibility = View.VISIBLE
+                timePickerButton.visibility = View.VISIBLE
+            }
+        }
+
         timePickerButton.setOnClickListener {
             openTimePicker(it)
         }
 
-        notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        notificationSwitch.setOnCheckedChangeListener { switchView, isChecked ->
             notify = isChecked
         }
 
@@ -192,7 +219,7 @@ class AddMedActivity() : AppCompatActivity() {
             }
             false
         }
-        else if (hour !in 0..23 || minute !in 0..59) {
+        else if ((hour !in 0..23 || minute !in 0..59) && !asNeededSwitch.isChecked) {
             runOnUiThread {
                 Toast.makeText(this, getString(R.string.select_a_time), Toast.LENGTH_SHORT).show()
             }

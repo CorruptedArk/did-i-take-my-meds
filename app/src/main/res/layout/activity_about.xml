@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/app_description"
                 android:textSize="18sp"
-                android:layout_margin="15dp"/>
+                android:padding="20dp"/>
 
         </LinearLayout>
     </ScrollView>
