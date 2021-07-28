@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/select_time_button"
         android:layout_weight="0.9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,6 +19,7 @@
         app:strokeColor="@color/purple_500"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/delete_time_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/delete"

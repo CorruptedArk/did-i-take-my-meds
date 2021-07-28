@@ -1,3 +1,3 @@
 package dev.corruptedark.diditakemymeds
 
-data class TimeOfDay(val hour: Int, val minute: Int)
+data class TimeOfDay(var hour: Int, var minute: Int)

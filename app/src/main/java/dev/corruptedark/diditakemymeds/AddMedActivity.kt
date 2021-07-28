@@ -27,6 +27,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,6 +35,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.timepicker.MaterialTimePicker
 import android.text.format.DateFormat
 import android.view.*
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
@@ -57,6 +59,12 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var detailInput: TextInputEditText
     private lateinit var timeButtonsLayout: LinearLayoutCompat
     private lateinit var timeButtonsRows: ArrayList<LinearLayoutCompat>
+    private lateinit var extraTimeButton: MaterialButton
+    private var isSystem24Hour: Boolean = false
+    private var clockFormat: Int = TimeFormat.CLOCK_12H
+    private lateinit var timePicker: MaterialTimePicker
+    private var timerPickerCaller: View? = null
+    private val timeOfDayList: ArrayList<TimeOfDay> = ArrayList()
 
     @Volatile var pickerIsOpen = false
     var hour = -1
@@ -77,6 +85,8 @@ class AddMedActivity() : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         timeButtonsLayout = findViewById(R.id.time_buttons_layout)
         timeButtonsRows = ArrayList()
+        extraTimeButton = findViewById(R.id.extra_time_button)
+        extraTimeButton.visibility = View.GONE
 
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
@@ -89,8 +99,66 @@ class AddMedActivity() : AppCompatActivity() {
             notify = isChecked
         }
 
-        //val view = LayoutInflater.from(this).inflate(R.layout.extra_times_template, timeButtonsLayout, true)
-        //timeButtonsRows.add(view as LinearLayoutCompat)
+        extraTimeButton.setOnClickListener {
+            var view = LayoutInflater.from(this).inflate(R.layout.extra_times_template, timeButtonsLayout, false)
+            timeOfDayList.add(TimeOfDay(-1, -1))
+            timeButtonsRows.add(view as LinearLayoutCompat)
+            timeButtonsLayout.addView(view)
+
+            var selectButton: MaterialButton = view.findViewById(R.id.select_time_button)
+            var deleteButton: ImageButton = view.findViewById(R.id.delete_time_button)
+
+            selectButton.setOnClickListener {
+                openTimePicker(it)
+            }
+
+            deleteButton.setOnClickListener {
+                val callingIndex = timeButtonsRows.indexOf(view)
+                if (timeOfDayList.count() > callingIndex)
+                    timeOfDayList.removeAt(callingIndex)
+                timeButtonsRows.remove(view)
+                timeButtonsLayout.removeView(view)
+            }
+
+        }
+
+        isSystem24Hour = DateFormat.is24HourFormat(this)
+        clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+        timePicker = MaterialTimePicker.Builder()
+            .setTimeFormat(clockFormat)
+            .setTitleText(getString(R.string.select_a_time))
+            .build()
+
+        timePicker.addOnPositiveButtonClickListener {
+            val calendar = Calendar.getInstance()
+            if (timerPickerCaller == timePickerButton) {
+                hour = timePicker.hour
+                minute = timePicker.minute
+            }
+            else {
+                val callingIndex = timeButtonsRows.indexOf(timerPickerCaller!!.parent as LinearLayoutCompat)
+
+                if (timeOfDayList.count() > callingIndex) {
+                    timeOfDayList[callingIndex].hour = timePicker.hour
+                    timeOfDayList[callingIndex].minute = timePicker.minute
+                }
+                else {
+                    timeOfDayList.add(TimeOfDay(timePicker.hour, timePicker.minute))
+                }
+
+            }
+            calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
+            calendar.set(Calendar.MINUTE, timePicker.minute)
+            val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
+            else DateFormat.format(getString(R.string.time_12), calendar)
+            (timerPickerCaller as MaterialButton).text = formattedTime
+            extraTimeButton.visibility = View.VISIBLE
+            pickerIsOpen = false
+        }
+        timePicker.addOnDismissListener {
+            pickerIsOpen = false
+            timerPickerCaller = null
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -132,6 +200,7 @@ class AddMedActivity() : AppCompatActivity() {
         }
         else {
             var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), notify)
+            medication.moreDosesPerDay = timeOfDayList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
             MainActivity.medications!!.add(medication)
@@ -195,26 +264,10 @@ class AddMedActivity() : AppCompatActivity() {
     private fun openTimePicker(view: View) {
         if (!pickerIsOpen) {
             pickerIsOpen = true
-            val isSystem24Hour = DateFormat.is24HourFormat(this)
-            val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
-            val timePicker = MaterialTimePicker.Builder()
-                .setTimeFormat(clockFormat)
-                .setTitleText(getString(R.string.select_a_time))
-                .build()
-            timePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance()
-                hour = timePicker.hour
-                minute = timePicker.minute
-                calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
-                calendar.set(Calendar.MINUTE, timePicker.minute)
-                val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
-                    else DateFormat.format(getString(R.string.time_12), calendar)
-                timePickerButton.text = formattedTime
-            }
-            timePicker.addOnDismissListener {
-                pickerIsOpen = false
-            }
+            timerPickerCaller = view
             timePicker.show(supportFragmentManager, getString(R.string.time_picker_tag))
         }
+
+        //Toast.makeText(this, "onClick works", Toast.LENGTH_SHORT).show()
     }
 }
