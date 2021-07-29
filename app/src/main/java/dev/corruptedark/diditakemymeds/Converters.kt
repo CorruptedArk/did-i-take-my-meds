@@ -19,7 +19,6 @@
 
 package dev.corruptedark.diditakemymeds
 
-import android.widget.TimePicker
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -44,14 +43,14 @@ public class Converters {
 
         @TypeConverter
         @JvmStatic
-        fun timeOfDayListToJson(list: ArrayList<TimeOfDay>): String {
+        fun timeOfDayListToJson(list: ArrayList<RepeatSchedule>): String {
             return gson.toJson(list)
         }
 
         @TypeConverter
         @JvmStatic
-        fun timeOfDayListFromJson(string: String): ArrayList<TimeOfDay> {
-            val listType: Type = object: TypeToken<ArrayList<TimeOfDay>>() {}.type
+        fun timeOfDayListFromJson(string: String): ArrayList<RepeatSchedule> {
+            val listType: Type = object: TypeToken<ArrayList<RepeatSchedule>>() {}.type
             return gson.fromJson(string, listType)
         }
     }

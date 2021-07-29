@@ -27,7 +27,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -59,7 +58,7 @@ class EditMedActivity : AppCompatActivity() {
 
         medication = MainActivity.medications!![intent.getIntExtra(getString(R.string.med_position_key), -1)]
         nameInput = findViewById(R.id.med_name)
-        timePickerButton = findViewById(R.id.time_picker_button)
+        timePickerButton = findViewById(R.id.repeat_schedule_button)
         detailInput = findViewById(R.id.med_detail)
 
         val calendar = Calendar.getInstance()

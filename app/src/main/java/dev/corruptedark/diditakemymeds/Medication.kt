@@ -19,21 +19,25 @@
 
 package dev.corruptedark.diditakemymeds
 
-import android.accounts.AuthenticatorDescription
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import java.sql.Time
 
 @Entity(tableName = "medication")
 data class Medication (@ColumnInfo(name = "name") var name: String,
                        @ColumnInfo(name = "hour") var hour: Int,
                        @ColumnInfo(name = "minute") var minute: Int,
                        @ColumnInfo(name = "description") var description: String,
+                       @ColumnInfo(name = "startDay") var startDay: Int,
+                       @ColumnInfo(name = "startMonth") var startMonth: Int,
+                       @ColumnInfo(name = "startYear") val startYear: Int,
+                       @ColumnInfo(name = "daysBetween") var daysBetween: Int = 1,
+                       @ColumnInfo(name = "weeksBetween") var weeksBetween: Int = 0,
+                       @ColumnInfo(name = "monthsBetween") var monthsBetween: Int = 0,
+                       @ColumnInfo(name = "yearsBetween") var yearsBetween: Int = 0,
                        @ColumnInfo(name = "notify") var notify: Boolean = true) {
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
-    @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<TimeOfDay> = ArrayList()
+    @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<RepeatSchedule> = ArrayList()
 }

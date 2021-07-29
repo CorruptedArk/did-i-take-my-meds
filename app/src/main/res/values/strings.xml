@@ -57,5 +57,14 @@
     <string name="last_version_used_key">last_version_used</string>
     <string name="add_another_dose">Add another dose</string>
     <string name="taken_as_needed">Taken as needed</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_a_start_date">Start date</string>
+    <string name="time_between_doses">Time between doses:</string>
+    <string name="days">Day(s)</string>
+    <string name="weeks">Week(s)</string>
+    <string name="months">Month(s)</string>
+    <string name="years">Year(s)</string>
+    <string name="schedule_dose">Schedule dose</string>
+    <string name="schedule_picker_tag">schedule_picker</string>
 
 </resources>

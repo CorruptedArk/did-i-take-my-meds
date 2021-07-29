@@ -72,26 +72,26 @@
                 android:checked="false"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/time_picker_button"
+                android:id="@+id/repeat_schedule_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:layout_marginHorizontal="20dp"
                 android:padding="15dp"
                 android:textSize="20sp"
-                android:text="@string/select_a_time"
+                android:text="@string/schedule_dose"
                 android:textColor="@color/purple_200"
                 app:strokeColor="@color/purple_500"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/time_buttons_layout"
+                android:id="@+id/schedule_buttons_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/extra_time_button"
+                android:id="@+id/extra_dose_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"

@@ -20,27 +20,23 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.AlarmManager
-import android.app.Dialog
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
-import android.media.Image
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
-import com.google.android.material.timepicker.MaterialTimePicker
 import android.text.format.DateFormat
 import android.view.*
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.fragment.app.DialogFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -55,17 +51,17 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
     private lateinit var asNeededSwitch: SwitchMaterial
-    private lateinit var timePickerButton: MaterialButton
+    private lateinit var repeatScheduleButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
     private lateinit var detailInput: TextInputEditText
-    private lateinit var timeButtonsLayout: LinearLayoutCompat
-    private lateinit var timeButtonsRows: ArrayList<LinearLayoutCompat>
-    private lateinit var extraTimeButton: MaterialButton
+    private lateinit var scheduleButtonsLayout: LinearLayoutCompat
+    private lateinit var scheduleButtonsRows: ArrayList<LinearLayoutCompat>
+    private lateinit var extraDoseButton: MaterialButton
     private var isSystem24Hour: Boolean = false
     private var clockFormat: Int = TimeFormat.CLOCK_12H
-    private lateinit var timePicker: MaterialTimePicker
-    private var timerPickerCaller: View? = null
-    private val timeOfDayList: ArrayList<TimeOfDay> = ArrayList()
+    private lateinit var schedulePicker: RepeatSheduleDialog
+    private var schedulePickerCaller: View? = null
+    private val repeatScheduleList: ArrayList<RepeatSchedule> = ArrayList()
 
     @Volatile var pickerIsOpen = false
     var hour = -1
@@ -81,15 +77,15 @@ class AddMedActivity() : AppCompatActivity() {
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
-        timePickerButton = findViewById(R.id.time_picker_button)
+        repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
         notificationSwitch = findViewById(R.id.notification_switch)
         detailInput = findViewById(R.id.med_detail)
         toolbar = findViewById(R.id.toolbar)
 
-        timeButtonsLayout = findViewById(R.id.time_buttons_layout)
-        timeButtonsRows = ArrayList()
-        extraTimeButton = findViewById(R.id.extra_time_button)
-        extraTimeButton.visibility = View.GONE
+        scheduleButtonsLayout = findViewById(R.id.schedule_buttons_layout)
+        scheduleButtonsRows = ArrayList()
+        extraDoseButton = findViewById(R.id.extra_dose_button)
+        extraDoseButton.visibility = View.GONE
 
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
@@ -100,25 +96,25 @@ class AddMedActivity() : AppCompatActivity() {
                 notify = false
                 notificationSwitch.visibility = View.GONE
 
-                timeButtonsLayout.removeAllViews()
-                timeButtonsRows.clear()
-                timeOfDayList.clear()
+                scheduleButtonsLayout.removeAllViews()
+                scheduleButtonsRows.clear()
+                repeatScheduleList.clear()
 
-                extraTimeButton.visibility = View.GONE
+                extraDoseButton.visibility = View.GONE
 
-                timePickerButton.text = getText(R.string.select_a_time)
-                timePickerButton.visibility = View.GONE
+                repeatScheduleButton.text = getText(R.string.schedule_dose)
+                repeatScheduleButton.visibility = View.GONE
 
                 hour = -1
                 minute = -1
             }
             else {
                 notificationSwitch.visibility = View.VISIBLE
-                timePickerButton.visibility = View.VISIBLE
+                repeatScheduleButton.visibility = View.VISIBLE
             }
         }
 
-        timePickerButton.setOnClickListener {
+        repeatScheduleButton.setOnClickListener {
             openTimePicker(it)
         }
 
@@ -126,66 +122,70 @@ class AddMedActivity() : AppCompatActivity() {
             notify = isChecked
         }
 
-        extraTimeButton.setOnClickListener {
-            var view = LayoutInflater.from(this).inflate(R.layout.extra_times_template, timeButtonsLayout, false)
-            timeOfDayList.add(TimeOfDay(-1, -1))
-            timeButtonsRows.add(view as LinearLayoutCompat)
-            timeButtonsLayout.addView(view)
+        extraDoseButton.setOnClickListener {
+            var view = LayoutInflater.from(this).inflate(R.layout.extra_dose_template, scheduleButtonsLayout, false)
+            repeatScheduleList.add(RepeatSchedule(-1, -1, -1, -1, -1))
+            scheduleButtonsRows.add(view as LinearLayoutCompat)
+            scheduleButtonsLayout.addView(view)
 
-            var selectButton: MaterialButton = view.findViewById(R.id.select_time_button)
-            var deleteButton: ImageButton = view.findViewById(R.id.delete_time_button)
+            var selectButton: MaterialButton = view.findViewById(R.id.schedule_dose_button)
+            var deleteButton: ImageButton = view.findViewById(R.id.delete_dose_button)
 
             selectButton.setOnClickListener {
                 openTimePicker(it)
             }
 
             deleteButton.setOnClickListener {
-                val callingIndex = timeButtonsRows.indexOf(view)
-                if (timeOfDayList.count() > callingIndex)
-                    timeOfDayList.removeAt(callingIndex)
-                timeButtonsRows.remove(view)
-                timeButtonsLayout.removeView(view)
+                val callingIndex = scheduleButtonsRows.indexOf(view)
+                if (repeatScheduleList.count() > callingIndex)
+                    repeatScheduleList.removeAt(callingIndex)
+                scheduleButtonsRows.remove(view)
+                scheduleButtonsLayout.removeView(view)
             }
 
         }
 
         isSystem24Hour = DateFormat.is24HourFormat(this)
         clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
-        timePicker = MaterialTimePicker.Builder()
+
+        schedulePicker = RepeatSheduleDialog.newInstance(this)
+
+        /*
+        timePicker = RepeatSheduleDialog.Builder()
             .setTimeFormat(clockFormat)
             .setTitleText(getString(R.string.select_a_time))
             .build()
 
-        timePicker.addOnPositiveButtonClickListener {
+        schedulePicker.addOnPositiveButtonClickListener {
             val calendar = Calendar.getInstance()
-            if (timerPickerCaller == timePickerButton) {
-                hour = timePicker.hour
-                minute = timePicker.minute
+            if (schedulePickerCaller == repeatScheduleButton) {
+                hour = schedulePicker.hour
+                minute = schedulePicker.minute
             }
             else {
-                val callingIndex = timeButtonsRows.indexOf(timerPickerCaller!!.parent as LinearLayoutCompat)
+                val callingIndex = scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
 
-                if (timeOfDayList.count() > callingIndex) {
-                    timeOfDayList[callingIndex].hour = timePicker.hour
-                    timeOfDayList[callingIndex].minute = timePicker.minute
+                if (repeatScheduleList.count() > callingIndex) {
+                    repeatScheduleList[callingIndex].hour = schedulePicker.hour
+                    repeatScheduleList[callingIndex].minute = schedulePicker.minute
                 }
                 else {
-                    timeOfDayList.add(TimeOfDay(timePicker.hour, timePicker.minute))
+                    repeatScheduleList.add(RepeatSchedule(schedulePicker.hour, schedulePicker.minute, -1, -1, -1))
                 }
 
             }
-            calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
-            calendar.set(Calendar.MINUTE, timePicker.minute)
+            calendar.set(Calendar.HOUR_OF_DAY, schedulePicker.hour)
+            calendar.set(Calendar.MINUTE, schedulePicker.minute)
             val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
             else DateFormat.format(getString(R.string.time_12), calendar)
-            (timerPickerCaller as MaterialButton).text = formattedTime
-            extraTimeButton.visibility = View.VISIBLE
+            (schedulePickerCaller as MaterialButton).text = formattedTime
+            extraDoseButton.visibility = View.VISIBLE
             pickerIsOpen = false
         }
-        timePicker.addOnDismissListener {
+        schedulePicker.addOnDismissListener {
             pickerIsOpen = false
-            timerPickerCaller = null
-        }
+            schedulePickerCaller = null
+        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -226,8 +226,8 @@ class AddMedActivity() : AppCompatActivity() {
             false
         }
         else {
-            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), notify)
-            medication.moreDosesPerDay = timeOfDayList
+            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), -1, -1, -1, notify= notify)
+            medication.moreDosesPerDay = repeatScheduleList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
             MainActivity.medications!!.add(medication)
@@ -291,8 +291,8 @@ class AddMedActivity() : AppCompatActivity() {
     private fun openTimePicker(view: View) {
         if (!pickerIsOpen) {
             pickerIsOpen = true
-            timerPickerCaller = view
-            timePicker.show(supportFragmentManager, getString(R.string.time_picker_tag))
+            schedulePickerCaller = view
+            schedulePicker.show(supportFragmentManager, getString(R.string.schedule_picker_tag))
         }
 
         //Toast.makeText(this, "onClick works", Toast.LENGTH_SHORT).show()
