@@ -66,5 +66,6 @@
     <string name="years">Year(s)</string>
     <string name="schedule_dose">Schedule dose</string>
     <string name="schedule_picker_tag">schedule_picker</string>
+    <string name="date_picker_tag">date_picker</string>
 
 </resources>

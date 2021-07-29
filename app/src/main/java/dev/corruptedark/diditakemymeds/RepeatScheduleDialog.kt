@@ -21,6 +21,7 @@ package dev.corruptedark.diditakemymeds
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
@@ -34,6 +35,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.util.*
@@ -41,11 +43,19 @@ import java.util.*
 
 class RepeatSheduleDialog : DialogFragment() {
 
-    lateinit var timePickerButton: MaterialButton
+    private lateinit var callingContext: Context
+    private lateinit var timePickerButton: MaterialButton
+    private lateinit var startDateButton: MaterialButton
+    private lateinit var cancelButton: MaterialButton
+    private lateinit var confirmButton: MaterialButton
     private @Volatile var pickerIsOpen = false
     var hour = 0
     var minute = 0
-    private lateinit var callingContext: Context
+    var dayOfMonth = -1
+    var month = -1
+    var year = -1
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +70,20 @@ class RepeatSheduleDialog : DialogFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_repeat_shedule_dialog, container, false)
         timePickerButton = view.findViewById(R.id.time_picker_button)
+        startDateButton = view.findViewById(R.id.start_date_button)
+        cancelButton = view.findViewById(R.id.cancel_button)
+        confirmButton = view.findViewById(R.id.confirm_button)
 
         timePickerButton.setOnClickListener {
             openTimePicker(it)
+        }
+
+        startDateButton.setOnClickListener {
+            openDatePicker(it)
+        }
+
+        cancelButton.setOnClickListener {
+            dismiss()
         }
 
         return view
@@ -86,6 +107,14 @@ class RepeatSheduleDialog : DialogFragment() {
             }
     }
 
+    fun addDismissListener(listener: DialogInterface.OnDismissListener) {
+        dialog?.setOnDismissListener(listener)
+    }
+
+    fun addConfirmListener(listener: View.OnClickListener) {
+        confirmButton.setOnClickListener(listener)
+    }
+
     private fun openTimePicker(view: View) {
         if (!pickerIsOpen) {
             pickerIsOpen = true
@@ -105,12 +134,33 @@ class RepeatSheduleDialog : DialogFragment() {
                 calendar.set(Calendar.MINUTE, timePicker.minute)
                 val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
                 else DateFormat.format(getString(R.string.time_12), calendar)
-                timePickerButton.text = formattedTime
+                (view as MaterialButton).text = formattedTime
             }
             timePicker.addOnDismissListener {
                 pickerIsOpen = false
             }
             timePicker.show((callingContext as AppCompatActivity).supportFragmentManager, getString(R.string.time_picker_tag))
+        }
+    }
+
+    private fun openDatePicker(view: View) {
+        if (!pickerIsOpen) {
+            pickerIsOpen = true
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText(getString(R.string.select_a_start_date))
+                .build()
+            datePicker.addOnPositiveButtonClickListener {
+                val calendar = Calendar.getInstance()
+                calendar.timeInMillis = datePicker.selection!!
+                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+                month = calendar.get(Calendar.MONTH)
+                year = calendar.get(Calendar.YEAR)
+                (view as MaterialButton).text = DateFormat.format(getString(R.string.date_format), calendar)
+            }
+            datePicker.addOnDismissListener {
+                pickerIsOpen = false
+            }
+            datePicker.show((callingContext as AppCompatActivity).supportFragmentManager, getString(R.string.date_picker_tag))
         }
     }
 
