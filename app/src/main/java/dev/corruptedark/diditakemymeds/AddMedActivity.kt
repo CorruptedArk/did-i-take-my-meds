@@ -25,8 +25,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
-import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -66,6 +64,13 @@ class AddMedActivity() : AppCompatActivity() {
     @Volatile var pickerIsOpen = false
     var hour = -1
     var minute = -1
+    var startDay = -1
+    var startMonth = -1
+    var startYear = -1
+    var daysBetween = 1
+    var weeksBetween = 0
+    var monthsBetween = 0
+    var yearsBetween = 0
     var notify = true
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private var alarmManager: AlarmManager? = null
@@ -107,6 +112,13 @@ class AddMedActivity() : AppCompatActivity() {
 
                 hour = -1
                 minute = -1
+                startDay = -1
+                startMonth = -1
+                startYear = -1
+                daysBetween = -1
+                weeksBetween = -1
+                monthsBetween = -1
+                yearsBetween = -1
             }
             else {
                 notificationSwitch.visibility = View.VISIBLE
@@ -115,7 +127,7 @@ class AddMedActivity() : AppCompatActivity() {
         }
 
         repeatScheduleButton.setOnClickListener {
-            openTimePicker(it)
+            openSchedulePicker(it)
         }
 
         notificationSwitch.setOnCheckedChangeListener { switchView, isChecked ->
@@ -123,16 +135,16 @@ class AddMedActivity() : AppCompatActivity() {
         }
 
         extraDoseButton.setOnClickListener {
-            var view = LayoutInflater.from(this).inflate(R.layout.extra_dose_template, scheduleButtonsLayout, false)
+            val view = LayoutInflater.from(this).inflate(R.layout.extra_dose_template, scheduleButtonsLayout, false)
             repeatScheduleList.add(RepeatSchedule(-1, -1, -1, -1, -1))
             scheduleButtonsRows.add(view as LinearLayoutCompat)
             scheduleButtonsLayout.addView(view)
 
-            var selectButton: MaterialButton = view.findViewById(R.id.schedule_dose_button)
-            var deleteButton: ImageButton = view.findViewById(R.id.delete_dose_button)
+            val selectButton: MaterialButton = view.findViewById(R.id.schedule_dose_button)
+            val deleteButton: ImageButton = view.findViewById(R.id.delete_dose_button)
 
             selectButton.setOnClickListener {
-                openTimePicker(it)
+                openSchedulePicker(it)
             }
 
             deleteButton.setOnClickListener {
@@ -150,17 +162,18 @@ class AddMedActivity() : AppCompatActivity() {
 
         schedulePicker = RepeatSheduleDialog.newInstance(this)
 
-        /*
-        timePicker = RepeatSheduleDialog.Builder()
-            .setTimeFormat(clockFormat)
-            .setTitleText(getString(R.string.select_a_time))
-            .build()
-
-        schedulePicker.addOnPositiveButtonClickListener {
+        schedulePicker.addConfirmListener {
             val calendar = Calendar.getInstance()
             if (schedulePickerCaller == repeatScheduleButton) {
                 hour = schedulePicker.hour
                 minute = schedulePicker.minute
+                startDay = schedulePicker.startDay
+                startMonth = schedulePicker.startMonth
+                startYear = schedulePicker.startYear
+                daysBetween = schedulePicker.daysBetween
+                weeksBetween = schedulePicker.weeksBetween
+                monthsBetween = schedulePicker.monthsBetween
+                yearsBetween = schedulePicker.yearsBetween
             }
             else {
                 val callingIndex = scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
@@ -168,24 +181,53 @@ class AddMedActivity() : AppCompatActivity() {
                 if (repeatScheduleList.count() > callingIndex) {
                     repeatScheduleList[callingIndex].hour = schedulePicker.hour
                     repeatScheduleList[callingIndex].minute = schedulePicker.minute
+                    repeatScheduleList[callingIndex].startDay = schedulePicker.startDay
+                    repeatScheduleList[callingIndex].startMonth = schedulePicker.startMonth
+                    repeatScheduleList[callingIndex].startYear = schedulePicker.startYear
+                    repeatScheduleList[callingIndex].daysBetween = schedulePicker.daysBetween
+                    repeatScheduleList[callingIndex].weeksBetween = schedulePicker.weeksBetween
+                    repeatScheduleList[callingIndex].monthsBetween = schedulePicker.monthsBetween
+                    repeatScheduleList[callingIndex].yearsBetween = schedulePicker.yearsBetween
                 }
                 else {
-                    repeatScheduleList.add(RepeatSchedule(schedulePicker.hour, schedulePicker.minute, -1, -1, -1))
+                    repeatScheduleList.add(RepeatSchedule(
+                        schedulePicker.hour,
+                        schedulePicker.minute,
+                        schedulePicker.startDay,
+                        schedulePicker.startMonth,
+                        schedulePicker.startYear,
+                        schedulePicker.daysBetween,
+                        schedulePicker.weeksBetween,
+                        schedulePicker.monthsBetween,
+                        schedulePicker.yearsBetween
+                    ))
                 }
 
             }
             calendar.set(Calendar.HOUR_OF_DAY, schedulePicker.hour)
             calendar.set(Calendar.MINUTE, schedulePicker.minute)
+            calendar.set(Calendar.DAY_OF_MONTH, schedulePicker.startDay)
+            calendar.set(Calendar.MONTH, schedulePicker.startMonth)
+            calendar.set(Calendar.YEAR, schedulePicker.startYear)
             val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
-            else DateFormat.format(getString(R.string.time_12), calendar)
-            (schedulePickerCaller as MaterialButton).text = formattedTime
+                else DateFormat.format(getString(R.string.time_12), calendar)
+            val formattedDate = DateFormat.format(getString(R.string.date_format), calendar)
+            (schedulePickerCaller as MaterialButton).text = getString(R.string.schedule_format,
+                formattedTime,
+                formattedDate,
+                daysBetween,
+                weeksBetween,
+                monthsBetween,
+                yearsBetween
+            )
             extraDoseButton.visibility = View.VISIBLE
             pickerIsOpen = false
+            schedulePicker.dismiss()
         }
-        schedulePicker.addOnDismissListener {
+        schedulePicker.addDismissListener {
             pickerIsOpen = false
             schedulePickerCaller = null
-        }*/
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -288,13 +330,19 @@ class AddMedActivity() : AppCompatActivity() {
         }
     }
 
-    private fun openTimePicker(view: View) {
+    private fun openSchedulePicker(view: View) {
         if (!pickerIsOpen) {
             pickerIsOpen = true
             schedulePickerCaller = view
+
+            /*
+            if (view == repeatScheduleButton) {
+                schedulePickerCaller
+            }
+            */
+
             schedulePicker.show(supportFragmentManager, getString(R.string.schedule_picker_tag))
         }
-
         //Toast.makeText(this, "onClick works", Toast.LENGTH_SHORT).show()
     }
 }

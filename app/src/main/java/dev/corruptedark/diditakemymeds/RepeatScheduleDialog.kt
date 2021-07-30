@@ -19,18 +19,15 @@
 
 package dev.corruptedark.diditakemymeds
 
-import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.format.DateFormat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
@@ -38,6 +35,8 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import it.sephiroth.android.library.numberpicker.NumberPicker
+import it.sephiroth.android.library.numberpicker.doOnProgressChanged
 import java.util.*
 
 
@@ -46,16 +45,24 @@ class RepeatSheduleDialog : DialogFragment() {
     private lateinit var callingContext: Context
     private lateinit var timePickerButton: MaterialButton
     private lateinit var startDateButton: MaterialButton
+    private lateinit var daysBetweenPicker: NumberPicker
+    private lateinit var weeksBetweenPicker: NumberPicker
+    private lateinit var monthsBetweenPicker: NumberPicker
+    private lateinit var yearsBetweenPicker: NumberPicker
     private lateinit var cancelButton: MaterialButton
-    private lateinit var confirmButton: MaterialButton
+    private var confirmButton: MaterialButton? = null
+    private var confirmListener: View.OnClickListener? = null
+    private var dismissListener: DialogInterface.OnDismissListener? = null
     private @Volatile var pickerIsOpen = false
     var hour = 0
     var minute = 0
-    var dayOfMonth = -1
-    var month = -1
-    var year = -1
-
-
+    var startDay = -1
+    var startMonth = -1
+    var startYear = -1
+    var daysBetween = 1
+    var weeksBetween = 0
+    var monthsBetween = 0
+    var yearsBetween = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,8 +78,20 @@ class RepeatSheduleDialog : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_repeat_shedule_dialog, container, false)
         timePickerButton = view.findViewById(R.id.time_picker_button)
         startDateButton = view.findViewById(R.id.start_date_button)
+        daysBetweenPicker = view.findViewById(R.id.days_between_picker)
+        weeksBetweenPicker = view.findViewById(R.id.weeks_between_picker)
+        monthsBetweenPicker = view.findViewById(R.id.months_between_picker)
+        yearsBetweenPicker = view.findViewById(R.id.years_between_picker)
         cancelButton = view.findViewById(R.id.cancel_button)
         confirmButton = view.findViewById(R.id.confirm_button)
+
+        if (confirmListener != null)
+            confirmButton?.setOnClickListener(confirmListener)
+
+        /*
+        if (dismissListener != null)
+            dialog?.setOnDismissListener(dismissListener)
+        */
 
         timePickerButton.setOnClickListener {
             openTimePicker(it)
@@ -80,6 +99,22 @@ class RepeatSheduleDialog : DialogFragment() {
 
         startDateButton.setOnClickListener {
             openDatePicker(it)
+        }
+
+        daysBetweenPicker.doOnProgressChanged { numberPicker, progress, formUser ->
+            daysBetween = progress
+        }
+
+        weeksBetweenPicker.doOnProgressChanged { numberPicker, progress, formUser ->
+            weeksBetween = progress
+        }
+
+        monthsBetweenPicker.doOnProgressChanged { numberPicker, progress, formUser ->
+            monthsBetween = progress
+        }
+
+        yearsBetweenPicker.doOnProgressChanged { numberPicker, progress, formUser ->
+            yearsBetween = progress
         }
 
         cancelButton.setOnClickListener {
@@ -108,11 +143,13 @@ class RepeatSheduleDialog : DialogFragment() {
     }
 
     fun addDismissListener(listener: DialogInterface.OnDismissListener) {
-        dialog?.setOnDismissListener(listener)
+        dismissListener = listener
+        //dialog?.setOnDismissListener(listener)
     }
 
     fun addConfirmListener(listener: View.OnClickListener) {
-        confirmButton.setOnClickListener(listener)
+        confirmListener = listener
+        confirmButton?.setOnClickListener(listener)
     }
 
     private fun openTimePicker(view: View) {
@@ -147,14 +184,15 @@ class RepeatSheduleDialog : DialogFragment() {
         if (!pickerIsOpen) {
             pickerIsOpen = true
             val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
                 .setTitleText(getString(R.string.select_a_start_date))
                 .build()
             datePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance()
+                val calendar = Calendar.getInstance(TimeZone.getTimeZone(getString(R.string.utc)))
                 calendar.timeInMillis = datePicker.selection!!
-                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
-                month = calendar.get(Calendar.MONTH)
-                year = calendar.get(Calendar.YEAR)
+                startDay = calendar.get(Calendar.DATE)
+                startMonth = calendar.get(Calendar.MONTH)
+                startYear = calendar.get(Calendar.YEAR)
                 (view as MaterialButton).text = DateFormat.format(getString(R.string.date_format), calendar)
             }
             datePicker.addOnDismissListener {
@@ -162,6 +200,11 @@ class RepeatSheduleDialog : DialogFragment() {
             }
             datePicker.show((callingContext as AppCompatActivity).supportFragmentManager, getString(R.string.date_picker_tag))
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        dismissListener?.onDismiss(dialog)
+        super.onDismiss(dialog)
     }
 
     /**
