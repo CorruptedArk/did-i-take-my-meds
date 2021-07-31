@@ -54,8 +54,8 @@ class RepeatSheduleDialog : DialogFragment() {
     private var confirmListener: View.OnClickListener? = null
     private var dismissListener: DialogInterface.OnDismissListener? = null
     private @Volatile var pickerIsOpen = false
-    var hour = 0
-    var minute = 0
+    var hour = -1
+    var minute = -1
     var startDay = -1
     var startMonth = -1
     var startYear = -1
@@ -84,6 +84,8 @@ class RepeatSheduleDialog : DialogFragment() {
         yearsBetweenPicker = view.findViewById(R.id.years_between_picker)
         cancelButton = view.findViewById(R.id.cancel_button)
         confirmButton = view.findViewById(R.id.confirm_button)
+
+
 
         if (confirmListener != null)
             confirmButton?.setOnClickListener(confirmListener)
@@ -155,16 +157,31 @@ class RepeatSheduleDialog : DialogFragment() {
     private fun openTimePicker(view: View) {
         if (!pickerIsOpen) {
             pickerIsOpen = true
+
+            val calendar = Calendar.getInstance()
+
+            val initialHour: Int
+            val initialMinute: Int
+
+            if (hour >= 0 && minute >= 0) {
+                initialHour = hour
+                initialMinute = minute
+            }
+            else
+            {
+                initialHour = calendar.get(Calendar.HOUR_OF_DAY)
+                initialMinute = calendar.get(Calendar.MINUTE)
+            }
+
             val isSystem24Hour = DateFormat.is24HourFormat(callingContext)
             val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
             val timePicker = MaterialTimePicker.Builder()
                 .setTimeFormat(clockFormat)
-                .setHour(hour)
-                .setMinute(minute)
+                .setHour(initialHour)
+                .setMinute(initialMinute)
                 .setTitleText(getString(R.string.select_a_time))
                 .build()
             timePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance()
                 hour = timePicker.hour
                 minute = timePicker.minute
                 calendar.set(Calendar.HOUR_OF_DAY, timePicker.hour)
@@ -183,12 +200,23 @@ class RepeatSheduleDialog : DialogFragment() {
     private fun openDatePicker(view: View) {
         if (!pickerIsOpen) {
             pickerIsOpen = true
+
+            val calendar = Calendar.getInstance(TimeZone.getTimeZone(getString(R.string.utc)))
+
+            val initialSelection = if (startDay >= 0 && startMonth >= 0 && startYear >= 0) {
+                calendar.set(Calendar.DAY_OF_MONTH, startDay)
+                calendar.set(Calendar.MONTH, startMonth)
+                calendar.set(Calendar.YEAR, startYear)
+                calendar.timeInMillis
+            } else {
+                MaterialDatePicker.todayInUtcMilliseconds()
+            }
+            
             val datePicker = MaterialDatePicker.Builder.datePicker()
-                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
+                .setSelection(initialSelection)
                 .setTitleText(getString(R.string.select_a_start_date))
                 .build()
             datePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance(TimeZone.getTimeZone(getString(R.string.utc)))
                 calendar.timeInMillis = datePicker.selection!!
                 startDay = calendar.get(Calendar.DATE)
                 startMonth = calendar.get(Calendar.MONTH)
@@ -218,6 +246,10 @@ class RepeatSheduleDialog : DialogFragment() {
         val rect = dm.run { Rect(0, 0, widthPixels, heightPixels) }
         val percentWidth = rect.width() * percent
         dialog?.window?.setLayout(percentWidth.toInt(), WRAP_CONTENT)
+    }
+
+    fun scheduleIsValid(): Boolean {
+       return hour >= 0 && minute >= 0 && startDay >= 0 && startMonth >= 0 && startYear >= 0
     }
 
 }

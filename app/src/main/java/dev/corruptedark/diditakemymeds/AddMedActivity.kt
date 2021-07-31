@@ -115,10 +115,10 @@ class AddMedActivity() : AppCompatActivity() {
                 startDay = -1
                 startMonth = -1
                 startYear = -1
-                daysBetween = -1
-                weeksBetween = -1
-                monthsBetween = -1
-                yearsBetween = -1
+                daysBetween = 1
+                weeksBetween = 0
+                monthsBetween = 0
+                yearsBetween = 0
             }
             else {
                 notificationSwitch.visibility = View.VISIBLE
@@ -163,66 +163,75 @@ class AddMedActivity() : AppCompatActivity() {
         schedulePicker = RepeatSheduleDialog.newInstance(this)
 
         schedulePicker.addConfirmListener {
-            val calendar = Calendar.getInstance()
-            if (schedulePickerCaller == repeatScheduleButton) {
-                hour = schedulePicker.hour
-                minute = schedulePicker.minute
-                startDay = schedulePicker.startDay
-                startMonth = schedulePicker.startMonth
-                startYear = schedulePicker.startYear
-                daysBetween = schedulePicker.daysBetween
-                weeksBetween = schedulePicker.weeksBetween
-                monthsBetween = schedulePicker.monthsBetween
-                yearsBetween = schedulePicker.yearsBetween
+            if (schedulePicker.scheduleIsValid()) {
+                val calendar = Calendar.getInstance()
+                if (schedulePickerCaller == repeatScheduleButton) {
+                    hour = schedulePicker.hour
+                    minute = schedulePicker.minute
+                    startDay = schedulePicker.startDay
+                    startMonth = schedulePicker.startMonth
+                    startYear = schedulePicker.startYear
+                    daysBetween = schedulePicker.daysBetween
+                    weeksBetween = schedulePicker.weeksBetween
+                    monthsBetween = schedulePicker.monthsBetween
+                    yearsBetween = schedulePicker.yearsBetween
+                } else {
+                    val callingIndex =
+                        scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
+
+                    if (repeatScheduleList.count() > callingIndex) {
+                        repeatScheduleList[callingIndex].hour = schedulePicker.hour
+                        repeatScheduleList[callingIndex].minute = schedulePicker.minute
+                        repeatScheduleList[callingIndex].startDay = schedulePicker.startDay
+                        repeatScheduleList[callingIndex].startMonth = schedulePicker.startMonth
+                        repeatScheduleList[callingIndex].startYear = schedulePicker.startYear
+                        repeatScheduleList[callingIndex].daysBetween = schedulePicker.daysBetween
+                        repeatScheduleList[callingIndex].weeksBetween = schedulePicker.weeksBetween
+                        repeatScheduleList[callingIndex].monthsBetween =
+                            schedulePicker.monthsBetween
+                        repeatScheduleList[callingIndex].yearsBetween = schedulePicker.yearsBetween
+                    } else {
+                        repeatScheduleList.add(
+                            RepeatSchedule(
+                                schedulePicker.hour,
+                                schedulePicker.minute,
+                                schedulePicker.startDay,
+                                schedulePicker.startMonth,
+                                schedulePicker.startYear,
+                                schedulePicker.daysBetween,
+                                schedulePicker.weeksBetween,
+                                schedulePicker.monthsBetween,
+                                schedulePicker.yearsBetween
+                            )
+                        )
+                    }
+
+                }
+                calendar.set(Calendar.HOUR_OF_DAY, schedulePicker.hour)
+                calendar.set(Calendar.MINUTE, schedulePicker.minute)
+                calendar.set(Calendar.DAY_OF_MONTH, schedulePicker.startDay)
+                calendar.set(Calendar.MONTH, schedulePicker.startMonth)
+                calendar.set(Calendar.YEAR, schedulePicker.startYear)
+                val formattedTime =
+                    if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
+                    else DateFormat.format(getString(R.string.time_12), calendar)
+                val formattedDate = DateFormat.format(getString(R.string.date_format), calendar)
+                (schedulePickerCaller as MaterialButton).text = getString(
+                    R.string.schedule_format,
+                    formattedTime,
+                    formattedDate,
+                    daysBetween,
+                    weeksBetween,
+                    monthsBetween,
+                    yearsBetween
+                )
+                extraDoseButton.visibility = View.VISIBLE
+                pickerIsOpen = false
+                schedulePicker.dismiss()
             }
             else {
-                val callingIndex = scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
-
-                if (repeatScheduleList.count() > callingIndex) {
-                    repeatScheduleList[callingIndex].hour = schedulePicker.hour
-                    repeatScheduleList[callingIndex].minute = schedulePicker.minute
-                    repeatScheduleList[callingIndex].startDay = schedulePicker.startDay
-                    repeatScheduleList[callingIndex].startMonth = schedulePicker.startMonth
-                    repeatScheduleList[callingIndex].startYear = schedulePicker.startYear
-                    repeatScheduleList[callingIndex].daysBetween = schedulePicker.daysBetween
-                    repeatScheduleList[callingIndex].weeksBetween = schedulePicker.weeksBetween
-                    repeatScheduleList[callingIndex].monthsBetween = schedulePicker.monthsBetween
-                    repeatScheduleList[callingIndex].yearsBetween = schedulePicker.yearsBetween
-                }
-                else {
-                    repeatScheduleList.add(RepeatSchedule(
-                        schedulePicker.hour,
-                        schedulePicker.minute,
-                        schedulePicker.startDay,
-                        schedulePicker.startMonth,
-                        schedulePicker.startYear,
-                        schedulePicker.daysBetween,
-                        schedulePicker.weeksBetween,
-                        schedulePicker.monthsBetween,
-                        schedulePicker.yearsBetween
-                    ))
-                }
-
+                Toast.makeText(this, getString(R.string.fill_out_schedule), Toast.LENGTH_SHORT).show()
             }
-            calendar.set(Calendar.HOUR_OF_DAY, schedulePicker.hour)
-            calendar.set(Calendar.MINUTE, schedulePicker.minute)
-            calendar.set(Calendar.DAY_OF_MONTH, schedulePicker.startDay)
-            calendar.set(Calendar.MONTH, schedulePicker.startMonth)
-            calendar.set(Calendar.YEAR, schedulePicker.startYear)
-            val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
-                else DateFormat.format(getString(R.string.time_12), calendar)
-            val formattedDate = DateFormat.format(getString(R.string.date_format), calendar)
-            (schedulePickerCaller as MaterialButton).text = getString(R.string.schedule_format,
-                formattedTime,
-                formattedDate,
-                daysBetween,
-                weeksBetween,
-                monthsBetween,
-                yearsBetween
-            )
-            extraDoseButton.visibility = View.VISIBLE
-            pickerIsOpen = false
-            schedulePicker.dismiss()
         }
         schedulePicker.addDismissListener {
             pickerIsOpen = false
@@ -261,14 +270,14 @@ class AddMedActivity() : AppCompatActivity() {
             }
             false
         }
-        else if ((hour !in 0..23 || minute !in 0..59) && !asNeededSwitch.isChecked) {
+        else if (!allSchedulesAreValid() && !asNeededSwitch.isChecked) {
             runOnUiThread {
-                Toast.makeText(this, getString(R.string.select_a_time), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fill_out_all_schedules), Toast.LENGTH_SHORT).show()
             }
             false
         }
         else {
-            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), -1, -1, -1, notify= notify)
+            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify)
             medication.moreDosesPerDay = repeatScheduleList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
@@ -284,31 +293,17 @@ class AddMedActivity() : AppCompatActivity() {
             if (notify) {
                 //Set alarm
 
-                val calendar = Calendar.getInstance().apply {
-                    set(Calendar.SECOND, 0)
-                    set(Calendar.MILLISECOND, 0)
-                    set(Calendar.HOUR_OF_DAY, medication.hour)
-                    set(Calendar.MINUTE, medication.minute)
-                }
-
-                /*alarmManager?.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    AlarmManager.INTERVAL_DAY,
-                    alarmIntent
-                )*/
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        calculateNextDose(medication).timeInMillis,
                         alarmIntent
                     )
                 }
                 else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        calculateNextDose(medication).timeInMillis,
                         alarmIntent
                     )
                 }
@@ -335,14 +330,53 @@ class AddMedActivity() : AppCompatActivity() {
             pickerIsOpen = true
             schedulePickerCaller = view
 
-            /*
             if (view == repeatScheduleButton) {
-                schedulePickerCaller
+                schedulePicker.hour = hour
+                schedulePicker.minute = minute
+                schedulePicker.startDay = startDay
+                schedulePicker.startMonth = startMonth
+                schedulePicker.startYear = startYear
+                schedulePicker.daysBetween = daysBetween
+                schedulePicker.weeksBetween = weeksBetween
+                schedulePicker.monthsBetween = monthsBetween
+                schedulePicker.yearsBetween = yearsBetween
             }
-            */
+            else {
+                val callingIndex = scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
+
+                schedulePicker.hour = repeatScheduleList[callingIndex].hour
+                schedulePicker.minute = repeatScheduleList[callingIndex].minute
+                schedulePicker.startDay = repeatScheduleList[callingIndex].startDay
+                schedulePicker.startMonth = repeatScheduleList[callingIndex].startMonth
+                schedulePicker.startYear = repeatScheduleList[callingIndex].startYear
+                schedulePicker.daysBetween = repeatScheduleList[callingIndex].daysBetween
+                schedulePicker.weeksBetween = repeatScheduleList[callingIndex].weeksBetween
+                schedulePicker.monthsBetween = repeatScheduleList[callingIndex].monthsBetween
+                schedulePicker.yearsBetween = repeatScheduleList[callingIndex].yearsBetween
+            }
 
             schedulePicker.show(supportFragmentManager, getString(R.string.schedule_picker_tag))
         }
         //Toast.makeText(this, "onClick works", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun allSchedulesAreValid(): Boolean {
+        var timesAreValid = true
+
+        if (hour < 0 || minute < 0 || startDay < 0 || startMonth < 0 || startYear < 0) {
+            timesAreValid = false
+        }
+
+        var i = 0
+        var schedule: RepeatSchedule
+        while (timesAreValid && i < repeatScheduleList.size) {
+            schedule = repeatScheduleList[i]
+            if (schedule.hour < 0 || schedule.minute < 0 || schedule.startDay < 0 || schedule.startMonth < 0 || schedule.startYear < 0) {
+                timesAreValid = false
+            }
+            i++
+        }
+
+        return timesAreValid
     }
 }
