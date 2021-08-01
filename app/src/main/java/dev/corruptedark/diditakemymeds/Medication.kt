@@ -19,9 +19,16 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.text.format.DateFormat
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.lang.StringBuilder
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.abs
+import kotlin.math.min
+import kotlin.math.sign
 
 @Entity(tableName = "medication")
 data class Medication (@ColumnInfo(name = "name") var name: String,
@@ -40,4 +47,152 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
     @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<RepeatSchedule> = ArrayList()
+
+    fun calculateNextDose(): ScheduleSortTriple {
+        val scheduleTripleList = ArrayList<ScheduleSortTriple>()
+
+        val currentTime = System.currentTimeMillis()
+        val localCalendar = Calendar.getInstance()
+        var scheduleTriple: ScheduleSortTriple
+        var nextDose: ScheduleSortTriple
+
+        localCalendar.set(Calendar.HOUR_OF_DAY, hour)
+        localCalendar.set(Calendar.MINUTE, minute)
+        localCalendar.set(Calendar.SECOND, 0)
+        localCalendar.set(Calendar.MILLISECOND, 0)
+        localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
+        localCalendar.set(Calendar.MONTH, startMonth)
+        localCalendar.set(Calendar.YEAR, startYear)
+        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
+            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+            -1
+        )
+
+        nextDose = scheduleTriple
+
+        scheduleTripleList.add(scheduleTriple)
+
+        moreDosesPerDay.forEachIndexed { index, schedule ->
+            localCalendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
+            localCalendar.set(Calendar.MINUTE, schedule.minute)
+            localCalendar.set(Calendar.SECOND, 0)
+            localCalendar.set(Calendar.MILLISECOND, 0)
+            localCalendar.set(Calendar.DAY_OF_MONTH, schedule.startDay)
+            localCalendar.set(Calendar.MONTH, schedule.startMonth)
+            localCalendar.set(Calendar.YEAR, schedule.startYear)
+
+            scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
+
+            scheduleTripleList.add(scheduleTriple)
+        }
+
+        scheduleTripleList.sort()
+
+        for (triple in scheduleTripleList) {
+            if (triple.timeInMillis > currentTime) {
+                nextDose = triple
+                break
+            }
+        }
+
+        return nextDose
+    }
+
+    private fun updateStartsToFuture() {
+        //TODO - Implement function
+    }
+
+   fun calculateClosestDose(): ScheduleSortTriple {
+        val scheduleTripleList = ArrayList<ScheduleSortTriple>()
+
+        val currentTime = System.currentTimeMillis()
+        val localCalendar = Calendar.getInstance()
+        var scheduleTriple: ScheduleSortTriple
+        var closestDose: ScheduleSortTriple
+
+        localCalendar.set(Calendar.HOUR_OF_DAY, hour)
+        localCalendar.set(Calendar.MINUTE, minute)
+        localCalendar.set(Calendar.SECOND, 0)
+        localCalendar.set(Calendar.MILLISECOND, 0)
+        localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
+        localCalendar.set(Calendar.MONTH, startMonth)
+        localCalendar.set(Calendar.YEAR, startYear)
+        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
+            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+            -1
+        )
+
+        closestDose = scheduleTriple
+
+        scheduleTripleList.add(scheduleTriple)
+
+        localCalendar.add(Calendar.DATE, -daysBetween)
+        localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
+        localCalendar.add(Calendar.MONTH, -monthsBetween)
+        localCalendar.add(Calendar.YEAR, -yearsBetween)
+        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
+            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+            -1
+        )
+
+        scheduleTripleList.add(scheduleTriple)
+
+        localCalendar.add(Calendar.DATE, -daysBetween)
+        localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
+        localCalendar.add(Calendar.MONTH, -monthsBetween)
+        localCalendar.add(Calendar.YEAR, -yearsBetween)
+        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
+            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+            -1
+        )
+
+        scheduleTripleList.add(scheduleTriple)
+
+        localCalendar.add(Calendar.DATE, 2*daysBetween)
+        localCalendar.add(Calendar.WEEK_OF_YEAR, 2*weeksBetween)
+        localCalendar.add(Calendar.MONTH, 2*monthsBetween)
+        localCalendar.add(Calendar.YEAR, 2*yearsBetween)
+        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
+            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+            -1
+        )
+
+        scheduleTripleList.add(scheduleTriple)
+
+        moreDosesPerDay.forEachIndexed { index, schedule ->
+            localCalendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
+            localCalendar.set(Calendar.MINUTE, schedule.minute)
+            localCalendar.set(Calendar.SECOND, 0)
+            localCalendar.set(Calendar.MILLISECOND, 0)
+            localCalendar.set(Calendar.DAY_OF_MONTH, schedule.startDay)
+            localCalendar.set(Calendar.MONTH, schedule.startMonth)
+            localCalendar.set(Calendar.YEAR, schedule.startYear)
+            scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
+
+            scheduleTripleList.add(scheduleTriple)
+
+            localCalendar.add(Calendar.DATE, -daysBetween)
+            localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
+            localCalendar.add(Calendar.MONTH, -monthsBetween)
+            localCalendar.add(Calendar.YEAR, -yearsBetween)
+            scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
+
+            scheduleTripleList.add(scheduleTriple)
+
+            localCalendar.add(Calendar.DATE, 2*daysBetween)
+            localCalendar.add(Calendar.WEEK_OF_YEAR, 2*weeksBetween)
+            localCalendar.add(Calendar.MONTH, 2*monthsBetween)
+            localCalendar.add(Calendar.YEAR, 2*yearsBetween)
+            scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
+        }
+
+        scheduleTripleList.sortWith { schedule1, schedule2 ->
+            (abs(schedule1.timeInMillis - currentTime) - abs(schedule2.timeInMillis - currentTime)).sign
+        }
+
+        closestDose = scheduleTripleList.first()
+
+        return closestDose
+    }
+
 }

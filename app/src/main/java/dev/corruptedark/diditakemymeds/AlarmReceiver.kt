@@ -83,14 +83,14 @@ class AlarmReceiver : BroadcastReceiver() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             alarmManager?.setExactAndAllowWhileIdle(
                                 AlarmManager.RTC_WAKEUP,
-                                calculateNextDose(medication).timeInMillis,
+                                medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
                         }
                         else {
                             alarmManager?.set(
                                 AlarmManager.RTC_WAKEUP,
-                                calculateNextDose(medication).timeInMillis,
+                                medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
                         }
@@ -114,7 +114,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         )
                     }
 
-                val nextDose = calculateNextDose(medication)
+                val nextDose = medication.calculateNextDose()
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
@@ -149,7 +149,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     medication.moreDosesPerDay[nextDose.scheduleIndex].startMonth = calendar.get(Calendar.MONTH)
                     medication.moreDosesPerDay[nextDose.scheduleIndex].startYear = calendar.get(Calendar.YEAR)
                 }
-                
+
                 MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
 
                 val actionIntent = Intent(context, MainActivity::class.java).apply {

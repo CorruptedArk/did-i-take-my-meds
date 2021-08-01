@@ -84,7 +84,7 @@ class MedDetailActivity : AppCompatActivity() {
 
             detailLabel.text = medication.description
 
-            closestDose = calculateClosestDose(medication)
+            closestDose = medication.calculateClosestDose().timeInMillis
             closestDoseLabel.text = closestDoseString(closestDose)
 
             val lastDose: Long = try {
@@ -93,7 +93,7 @@ class MedDetailActivity : AppCompatActivity() {
             catch (except: NoSuchElementException) {
                 -1L
             }
-            closestDose = calculateClosestDose(medication)
+            closestDose = medication.calculateClosestDose().timeInMillis
             if (lastDose == closestDose) {
                 justTookItButton.text = getString(R.string.took_this_already)
             }
@@ -128,14 +128,14 @@ class MedDetailActivity : AppCompatActivity() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        medication.calculateNextDose().timeInMillis,
                         alarmIntent
                     )
                 }
                 else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        medication.calculateNextDose().timeInMillis,
                         alarmIntent
                     )
                 }
@@ -221,14 +221,14 @@ class MedDetailActivity : AppCompatActivity() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        medication.calculateNextDose().timeInMillis,
                         alarmIntent
                     )
                 }
                 else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        medication.calculateNextDose().timeInMillis,
                         alarmIntent
                     )
                 }
@@ -252,7 +252,7 @@ class MedDetailActivity : AppCompatActivity() {
 
         detailLabel.text = medication.description
 
-        closestDose = calculateClosestDose(medication)
+        closestDose = medication.calculateClosestDose().timeInMillis
         closestDoseLabel.text = closestDoseString(closestDose)
         doseRecordAdapter = DoseRecordListAdapter(this, medication.doseRecord)
 
@@ -269,7 +269,7 @@ class MedDetailActivity : AppCompatActivity() {
         catch (except: NoSuchElementException) {
             -1L
         }
-        closestDose = calculateClosestDose(medication)
+        closestDose = medication.calculateClosestDose().timeInMillis
         if (lastDose == closestDose) {
             justTookItButton.text = getString(R.string.took_this_already)
         }
@@ -316,27 +316,6 @@ class MedDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun calculateClosestDose(medication: Medication): Long {
-        val currentTime = System.currentTimeMillis()
-        calendar.timeInMillis = currentTime
-        calendar.set(Calendar.HOUR_OF_DAY, medication.hour)
-        calendar.set(Calendar.MINUTE, medication.minute)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        val todayDose = calendar.timeInMillis
-        calendar.add(Calendar.DATE, -1)
-        val yesterdayDose = calendar.timeInMillis
-        calendar.add(Calendar.DATE, 2)
-        val tomorrowDose = calendar.timeInMillis
-
-        return when (minOf(abs(currentTime - todayDose), abs(currentTime - yesterdayDose), abs(currentTime - tomorrowDose))) {
-            abs(currentTime - todayDose) -> todayDose
-            abs(currentTime - yesterdayDose) -> yesterdayDose
-            else -> tomorrowDose
-        }
-
-    }
-
     private fun closestDoseString(closestDose: Long): String {
         val doseCal: Calendar = Calendar.getInstance()
         doseCal.timeInMillis = closestDose
@@ -379,7 +358,7 @@ class MedDetailActivity : AppCompatActivity() {
         {
             -1L
         }
-        closestDose = calculateClosestDose(medication)
+        closestDose = medication.calculateClosestDose().timeInMillis
         if (lastDose == closestDose)
         {
             Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()

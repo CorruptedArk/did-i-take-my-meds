@@ -44,58 +44,6 @@ import java.util.concurrent.Executors
 import java.util.prefs.Preferences
 import kotlin.collections.ArrayList
 
-fun calculateNextDose(medication: Medication): ScheduleSortTriple {
-    val scheduleTripleList = ArrayList<ScheduleSortTriple>()
-
-    val currentTime = System.currentTimeMillis()
-    val localCalendar = Calendar.getInstance()
-    var scheduleTriple: ScheduleSortTriple
-    var nextDose: ScheduleSortTriple
-
-    localCalendar.set(Calendar.HOUR_OF_DAY, medication.hour)
-    localCalendar.set(Calendar.MINUTE, medication.minute)
-    localCalendar.set(Calendar.SECOND, 0)
-    localCalendar.set(Calendar.MILLISECOND, 0)
-    localCalendar.set(Calendar.DAY_OF_MONTH, medication.startDay)
-    localCalendar.set(Calendar.MONTH, medication.startMonth)
-    localCalendar.set(Calendar.YEAR, medication.startYear)
-    scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
-        RepeatSchedule(medication.hour, medication.minute, medication.startDay,
-            medication.startMonth, medication.startYear, medication.daysBetween,
-            medication.weeksBetween, medication.monthsBetween, medication.yearsBetween),
-        -1
-    )
-
-    nextDose = scheduleTriple
-
-    scheduleTripleList.add(scheduleTriple)
-
-    medication.moreDosesPerDay.forEachIndexed { index, schedule ->
-        localCalendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
-        localCalendar.set(Calendar.MINUTE, schedule.minute)
-        localCalendar.set(Calendar.SECOND, 0)
-        localCalendar.set(Calendar.MILLISECOND, 0)
-        localCalendar.set(Calendar.DAY_OF_MONTH, schedule.startDay)
-        localCalendar.set(Calendar.MONTH, schedule.startMonth)
-        localCalendar.set(Calendar.YEAR, schedule.startYear)
-
-        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
-
-        scheduleTripleList.add(scheduleTriple)
-    }
-
-    scheduleTripleList.sort()
-
-    for (triple in scheduleTripleList) {
-        if (triple.timeInMillis > currentTime) {
-            nextDose = triple
-            break
-        }
-    }
-
-    return nextDose
-}
-
 class MainActivity : AppCompatActivity() {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private lateinit var toolbar: MaterialToolbar
@@ -195,14 +143,14 @@ class MainActivity : AppCompatActivity() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             alarmManager.setExactAndAllowWhileIdle(
                                 AlarmManager.RTC_WAKEUP,
-                                calculateNextDose(medication).timeInMillis,
+                                medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
                         }
                         else {
                             alarmManager.set(
                                 AlarmManager.RTC_WAKEUP,
-                                calculateNextDose(medication).timeInMillis,
+                                medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
                         }

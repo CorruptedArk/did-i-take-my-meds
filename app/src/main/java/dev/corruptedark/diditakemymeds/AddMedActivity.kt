@@ -296,14 +296,14 @@ class AddMedActivity() : AppCompatActivity() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication).timeInMillis,
+                        medication.calculateNextDose().timeInMillis,
                         alarmIntent
                     )
                 }
                 else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication).timeInMillis,
+                        medication.calculateNextDose().timeInMillis,
                         alarmIntent
                     )
                 }
