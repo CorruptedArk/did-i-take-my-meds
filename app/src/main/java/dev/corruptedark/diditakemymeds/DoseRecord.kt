@@ -19,4 +19,10 @@
 
 package dev.corruptedark.diditakemymeds
 
-data class DoseRecord (val doseTime: Long, val closestDose: Long)
+import kotlin.math.sign
+
+data class DoseRecord (val doseTime: Long, val closestDose: Long): Comparable<DoseRecord> {
+    override fun compareTo(other: DoseRecord): Int {
+        return (closestDose - other.closestDose).sign
+    }
+}

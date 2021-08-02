@@ -24,10 +24,10 @@
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="tomorrow">Tomorrow</string>
-    <string name="closest_dose_label">Closest dose:</string>
+    <string name="closest_dose_label">Closest dose: %1$s</string>
     <string name="already_took_dose">You already took this dose\nI hope you didn\'t take it again</string>
     <string name="date_format">MMM d, yyyy</string>
-    <string name="time_taken">Time taken:</string>
+    <string name="time_taken">Time taken: %1$s</string>
     <string name="delete">delete</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="delete_warning">The medication will be permanently deleted</string>
@@ -71,5 +71,6 @@
     <string name="utc">UTC</string>
     <string name="fill_out_all_schedules">Fill out all schedules before saving</string>
     <string name="fill_out_schedule">Fill out schedule before confirming</string>
+    <string name="next_dose_label">Next dose: %1$s</string>
 
 </resources>

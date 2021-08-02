@@ -69,32 +69,23 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var executorService: ExecutorService
     private val editResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         runOnUiThread {
+            medication.updateStartsToFuture()
             executorService.execute {
                 MedicationDB.getInstance(this).medicationDao().updateMedications(medication)
             }
-
-            calendar.set(Calendar.HOUR_OF_DAY, medication.hour)
-            calendar.set(Calendar.MINUTE, medication.minute)
+            val nextDose = medication.calculateNextDose().timeInMillis
 
             nameLabel.text = medication.name
-            timeLabel.text = if (isSystem24Hour)
-                DateFormat.format(getString(R.string.time_24), calendar)
-            else
-                DateFormat.format(getString(R.string.time_12), calendar)
+
+            timeLabel.text = getString(R.string.next_dose_label, Medication.doseString(this, nextDose))
 
             detailLabel.text = medication.description
 
             closestDose = medication.calculateClosestDose().timeInMillis
-            closestDoseLabel.text = closestDoseString(closestDose)
+            closestDoseLabel.text = getString(R.string.closest_dose_label, Medication.doseString(this, closestDose))
 
-            val lastDose: Long = try {
-                medication.doseRecord.first().closestDose
-            }
-            catch (except: NoSuchElementException) {
-                -1L
-            }
-            closestDose = medication.calculateClosestDose().timeInMillis
-            if (lastDose == closestDose) {
+
+            if (medication.closestDoseAlreadyTaken()) {
                 justTookItButton.text = getString(R.string.took_this_already)
             }
             else {
@@ -110,20 +101,6 @@ class MedDetailActivity : AppCompatActivity() {
             if (medication.notify) {
                 //Set alarm
                 alarmManager?.cancel(alarmIntent)
-
-                val calendar = Calendar.getInstance().apply {
-                    set(Calendar.SECOND, 0)
-                    set(Calendar.MILLISECOND, 0)
-                    set(Calendar.HOUR_OF_DAY, medication.hour)
-                    set(Calendar.MINUTE, medication.minute)
-                }
-
-                /*alarmManager?.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    AlarmManager.INTERVAL_DAY,
-                    alarmIntent
-                )*/
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
@@ -167,6 +144,7 @@ class MedDetailActivity : AppCompatActivity() {
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         isSystem24Hour = DateFormat.is24HourFormat(this)
         medication = MainActivity.medications!![intent.getIntExtra(getString(R.string.med_position_key), -1)]
+        medication.updateStartsToFuture()
 
         alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
             innerIntent.action = AlarmReceiver.NOTIFY_ACTION
@@ -188,10 +166,8 @@ class MedDetailActivity : AppCompatActivity() {
         previousDosesList = findViewById(R.id.previous_doses_list)
 
         nameLabel.text = medication.name
-        timeLabel.text = if (isSystem24Hour)
-            DateFormat.format(getString(R.string.time_24), calendar)
-        else
-            DateFormat.format(getString(R.string.time_12), calendar)
+        val nextDose = medication.calculateNextDose().timeInMillis
+        timeLabel.text = getString(R.string.next_dose_label, Medication.doseString(this, nextDose))
 
         notificationSwitch.isChecked = medication.notify
         notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -203,20 +179,6 @@ class MedDetailActivity : AppCompatActivity() {
 
             if (isChecked) {
                 //Set alarm
-
-                val calendar = Calendar.getInstance().apply {
-                    set(Calendar.SECOND, 0)
-                    set(Calendar.MILLISECOND, 0)
-                    set(Calendar.HOUR_OF_DAY, medication.hour)
-                    set(Calendar.MINUTE, medication.minute)
-                }
-
-                /*alarmManager?.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    AlarmManager.INTERVAL_DAY,
-                    alarmIntent
-                )*/
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
@@ -253,7 +215,7 @@ class MedDetailActivity : AppCompatActivity() {
         detailLabel.text = medication.description
 
         closestDose = medication.calculateClosestDose().timeInMillis
-        closestDoseLabel.text = closestDoseString(closestDose)
+        closestDoseLabel.text = getString(R.string.closest_dose_label, Medication.doseString(this, closestDose))
         doseRecordAdapter = DoseRecordListAdapter(this, medication.doseRecord)
 
         previousDosesList.adapter = doseRecordAdapter
@@ -263,14 +225,7 @@ class MedDetailActivity : AppCompatActivity() {
             justTookItButtonPressed()
         }
 
-        val lastDose: Long = try {
-            medication.doseRecord.first().closestDose
-        }
-        catch (except: NoSuchElementException) {
-            -1L
-        }
-        closestDose = medication.calculateClosestDose().timeInMillis
-        if (lastDose == closestDose) {
+        if (medication.closestDoseAlreadyTaken()) {
             justTookItButton.text = getString(R.string.took_this_already)
         }
         else {
@@ -316,61 +271,19 @@ class MedDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun closestDoseString(closestDose: Long): String {
-        val doseCal: Calendar = Calendar.getInstance()
-        doseCal.timeInMillis = closestDose
-        calendar.timeInMillis = System.currentTimeMillis()
-        calendar.set(Calendar.HOUR_OF_DAY, doseCal.get(Calendar.HOUR_OF_DAY))
-        calendar.set(Calendar.MINUTE, doseCal.get(Calendar.MINUTE))
-        val todayDose = calendar.timeInMillis
-        calendar.add(Calendar.DATE, -1)
-        val yesterdayDose = calendar.timeInMillis
-        calendar.add(Calendar.DATE, 2)
-        val tomorrowDose = calendar.timeInMillis
-
-        val dayString: String =
-            when (minOf(abs(closestDose - todayDose), abs(closestDose - yesterdayDose), abs(closestDose - tomorrowDose))) {
-                abs(closestDose - todayDose) -> getString(R.string.today)
-                abs(closestDose - yesterdayDose) -> getString(R.string.yesterday)
-                else -> getString(R.string.tomorrow)
-            }
-
-        val time = if (isSystem24Hour)
-            DateFormat.format(getString(R.string.time_24), calendar)
-        else
-            DateFormat.format(getString(R.string.time_12), calendar)
-
-        val builder: StringBuilder = StringBuilder()
-            .append(getString(R.string.closest_dose_label))
-            .append("  ")
-            .append(time)
-            .append(" ")
-            .append(dayString)
-
-        return builder.toString()
-    }
-
     private fun justTookItButtonPressed() {
-        val lastDose: Long = try {
-            medication.doseRecord.first().closestDose
-        }
-        catch (except: NoSuchElementException)
-        {
-            -1L
-        }
-        closestDose = medication.calculateClosestDose().timeInMillis
-        if (lastDose == closestDose)
+        medication.updateStartsToFuture()
+        if (medication.closestDoseAlreadyTaken())
         {
             Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
         }
         else
         {
-            val newDose = DoseRecord(System.currentTimeMillis(), closestDose)
-            medication.doseRecord.add(newDose)
-            medication.doseRecord.sortWith { o1, o2 -> (o2.closestDose - o1.closestDose).sign }
+            val newDose = DoseRecord(System.currentTimeMillis(), medication.calculateClosestDose().timeInMillis)
+
             doseRecordAdapter.notifyDataSetChanged()
             justTookItButton.text = getString(R.string.took_this_already)
-
+            medication.addNewTakenDose(newDose)
             executorService.execute {
                 val db = MedicationDB.getInstance(this)
                 db.medicationDao().updateMedications(medication)

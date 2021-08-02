@@ -52,6 +52,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
             if (intent.action == "android.intent.action.BOOT_COMPLETED") {
                 medications.forEach { medication ->
+                    medication.updateStartsToFuture()
                     if (medication.notify) {
                         //Create alarm
                         alarmIntent =
@@ -66,19 +67,6 @@ class AlarmReceiver : BroadcastReceiver() {
                                 )
                             }
 
-                        val calendar = Calendar.getInstance().apply {
-                            set(Calendar.SECOND, 0)
-                            set(Calendar.MILLISECOND, 0)
-                            set(Calendar.HOUR_OF_DAY, medication.hour)
-                            set(Calendar.MINUTE, medication.minute)
-                        }
-
-                        /*alarmManager?.setRepeating(
-                            AlarmManager.RTC_WAKEUP,
-                            calendar.timeInMillis,
-                            AlarmManager.INTERVAL_DAY,
-                            alarmIntent
-                        )*/
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             alarmManager?.setExactAndAllowWhileIdle(
@@ -97,11 +85,13 @@ class AlarmReceiver : BroadcastReceiver() {
 
                     }
                 }
+                MedicationDB.getInstance(context).medicationDao().updateMedications(*medications.toTypedArray())
             } else if (intent.action == NOTIFY_ACTION){
                 //Handle alarm
                 val medication =
                     MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key),-1))
 
+                medication.updateStartsToFuture()
                 alarmIntent =
                     Intent(context, AlarmReceiver::class.java).let { innerIntent ->
                         innerIntent.action = NOTIFY_ACTION
@@ -114,41 +104,24 @@ class AlarmReceiver : BroadcastReceiver() {
                         )
                     }
 
-                val nextDose = medication.calculateNextDose()
+                val notificationDose = medication.calculateNextDose()
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        nextDose.timeInMillis,
+                        notificationDose.timeInMillis,
                         alarmIntent
                     )
                 }
                 else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
-                        nextDose.timeInMillis,
+                        notificationDose.timeInMillis,
                         alarmIntent
                     )
                 }
 
                 val calendar = Calendar.getInstance()
-
-                calendar.timeInMillis = nextDose.timeInMillis
-                calendar.add(Calendar.DATE, nextDose.schedule.daysBetween)
-                calendar.add(Calendar.WEEK_OF_YEAR, nextDose.schedule.weeksBetween)
-                calendar.add(Calendar.MONTH, nextDose.schedule.monthsBetween)
-                calendar.add(Calendar.YEAR, nextDose.schedule.yearsBetween)
-
-                if (nextDose.scheduleIndex < 0) {
-                    medication.startDay = calendar.get(Calendar.DAY_OF_MONTH)
-                    medication.startMonth = calendar.get(Calendar.MONTH)
-                    medication.startYear = calendar.get(Calendar.YEAR)
-                }
-                else {
-                    medication.moreDosesPerDay[nextDose.scheduleIndex].startDay = calendar.get(Calendar.DAY_OF_MONTH)
-                    medication.moreDosesPerDay[nextDose.scheduleIndex].startMonth = calendar.get(Calendar.MONTH)
-                    medication.moreDosesPerDay[nextDose.scheduleIndex].startYear = calendar.get(Calendar.YEAR)
-                }
 
                 MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
 

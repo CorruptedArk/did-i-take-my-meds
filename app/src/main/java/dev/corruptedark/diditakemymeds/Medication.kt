@@ -19,11 +19,13 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.content.Context
 import android.text.format.DateFormat
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.lang.StringBuilder
+import java.security.AccessControlContext
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
@@ -48,6 +50,106 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
     @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<RepeatSchedule> = ArrayList()
 
+    companion object {
+        fun doseString(context: Context, doseTime: Long): String {
+            val isSystem24Hour = DateFormat.is24HourFormat(context)
+            val calendar = Calendar.getInstance()
+            val doseCal: Calendar = Calendar.getInstance()
+            doseCal.timeInMillis = doseTime
+            calendar.timeInMillis = System.currentTimeMillis()
+            val today = calendar.clone() as Calendar
+            calendar.add(Calendar.DATE, -1)
+            val yesterday = calendar.clone() as Calendar
+            calendar.add(Calendar.DATE, 2)
+            val tomorrow = calendar.clone() as Calendar
+
+            val dayString: String =
+                if (doseCal.get(Calendar.DATE) == today.get(Calendar.DATE) &&
+                    doseCal.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
+                    doseCal.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
+                    context.getString(R.string.today)
+                }
+                else if (doseCal.get(Calendar.DATE) == yesterday.get(Calendar.DATE) &&
+                    doseCal.get(Calendar.MONTH) == yesterday.get(Calendar.MONTH) &&
+                    doseCal.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR)) {
+                    context.getString(R.string.yesterday)
+                } else if (doseCal.get(Calendar.DATE) == tomorrow.get(Calendar.DATE) &&
+                    doseCal.get(Calendar.MONTH) == tomorrow.get(Calendar.MONTH) &&
+                    doseCal.get(Calendar.YEAR) == tomorrow.get(Calendar.YEAR)) {
+                    context.getString(R.string.tomorrow)
+                } else {
+                    DateFormat.format(context.getString(R.string.date_format), doseCal) as String
+                }
+
+            val time = if (isSystem24Hour)
+                DateFormat.format(context.getString(R.string.time_24), doseCal)
+            else
+                DateFormat.format(context.getString(R.string.time_12), doseCal)
+
+            val builder: StringBuilder = StringBuilder()
+                .append(time)
+                .append(" ")
+                .append(dayString)
+
+            return builder.toString()
+        }
+    }
+
+    /**
+     * Updates the start times of schedules in this medication to future times
+     *
+     * Warning: This only updates in the current instance of the medication, database updates must happen elsewhere
+     * It is recommended to call this before calculating next and closest doses
+     */
+    fun updateStartsToFuture() {
+        val currentTime = System.currentTimeMillis()
+        val localCalendar = Calendar.getInstance()
+
+        localCalendar.set(Calendar.HOUR_OF_DAY, hour)
+        localCalendar.set(Calendar.MINUTE, minute)
+        localCalendar.set(Calendar.SECOND, 0)
+        localCalendar.set(Calendar.MILLISECOND, 0)
+        localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
+        localCalendar.set(Calendar.MONTH, startMonth)
+        localCalendar.set(Calendar.YEAR, startYear)
+
+        if (currentTime >= localCalendar.timeInMillis) {
+            while (currentTime >= localCalendar.timeInMillis) {
+                localCalendar.add(Calendar.DATE, daysBetween)
+                localCalendar.add(Calendar.WEEK_OF_YEAR, weeksBetween)
+                localCalendar.add(Calendar.MONTH, monthsBetween)
+                localCalendar.add(Calendar.YEAR, yearsBetween)
+            }
+
+            startDay = localCalendar.get(Calendar.DAY_OF_MONTH)
+            startMonth = localCalendar.get(Calendar.MONTH)
+            startYear = localCalendar.get(Calendar.YEAR)
+        }
+
+        moreDosesPerDay.forEach { schedule ->
+            localCalendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
+            localCalendar.set(Calendar.MINUTE, schedule.minute)
+            localCalendar.set(Calendar.SECOND, 0)
+            localCalendar.set(Calendar.MILLISECOND, 0)
+            localCalendar.set(Calendar.DAY_OF_MONTH, schedule.startDay)
+            localCalendar.set(Calendar.MONTH, schedule.startMonth)
+            localCalendar.set(Calendar.YEAR, schedule.startYear)
+
+            if (currentTime >= localCalendar.timeInMillis) {
+                while (currentTime >= localCalendar.timeInMillis) {
+                    localCalendar.add(Calendar.DATE, schedule.daysBetween)
+                    localCalendar.add(Calendar.WEEK_OF_YEAR, schedule.weeksBetween)
+                    localCalendar.add(Calendar.MONTH, schedule.monthsBetween)
+                    localCalendar.add(Calendar.YEAR, schedule.yearsBetween)
+                }
+
+                schedule.startDay = localCalendar.get(Calendar.DAY_OF_MONTH)
+                schedule.startMonth = localCalendar.get(Calendar.MONTH)
+                schedule.startYear = localCalendar.get(Calendar.YEAR)
+            }
+        }
+    }
+
     fun calculateNextDose(): ScheduleSortTriple {
         val scheduleTripleList = ArrayList<ScheduleSortTriple>()
 
@@ -63,8 +165,19 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
         localCalendar.set(Calendar.MONTH, startMonth)
         localCalendar.set(Calendar.YEAR, startYear)
-        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
-            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+        scheduleTriple = ScheduleSortTriple(
+            localCalendar.timeInMillis,
+            RepeatSchedule(
+                hour,
+                minute,
+                startDay,
+                startMonth,
+                startYear,
+                daysBetween,
+                weeksBetween,
+                monthsBetween,
+                yearsBetween
+            ),
             -1
         )
 
@@ -98,11 +211,7 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         return nextDose
     }
 
-    private fun updateStartsToFuture() {
-        //TODO - Implement function
-    }
-
-   fun calculateClosestDose(): ScheduleSortTriple {
+    fun calculateClosestDose(): ScheduleSortTriple {
         val scheduleTripleList = ArrayList<ScheduleSortTriple>()
 
         val currentTime = System.currentTimeMillis()
@@ -117,8 +226,19 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
         localCalendar.set(Calendar.MONTH, startMonth)
         localCalendar.set(Calendar.YEAR, startYear)
-        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
-            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+        scheduleTriple = ScheduleSortTriple(
+            localCalendar.timeInMillis,
+            RepeatSchedule(
+                hour,
+                minute,
+                startDay,
+                startMonth,
+                startYear,
+                daysBetween,
+                weeksBetween,
+                monthsBetween,
+                yearsBetween
+            ),
             -1
         )
 
@@ -130,8 +250,19 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
         localCalendar.add(Calendar.MONTH, -monthsBetween)
         localCalendar.add(Calendar.YEAR, -yearsBetween)
-        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
-            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+        scheduleTriple = ScheduleSortTriple(
+            localCalendar.timeInMillis,
+            RepeatSchedule(
+                hour,
+                minute,
+                startDay,
+                startMonth,
+                startYear,
+                daysBetween,
+                weeksBetween,
+                monthsBetween,
+                yearsBetween
+            ),
             -1
         )
 
@@ -141,19 +272,41 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
         localCalendar.add(Calendar.MONTH, -monthsBetween)
         localCalendar.add(Calendar.YEAR, -yearsBetween)
-        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
-            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+        scheduleTriple = ScheduleSortTriple(
+            localCalendar.timeInMillis,
+            RepeatSchedule(
+                hour,
+                minute,
+                startDay,
+                startMonth,
+                startYear,
+                daysBetween,
+                weeksBetween,
+                monthsBetween,
+                yearsBetween
+            ),
             -1
         )
 
         scheduleTripleList.add(scheduleTriple)
 
-        localCalendar.add(Calendar.DATE, 2*daysBetween)
-        localCalendar.add(Calendar.WEEK_OF_YEAR, 2*weeksBetween)
-        localCalendar.add(Calendar.MONTH, 2*monthsBetween)
-        localCalendar.add(Calendar.YEAR, 2*yearsBetween)
-        scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis,
-            RepeatSchedule(hour, minute, startDay, startMonth, startYear, daysBetween, weeksBetween, monthsBetween, yearsBetween),
+        localCalendar.add(Calendar.DATE, 2 * daysBetween)
+        localCalendar.add(Calendar.WEEK_OF_YEAR, 2 * weeksBetween)
+        localCalendar.add(Calendar.MONTH, 2 * monthsBetween)
+        localCalendar.add(Calendar.YEAR, 2 * yearsBetween)
+        scheduleTriple = ScheduleSortTriple(
+            localCalendar.timeInMillis,
+            RepeatSchedule(
+                hour,
+                minute,
+                startDay,
+                startMonth,
+                startYear,
+                daysBetween,
+                weeksBetween,
+                monthsBetween,
+                yearsBetween
+            ),
             -1
         )
 
@@ -179,10 +332,10 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
 
             scheduleTripleList.add(scheduleTriple)
 
-            localCalendar.add(Calendar.DATE, 2*daysBetween)
-            localCalendar.add(Calendar.WEEK_OF_YEAR, 2*weeksBetween)
-            localCalendar.add(Calendar.MONTH, 2*monthsBetween)
-            localCalendar.add(Calendar.YEAR, 2*yearsBetween)
+            localCalendar.add(Calendar.DATE, 2 * daysBetween)
+            localCalendar.add(Calendar.WEEK_OF_YEAR, 2 * weeksBetween)
+            localCalendar.add(Calendar.MONTH, 2 * monthsBetween)
+            localCalendar.add(Calendar.YEAR, 2 * yearsBetween)
             scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
         }
 
@@ -195,4 +348,20 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         return closestDose
     }
 
+    fun closestDoseAlreadyTaken(): Boolean {
+        val lastDose: Long = try {
+            doseRecord.first().closestDose
+        }
+        catch (except: NoSuchElementException) {
+            -1L
+        }
+        val closestDose = calculateClosestDose().timeInMillis
+
+        return lastDose == closestDose
+    }
+
+    fun addNewTakenDose(takenDose: DoseRecord) {
+        doseRecord.add(takenDose)
+        doseRecord.sort()
+    }
 }
