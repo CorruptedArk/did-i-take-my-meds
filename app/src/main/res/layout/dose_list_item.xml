@@ -18,7 +18,8 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingVertical="10dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/dose_taken_time_label"
@@ -27,7 +28,6 @@
         android:textColor="@color/purple_200"
         autoSizeTextType="uniform"
         android:textSize="20sp"
-        android:paddingTop="10dp"
         android:paddingHorizontal="10dp"
         android:text="@string/midnight"/>
 
@@ -38,7 +38,6 @@
         android:textColor="@color/sub_purple"
         autoSizeTextType="uniform"
         android:textSize="18sp"
-        android:paddingBottom="10dp"
         android:paddingHorizontal="10dp"
         android:text="@string/midnight"/>
 

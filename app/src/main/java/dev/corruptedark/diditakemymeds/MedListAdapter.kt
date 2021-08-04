@@ -54,8 +54,14 @@ class MedListAdapter(private val context: Context, private val medications: Muta
         val timeLabel = view?.findViewById<MaterialTextView>(R.id.time_label)
         calendar.set(Calendar.HOUR_OF_DAY, medications[position].hour)
         calendar.set(Calendar.MINUTE, medications[position].minute)
-        timeLabel?.text = if (isSystem24Hour) DateFormat.format(context.getString(R.string.time_24), calendar)
-            else DateFormat.format(context.getString(R.string.time_12), calendar)
+        if (medications[position].isAsNeeded()) {
+            timeLabel?.visibility = View.GONE
+        }
+        else {
+            timeLabel?.visibility = View.VISIBLE
+            timeLabel?.text = if (isSystem24Hour) DateFormat.format(context.getString(R.string.time_24), calendar)
+                else DateFormat.format(context.getString(R.string.time_12), calendar)
+        }
         return view!!
     }
 }

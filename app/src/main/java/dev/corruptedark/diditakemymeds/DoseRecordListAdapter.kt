@@ -29,8 +29,6 @@ import com.google.android.material.textview.MaterialTextView
 import java.util.*
 
 class DoseRecordListAdapter(private val context: Context, private val doseRecordList: MutableList<DoseRecord>) : BaseAdapter(){
-    private val isSystem24Hour = DateFormat.is24HourFormat(context)
-    private val calendar = Calendar.getInstance()
 
     override fun getCount(): Int {
         return doseRecordList.size
@@ -53,7 +51,16 @@ class DoseRecordListAdapter(private val context: Context, private val doseRecord
 
         doseTakenTimeLabel?.text = context.getString(R.string.time_taken, Medication.doseString(context, doseRecordList[position].doseTime))
 
-        closestTimeLabel?.text = context.getString(R.string.closest_dose_label, Medication.doseString(context, doseRecordList[position].closestDose))
+        if(doseRecordList[position].isAsNeeded()) {
+            closestTimeLabel?.visibility = View.GONE
+        }
+        else {
+            closestTimeLabel?.visibility = View.VISIBLE
+            closestTimeLabel?.text = context.getString(
+                R.string.closest_dose_label,
+                Medication.doseString(context, doseRecordList[position].closestDose)
+            )
+        }
 
         return view!!
     }

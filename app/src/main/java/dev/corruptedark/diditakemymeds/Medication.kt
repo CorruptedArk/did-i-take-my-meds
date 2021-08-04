@@ -102,50 +102,52 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
      * It is recommended to call this before calculating next and closest doses
      */
     fun updateStartsToFuture() {
-        val currentTime = System.currentTimeMillis()
-        val localCalendar = Calendar.getInstance()
+        if(!isAsNeeded()) {
+            val currentTime = System.currentTimeMillis()
+            val localCalendar = Calendar.getInstance()
 
-        localCalendar.set(Calendar.HOUR_OF_DAY, hour)
-        localCalendar.set(Calendar.MINUTE, minute)
-        localCalendar.set(Calendar.SECOND, 0)
-        localCalendar.set(Calendar.MILLISECOND, 0)
-        localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
-        localCalendar.set(Calendar.MONTH, startMonth)
-        localCalendar.set(Calendar.YEAR, startYear)
-
-        if (currentTime >= localCalendar.timeInMillis) {
-            while (currentTime >= localCalendar.timeInMillis) {
-                localCalendar.add(Calendar.DATE, daysBetween)
-                localCalendar.add(Calendar.WEEK_OF_YEAR, weeksBetween)
-                localCalendar.add(Calendar.MONTH, monthsBetween)
-                localCalendar.add(Calendar.YEAR, yearsBetween)
-            }
-
-            startDay = localCalendar.get(Calendar.DAY_OF_MONTH)
-            startMonth = localCalendar.get(Calendar.MONTH)
-            startYear = localCalendar.get(Calendar.YEAR)
-        }
-
-        moreDosesPerDay.forEach { schedule ->
-            localCalendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
-            localCalendar.set(Calendar.MINUTE, schedule.minute)
+            localCalendar.set(Calendar.HOUR_OF_DAY, hour)
+            localCalendar.set(Calendar.MINUTE, minute)
             localCalendar.set(Calendar.SECOND, 0)
             localCalendar.set(Calendar.MILLISECOND, 0)
-            localCalendar.set(Calendar.DAY_OF_MONTH, schedule.startDay)
-            localCalendar.set(Calendar.MONTH, schedule.startMonth)
-            localCalendar.set(Calendar.YEAR, schedule.startYear)
+            localCalendar.set(Calendar.DAY_OF_MONTH, startDay)
+            localCalendar.set(Calendar.MONTH, startMonth)
+            localCalendar.set(Calendar.YEAR, startYear)
 
             if (currentTime >= localCalendar.timeInMillis) {
                 while (currentTime >= localCalendar.timeInMillis) {
-                    localCalendar.add(Calendar.DATE, schedule.daysBetween)
-                    localCalendar.add(Calendar.WEEK_OF_YEAR, schedule.weeksBetween)
-                    localCalendar.add(Calendar.MONTH, schedule.monthsBetween)
-                    localCalendar.add(Calendar.YEAR, schedule.yearsBetween)
+                    localCalendar.add(Calendar.DATE, daysBetween)
+                    localCalendar.add(Calendar.WEEK_OF_YEAR, weeksBetween)
+                    localCalendar.add(Calendar.MONTH, monthsBetween)
+                    localCalendar.add(Calendar.YEAR, yearsBetween)
                 }
 
-                schedule.startDay = localCalendar.get(Calendar.DAY_OF_MONTH)
-                schedule.startMonth = localCalendar.get(Calendar.MONTH)
-                schedule.startYear = localCalendar.get(Calendar.YEAR)
+                startDay = localCalendar.get(Calendar.DAY_OF_MONTH)
+                startMonth = localCalendar.get(Calendar.MONTH)
+                startYear = localCalendar.get(Calendar.YEAR)
+            }
+
+            moreDosesPerDay.forEach { schedule ->
+                localCalendar.set(Calendar.HOUR_OF_DAY, schedule.hour)
+                localCalendar.set(Calendar.MINUTE, schedule.minute)
+                localCalendar.set(Calendar.SECOND, 0)
+                localCalendar.set(Calendar.MILLISECOND, 0)
+                localCalendar.set(Calendar.DAY_OF_MONTH, schedule.startDay)
+                localCalendar.set(Calendar.MONTH, schedule.startMonth)
+                localCalendar.set(Calendar.YEAR, schedule.startYear)
+
+                if (currentTime >= localCalendar.timeInMillis) {
+                    while (currentTime >= localCalendar.timeInMillis) {
+                        localCalendar.add(Calendar.DATE, schedule.daysBetween)
+                        localCalendar.add(Calendar.WEEK_OF_YEAR, schedule.weeksBetween)
+                        localCalendar.add(Calendar.MONTH, schedule.monthsBetween)
+                        localCalendar.add(Calendar.YEAR, schedule.yearsBetween)
+                    }
+
+                    schedule.startDay = localCalendar.get(Calendar.DAY_OF_MONTH)
+                    schedule.startMonth = localCalendar.get(Calendar.MONTH)
+                    schedule.startYear = localCalendar.get(Calendar.YEAR)
+                }
             }
         }
     }
@@ -363,5 +365,9 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
     fun addNewTakenDose(takenDose: DoseRecord) {
         doseRecord.add(takenDose)
         doseRecord.sort()
+    }
+
+    fun isAsNeeded(): Boolean {
+        return hour < 0 || minute < 0 || startDay < 0 || startMonth < 0 || startYear < 0
     }
 }
