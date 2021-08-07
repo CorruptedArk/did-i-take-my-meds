@@ -27,6 +27,10 @@ Did I Take My Meds? allows a user save multiple medication doses with different 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Edit Clock" width="200" />
 
 ---
+## Credits
+Brazilian Portuguese translations by [mezysinc](https://github.com/mezysinc)
+
+---
 
 ## License
 Files in this project are licensed GPLv3+ unless otherwise indicated. Some icon resources are licensed under the Apache License v2
