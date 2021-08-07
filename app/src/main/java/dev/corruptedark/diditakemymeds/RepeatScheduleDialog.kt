@@ -86,6 +86,23 @@ class RepeatSheduleDialog : DialogFragment() {
         confirmButton = view.findViewById(R.id.confirm_button)
 
 
+        if (scheduleIsValid()) {
+            val calendar = Calendar.getInstance()
+            val isSystem24Hour = DateFormat.is24HourFormat(callingContext)
+            calendar.set(Calendar.HOUR_OF_DAY, hour)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.DAY_OF_MONTH, startDay)
+            calendar.set(Calendar.MONTH, startMonth)
+            calendar.set(Calendar.YEAR, startYear)
+            val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
+                else DateFormat.format(getString(R.string.time_12), calendar)
+            timePickerButton.text = formattedTime
+            startDateButton.text = DateFormat.format(getString(R.string.date_format), calendar)
+            daysBetweenPicker.progress = daysBetween
+            weeksBetweenPicker.progress = weeksBetween
+            monthsBetweenPicker.progress = monthsBetween
+            yearsBetweenPicker.progress = yearsBetween
+        }
 
         if (confirmListener != null)
             confirmButton?.setOnClickListener(confirmListener)

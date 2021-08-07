@@ -52,8 +52,7 @@ class MedListAdapter(private val context: Context, private val medications: Muta
         nameLabel?.text = medications[position].name
 
         val timeLabel = view?.findViewById<MaterialTextView>(R.id.time_label)
-        calendar.set(Calendar.HOUR_OF_DAY, medications[position].hour)
-        calendar.set(Calendar.MINUTE, medications[position].minute)
+        calendar.timeInMillis = medications[position].calculateClosestDose().timeInMillis
         if (medications[position].isAsNeeded()) {
             timeLabel?.visibility = View.GONE
         }
