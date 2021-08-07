@@ -29,8 +29,6 @@ import com.google.android.material.textview.MaterialTextView
 import java.util.*
 
 class DoseRecordListAdapter(private val context: Context, private val doseRecordList: MutableList<DoseRecord>) : BaseAdapter(){
-    private val isSystem24Hour = DateFormat.is24HourFormat(context)
-    private val calendar = Calendar.getInstance()
 
     override fun getCount(): Int {
         return doseRecordList.size
@@ -51,35 +49,18 @@ class DoseRecordListAdapter(private val context: Context, private val doseRecord
         val doseTakenTimeLabel = view?.findViewById<MaterialTextView>(R.id.dose_taken_time_label)
         val closestTimeLabel = view?.findViewById<MaterialTextView>(R.id.closest_dose_time_label)
 
-        calendar.timeInMillis = doseRecordList[position].doseTime
-        val doseTakenStringBuilder = StringBuilder()
-        var timeString = if (isSystem24Hour)
-            DateFormat.format(context.getString(R.string.time_24), calendar)
-        else
-            DateFormat.format(context.getString(R.string.time_12), calendar)
+        doseTakenTimeLabel?.text = context.getString(R.string.time_taken, Medication.doseString(context, doseRecordList[position].doseTime))
 
-        var dateString = DateFormat.format(context.getString(R.string.date_format), calendar)
-
-        doseTakenTimeLabel?.text = doseTakenStringBuilder.append(context.getString(R.string.time_taken))
-            .append(" ")
-            .append(timeString)
-            .append(" ")
-            .append(dateString).toString()
-
-        calendar.timeInMillis = doseRecordList[position].closestDose
-        timeString = if (isSystem24Hour)
-            DateFormat.format(context.getString(R.string.time_24), calendar)
-        else
-            DateFormat.format(context.getString(R.string.time_12), calendar)
-
-        dateString = DateFormat.format(context.getString(R.string.date_format), calendar)
-
-        closestTimeLabel?.text = doseTakenStringBuilder.clear()
-            .append(context.getString(R.string.closest_dose_label))
-            .append(" ")
-            .append(timeString)
-            .append(" ")
-            .append(dateString).toString()
+        if(doseRecordList[position].isAsNeeded()) {
+            closestTimeLabel?.visibility = View.GONE
+        }
+        else {
+            closestTimeLabel?.visibility = View.VISIBLE
+            closestTimeLabel?.text = context.getString(
+                R.string.closest_dose_label,
+                Medication.doseString(context, doseRecordList[position].closestDose)
+            )
+        }
 
         return view!!
     }

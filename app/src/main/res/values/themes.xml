@@ -10,6 +10,7 @@
         <item name="alertDialogTheme">@style/Theme.Dialog</item>
         <item name="materialAlertDialogTheme">@style/Theme.Dialog</item>
         <item name="materialTimePickerTheme">@style/Theme.TimePicker</item>
+        <item name="materialCalendarTheme">@style/Theme.Calendar</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
@@ -20,6 +21,10 @@
         <item name="colorAccent">@color/purple_200</item>
     </style>
     <style name="Theme.TimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorAccent">@color/purple_200</item>
+    </style>
+    <style name="Theme.Calendar" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorAccent">@color/purple_200</item>
     </style>

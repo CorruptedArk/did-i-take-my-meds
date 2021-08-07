@@ -40,5 +40,18 @@ public class Converters {
             val listType: Type = object: TypeToken<ArrayList<DoseRecord>>() {}.type
             return gson.fromJson(string, listType)
         }
+
+        @TypeConverter
+        @JvmStatic
+        fun timeOfDayListToJson(list: ArrayList<RepeatSchedule>): String {
+            return gson.toJson(list)
+        }
+
+        @TypeConverter
+        @JvmStatic
+        fun timeOfDayListFromJson(string: String): ArrayList<RepeatSchedule> {
+            val listType: Type = object: TypeToken<ArrayList<RepeatSchedule>>() {}.type
+            return gson.fromJson(string, listType)
+        }
     }
 }

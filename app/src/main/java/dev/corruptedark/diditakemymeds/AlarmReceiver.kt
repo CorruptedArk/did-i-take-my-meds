@@ -52,6 +52,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
             if (intent.action == "android.intent.action.BOOT_COMPLETED") {
                 medications.forEach { medication ->
+                    medication.updateStartsToFuture()
                     if (medication.notify) {
                         //Create alarm
                         alarmIntent =
@@ -66,42 +67,31 @@ class AlarmReceiver : BroadcastReceiver() {
                                 )
                             }
 
-                        val calendar = Calendar.getInstance().apply {
-                            set(Calendar.SECOND, 0)
-                            set(Calendar.MILLISECOND, 0)
-                            set(Calendar.HOUR_OF_DAY, medication.hour)
-                            set(Calendar.MINUTE, medication.minute)
-                        }
-
-                        /*alarmManager?.setRepeating(
-                            AlarmManager.RTC_WAKEUP,
-                            calendar.timeInMillis,
-                            AlarmManager.INTERVAL_DAY,
-                            alarmIntent
-                        )*/
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             alarmManager?.setExactAndAllowWhileIdle(
                                 AlarmManager.RTC_WAKEUP,
-                                calculateNextDose(medication),
+                                medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
                         }
                         else {
                             alarmManager?.set(
                                 AlarmManager.RTC_WAKEUP,
-                                calculateNextDose(medication),
+                                medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
                         }
 
                     }
                 }
+                MedicationDB.getInstance(context).medicationDao().updateMedications(*medications.toTypedArray())
             } else if (intent.action == NOTIFY_ACTION){
                 //Handle alarm
                 val medication =
                     MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key),-1))
 
+                medication.updateStartsToFuture()
                 alarmIntent =
                     Intent(context, AlarmReceiver::class.java).let { innerIntent ->
                         innerIntent.action = NOTIFY_ACTION
@@ -114,27 +104,26 @@ class AlarmReceiver : BroadcastReceiver() {
                         )
                     }
 
-                /*alarmManager?.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    calendar.timeInMillis,
-                    AlarmManager.INTERVAL_DAY,
-                    alarmIntent
-                )*/
+                val notificationDose = medication.calculateNextDose()
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager?.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        notificationDose.timeInMillis,
                         alarmIntent
                     )
                 }
                 else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
-                        calculateNextDose(medication),
+                        notificationDose.timeInMillis,
                         alarmIntent
                     )
                 }
+
+                val calendar = Calendar.getInstance()
+
+                MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
 
                 val actionIntent = Intent(context, MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -142,7 +131,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
                 val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, 0)
 
-                val calendar = Calendar.getInstance()
+
                 val hour = medication.hour
                 val minute = medication.minute
                 calendar.set(Calendar.HOUR_OF_DAY, hour)

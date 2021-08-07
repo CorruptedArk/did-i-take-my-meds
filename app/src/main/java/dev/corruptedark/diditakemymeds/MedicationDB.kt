@@ -26,11 +26,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-
+import java.util.*
 
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class], version = 2)
+@Database(entities = [Medication::class], version = 3)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
 
@@ -54,8 +54,22 @@ abstract  class MedicationDB: RoomDatabase() {
                 }
             }
 
+            val MIGRATION_2_3 = object : Migration(2, 3) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    val cal = Calendar.getInstance()
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startDay INTEGER DEFAULT ${cal.get(Calendar.DAY_OF_MONTH)} NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startMonth INTEGER DEFAULT ${cal.get(Calendar.MONTH)} NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startYear INTEGER DEFAULT ${cal.get(Calendar.YEAR)} NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN daysBetween INTEGER DEFAULT 1 NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN weeksBetween INTEGER DEFAULT 0 NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN monthsBetween INTEGER DEFAULT 0 NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN yearsBetween INTEGER DEFAULT 0 NOT NULL")
+                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN moreDosesPerDay TEXT DEFAULT '[]' NOT NULL")
+                }
+            }
+
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
-                .addMigrations(MIGRATION_1_2).build()
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
         }
     }
 }
