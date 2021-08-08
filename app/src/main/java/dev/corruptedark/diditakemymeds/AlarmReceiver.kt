@@ -33,7 +33,7 @@ class AlarmReceiver : BroadcastReceiver() {
             val name = context.getString(R.string.channel_name)
             val descriptionText = context.getString(R.string.channel_description)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(MainActivity.CHANNEL_ID, name, importance).apply {
+            val channel = NotificationChannel(name, name, importance).apply {
                 description = descriptionText
             }
             // Register the channel with the system
@@ -58,7 +58,10 @@ class AlarmReceiver : BroadcastReceiver() {
                         alarmIntent =
                             Intent(context, AlarmReceiver::class.java).let { innerIntent ->
                                 innerIntent.action = NOTIFY_ACTION
-                                innerIntent.putExtra(context.getString(R.string.med_id_key), medication.id)
+                                innerIntent.putExtra(
+                                    context.getString(R.string.med_id_key),
+                                    medication.id
+                                )
                                 PendingIntent.getBroadcast(
                                     context,
                                     medication.id.toInt(),
@@ -74,8 +77,7 @@ class AlarmReceiver : BroadcastReceiver() {
                                 medication.calculateNextDose().timeInMillis,
                                 alarmIntent
                             )
-                        }
-                        else {
+                        } else {
                             alarmManager?.set(
                                 AlarmManager.RTC_WAKEUP,
                                 medication.calculateNextDose().timeInMillis,
@@ -85,11 +87,13 @@ class AlarmReceiver : BroadcastReceiver() {
 
                     }
                 }
-                MedicationDB.getInstance(context).medicationDao().updateMedications(*medications.toTypedArray())
-            } else if (intent.action == NOTIFY_ACTION){
+                MedicationDB.getInstance(context).medicationDao()
+                    .updateMedications(*medications.toTypedArray())
+            } else if (intent.action == NOTIFY_ACTION) {
                 //Handle alarm
                 val medication =
-                    MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key),-1))
+                    MedicationDB.getInstance(context).medicationDao()
+                        .get(intent.getLongExtra(context.getString(R.string.med_id_key), -1))
 
                 medication.updateStartsToFuture()
                 alarmIntent =
@@ -112,8 +116,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         notificationDose.timeInMillis,
                         alarmIntent
                     )
-                }
-                else {
+                } else {
                     alarmManager?.set(
                         AlarmManager.RTC_WAKEUP,
                         notificationDose.timeInMillis,
@@ -121,39 +124,54 @@ class AlarmReceiver : BroadcastReceiver() {
                     )
                 }
 
-                val calendar = Calendar.getInstance()
+                if (!medication.closestDoseAlreadyTaken()) {
+                    val calendar = Calendar.getInstance()
+                    val currentTime = calendar.timeInMillis
+                    MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
 
-                MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
+                    val actionIntent = Intent(context, MedDetailActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        putExtra(context.getString(R.string.med_id_key), medication.id)
+                    }
 
-                val actionIntent = Intent(context, MainActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-
-                val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, 0)
+                    val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, 0)
 
 
-                val hour = medication.hour
-                val minute = medication.minute
-                calendar.set(Calendar.HOUR_OF_DAY, hour)
-                calendar.set(Calendar.MINUTE, minute)
-                val isSystem24Hour = DateFormat.is24HourFormat(context)
-                val formattedTime = if (isSystem24Hour) DateFormat.format(context.getString(R.string.time_24), calendar)
+                    val hour = medication.hour
+                    val minute = medication.minute
+                    calendar.set(Calendar.HOUR_OF_DAY, hour)
+                    calendar.set(Calendar.MINUTE, minute)
+                    val isSystem24Hour = DateFormat.is24HourFormat(context)
+                    val formattedTime = if (isSystem24Hour) DateFormat.format(
+                        context.getString(R.string.time_24),
+                        calendar
+                    )
                     else DateFormat.format(context.getString(R.string.time_12), calendar)
 
-                val builder = NotificationCompat.Builder(context, MainActivity.CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_small_notification)
-                    .setColor(ResourcesCompat.getColor(context.resources, R.color.purple_500, context.theme))
-                    .setContentTitle(medication.name)
-                    .setSubText(formattedTime)
-                    .setContentText(context.getString(R.string.time_for_your_dose))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true)
-                with(NotificationManagerCompat.from(context.applicationContext)) {
-                    notify(
-                        (System.currentTimeMillis() + medication.name.hashCode()).toInt(),
-                        builder.build()
+                    val builder = NotificationCompat.Builder(
+                        context,
+                        context.getString(R.string.channel_name)
                     )
+                        .setSmallIcon(R.drawable.ic_small_notification)
+                        .setColor(
+                            ResourcesCompat.getColor(
+                                context.resources,
+                                R.color.purple_500,
+                                context.theme
+                            )
+                        )
+                        .setContentTitle(medication.name)
+                        .setSubText(formattedTime)
+                        .setContentText(context.getString(R.string.time_for_your_dose))
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                    with(NotificationManagerCompat.from(context.applicationContext)) {
+                        notify(
+                            (currentTime + medication.name.hashCode()).toInt(),
+                            builder.build()
+                        )
+                    }
                 }
             }
         }

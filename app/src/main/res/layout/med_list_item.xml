@@ -33,15 +33,37 @@
         android:paddingHorizontal="10dp"
         android:text="@string/sample_medicine"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/time_label"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/sub_purple"
-        autoSizeTextType="uniform"
-        android:textSize="18sp"
-        android:paddingHorizontal="10dp"
-        android:text="@string/midnight"/>
+        android:orientation="horizontal">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/time_label"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/sub_purple"
+            autoSizeTextType="uniform"
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"
+            android:text="@string/midnight"
+            android:gravity="left"
+            android:layout_gravity="left"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_weight="1"
+            android:id="@+id/taken_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/sub_purple"
+            autoSizeTextType="uniform"
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"
+            android:text="@string/not_taken"
+            android:gravity="right"
+            android:layout_gravity="right"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

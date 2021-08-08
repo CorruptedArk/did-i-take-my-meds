@@ -52,14 +52,23 @@ class MedListAdapter(private val context: Context, private val medications: Muta
         nameLabel?.text = medications[position].name
 
         val timeLabel = view?.findViewById<MaterialTextView>(R.id.time_label)
+        val takenLabel = view?.findViewById<MaterialTextView>(R.id.taken_label)
+
         calendar.timeInMillis = medications[position].calculateClosestDose().timeInMillis
         if (medications[position].isAsNeeded()) {
-            timeLabel?.visibility = View.GONE
+            takenLabel?.visibility = View.GONE
+            timeLabel?.text = context.getString(R.string.taken_as_needed)
         }
         else {
-            timeLabel?.visibility = View.VISIBLE
+            takenLabel?.visibility = View.VISIBLE
             timeLabel?.text = if (isSystem24Hour) DateFormat.format(context.getString(R.string.time_24), calendar)
                 else DateFormat.format(context.getString(R.string.time_12), calendar)
+            if(medications[position].closestDoseAlreadyTaken()) {
+                takenLabel?.text = context.getString(R.string.taken)
+            }
+            else {
+                takenLabel?.text = context.getString(R.string.not_taken)
+            }
         }
         return view!!
     }

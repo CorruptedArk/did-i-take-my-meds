@@ -35,7 +35,8 @@
         android:id="@+id/med_list_view"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="10dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_empty_label"

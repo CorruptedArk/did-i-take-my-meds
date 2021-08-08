@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:gravity="center_vertical"
-        app:contentInsetStart="0dp"/>
+        app:contentInsetStartWithNavigation="0dp" />
 
     <ScrollView
         android:layout_width="match_parent"

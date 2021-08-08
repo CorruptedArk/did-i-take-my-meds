@@ -43,6 +43,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.prefs.Preferences
 import kotlin.collections.ArrayList
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
@@ -55,18 +56,22 @@ class MainActivity : AppCompatActivity() {
 
 
     private val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        runOnUiThread {
-            medicationListAdapter?.notifyDataSetChanged()
-            if (!medications.isNullOrEmpty())
-                listEmptyLabel.visibility = View.GONE
-            else
-                listEmptyLabel.visibility = View.VISIBLE
+        executorService.execute {
+            medications = medicationDao.getAll()
+            runOnUiThread {
+                medicationListAdapter = MedListAdapter(this, medications!!)
+                medListView.adapter = medicationListAdapter
+                if (!medications.isNullOrEmpty())
+                    listEmptyLabel.visibility = View.GONE
+                else
+                    listEmptyLabel.visibility = View.VISIBLE
+            }
         }
     }
+    
 
     companion object{
         var medications: MutableList<Medication>? = null
-        const val CHANNEL_ID = "did_i_take_my_meds"
     }
 
     private fun createNotificationChannel() {
@@ -76,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             val name = getString(R.string.channel_name)
             val descriptionText = getString(R.string.channel_description)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+            val channel = NotificationChannel(name, name, importance).apply {
                 description = descriptionText
             }
             // Register the channel with the system
@@ -115,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                     listEmptyLabel.visibility = View.VISIBLE
                 medListView.adapter = medicationListAdapter
                 medListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-                    openMedDetailActivity(i)
+                    openMedDetailActivity(medications!![i].id)
                 }
             }
 
@@ -165,9 +170,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openMedDetailActivity(medPosition: Int) {
+    private fun openMedDetailActivity(medId: Long) {
         val intent = Intent(this, MedDetailActivity::class.java)
-        intent.putExtra(getString(R.string.med_position_key), medPosition)
+        intent.putExtra(getString(R.string.med_id_key), medId)
         resultStarter.launch(intent)
     }
 

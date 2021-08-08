@@ -24,9 +24,9 @@ import kotlin.math.sign
 data class DoseRecord (val doseTime: Long, val closestDose: Long = -1L): Comparable<DoseRecord> {
     override fun compareTo(other: DoseRecord): Int {
         return if (closestDose == other.closestDose)
-            (doseTime - other.doseTime).sign
+            (other.doseTime - doseTime).sign
         else
-            (closestDose - other.closestDose).sign
+            (other.closestDose - closestDose).sign
     }
 
     fun isAsNeeded(): Boolean {

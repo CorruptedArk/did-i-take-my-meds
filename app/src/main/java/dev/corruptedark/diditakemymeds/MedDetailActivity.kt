@@ -69,80 +69,83 @@ class MedDetailActivity : AppCompatActivity() {
     private var isSystem24Hour: Boolean = false
     private var closestDose: Long = -1L
     private lateinit var executorService: ExecutorService
-    private val editResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        runOnUiThread {
-            medication.updateStartsToFuture()
+    private val editResultStarter =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             executorService.execute {
-                MedicationDB.getInstance(this).medicationDao().updateMedications(medication)
-            }
+                medication = MedicationDB.getInstance(this).medicationDao().get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
 
-            nameLabel.text = medication.name
+                runOnUiThread {
+                    nameLabel.text = medication.name
 
-            if (medication.isAsNeeded()) {
-                timeLabel.visibility = View.GONE
-                closestDoseLabel.visibility = View.GONE
-                notificationSwitch.visibility = View.GONE
-                notificationSwitch.isChecked = false
-            }
-            else {
-                timeLabel.visibility = View.VISIBLE
-                val nextDose = medication.calculateNextDose().timeInMillis
-                timeLabel.text = getString(R.string.next_dose_label, Medication.doseString(this, nextDose))
-                closestDoseLabel.visibility = View.VISIBLE
-                closestDose = medication.calculateClosestDose().timeInMillis
-                closestDoseLabel.text = getString(R.string.closest_dose_label, Medication.doseString(this, closestDose))
-                notificationSwitch.visibility = View.VISIBLE
-                notificationSwitch.isChecked = medication.notify
-            }
+                    if (medication.isAsNeeded()) {
+                        timeLabel.visibility = View.GONE
+                        closestDoseLabel.visibility = View.GONE
+                        notificationSwitch.visibility = View.GONE
+                        notificationSwitch.isChecked = false
+                    } else {
+                        timeLabel.visibility = View.VISIBLE
+                        val nextDose = medication.calculateNextDose().timeInMillis
+                        timeLabel.text =
+                            getString(
+                                R.string.next_dose_label,
+                                Medication.doseString(this, nextDose)
+                            )
+                        closestDoseLabel.visibility = View.VISIBLE
+                        closestDose = medication.calculateClosestDose().timeInMillis
+                        closestDoseLabel.text = getString(
+                            R.string.closest_dose_label,
+                            Medication.doseString(this, closestDose)
+                        )
+                        notificationSwitch.visibility = View.VISIBLE
+                        notificationSwitch.isChecked = medication.notify
+                    }
 
-            detailLabel.text = medication.description
+                    detailLabel.text = medication.description
 
-            if (medication.closestDoseAlreadyTaken() && !medication.isAsNeeded()) {
-                justTookItButton.text = getString(R.string.took_this_already)
-            }
-            else {
-                justTookItButton.text = getString(R.string.i_just_took_it)
-            }
+                    if (medication.closestDoseAlreadyTaken() && !medication.isAsNeeded()) {
+                        justTookItButton.text = getString(R.string.took_this_already)
+                    } else {
+                        justTookItButton.text = getString(R.string.i_just_took_it)
+                    }
 
-            alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
-                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
-                PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
-            }
+                    alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
+                        innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+                        innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
+                        PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
+                    }
 
-            if (medication.notify) {
-                //Set alarm
-                alarmManager?.cancel(alarmIntent)
+                    if (medication.notify) {
+                        //Set alarm
+                        alarmManager?.cancel(alarmIntent)
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    alarmManager?.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        medication.calculateNextDose().timeInMillis,
-                        alarmIntent
-                    )
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            alarmManager?.setExactAndAllowWhileIdle(
+                                AlarmManager.RTC_WAKEUP,
+                                medication.calculateNextDose().timeInMillis,
+                                alarmIntent
+                            )
+                        } else {
+                            alarmManager?.set(
+                                AlarmManager.RTC_WAKEUP,
+                                medication.calculateNextDose().timeInMillis,
+                                alarmIntent
+                            )
+                        }
+
+                        val receiver = ComponentName(this, AlarmReceiver::class.java)
+
+                        this.packageManager.setComponentEnabledSetting(
+                            receiver,
+                            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.DONT_KILL_APP
+                        )
+                    } else {
+                        //Cancel alarm
+                        alarmManager?.cancel(alarmIntent)
+                    }
                 }
-                else {
-                    alarmManager?.set(
-                        AlarmManager.RTC_WAKEUP,
-                        medication.calculateNextDose().timeInMillis,
-                        alarmIntent
-                    )
-                }
-
-                val receiver = ComponentName(this, AlarmReceiver::class.java)
-
-                this.packageManager.setComponentEnabledSetting(
-                    receiver,
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                    PackageManager.DONT_KILL_APP
-                )
-            }
-            else {
-                //Cancel alarm
-                alarmManager?.cancel(alarmIntent)
             }
         }
-    }
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
 
@@ -150,27 +153,6 @@ class MedDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_detail)
         toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
-
-        outerScroll = findViewById(R.id.outer_scroll)
-
-        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        isSystem24Hour = DateFormat.is24HourFormat(this)
-        medication = MainActivity.medications!![intent.getIntExtra(getString(R.string.med_position_key), -1)]
-        medication.updateStartsToFuture()
-
-        alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
-            innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-            innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
-            PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
-        }
-
-        executorService = Executors.newSingleThreadExecutor()
-
-        calendar.set(Calendar.HOUR_OF_DAY, medication.hour)
-        calendar.set(Calendar.MINUTE, medication.minute)
-
         nameLabel = findViewById(R.id.name_label)
         timeLabel = findViewById(R.id.time_label)
         notificationSwitch = findViewById(R.id.notification_switch)
@@ -178,88 +160,148 @@ class MedDetailActivity : AppCompatActivity() {
         closestDoseLabel = findViewById(R.id.closest_dose_label)
         justTookItButton = findViewById(R.id.just_took_it_button)
         previousDosesList = findViewById(R.id.previous_doses_list)
-
-        nameLabel.text = medication.name
-
-        if (medication.isAsNeeded()) {
-            timeLabel.visibility = View.GONE
-            closestDoseLabel.visibility = View.GONE
-            notificationSwitch.visibility = View.GONE
-            notificationSwitch.isChecked = false
+        setSupportActionBar(toolbar)
+        toolbar.background =
+            ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
-        else {
-            timeLabel.visibility = View.VISIBLE
-            val nextDose = medication.calculateNextDose().timeInMillis
-            timeLabel.text = getString(R.string.next_dose_label, Medication.doseString(this, nextDose))
-            closestDoseLabel.visibility = View.VISIBLE
-            closestDose = medication.calculateClosestDose().timeInMillis
-            closestDoseLabel.text = getString(R.string.closest_dose_label, Medication.doseString(this, closestDose))
-            notificationSwitch.visibility = View.VISIBLE
-            notificationSwitch.isChecked = medication.notify
-            notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-                medication.notify = isChecked
 
-                executorService.execute {
-                    MedicationDB.getInstance(this).medicationDao().updateMedications(medication)
-                }
+        outerScroll = findViewById(R.id.outer_scroll)
 
-                if (isChecked) {
-                    //Set alarm
+        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        isSystem24Hour = DateFormat.is24HourFormat(this)
+        executorService = Executors.newSingleThreadExecutor()
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        alarmManager?.setExactAndAllowWhileIdle(
-                            AlarmManager.RTC_WAKEUP,
-                            medication.calculateNextDose().timeInMillis,
-                            alarmIntent
-                        )
-                    }
-                    else {
-                        alarmManager?.set(
-                            AlarmManager.RTC_WAKEUP,
-                            medication.calculateNextDose().timeInMillis,
-                            alarmIntent
-                        )
-                    }
+        executorService.execute {
+            medication = MedicationDB.getInstance(this).medicationDao()
+                .get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
+            medication.updateStartsToFuture()
 
+            alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
+                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
+                PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
+            }
 
-                    val receiver = ComponentName(this, AlarmReceiver::class.java)
+            calendar.set(Calendar.HOUR_OF_DAY, medication.hour)
+            calendar.set(Calendar.MINUTE, medication.minute)
 
-                    this.packageManager.setComponentEnabledSetting(
-                        receiver,
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP
+            runOnUiThread {
+                nameLabel.text = medication.name
+
+                if (medication.isAsNeeded()) {
+                    timeLabel.visibility = View.GONE
+                    closestDoseLabel.visibility = View.GONE
+                    notificationSwitch.visibility = View.GONE
+                    notificationSwitch.isChecked = false
+                } else {
+                    timeLabel.visibility = View.VISIBLE
+                    val nextDose = medication.calculateNextDose().timeInMillis
+                    timeLabel.text =
+                        getString(R.string.next_dose_label, Medication.doseString(this, nextDose))
+                    closestDoseLabel.visibility = View.VISIBLE
+                    closestDose = medication.calculateClosestDose().timeInMillis
+                    closestDoseLabel.text = getString(
+                        R.string.closest_dose_label,
+                        Medication.doseString(this, closestDose)
                     )
-                    Toast.makeText(this, getString(R.string.notifications_enabled), Toast.LENGTH_SHORT).show()
+                    notificationSwitch.visibility = View.VISIBLE
+                    notificationSwitch.isChecked = medication.notify
+                    notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                        medication.notify = isChecked
+
+                        executorService.execute {
+                            MedicationDB.getInstance(this).medicationDao()
+                                .updateMedications(medication)
+                        }
+
+                        if (isChecked) {
+                            //Set alarm
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                alarmManager?.setExactAndAllowWhileIdle(
+                                    AlarmManager.RTC_WAKEUP,
+                                    medication.calculateNextDose().timeInMillis,
+                                    alarmIntent
+                                )
+                            } else {
+                                alarmManager?.set(
+                                    AlarmManager.RTC_WAKEUP,
+                                    medication.calculateNextDose().timeInMillis,
+                                    alarmIntent
+                                )
+                            }
+
+                            val receiver = ComponentName(this, AlarmReceiver::class.java)
+
+                            this.packageManager.setComponentEnabledSetting(
+                                receiver,
+                                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                                PackageManager.DONT_KILL_APP
+                            )
+                            Toast.makeText(
+                                this,
+                                getString(R.string.notifications_enabled),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            //Cancel alarm
+                            alarmManager?.cancel(alarmIntent)
+                            Toast.makeText(
+                                this,
+                                getString(R.string.notifications_disabled),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
-                else {
-                    //Cancel alarm
-                    alarmManager?.cancel(alarmIntent)
-                    Toast.makeText(this, getString(R.string.notifications_disabled), Toast.LENGTH_SHORT).show()
+                
+                detailLabel.text = medication.description
+
+                doseRecordAdapter = DoseRecordListAdapter(this, medication.doseRecord)
+
+                if (!doseRecordAdapter.isEmpty) {
+                    val sampleView = doseRecordAdapter.getView(0, null, previousDosesList)
+                    sampleView.measure(0, 0)
+                    val height =
+                        doseRecordAdapter.count * sampleView.measuredHeight + previousDosesList.dividerHeight * (doseRecordAdapter.count - 1)
+                    previousDosesList.layoutParams =
+                        LinearLayoutCompat.LayoutParams(
+                            LinearLayoutCompat.LayoutParams.MATCH_PARENT,
+                            height
+                        )
+                }
+
+                previousDosesList.adapter = doseRecordAdapter
+                ViewCompat.setNestedScrollingEnabled(outerScroll, true)
+                ViewCompat.setNestedScrollingEnabled(previousDosesList, true)
+
+                justTookItButton.setOnClickListener {
+                    justTookItButtonPressed()
+                }
+
+                if (medication.closestDoseAlreadyTaken() && !medication.isAsNeeded()) {
+                    justTookItButton.text = getString(R.string.took_this_already)
+                } else {
+                    justTookItButton.text = getString(R.string.i_just_took_it)
                 }
             }
+            medication.doseRecord.sort()
         }
-
-        detailLabel.text = medication.description
-
-        doseRecordAdapter = DoseRecordListAdapter(this, medication.doseRecord)
-
-        previousDosesList.adapter = doseRecordAdapter
-        ViewCompat.setNestedScrollingEnabled(outerScroll, true)
-        ViewCompat.setNestedScrollingEnabled(previousDosesList, true)
-
-        justTookItButton.setOnClickListener {
-            justTookItButtonPressed()
-        }
-
-        if (medication.closestDoseAlreadyTaken() && !medication.isAsNeeded()) {
-            justTookItButton.text = getString(R.string.took_this_already)
-        }
-        else {
-            justTookItButton.text = getString(R.string.i_just_took_it)
-        }
-        medication.doseRecord.sort()
     }
 
+    override fun onBackPressed() {
+        if (callingActivity?.className ?: "" == MainActivity::class.simpleName) {
+            super.onBackPressed()
+        }
+        else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -290,7 +332,10 @@ class MedDetailActivity : AppCompatActivity() {
             }
             R.id.edit -> {
                 val editIntent = Intent(this, EditMedActivity::class.java)
-                editIntent.putExtra(getString(R.string.med_position_key), intent.getIntExtra(getString(R.string.med_position_key), -1))
+                editIntent.putExtra(
+                    getString(R.string.med_id_key),
+                    intent.getLongExtra(getString(R.string.med_id_key), -1)
+                )
                 editResultStarter.launch(editIntent)
                 true
             }
@@ -298,35 +343,20 @@ class MedDetailActivity : AppCompatActivity() {
         }
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
-        if (!doseRecordAdapter.isEmpty) {
-            val sampleView = doseRecordAdapter.getView(0, null, previousDosesList)
-            sampleView.measure(0, 0)
-            val height = doseRecordAdapter.count * sampleView.measuredHeight + previousDosesList.dividerHeight * (doseRecordAdapter.count - 1)
-            previousDosesList.layoutParams =
-                LinearLayoutCompat.LayoutParams(
-                    LinearLayoutCompat.LayoutParams.MATCH_PARENT,
-                    height
-                )
-        }
-    }
-
     private fun justTookItButtonPressed() {
+        val calendar = Calendar.getInstance()
         medication.updateStartsToFuture()
-        if (medication.closestDoseAlreadyTaken() && !medication.isAsNeeded())
-        {
+        if (medication.closestDoseAlreadyTaken() && !medication.isAsNeeded()) {
             Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
+        } else {
             val newDose = if (medication.isAsNeeded()) {
-                DoseRecord(System.currentTimeMillis())
-            }
-            else {
+                DoseRecord(calendar.timeInMillis)
+            } else {
                 justTookItButton.text = getString(R.string.took_this_already)
-                DoseRecord(System.currentTimeMillis(), medication.calculateClosestDose().timeInMillis)
+                DoseRecord(
+                    calendar.timeInMillis,
+                    medication.calculateClosestDose().timeInMillis
+                )
             }
 
             doseRecordAdapter.notifyDataSetChanged()
@@ -339,7 +369,8 @@ class MedDetailActivity : AppCompatActivity() {
         if (!doseRecordAdapter.isEmpty) {
             val sampleView = doseRecordAdapter.getView(0, null, previousDosesList)
             sampleView.measure(0, 0)
-            val height = doseRecordAdapter.count * sampleView.measuredHeight + previousDosesList.dividerHeight * (doseRecordAdapter.count - 1)
+            val height =
+                doseRecordAdapter.count * sampleView.measuredHeight + previousDosesList.dividerHeight * (doseRecordAdapter.count - 1)
             previousDosesList.layoutParams =
                 LinearLayoutCompat.LayoutParams(
                     LinearLayoutCompat.LayoutParams.MATCH_PARENT,

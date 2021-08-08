@@ -24,7 +24,7 @@
     <string name="today">Hoje</string>
     <string name="yesterday">Ontem</string>
     <string name="tomorrow">Amanhã</string>
-    <string name="closest_dose_label">Próxima doses:</string>
+    <string name="closest_dose_label">Próxima doses: %1$s</string>
     <string name="already_took_dose">Você já tomou esta dose\nAssegure-se de não tomar novamente.</string>
     <string name="date_format">MMM d, aaaa</string>
     <string name="time_taken">Hora em que foi tomado:</string>
@@ -72,5 +72,7 @@
     <string name="fill_out_all_schedules">Fill out all schedules before saving</string>
     <string name="fill_out_schedule">Fill out schedule before confirming</string>
     <string name="next_dose_label">Next dose: %1$s</string>
+    <string name="taken">Taken</string>
+    <string name="not_taken">Not taken</string>
 
 </resources>

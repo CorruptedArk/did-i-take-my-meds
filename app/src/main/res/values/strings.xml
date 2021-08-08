@@ -72,5 +72,7 @@
     <string name="fill_out_all_schedules">Fill out all schedules before saving</string>
     <string name="fill_out_schedule">Fill out schedule before confirming</string>
     <string name="next_dose_label">Next dose: %1$s</string>
+    <string name="taken">Taken</string>
+    <string name="not_taken">Not taken</string>
 
 </resources>

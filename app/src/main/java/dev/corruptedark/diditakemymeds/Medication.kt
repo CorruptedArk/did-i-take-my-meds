@@ -56,7 +56,6 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
             val calendar = Calendar.getInstance()
             val doseCal: Calendar = Calendar.getInstance()
             doseCal.timeInMillis = doseTime
-            calendar.timeInMillis = System.currentTimeMillis()
             val today = calendar.clone() as Calendar
             calendar.add(Calendar.DATE, -1)
             val yesterday = calendar.clone() as Calendar
@@ -103,8 +102,8 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
      */
     fun updateStartsToFuture() {
         if(!isAsNeeded()) {
-            val currentTime = System.currentTimeMillis()
             val localCalendar = Calendar.getInstance()
+            val currentTime = localCalendar.timeInMillis
 
             localCalendar.set(Calendar.HOUR_OF_DAY, hour)
             localCalendar.set(Calendar.MINUTE, minute)
@@ -155,8 +154,8 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
     fun calculateNextDose(): ScheduleSortTriple {
         val scheduleTripleList = ArrayList<ScheduleSortTriple>()
 
-        val currentTime = System.currentTimeMillis()
         val localCalendar = Calendar.getInstance()
+        val currentTime = localCalendar.timeInMillis
         var scheduleTriple: ScheduleSortTriple
         var nextDose: ScheduleSortTriple
 
@@ -216,8 +215,8 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
     fun calculateClosestDose(): ScheduleSortTriple {
         val scheduleTripleList = ArrayList<ScheduleSortTriple>()
 
-        val currentTime = System.currentTimeMillis()
         val localCalendar = Calendar.getInstance()
+        val currentTime = localCalendar.timeInMillis
         var scheduleTriple: ScheduleSortTriple
         var closestDose: ScheduleSortTriple
 

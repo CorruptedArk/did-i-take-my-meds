@@ -46,7 +46,11 @@ class AboutActivity : AppCompatActivity() {
         appDescriptionView = findViewById(R.id.app_description_view)
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
-        toolbar.logo = AppCompatResources.getDrawable(this, R.drawable.bar_logo)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
         githubButton.setOnClickListener {
             val webpage = Uri.parse(getString(R.string.github_link))
             val intent = Intent(Intent.ACTION_VIEW, webpage)

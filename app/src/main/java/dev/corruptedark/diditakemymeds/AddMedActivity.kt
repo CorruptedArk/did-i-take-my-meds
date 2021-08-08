@@ -187,8 +187,7 @@ class AddMedActivity() : AppCompatActivity() {
                         repeatScheduleList[callingIndex].startYear = schedulePicker.startYear
                         repeatScheduleList[callingIndex].daysBetween = schedulePicker.daysBetween
                         repeatScheduleList[callingIndex].weeksBetween = schedulePicker.weeksBetween
-                        repeatScheduleList[callingIndex].monthsBetween =
-                            schedulePicker.monthsBetween
+                        repeatScheduleList[callingIndex].monthsBetween = schedulePicker.monthsBetween
                         repeatScheduleList[callingIndex].yearsBetween = schedulePicker.yearsBetween
                     } else {
                         repeatScheduleList.add(
