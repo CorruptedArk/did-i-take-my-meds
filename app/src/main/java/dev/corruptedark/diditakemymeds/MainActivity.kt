@@ -35,6 +35,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.children
+import androidx.core.view.marginEnd
 import androidx.room.Room
 import com.google.android.material.appbar.MaterialToolbar
 import java.text.FieldPosition
@@ -53,11 +55,20 @@ class MainActivity : AppCompatActivity() {
     private var medicationListAdapter: MedListAdapter? = null
     private lateinit var db: MedicationDB
     private lateinit var medicationDao: MedicationDao
+    private lateinit var sortType: String
+    private val TIME_SORT = "time"
+    private val NAME_SORT = "name"
 
 
     private val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         executorService.execute {
             medications = medicationDao.getAll()
+            if (sortType == NAME_SORT) {
+                medications!!.sortWith(Medication::compareByName)
+            }
+            else {
+                medications!!.sortWith(Medication::compareByTime)
+            }
             runOnUiThread {
                 medicationListAdapter = MedListAdapter(this, medications!!)
                 medListView.adapter = medicationListAdapter
@@ -111,9 +122,21 @@ class MainActivity : AppCompatActivity() {
             db = MedicationDB.getInstance(this)
             medicationDao = db.medicationDao()
             medications = medicationDao.getAll()
-            medicationListAdapter = MedListAdapter(this, medications!!)
+            val sharedPref = getPreferences(Context.MODE_PRIVATE)
+            sortType = sharedPref.getString(getString(R.string.sort_key), TIME_SORT)!!
 
             runOnUiThread {
+                if (sortType == NAME_SORT) {
+                    medications!!.sortWith(Medication::compareByName)
+                    toolbar.menu.findItem(R.id.sortType)?.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_alpha)
+                }
+                else {
+                    medications!!.sortWith(Medication::compareByTime)
+                    toolbar.menu.findItem(R.id.sortType)?.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_time)
+                }
+
+                medicationListAdapter = MedListAdapter(this, medications!!)
+
                 if (!medications.isNullOrEmpty())
                     listEmptyLabel.visibility = View.GONE
                 else
@@ -124,7 +147,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            val sharedPref = getPreferences(Context.MODE_PRIVATE)
             if (BuildConfig.VERSION_CODE > sharedPref.getInt(getString(R.string.last_version_used_key), 0)) {
                 val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
                 var alarmIntent: PendingIntent
@@ -197,6 +219,30 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.info -> {
                 openAboutActivity()
+                true
+            }
+            R.id.sortType -> {
+                val sharedPref = getPreferences(Context.MODE_PRIVATE)
+                if (sortType == TIME_SORT) {
+                    sortType = NAME_SORT
+                    item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_alpha)
+                    with(sharedPref.edit()) {
+                        putString(getString(R.string.sort_key), NAME_SORT)
+                        apply()
+                    }
+                    medications!!.sortWith(Medication::compareByName)
+                    medicationListAdapter!!.notifyDataSetChanged()
+                }
+                else {
+                    sortType = TIME_SORT
+                    item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_time)
+                    with(sharedPref.edit()) {
+                        putString(getString(R.string.sort_key), TIME_SORT)
+                        apply()
+                    }
+                    medications!!.sortWith(Medication::compareByTime)
+                    medicationListAdapter!!.notifyDataSetChanged()
+                }
                 true
             }
             R.id.add_med -> {

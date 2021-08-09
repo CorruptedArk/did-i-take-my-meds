@@ -74,5 +74,7 @@
     <string name="next_dose_label">Próxima dose: %1$s</string>
     <string name="taken">Tomado</string>
     <string name="not_taken">Ainda não foi tomado</string>
+    <string name="sort">Sort</string>
+    <string name="sort_key">Sort</string>
 
 </resources>

@@ -26,6 +26,13 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/sortType"
+        android:icon="@drawable/ic_sort_by_time"
+        android:orderInCategory="100"
+        android:title="@string/sort"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/add_med"
         android:icon="@drawable/add_box"
         android:orderInCategory="100"

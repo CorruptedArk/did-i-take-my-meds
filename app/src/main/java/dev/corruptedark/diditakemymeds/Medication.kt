@@ -92,6 +92,19 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
 
             return builder.toString()
         }
+
+        fun compareByName(a: Medication, b: Medication): Int {
+            return a.name.compareTo(b.name)
+        }
+
+        fun compareByTime(a: Medication, b: Medication): Int {
+            val aDose = a.calculateClosestDose()
+            val bDose = b.calculateClosestDose()
+            return if (aDose.timeInMillis == bDose.timeInMillis)
+                compareByName(a, b)
+            else
+                (aDose.timeInMillis - bDose.timeInMillis).sign
+        }
     }
 
     /**

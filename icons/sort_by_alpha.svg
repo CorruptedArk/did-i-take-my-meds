@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+Copyright 2016 Google
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.-->
+
+<svg
+   height="24px"
+   viewBox="0 0 24 24"
+   width="24px"
+   fill="#000000"
+   version="1.1"
+   id="svg908"
+   sodipodi:docname="sort_by_alpha.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs912" />
+  <sodipodi:namedview
+     id="namedview910"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="6.1596973"
+     inkscape:cx="9.5783927"
+     inkscape:cy="2.5163574"
+     inkscape:window-width="1366"
+     inkscape:window-height="704"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg908" />
+  <path
+     d="M0 0h24v24H0V0z"
+     fill="none"
+     id="path904" />
+  <path
+     d="m 15.669418,3.6225402 h -5.38714 l 2.69357,-2.69357013 z M 10.316518,20.4117 h 5.31866 l -2.65933,2.65933 z M 5.5799439,5.4601029 0.44389913,18.539897 H 2.5439708 l 1.0500359,-2.796291 h 5.8322642 l 1.0500361,2.796291 h 2.100071 L 7.4517469,5.4601029 Z M 4.2902261,13.871803 6.504432,7.9596447 8.718638,13.871803 Z m 12.2808529,2.853358 h 6.985022 v 1.814736 H 13.820442 V 17.067564 L 20.577194,7.2976656 H 13.866097 V 5.4715163 h 9.473149 v 1.4380926 z"
+     id="path906"
+     style="fill:#ffffff;stroke-width:1.14134" />
+</svg>
