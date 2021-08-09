@@ -57,7 +57,7 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var extraDoseButton: MaterialButton
     private var isSystem24Hour: Boolean = false
     private var clockFormat: Int = TimeFormat.CLOCK_12H
-    private lateinit var schedulePicker: RepeatSheduleDialog
+    private lateinit var schedulePicker: RepeatScheduleDialog
     private var schedulePickerCaller: View? = null
     private val repeatScheduleList: ArrayList<RepeatSchedule> = ArrayList()
 
@@ -160,7 +160,7 @@ class AddMedActivity() : AppCompatActivity() {
         isSystem24Hour = DateFormat.is24HourFormat(this)
         clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
 
-        schedulePicker = RepeatSheduleDialog.newInstance(this)
+        schedulePicker = RepeatScheduleDialog.newInstance(this)
 
         schedulePicker.addConfirmListener {
             if (schedulePicker.scheduleIsValid()) {

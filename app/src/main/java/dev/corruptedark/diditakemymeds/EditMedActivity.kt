@@ -19,13 +19,8 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import  androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -38,12 +33,10 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 
 class EditMedActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
@@ -57,7 +50,7 @@ class EditMedActivity : AppCompatActivity() {
     private lateinit var extraDoseButton: MaterialButton
     private var isSystem24Hour: Boolean = false
     private var clockFormat: Int = TimeFormat.CLOCK_12H
-    private lateinit var schedulePicker: RepeatSheduleDialog
+    private lateinit var schedulePicker: RepeatScheduleDialog
     private var schedulePickerCaller: View? = null
     private var repeatScheduleList: ArrayList<RepeatSchedule> = ArrayList()
 
@@ -283,7 +276,7 @@ class EditMedActivity : AppCompatActivity() {
                 isSystem24Hour = DateFormat.is24HourFormat(this)
                 clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
 
-                schedulePicker = RepeatSheduleDialog.newInstance(this)
+                schedulePicker = RepeatScheduleDialog.newInstance(this)
 
                 schedulePicker.addConfirmListener {
                     if (schedulePicker.scheduleIsValid()) {

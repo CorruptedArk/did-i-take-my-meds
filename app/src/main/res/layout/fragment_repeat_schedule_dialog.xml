@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".RepeatSheduleDialog"
+    tools:context=".RepeatScheduleDialog"
     android:orientation="vertical"
     android:background="@color/background">
 

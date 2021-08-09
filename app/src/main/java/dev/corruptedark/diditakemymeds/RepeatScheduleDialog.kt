@@ -40,7 +40,7 @@ import it.sephiroth.android.library.numberpicker.doOnProgressChanged
 import java.util.*
 
 
-class RepeatSheduleDialog : DialogFragment() {
+class RepeatScheduleDialog : DialogFragment() {
 
     private lateinit var callingContext: Context
     private lateinit var timePickerButton: MaterialButton
@@ -75,7 +75,7 @@ class RepeatSheduleDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_repeat_shedule_dialog, container, false)
+        val view = inflater.inflate(R.layout.fragment_repeat_schedule_dialog, container, false)
         timePickerButton = view.findViewById(R.id.time_picker_button)
         startDateButton = view.findViewById(R.id.start_date_button)
         daysBetweenPicker = view.findViewById(R.id.days_between_picker)
@@ -153,7 +153,7 @@ class RepeatSheduleDialog : DialogFragment() {
 
         @JvmStatic
         fun newInstance(context: Context) =
-            RepeatSheduleDialog().apply {
+            RepeatScheduleDialog().apply {
                 callingContext = context
                 arguments = Bundle().apply {
 
