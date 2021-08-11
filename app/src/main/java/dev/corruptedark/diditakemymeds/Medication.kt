@@ -282,28 +282,6 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
 
         scheduleTripleList.add(scheduleTriple)
 
-        localCalendar.add(Calendar.DATE, -daysBetween)
-        localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
-        localCalendar.add(Calendar.MONTH, -monthsBetween)
-        localCalendar.add(Calendar.YEAR, -yearsBetween)
-        scheduleTriple = ScheduleSortTriple(
-            localCalendar.timeInMillis,
-            RepeatSchedule(
-                hour,
-                minute,
-                startDay,
-                startMonth,
-                startYear,
-                daysBetween,
-                weeksBetween,
-                monthsBetween,
-                yearsBetween
-            ),
-            -1
-        )
-
-        scheduleTripleList.add(scheduleTriple)
-
         localCalendar.add(Calendar.DATE, 2 * daysBetween)
         localCalendar.add(Calendar.WEEK_OF_YEAR, 2 * weeksBetween)
         localCalendar.add(Calendar.MONTH, 2 * monthsBetween)
