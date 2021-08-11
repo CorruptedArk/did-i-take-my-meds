@@ -21,10 +21,17 @@ Did I Take My Meds? allows a user save multiple medication doses with different 
 ---
 
 ## Screenshots
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Med List" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Detail View" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Edit View" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Edit Clock" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/10.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/11.png" width="200" />
 
 ---
 ## Credits
