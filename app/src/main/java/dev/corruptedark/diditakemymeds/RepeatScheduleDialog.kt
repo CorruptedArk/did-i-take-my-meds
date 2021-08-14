@@ -146,7 +146,7 @@ class RepeatScheduleDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setWidthPercent(85)
+        setWidthPercent(90)
     }
 
     companion object {
