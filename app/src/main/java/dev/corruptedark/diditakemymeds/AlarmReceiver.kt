@@ -136,9 +136,9 @@ class AlarmReceiver : BroadcastReceiver() {
 
                     val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, 0)
 
-
-                    val hour = medication.hour
-                    val minute = medication.minute
+                    val closestDose = medication.calculateClosestDose()
+                    val hour = closestDose.schedule.hour
+                    val minute = closestDose.schedule.minute
                     calendar.set(Calendar.HOUR_OF_DAY, hour)
                     calendar.set(Calendar.MINUTE, minute)
                     val isSystem24Hour = DateFormat.is24HourFormat(context)
