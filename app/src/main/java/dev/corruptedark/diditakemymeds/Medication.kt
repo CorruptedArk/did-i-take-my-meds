@@ -316,19 +316,21 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
 
             scheduleTripleList.add(scheduleTriple)
 
-            localCalendar.add(Calendar.DATE, -daysBetween)
-            localCalendar.add(Calendar.WEEK_OF_YEAR, -weeksBetween)
-            localCalendar.add(Calendar.MONTH, -monthsBetween)
-            localCalendar.add(Calendar.YEAR, -yearsBetween)
+            localCalendar.add(Calendar.DATE, -schedule.daysBetween)
+            localCalendar.add(Calendar.WEEK_OF_YEAR, -schedule.weeksBetween)
+            localCalendar.add(Calendar.MONTH, -schedule.monthsBetween)
+            localCalendar.add(Calendar.YEAR, -schedule.yearsBetween)
             scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
 
             scheduleTripleList.add(scheduleTriple)
 
-            localCalendar.add(Calendar.DATE, 2 * daysBetween)
-            localCalendar.add(Calendar.WEEK_OF_YEAR, 2 * weeksBetween)
-            localCalendar.add(Calendar.MONTH, 2 * monthsBetween)
-            localCalendar.add(Calendar.YEAR, 2 * yearsBetween)
+            localCalendar.add(Calendar.DATE, 2 * schedule.daysBetween)
+            localCalendar.add(Calendar.WEEK_OF_YEAR, 2 * schedule.weeksBetween)
+            localCalendar.add(Calendar.MONTH, 2 * schedule.monthsBetween)
+            localCalendar.add(Calendar.YEAR, 2 * schedule.yearsBetween)
             scheduleTriple = ScheduleSortTriple(localCalendar.timeInMillis, schedule, index)
+
+            scheduleTripleList.add(scheduleTriple)
         }
 
         scheduleTripleList.sortWith { schedule1, schedule2 ->

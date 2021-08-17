@@ -345,10 +345,10 @@ class EditMedActivity : AppCompatActivity() {
                             R.string.schedule_format,
                             formattedTime,
                             formattedDate,
-                            daysBetween,
-                            weeksBetween,
-                            monthsBetween,
-                            yearsBetween
+                            schedulePicker.daysBetween,
+                            schedulePicker.weeksBetween,
+                            schedulePicker.monthsBetween,
+                            schedulePicker.yearsBetween
                         )
                         extraDoseButton.visibility = View.VISIBLE
                         pickerIsOpen = false
