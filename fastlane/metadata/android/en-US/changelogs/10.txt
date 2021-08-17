@@ -1,0 +1,5 @@
+v1.1.3
+
+Fixes:
+- Fix incorrect closest dose calculations for additional doses with different time between than the first dose in list
+- Fix incorrect time between displaying on select schedule buttons for additional doses with different time between than the first dose in list
