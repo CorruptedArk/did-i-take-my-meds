@@ -117,6 +117,7 @@ class EditMedActivity : AppCompatActivity() {
                     monthsBetween = medication.monthsBetween
                     yearsBetween = medication.yearsBetween
                     notify = medication.notify
+                    notificationSwitch.isChecked = notify
                     if (medication.moreDosesPerDay.isNotEmpty())
                         repeatScheduleList =
                             medication.moreDosesPerDay.toMutableList() as ArrayList<RepeatSchedule>

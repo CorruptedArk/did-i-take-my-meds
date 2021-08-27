@@ -14,9 +14,10 @@
 <a href='https://play.google.com/store/apps/details?id=dev.corruptedark.diditakemymeds&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' height=90 src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
 ## About
-Did I Take My Meds? is a Kotlin Android app to keep track of when to take medications. It is designed to help prevent a user from skipping doses and/or overdosing. 
 
-Did I Take My Meds? allows a user save multiple medication doses with different times. Each medication can trigger an independent reminder notification. The unique functionality of this application is that it allows a user to record when they take a dose. As a part of a medication routine, this app can help prevent overdoses and skipped doses.
+Did I Take My Meds? helps keep track of when to take medications. It is designed to help prevent a user from skipping doses and/or overdosing.
+
+Did I Take My Meds? allows a user save multiple medications with complex schedules. Each medication can trigger an independent reminder notification. Additionally, this application allows a user to record when they take a dose. As a part of a medication routine, this app can help prevent overdoses and skipped doses.
 
 ---
 
