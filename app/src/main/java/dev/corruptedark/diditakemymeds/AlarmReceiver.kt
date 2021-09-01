@@ -134,7 +134,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         putExtra(context.getString(R.string.med_id_key), medication.id)
                     }
 
-                    val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, PendingIntent.FLAG_ONE_SHOT)
+                    val pendingIntent = PendingIntent.getActivity(context, medication.id.toInt() + System.currentTimeMillis().toInt(), actionIntent, 0)
 
                     val closestDose = medication.calculateClosestDose()
                     val hour = closestDose.schedule.hour
