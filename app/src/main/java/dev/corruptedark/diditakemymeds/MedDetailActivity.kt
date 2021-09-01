@@ -174,7 +174,10 @@ class MedDetailActivity : AppCompatActivity() {
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         isSystem24Hour = DateFormat.is24HourFormat(this)
         executorService = Executors.newSingleThreadExecutor()
+    }
 
+    override fun onResume() {
+        super.onResume()
         executorService.execute {
             medication = MedicationDB.getInstance(this).medicationDao()
                 .get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
@@ -258,7 +261,7 @@ class MedDetailActivity : AppCompatActivity() {
                         }
                     }
                 }
-                
+
                 detailLabel.text = medication.description
 
                 doseRecordAdapter = DoseRecordListAdapter(this, medication.doseRecord)

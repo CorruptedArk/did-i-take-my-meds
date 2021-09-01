@@ -130,11 +130,11 @@ class AlarmReceiver : BroadcastReceiver() {
                     MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
 
                     val actionIntent = Intent(context, MedDetailActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         putExtra(context.getString(R.string.med_id_key), medication.id)
                     }
 
-                    val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, 0)
+                    val pendingIntent = PendingIntent.getActivity(context, 0, actionIntent, PendingIntent.FLAG_ONE_SHOT)
 
                     val closestDose = medication.calculateClosestDose()
                     val hour = closestDose.schedule.hour
@@ -165,7 +165,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         .setContentText(context.getString(R.string.time_for_your_dose))
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setContentIntent(pendingIntent)
-                        .setAutoCancel(true)
+                        .setAutoCancel(false)
                     with(NotificationManagerCompat.from(context.applicationContext)) {
                         notify(
                             (currentTime + medication.name.hashCode()).toInt(),
