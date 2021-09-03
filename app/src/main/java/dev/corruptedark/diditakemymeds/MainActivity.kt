@@ -20,66 +20,82 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.*
-import android.content.AbstractThreadedSyncAdapter
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.*
 import android.widget.*
-import androidx.core.widget.ListViewCompat
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.children
-import androidx.core.view.marginEnd
-import androidx.room.Room
 import com.google.android.material.appbar.MaterialToolbar
-import java.text.FieldPosition
-import java.util.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.prefs.Preferences
-import kotlin.collections.ArrayList
-import kotlin.system.exitProcess
+import android.net.Uri
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.core.net.toFile
+import androidx.documentfile.provider.DocumentFile
+import java.io.File
+import java.io.OutputStream
+import java.net.URI
+
 
 class MainActivity : AppCompatActivity() {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private lateinit var toolbar: MaterialToolbar
     private lateinit var medListView: ListView
     private lateinit var listEmptyLabel: AppCompatTextView
+    private lateinit var addMedButton: FloatingActionButton
     private var medicationListAdapter: MedListAdapter? = null
     private lateinit var db: MedicationDB
     private lateinit var medicationDao: MedicationDao
     private lateinit var sortType: String
     private val TIME_SORT = "time"
     private val NAME_SORT = "name"
+    private val FOOTER_PADDING_DP = 100.0F
 
 
-    private val resultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        executorService.execute {
-            medications = medicationDao.getAll()
-            if (sortType == NAME_SORT) {
-                medications!!.sortWith(Medication::compareByName)
-            }
-            else {
-                medications!!.sortWith(Medication::compareByTime)
-            }
-            runOnUiThread {
-                medicationListAdapter = MedListAdapter(this, medications!!)
-                medListView.adapter = medicationListAdapter
-                if (!medications.isNullOrEmpty())
-                    listEmptyLabel.visibility = View.GONE
-                else
-                    listEmptyLabel.visibility = View.VISIBLE
+    private val activityResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        refreshFromDatabase()
+    }
+
+    private val importResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val importUri: Uri? = result.data?.data
+
+        if(result.resultCode == Activity.RESULT_OK) {
+            if (importUri != null && importUri.path != null) {
+                MedicationDB.wipeInstance()
+
+                val importFileStream = contentResolver.openInputStream(importUri)!!
+                importFileStream.copyTo(this.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream())
+
+                db = MedicationDB.getInstance(this)
+                refreshFromDatabase()
             }
         }
     }
-    
+
+    private val exportResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val exportUri: Uri? = result.data?.data
+
+        if(result.resultCode == Activity.RESULT_OK) {
+            if (exportUri != null && exportUri.path != null) {
+
+                db.close()
+
+                val exportFileStream = contentResolver.openOutputStream(exportUri)!!
+                this.getDatabasePath(MedicationDB.DATABASE_NAME).inputStream().copyTo(exportFileStream)
+
+            }
+        }
+    }
 
     companion object{
         var medications: MutableList<Medication>? = null
@@ -109,10 +125,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         medListView = findViewById(R.id.med_list_view)
         listEmptyLabel = findViewById(R.id.list_empty_label)
+        addMedButton = findViewById(R.id.add_med_button)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
         toolbar.logo = AppCompatResources.getDrawable(this, R.drawable.bar_logo)
+
+        addMedButton.setOnClickListener {
+            openAddMedActivity()
+        }
+
+        val footerPadding = Space(this)
+        footerPadding.minimumHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, FOOTER_PADDING_DP, resources.displayMetrics).toInt()
+        medListView.addFooterView(footerPadding)
+        medListView.setFooterDividersEnabled(false)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -195,7 +221,7 @@ class MainActivity : AppCompatActivity() {
     private fun openMedDetailActivity(medId: Long) {
         val intent = Intent(this, MedDetailActivity::class.java)
         intent.putExtra(getString(R.string.med_id_key), medId)
-        resultStarter.launch(intent)
+        activityResultStarter.launch(intent)
     }
 
     override fun onResume() {
@@ -245,11 +271,35 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-            R.id.add_med -> {
-                openAddMedActivity()
+            R.id.import_database -> {
+                importDatabase()
+                true
+            }
+            R.id.export_database -> {
+                exportDatabase()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun refreshFromDatabase() {
+        executorService.execute {
+            medications = medicationDao.getAll()
+            if (sortType == NAME_SORT) {
+                medications!!.sortWith(Medication::compareByName)
+            }
+            else {
+                medications!!.sortWith(Medication::compareByTime)
+            }
+            runOnUiThread {
+                medicationListAdapter = MedListAdapter(this, medications!!)
+                medListView.adapter = medicationListAdapter
+                if (!medications.isNullOrEmpty())
+                    listEmptyLabel.visibility = View.GONE
+                else
+                    listEmptyLabel.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -260,6 +310,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun openAddMedActivity() {
         val intent = Intent(this, AddMedActivity::class.java)
-        resultStarter.launch(intent)
+        activityResultStarter.launch(intent)
+    }
+
+    private fun importDatabase() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = Intent.normalizeMimeType("application/octet-stream")
+
+        importResultStarter.launch(intent)
+    }
+
+    private fun exportDatabase() {
+        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = Intent.normalizeMimeType("application/octet-stream")
+        intent.putExtra(Intent.EXTRA_TITLE, MedicationDB.DATABASE_NAME + MedicationDB.DATABASE_FILE_EXTENSION)
+
+        exportResultStarter.launch(intent)
     }
 }

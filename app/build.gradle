@@ -41,6 +41,11 @@ android {
         versionName "1.1.4"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
     }
 
     def name = defaultConfig.applicationId + "-" + defaultConfig.versionName
@@ -88,5 +93,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'com.github.sephiroth74:NumberSlidingPicker:v.1.1.1'
+    implementation 'net.steamcrafted:materialiconlib:1.1.5'
 
 }

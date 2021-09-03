@@ -21,21 +21,27 @@
     <item
         android:id="@+id/info"
         android:icon="@drawable/info"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/about"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/sortType"
         android:icon="@drawable/ic_sort_by_time"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:title="@string/sort"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/add_med"
-        android:icon="@drawable/add_box"
-        android:orderInCategory="100"
-        android:title="@string/new_medication"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/import_database"
+        android:orderInCategory="3"
+        android:title="@string/import_database"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/export_database"
+        android:orderInCategory="4"
+        android:title="@string/export_database"
+        app:showAsAction="never"/>
+
 </menu>

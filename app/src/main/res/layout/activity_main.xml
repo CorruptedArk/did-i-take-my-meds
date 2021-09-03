@@ -33,10 +33,11 @@
 
     <ListView
         android:id="@+id/med_list_view"
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="10dp"/>
+        android:layout_below="@id/toolbar"
+        android:divider="@color/background"
+        android:dividerHeight="10dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_empty_label"
@@ -48,6 +49,22 @@
         app:autoSizeTextType="uniform"
         android:textSize="18sp"
         android:gravity="center"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_med_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="30dp"
+        android:backgroundTint="@color/purple_500"
+        app:borderWidth="0dp"
+        android:src="@drawable/add"
+        app:tint="@color/white"
+        app:fabSize="normal"
+        app:maxImageSize="35dp"
+        android:contentDescription="@string/new_medication" />
 
 
 </RelativeLayout>

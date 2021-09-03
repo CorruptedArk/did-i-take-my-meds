@@ -26,8 +26,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import java.io.File
 import java.util.*
-
 
 @TypeConverters(Converters::class)
 @Database(entities = [Medication::class], version = 3)
@@ -37,6 +37,7 @@ abstract  class MedicationDB: RoomDatabase() {
     companion object {
         const val DATABASE_NAME = "medications"
         const val MED_TABLE = "medication"
+        const val DATABASE_FILE_EXTENSION = ".db"
         @Volatile private var instance: MedicationDB? = null
 
         fun getInstance(context: Context): MedicationDB {
@@ -71,5 +72,11 @@ abstract  class MedicationDB: RoomDatabase() {
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
                 .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
         }
+
+        fun wipeInstance() {
+            instance?.close()
+            instance = null
+        }
+
     }
 }
