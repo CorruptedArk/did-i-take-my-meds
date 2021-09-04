@@ -33,15 +33,15 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/import_database"
+        android:id="@+id/restore_database"
         android:orderInCategory="3"
-        android:title="@string/import_database"
+        android:title="@string/restore_database"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/export_database"
+        android:id="@+id/back_up_database"
         android:orderInCategory="4"
-        android:title="@string/export_database"
+        android:title="@string/back_up_database"
         app:showAsAction="never"/>
 
 </menu>

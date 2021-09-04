@@ -25,11 +25,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.lang.StringBuilder
-import java.security.AccessControlContext
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
-import kotlin.math.min
 import kotlin.math.sign
 
 @Entity(tableName = "medication")

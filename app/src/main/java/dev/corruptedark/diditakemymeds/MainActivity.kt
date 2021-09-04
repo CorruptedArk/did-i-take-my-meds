@@ -20,7 +20,6 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.*
-import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
@@ -39,12 +38,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.net.Uri
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.core.net.toFile
-import androidx.documentfile.provider.DocumentFile
-import java.io.File
-import java.io.OutputStream
-import java.net.URI
 
 
 class MainActivity : AppCompatActivity() {
@@ -66,15 +59,17 @@ class MainActivity : AppCompatActivity() {
         refreshFromDatabase()
     }
 
-    private val importResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val importUri: Uri? = result.data?.data
+    private val restoreResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val restoreUri: Uri? = result.data?.data
 
         if(result.resultCode == Activity.RESULT_OK) {
-            if (importUri != null && importUri.path != null) {
+            if (restoreUri != null && restoreUri.path != null) {
+                db.close()
                 MedicationDB.wipeInstance()
 
-                val importFileStream = contentResolver.openInputStream(importUri)!!
-                importFileStream.copyTo(this.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream())
+                val restoreFileStream = contentResolver.openInputStream(restoreUri)!!
+                restoreFileStream.copyTo(this.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream())
+                restoreFileStream.close()
 
                 db = MedicationDB.getInstance(this)
                 refreshFromDatabase()
@@ -82,17 +77,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val exportResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val exportUri: Uri? = result.data?.data
+    private val backUpResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val backupUri: Uri? = result.data?.data
 
         if(result.resultCode == Activity.RESULT_OK) {
-            if (exportUri != null && exportUri.path != null) {
+            if (backupUri != null && backupUri.path != null) {
 
                 db.close()
 
-                val exportFileStream = contentResolver.openOutputStream(exportUri)!!
-                this.getDatabasePath(MedicationDB.DATABASE_NAME).inputStream().copyTo(exportFileStream)
-
+                val backupFileStream = contentResolver.openOutputStream(backupUri)!!
+                getDatabasePath(MedicationDB.DATABASE_NAME).inputStream().copyTo(backupFileStream)
+                backupFileStream.close()
             }
         }
     }
@@ -271,12 +266,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-            R.id.import_database -> {
-                importDatabase()
+            R.id.restore_database -> {
+                restoreDatabase()
                 true
             }
-            R.id.export_database -> {
-                exportDatabase()
+            R.id.back_up_database -> {
+                backUpDatabase()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -285,6 +280,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshFromDatabase() {
         executorService.execute {
+            medicationDao = db.medicationDao()
             medications = medicationDao.getAll()
             if (sortType == NAME_SORT) {
                 medications!!.sortWith(Medication::compareByName)
@@ -313,20 +309,20 @@ class MainActivity : AppCompatActivity() {
         activityResultStarter.launch(intent)
     }
 
-    private fun importDatabase() {
+    private fun restoreDatabase() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = Intent.normalizeMimeType("application/octet-stream")
 
-        importResultStarter.launch(intent)
+        restoreResultStarter.launch(intent)
     }
 
-    private fun exportDatabase() {
+    private fun backUpDatabase() {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = Intent.normalizeMimeType("application/octet-stream")
         intent.putExtra(Intent.EXTRA_TITLE, MedicationDB.DATABASE_NAME + MedicationDB.DATABASE_FILE_EXTENSION)
 
-        exportResultStarter.launch(intent)
+        backUpResultStarter.launch(intent)
     }
 }

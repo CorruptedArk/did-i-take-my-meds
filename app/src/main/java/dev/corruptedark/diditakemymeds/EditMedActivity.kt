@@ -21,7 +21,7 @@ package dev.corruptedark.diditakemymeds
 import android.app.AlarmManager
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import  androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.*

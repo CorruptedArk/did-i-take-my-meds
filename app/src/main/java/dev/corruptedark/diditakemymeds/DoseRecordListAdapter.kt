@@ -20,13 +20,11 @@
 package dev.corruptedark.diditakemymeds
 
 import android.content.Context
-import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.google.android.material.textview.MaterialTextView
-import java.util.*
 
 class DoseRecordListAdapter(private val context: Context, private val doseRecordList: MutableList<DoseRecord>) : BaseAdapter(){
 

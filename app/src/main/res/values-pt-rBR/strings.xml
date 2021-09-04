@@ -76,7 +76,7 @@
     <string name="not_taken">Ainda não foi tomado</string>
     <string name="sort">Sort</string>
     <string name="sort_key">Sort</string>
-    <string name="import_database">Import database</string>
-    <string name="export_database">Export database</string>
+    <string name="restore_database">Restore database</string>
+    <string name="back_up_database">Back up database</string>
 
 </resources>
