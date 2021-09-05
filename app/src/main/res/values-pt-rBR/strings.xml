@@ -42,10 +42,10 @@
     <string name="med_id_key">med_id</string>
     <string name="time_for_your_dose">Hora para sua dose</string>
     <string name="new_medication">Novo remédio</string>
-    <string name="medication_details">Detalhes sobre o remédio</string>
+    <string name="medication_details">Detalhes do remédio</string>
     <string name="edit_medication">Editar o remédio</string>
     <string name="about">Sobre</string>
-    <string name="app_description">v%1$s por Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc on GitHub\n\nGerman translations by jpameli on GitHub\n\nDid I Take My Meds? (Já tomou remédios?) é um App tipo FOSS para gerenciar remédios\nJá tomou remédios? é desenvolvido para ajudar a um usuário a não esquser e/ou não multiplicar algumas doses de remédios\nDireitos autorais © 2021  Noah Stanford noahstandingford@gmail.com\n\nJá tomou remédios? é de software livre: você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU, conforme publicada pela Free Software Foundation, seja a versão 3 da Licença, ou (a seu critério) qualquer versão posterior.\n\nJá tomou remédios? é distribuído na esperança de ser útil, mas SEM QUALQUER TIPO DE GARANTIA; nem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ADEQUAÇÃO PARA UM PROPÓSITO PARTICULAR. Veja a Licença Pública Geral GNU para mais detalhes.\n\nVocê deveria ter recebido uma cópia da Licença Pública Geral GNU junto com este App. Caso contrário, veja: https://www.gnu.org/licenses.</string>
+    <string name="app_description">v%1$s por Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc on GitHub\n\nGerman translations by jpameli on GitHub\n\nDid I Take My Meds? (Já tomou remédios?) é um App tipo FOSS para administrar remédios\nJá tomou remédios? é desenvolvido para ajudar a um usuário a não esquser e/ou não multiplicar as mesmas doses de remédios\nDireitos autorais © 2021  Noah Stanford noahstandingford@gmail.com\n\nJá tomou remédios? é de software livre: você pode redistribuí-lo e/ou modificá-lo sob os termos da Licença Pública Geral GNU, conforme publicada pela Free Software Foundation, seja a versão 3 da Licença, ou (a seu critério) qualquer versão posterior.\n\nJá tomou remédios? é distribuído na esperança de ser útil, mas SEM QUALQUER TIPO DE GARANTIA; nem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ADEQUAÇÃO PARA UM PROPÓSITO PARTICULAR. Veja a Licença Pública Geral GNU para mais detalhes.\n\nVocê deveria ter recebido uma cópia da Licença Pública Geral GNU junto com este App. Caso contrário, veja: https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Apoie meu trabalho no Liberapay</string>
     <string name="view_the_project_on_github">Veja o projeto no GitHub</string>
     <string name="github_link">https://github.com/CorruptedArk/did-i-take-my-meds</string>
@@ -74,9 +74,9 @@
     <string name="next_dose_label">Próxima dose: %1$s</string>
     <string name="taken">Tomado</string>
     <string name="not_taken">Ainda não foi tomado</string>
-    <string name="sort">Sort</string>
-    <string name="sort_key">Sort</string>
-    <string name="restore_database">Restore database</string>
-    <string name="back_up_database">Back up database</string>
+    <string name="sort">Ordenar</string>
+    <string name="sort_key">Alfabeticamente</string>
+    <string name="restore_database">Restaurar a base de dados</string>
+    <string name="back_up_database">Backup da base de dados</string>
 
 </resources>
