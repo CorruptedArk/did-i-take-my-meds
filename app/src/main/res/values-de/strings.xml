@@ -75,7 +75,7 @@
     <string name="taken">Eingenommen</string>
     <string name="not_taken">Nicht eingenommen</string>
     <string name="sort">Sortieren</string>
-    <string name="sort_key">Sortieren</string>
+    <string name="sort_key">Sort</string>
     <string name="restore_database">Restore database</string>
     <string name="back_up_database">Back up database</string>
 

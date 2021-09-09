@@ -75,7 +75,7 @@
     <string name="taken">Tomado</string>
     <string name="not_taken">Ainda não foi tomado</string>
     <string name="sort">Ordenar</string>
-    <string name="sort_key">Alfabeticamente</string>
+    <string name="sort_key">Sort</string>
     <string name="restore_database">Restaurar a base de dados</string>
     <string name="back_up_database">Backup da base de dados</string>
 
