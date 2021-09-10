@@ -117,7 +117,9 @@
             <ListView
                 android:id="@+id/previous_doses_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:divider="@color/background"
+                android:dividerHeight="5dp"/>
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

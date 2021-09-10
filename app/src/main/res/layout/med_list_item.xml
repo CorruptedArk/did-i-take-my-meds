@@ -20,8 +20,9 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="#252525"
-    android:paddingVertical="10dp">
+    android:background="@color/item_background"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="20dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/name_label"
@@ -30,7 +31,6 @@
         android:textColor="@color/purple_200"
         autoSizeTextType="uniform"
         android:textSize="25sp"
-        android:paddingHorizontal="10dp"
         android:text="@string/sample_medicine"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -45,7 +45,6 @@
             android:textColor="@color/sub_purple"
             autoSizeTextType="uniform"
             android:textSize="18sp"
-            android:paddingHorizontal="10dp"
             android:text="@string/midnight"
             android:gravity="left"
             android:layout_gravity="left"/>
@@ -58,12 +57,9 @@
             android:textColor="@color/sub_purple"
             autoSizeTextType="uniform"
             android:textSize="18sp"
-            android:paddingHorizontal="10dp"
             android:text="@string/not_taken"
             android:gravity="right"
             android:layout_gravity="right"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
 </androidx.appcompat.widget.LinearLayoutCompat>
