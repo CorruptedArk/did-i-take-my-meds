@@ -78,5 +78,6 @@
     <string name="sort_key">Sort</string>
     <string name="restore_database">Restore database</string>
     <string name="back_up_database">Back up database</string>
+    <string name="database_is_invalid">Database is invalid</string>
 
 </resources>

@@ -38,6 +38,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.net.Uri
+import android.os.Looper
 
 
 class MainActivity : AppCompatActivity() {
@@ -63,16 +64,25 @@ class MainActivity : AppCompatActivity() {
         val restoreUri: Uri? = result.data?.data
 
         if(result.resultCode == Activity.RESULT_OK) {
-            if (restoreUri != null && restoreUri.path != null) {
-                db.close()
-                MedicationDB.wipeInstance()
+            executorService.execute {
+                if (MedicationDB.databaseFileIsValid(this, restoreUri)) {
+                    db.close()
+                    MedicationDB.wipeInstance()
 
-                val restoreFileStream = contentResolver.openInputStream(restoreUri)!!
-                restoreFileStream.copyTo(this.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream())
-                restoreFileStream.close()
+                    val restoreFileStream = contentResolver.openInputStream(restoreUri!!)!!
+                    restoreFileStream.copyTo(
+                        this.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream()
+                    )
+                    restoreFileStream.close()
 
-                db = MedicationDB.getInstance(this)
-                refreshFromDatabase()
+                    db = MedicationDB.getInstance(this)
+                    refreshFromDatabase()
+                }
+                else {
+                    runOnUiThread {
+                        Toast.makeText(this, getString(R.string.database_is_invalid), Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }

@@ -20,14 +20,12 @@
 package dev.corruptedark.diditakemymeds
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import android.net.Uri
+import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
-
+z
 @TypeConverters(Converters::class)
 @Database(entities = [Medication::class], version = 3)
 abstract  class MedicationDB: RoomDatabase() {
@@ -35,9 +33,29 @@ abstract  class MedicationDB: RoomDatabase() {
 
     companion object {
         const val DATABASE_NAME = "medications"
+        const val TEST_DATABASE_NAME = "test"
         const val MED_TABLE = "medication"
         const val DATABASE_FILE_EXTENSION = ".db"
         @Volatile private var instance: MedicationDB? = null
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN notify INTEGER DEFAULT 0 NOT NULL")
+            }
+        }
+
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                val cal = Calendar.getInstance()
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startDay INTEGER DEFAULT ${cal.get(Calendar.DAY_OF_MONTH)} NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startMonth INTEGER DEFAULT ${cal.get(Calendar.MONTH)} NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startYear INTEGER DEFAULT ${cal.get(Calendar.YEAR)} NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN daysBetween INTEGER DEFAULT 1 NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN weeksBetween INTEGER DEFAULT 0 NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN monthsBetween INTEGER DEFAULT 0 NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN yearsBetween INTEGER DEFAULT 0 NOT NULL")
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN moreDosesPerDay TEXT DEFAULT '[]' NOT NULL")
+            }
+        }
 
         fun getInstance(context: Context): MedicationDB {
             return instance ?: synchronized(this) {
@@ -48,28 +66,24 @@ abstract  class MedicationDB: RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): MedicationDB {
-            val MIGRATION_1_2 = object : Migration(1, 2) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN notify INTEGER DEFAULT 0 NOT NULL")
-                }
-            }
-
-            val MIGRATION_2_3 = object : Migration(2, 3) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    val cal = Calendar.getInstance()
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startDay INTEGER DEFAULT ${cal.get(Calendar.DAY_OF_MONTH)} NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startMonth INTEGER DEFAULT ${cal.get(Calendar.MONTH)} NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startYear INTEGER DEFAULT ${cal.get(Calendar.YEAR)} NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN daysBetween INTEGER DEFAULT 1 NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN weeksBetween INTEGER DEFAULT 0 NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN monthsBetween INTEGER DEFAULT 0 NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN yearsBetween INTEGER DEFAULT 0 NOT NULL")
-                    database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN moreDosesPerDay TEXT DEFAULT '[]' NOT NULL")
-                }
-            }
-
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
                 .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+        }
+
+        fun databaseFileIsValid(context: Context, databaseUri: Uri?): Boolean {
+            return try {
+                val restoreFileStream = context.contentResolver.openInputStream(databaseUri!!)!!
+                restoreFileStream.copyTo(context.getDatabasePath(TEST_DATABASE_NAME).outputStream())
+                restoreFileStream.close()
+                val testDatabase = Room.databaseBuilder(context, MedicationDB::class.java, TEST_DATABASE_NAME)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+                val hasEntries = testDatabase.medicationDao().getAll().isNotEmpty()
+                testDatabase.close()
+                hasEntries
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+                false
+            }
         }
 
         fun wipeInstance() {
