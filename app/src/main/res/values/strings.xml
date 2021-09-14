@@ -79,5 +79,7 @@
     <string name="restore_database">Restore database</string>
     <string name="back_up_database">Back up database</string>
     <string name="database_is_invalid">Database is invalid</string>
+    <string name="database_restored">Database restored</string>
+    <string name="took_it">Took it</string>
 
 </resources>

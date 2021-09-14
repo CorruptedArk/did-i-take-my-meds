@@ -77,6 +77,9 @@ class MainActivity : AppCompatActivity() {
 
                     db = MedicationDB.getInstance(this)
                     refreshFromDatabase()
+                    runOnUiThread {
+                        Toast.makeText(this, getString(R.string.database_restored), Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else {
                     runOnUiThread {
