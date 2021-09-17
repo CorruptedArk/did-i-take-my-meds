@@ -236,6 +236,9 @@ class AddMedActivity() : AppCompatActivity() {
             pickerIsOpen = false
             schedulePickerCaller = null
         }
+
+        MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+            .observe(this, {})
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -279,7 +282,7 @@ class AddMedActivity() : AppCompatActivity() {
             var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify)
             medication.moreDosesPerDay = repeatScheduleList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
-            medication = MedicationDB.getInstance(this).medicationDao().getAll().value!!.last()
+            medication = MedicationDB.getInstance(this).medicationDao().getAllRaw().last()
 
             alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
                 innerIntent.action = AlarmReceiver.NOTIFY_ACTION

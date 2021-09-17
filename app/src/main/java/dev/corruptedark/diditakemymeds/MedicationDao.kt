@@ -38,4 +38,7 @@ interface MedicationDao {
 
     @Query("SELECT * FROM MEDICATION")
     fun getAll(): LiveData<MutableList<Medication>>
+
+    @Query("SELECT * FROM MEDICATION")
+    fun getAllRaw(): MutableList<Medication>
 }

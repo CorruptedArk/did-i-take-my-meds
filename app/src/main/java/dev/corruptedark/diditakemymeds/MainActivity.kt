@@ -61,13 +61,6 @@ class MainActivity : AppCompatActivity() {
     private val executor = Executors.newSingleThreadExecutor()
     private val context = this
 
-    private val activityResultStarter =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            executor.execute {
-                refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAll().value!!)
-            }
-        }
-
     private val restoreResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val restoreUri: Uri? = result.data?.data
@@ -83,9 +76,18 @@ class MainActivity : AppCompatActivity() {
                                 applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
                                     .outputStream()
                             )
+
                             restoreFileStream.close()
 
-                            refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAll().value!!)
+                            runOnUiThread {
+                                MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+                                    .observe(context, { medicationList ->
+                                        executor.execute {
+                                            refreshFromDatabase(medicationList)
+                                        }
+                                    })
+                            }
+
                             runOnUiThread {
                                 Toast.makeText(
                                     applicationContext,
@@ -249,7 +251,7 @@ class MainActivity : AppCompatActivity() {
     private fun openMedDetailActivity(medId: Long) {
         val intent = Intent(this, MedDetailActivity::class.java)
         intent.putExtra(getString(R.string.med_id_key), medId)
-        activityResultStarter.launch(intent)
+        startActivity(intent)
     }
 
     override fun onResume() {
@@ -332,7 +334,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openAddMedActivity() {
         val intent = Intent(this, AddMedActivity::class.java)
-        activityResultStarter.launch(intent)
+        startActivity(intent)
     }
 
     private fun restoreDatabase() {
