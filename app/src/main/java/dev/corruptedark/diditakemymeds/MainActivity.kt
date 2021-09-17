@@ -160,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         toolbar.background =
             ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
         toolbar.logo = AppCompatResources.getDrawable(this, R.drawable.bar_logo)
+        supportActionBar?.title = getString(R.string.app_name)
 
         addMedButton.setOnClickListener {
             openAddMedActivity()

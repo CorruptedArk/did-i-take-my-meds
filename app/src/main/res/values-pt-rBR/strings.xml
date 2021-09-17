@@ -81,5 +81,6 @@
     <string name="database_is_invalid">Database is invalid</string>
     <string name="database_restored">Database restored</string>
     <string name="took_it">Took it</string>
+    <string name="app_name_short">DITMM?</string>
 
 </resources>
