@@ -22,6 +22,7 @@ class AlarmReceiver : BroadcastReceiver() {
         const val NOTIFY_ACTION = "NOTIFY"
         const val TOOK_MED_ACTION = "TOOK_MED"
         const val REMIND_ACTION = "REMIND"
+        const val REMIND_DELAY = 15
         private const val NO_ICON = 0
 
         fun configureNotification(context: Context, medication: Medication): NotificationCompat.Builder {
@@ -182,11 +183,20 @@ class AlarmReceiver : BroadcastReceiver() {
                     }
                 }
                 REMIND_ACTION-> {
-                    /*
-                    TODO:
-                        -Dismiss notification
-                        -Schedule notification to appear again in 15 minutes
-                    */
+                    val medId = intent.getLongExtra(context.getString(R.string.med_id_key), -1L)
+
+                    with(NotificationManagerCompat.from(context.applicationContext)) {
+                        cancel(medId.toInt())
+                    }
+
+                    if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                        val calendar = Calendar.getInstance()
+                        calendar.add(Calendar.MINUTE, REMIND_DELAY)
+                        val medication: Medication =
+                            MedicationDB.getInstance(context).medicationDao().get(medId)
+                        alarmIntent = AlarmIntentManager.build(context, medication)
+                        AlarmIntentManager.set(alarmManager, alarmIntent, calendar.timeInMillis)
+                    }
                 }
             }
         }
