@@ -77,7 +77,7 @@ abstract  class MedicationDB: RoomDatabase() {
                 restoreFileStream.close()
                 val testDatabase = Room.databaseBuilder(context, MedicationDB::class.java, TEST_DATABASE_NAME)
                     .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
-                val hasEntries = testDatabase.medicationDao().getAll().isNotEmpty()
+                val hasEntries = testDatabase.medicationDao().getAll().value!!.isNotEmpty()
                 testDatabase.close()
                 hasEntries
             } catch (exception: Exception) {

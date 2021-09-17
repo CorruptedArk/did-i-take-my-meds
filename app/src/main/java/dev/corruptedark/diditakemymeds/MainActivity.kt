@@ -35,79 +35,93 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import android.net.Uri
 import android.os.Looper
+import android.util.Log
+import androidx.lifecycle.Observer
+//import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.Main
+import timber.log.Timber
+import java.util.concurrent.Executors
+import java.util.logging.Level
+import java.util.logging.Logger
 
 
 class MainActivity : AppCompatActivity() {
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private lateinit var toolbar: MaterialToolbar
     private lateinit var medListView: ListView
     private lateinit var listEmptyLabel: AppCompatTextView
     private lateinit var addMedButton: FloatingActionButton
     private var medicationListAdapter: MedListAdapter? = null
-    private lateinit var db: MedicationDB
-    private lateinit var medicationDao: MedicationDao
     private lateinit var sortType: String
     private val TIME_SORT = "time"
     private val NAME_SORT = "name"
     private val FOOTER_PADDING_DP = 100.0F
+    @Volatile private var medications: MutableList<Medication>? = null
+    private val executor = Executors.newSingleThreadExecutor()
+    private val context = this
 
+    private val activityResultStarter =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            executor.execute {
+                refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAll().value!!)
+            }
+        }
 
-    private val activityResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        refreshFromDatabase()
-    }
+    private val restoreResultStarter =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val restoreUri: Uri? = result.data?.data
 
-    private val restoreResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val restoreUri: Uri? = result.data?.data
+            if (result.resultCode == Activity.RESULT_OK) {
+                executor.execute {
+                        if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
+                            MedicationDB.getInstance(applicationContext).close()
+                            MedicationDB.wipeInstance()
 
-        if(result.resultCode == Activity.RESULT_OK) {
-            executorService.execute {
-                if (MedicationDB.databaseFileIsValid(this, restoreUri)) {
-                    db.close()
-                    MedicationDB.wipeInstance()
+                            val restoreFileStream = contentResolver.openInputStream(restoreUri!!)!!
+                            restoreFileStream.copyTo(
+                                applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
+                                    .outputStream()
+                            )
+                            restoreFileStream.close()
 
-                    val restoreFileStream = contentResolver.openInputStream(restoreUri!!)!!
-                    restoreFileStream.copyTo(
-                        this.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream()
-                    )
-                    restoreFileStream.close()
-
-                    db = MedicationDB.getInstance(this)
-                    refreshFromDatabase()
-                    runOnUiThread {
-                        Toast.makeText(this, getString(R.string.database_restored), Toast.LENGTH_SHORT).show()
-                    }
-                }
-                else {
-                    runOnUiThread {
-                        Toast.makeText(this, getString(R.string.database_is_invalid), Toast.LENGTH_SHORT).show()
-                    }
+                            refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAll().value!!)
+                            runOnUiThread {
+                                Toast.makeText(
+                                    applicationContext,
+                                    getString(R.string.database_restored),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            runOnUiThread {
+                                Toast.makeText(
+                                    applicationContext,
+                                    getString(R.string.database_is_invalid),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                 }
             }
         }
-    }
 
-    private val backUpResultStarter = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        val backupUri: Uri? = result.data?.data
+    private val backUpResultStarter =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val backupUri: Uri? = result.data?.data
 
-        if(result.resultCode == Activity.RESULT_OK) {
-            if (backupUri != null && backupUri.path != null) {
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (backupUri != null && backupUri.path != null) {
 
-                db.close()
+                    MedicationDB.getInstance(this).close()
 
-                val backupFileStream = contentResolver.openOutputStream(backupUri)!!
-                getDatabasePath(MedicationDB.DATABASE_NAME).inputStream().copyTo(backupFileStream)
-                backupFileStream.close()
+                    val backupFileStream = contentResolver.openOutputStream(backupUri)!!
+                    getDatabasePath(MedicationDB.DATABASE_NAME).inputStream()
+                        .copyTo(backupFileStream)
+                    backupFileStream.close()
+                }
             }
         }
-    }
-
-    companion object{
-        var medications: MutableList<Medication>? = null
-    }
 
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
@@ -123,11 +137,16 @@ class MainActivity : AppCompatActivity() {
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+
         }
     }
 
+    init {
+        Timber.v("Init block")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.v("Start of onCreate")
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         setContentView(R.layout.activity_main)
@@ -136,7 +155,8 @@ class MainActivity : AppCompatActivity() {
         addMedButton = findViewById(R.id.add_med_button)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
+        toolbar.background =
+            ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
         toolbar.logo = AppCompatResources.getDrawable(this, R.drawable.bar_logo)
 
         addMedButton.setOnClickListener {
@@ -144,85 +164,85 @@ class MainActivity : AppCompatActivity() {
         }
 
         val footerPadding = Space(this)
-        footerPadding.minimumHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, FOOTER_PADDING_DP, resources.displayMetrics).toInt()
+        footerPadding.minimumHeight = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            FOOTER_PADDING_DP,
+            resources.displayMetrics
+        ).toInt()
         medListView.addFooterView(footerPadding)
         medListView.setFooterDividersEnabled(false)
+        MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+            .observe(context, { medicationList ->
+                executor.execute {
+                    refreshFromDatabase(medicationList)
+                }
+            })
+        Timber.v("End of onCreate")
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
-        executorService.execute {
-            db = MedicationDB.getInstance(this)
-            medicationDao = db.medicationDao()
-            medications = medicationDao.getAll()
-            val sharedPref = getPreferences(Context.MODE_PRIVATE)
-            sortType = sharedPref.getString(getString(R.string.sort_key), TIME_SORT)!!
+        executor.execute {
 
-            runOnUiThread {
-                if (sortType == NAME_SORT) {
-                    medications!!.sortWith(Medication::compareByName)
-                    toolbar.menu.findItem(R.id.sortType)?.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_alpha)
-                }
-                else {
-                    medications!!.sortWith(Medication::compareByTime)
-                    toolbar.menu.findItem(R.id.sortType)?.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_time)
+                val sharedPref = getPreferences(Context.MODE_PRIVATE)
+                sortType = sharedPref.getString(getString(R.string.sort_key), TIME_SORT)!!
+                runOnUiThread {
+                    medListView.onItemClickListener =
+                        AdapterView.OnItemClickListener { adapterView, view, i, l ->
+                            openMedDetailActivity(medications!![i].id)
+                        }
                 }
 
-                medicationListAdapter = MedListAdapter(this, medications!!)
+                if (BuildConfig.VERSION_CODE > sharedPref.getInt(
+                        getString(R.string.last_version_used_key),
+                        0
+                    )
+                ) {
+                    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    var alarmIntent: PendingIntent
+                    medications?.forEach { medication ->
+                        if (medication.notify) {
+                            //Create alarm
+                            alarmIntent =
+                                Intent(context, AlarmReceiver::class.java).let { innerIntent ->
+                                    innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+                                    innerIntent.putExtra(
+                                        getString(R.string.med_id_key),
+                                        medication.id
+                                    )
+                                    PendingIntent.getBroadcast(
+                                        context,
+                                        medication.id.toInt(),
+                                        innerIntent,
+                                        0
+                                    )
+                                }
 
-                if (!medications.isNullOrEmpty())
-                    listEmptyLabel.visibility = View.GONE
-                else
-                    listEmptyLabel.visibility = View.VISIBLE
-                medListView.adapter = medicationListAdapter
-                medListView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-                    openMedDetailActivity(medications!![i].id)
-                }
-            }
+                            alarmManager.cancel(alarmIntent)
 
-            if (BuildConfig.VERSION_CODE > sharedPref.getInt(getString(R.string.last_version_used_key), 0)) {
-                val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                var alarmIntent: PendingIntent
-                medications!!.forEach { medication ->
-                    if (medication.notify) {
-                        //Create alarm
-                        alarmIntent =
-                            Intent(this, AlarmReceiver::class.java).let { innerIntent ->
-                                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-                                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
-                                PendingIntent.getBroadcast(
-                                    this,
-                                    medication.id.toInt(),
-                                    innerIntent,
-                                    0
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                alarmManager.setExactAndAllowWhileIdle(
+                                    AlarmManager.RTC_WAKEUP,
+                                    medication.calculateNextDose().timeInMillis,
+                                    alarmIntent
+                                )
+                            } else {
+                                alarmManager.set(
+                                    AlarmManager.RTC_WAKEUP,
+                                    medication.calculateNextDose().timeInMillis,
+                                    alarmIntent
                                 )
                             }
 
-                        alarmManager.cancel(alarmIntent)
-
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            alarmManager.setExactAndAllowWhileIdle(
-                                AlarmManager.RTC_WAKEUP,
-                                medication.calculateNextDose().timeInMillis,
-                                alarmIntent
-                            )
                         }
-                        else {
-                            alarmManager.set(
-                                AlarmManager.RTC_WAKEUP,
-                                medication.calculateNextDose().timeInMillis,
-                                alarmIntent
-                            )
-                        }
-
                     }
                 }
-            }
-            with (sharedPref.edit()) {
-                putInt(getString(R.string.last_version_used_key), BuildConfig.VERSION_CODE)
-                apply()
-            }
+                with(sharedPref.edit()) {
+                    putInt(getString(R.string.last_version_used_key), BuildConfig.VERSION_CODE)
+                    apply()
+                }
+
         }
     }
 
@@ -233,12 +253,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        runOnUiThread {
-            medicationListAdapter?.notifyDataSetChanged()
-            if (!medications.isNullOrEmpty())
-            {
-                listEmptyLabel.visibility = View.GONE
-            }
+        
+        medicationListAdapter?.notifyDataSetChanged()
+        if (!medications.isNullOrEmpty()) {
+            listEmptyLabel.visibility = View.GONE
         }
         super.onResume()
     }
@@ -266,8 +284,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     medications!!.sortWith(Medication::compareByName)
                     medicationListAdapter!!.notifyDataSetChanged()
-                }
-                else {
+                } else {
                     sortType = TIME_SORT
                     item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_time)
                     with(sharedPref.edit()) {
@@ -291,24 +308,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun refreshFromDatabase() {
-        executorService.execute {
-            medicationDao = db.medicationDao()
-            medications = medicationDao.getAll()
-            if (sortType == NAME_SORT) {
-                medications!!.sortWith(Medication::compareByName)
-            }
-            else {
-                medications!!.sortWith(Medication::compareByTime)
-            }
-            runOnUiThread {
-                medicationListAdapter = MedListAdapter(this, medications!!)
-                medListView.adapter = medicationListAdapter
-                if (!medications.isNullOrEmpty())
-                    listEmptyLabel.visibility = View.GONE
-                else
-                    listEmptyLabel.visibility = View.VISIBLE
-            }
+    private fun refreshFromDatabase(localMedications: MutableList<Medication>) {
+        medications = localMedications
+        if (sortType == NAME_SORT) {
+            medications!!.sortWith(Medication::compareByName)
+        } else {
+            medications!!.sortWith(Medication::compareByTime)
+        }
+        runOnUiThread {
+            medicationListAdapter = MedListAdapter(this, medications!!)
+            medListView.adapter = medicationListAdapter
+            if (!medications.isNullOrEmpty())
+                listEmptyLabel.visibility = View.GONE
+            else
+                listEmptyLabel.visibility = View.VISIBLE
         }
     }
 
@@ -334,7 +347,10 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = Intent.normalizeMimeType("application/octet-stream")
-        intent.putExtra(Intent.EXTRA_TITLE, MedicationDB.DATABASE_NAME + MedicationDB.DATABASE_FILE_EXTENSION)
+        intent.putExtra(
+            Intent.EXTRA_TITLE,
+            MedicationDB.DATABASE_NAME + MedicationDB.DATABASE_FILE_EXTENSION
+        )
 
         backUpResultStarter.launch(intent)
     }

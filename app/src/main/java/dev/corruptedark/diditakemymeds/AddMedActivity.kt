@@ -279,9 +279,7 @@ class AddMedActivity() : AppCompatActivity() {
             var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify)
             medication.moreDosesPerDay = repeatScheduleList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
-            medication = MedicationDB.getInstance(this).medicationDao().getAll().last()
-            MainActivity.medications!!.add(medication)
-
+            medication = MedicationDB.getInstance(this).medicationDao().getAll().value!!.last()
 
             alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
                 innerIntent.action = AlarmReceiver.NOTIFY_ACTION

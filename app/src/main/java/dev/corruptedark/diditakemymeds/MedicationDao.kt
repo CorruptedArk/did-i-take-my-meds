@@ -19,6 +19,7 @@
 
 package dev.corruptedark.diditakemymeds
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -36,5 +37,5 @@ interface MedicationDao {
     fun get(medId: Long): Medication
 
     @Query("SELECT * FROM MEDICATION")
-    fun getAll(): MutableList<Medication>
+    fun getAll(): LiveData<MutableList<Medication>>
 }
