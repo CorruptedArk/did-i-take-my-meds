@@ -180,7 +180,8 @@ class MedDetailActivity : AppCompatActivity() {
         super.onResume()
         executorService.execute {
                 refreshFromDatabase()
-                MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+                if(medication != null)
+                    MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
         }
         MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {
             executorService.execute {
@@ -234,7 +235,10 @@ class MedDetailActivity : AppCompatActivity() {
                     notificationSwitch.isChecked = medication!!.notify
                     notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                         medication!!.notify = isChecked
-
+                        executorService.execute {
+                            MedicationDB.getInstance(this).medicationDao()
+                                .updateMedications(medication!!)
+                        }
                         if (isChecked) {
                             //Set alarm
 
@@ -307,6 +311,9 @@ class MedDetailActivity : AppCompatActivity() {
                 }
             }
             medication!!.doseRecord.sort()
+        }
+        else {
+            onBackPressed()
         }
     }
 

@@ -22,7 +22,6 @@ class AlarmReceiver : BroadcastReceiver() {
         const val NOTIFY_ACTION = "NOTIFY"
         const val TOOK_MED_ACTION = "TOOK_MED"
         const val REMIND_ACTION = "REMIND"
-        const val DISMISS_ACTION = "DISMISS"
         private const val NO_ICON = 0
 
         fun configureNotification(context: Context, medication: Medication): NotificationCompat.Builder {
@@ -57,7 +56,16 @@ class AlarmReceiver : BroadcastReceiver() {
             val tookMedPendingIntent = PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, 0)
             //End building "took med" notification action
 
-            val builder = NotificationCompat.Builder(
+            //Start building "remind" notification action
+             val remindIntent = Intent(context, AlarmReceiver::class.java).apply {
+                action = REMIND_ACTION
+                putExtra(context.getString(R.string.med_id_key), medication.id)
+            }
+            val remindPendingIntent = PendingIntent.getBroadcast(context, medication.id.toInt(), remindIntent, 0)
+            //End building "remind" notification action
+
+
+            return NotificationCompat.Builder(
                 context,
                 context.getString(R.string.channel_name)
             )
@@ -75,9 +83,8 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false)
-                builder.addAction(NO_ICON, context.getString(R.string.took_it), tookMedPendingIntent)
-
-            return builder
+                .addAction(NO_ICON, context.getString(R.string.took_it), tookMedPendingIntent)
+                .addAction(NO_ICON, "Remind in 15 minutes", remindPendingIntent)
         }
     }
 
@@ -191,24 +198,47 @@ class AlarmReceiver : BroadcastReceiver() {
                     }
                 }
                 TOOK_MED_ACTION -> {
-                    val medication = MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key), -1L))
-                    if (!medication.closestDoseAlreadyTaken()) {
-                        val takenDose = DoseRecord(System.currentTimeMillis(), medication.calculateClosestDose().timeInMillis)
-                        medication.addNewTakenDose(takenDose)
-                        MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
-                    }
+                    val medId = intent.getLongExtra(context.getString(R.string.med_id_key), -1L)
 
-                    val notification = configureNotification(context, medication)
-                        .setContentText(context.getString(R.string.taken))
-                        .clearActions()
-                        .build()
+                    if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                        val medication: Medication =
+                            MedicationDB.getInstance(context).medicationDao().get(medId)
 
-                    with(NotificationManagerCompat.from(context.applicationContext)) {
-                        notify(
-                            medication.id.toInt(),
-                            notification
-                        )
+                        if (!medication.closestDoseAlreadyTaken()) {
+                            val takenDose = DoseRecord(
+                                System.currentTimeMillis(),
+                                medication.calculateClosestDose().timeInMillis
+                            )
+                            medication.addNewTakenDose(takenDose)
+                            MedicationDB.getInstance(context).medicationDao()
+                                .updateMedications(medication)
+                        }
+
+                        val notification = configureNotification(context, medication)
+                            .setContentText(context.getString(R.string.taken))
+                            .clearActions()
+                            .build()
+
+                        with(NotificationManagerCompat.from(context.applicationContext)) {
+                            notify(
+                                medication.id.toInt(),
+                                notification
+                            )
+
+                        }
                     }
+                    else {
+                        with(NotificationManagerCompat.from(context.applicationContext)) {
+                            cancel(medId.toInt())
+                        }
+                    }
+                }
+                REMIND_ACTION-> {
+                    /*
+                    TODO:
+                        -Dismiss notification
+                        -Schedule notification to appear again in 15 minutes
+                    */
                 }
             }
         }

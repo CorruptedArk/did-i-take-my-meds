@@ -41,4 +41,7 @@ interface MedicationDao {
 
     @Query("SELECT * FROM MEDICATION")
     fun getAllRaw(): MutableList<Medication>
+
+    @Query("SELECT EXISTS(SELECT * FROM MEDICATION WHERE id = :medId)")
+    fun medicationExists(medId: Long): Boolean
 }
