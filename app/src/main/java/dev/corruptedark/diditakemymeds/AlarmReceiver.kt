@@ -191,10 +191,6 @@ class AlarmReceiver : BroadcastReceiver() {
                     }
                 }
                 TOOK_MED_ACTION -> {
-                    /*
-                    TODO:
-                     -Update views if app is open... or only allow if app is closed?... Hide while app is open?
-                    */
                     val medication = MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(context.getString(R.string.med_id_key), -1L))
                     if (!medication.closestDoseAlreadyTaken()) {
                         val takenDose = DoseRecord(System.currentTimeMillis(), medication.calculateClosestDose().timeInMillis)
