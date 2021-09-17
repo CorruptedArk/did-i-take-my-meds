@@ -107,29 +107,13 @@ class MedDetailActivity : AppCompatActivity() {
                         justTookItButton.text = getString(R.string.i_just_took_it)
                     }
 
-                    alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
-                        innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-                        innerIntent.putExtra(getString(R.string.med_id_key), medication!!.id)
-                        PendingIntent.getBroadcast(this, medication!!.id.toInt(), innerIntent, 0)
-                    }
+                    alarmIntent = AlarmIntentManager.build(context, medication!!)
 
                     if (medication!!.notify) {
                         //Set alarm
                         alarmManager?.cancel(alarmIntent)
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            alarmManager?.setExactAndAllowWhileIdle(
-                                AlarmManager.RTC_WAKEUP,
-                                medication!!.calculateNextDose().timeInMillis,
-                                alarmIntent
-                            )
-                        } else {
-                            alarmManager?.set(
-                                AlarmManager.RTC_WAKEUP,
-                                medication!!.calculateNextDose().timeInMillis,
-                                alarmIntent
-                            )
-                        }
+                        AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
                         val receiver = ComponentName(this, AlarmReceiver::class.java)
 
@@ -195,16 +179,7 @@ class MedDetailActivity : AppCompatActivity() {
         if (medication != null) {
             medication!!.updateStartsToFuture()
 
-            alarmIntent = Intent(applicationContext, AlarmReceiver::class.java).let { innerIntent ->
-                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-                innerIntent.putExtra(getString(R.string.med_id_key), medication!!.id)
-                PendingIntent.getBroadcast(
-                    applicationContext,
-                    medication!!.id.toInt(),
-                    innerIntent,
-                    0
-                )
-            }
+            alarmIntent = AlarmIntentManager.build(context, medication!!)
 
             calendar.set(Calendar.HOUR_OF_DAY, medication!!.hour)
             calendar.set(Calendar.MINUTE, medication!!.minute)
@@ -241,20 +216,7 @@ class MedDetailActivity : AppCompatActivity() {
                         }
                         if (isChecked) {
                             //Set alarm
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                alarmManager?.setExactAndAllowWhileIdle(
-                                    AlarmManager.RTC_WAKEUP,
-                                    medication!!.calculateNextDose().timeInMillis,
-                                    alarmIntent
-                                )
-                            } else {
-                                alarmManager?.set(
-                                    AlarmManager.RTC_WAKEUP,
-                                    medication!!.calculateNextDose().timeInMillis,
-                                    alarmIntent
-                                )
-                            }
+                            AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
                             val receiver = ComponentName(context, AlarmReceiver::class.java)
 

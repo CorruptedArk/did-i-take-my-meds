@@ -207,37 +207,11 @@ class MainActivity : AppCompatActivity() {
                     medications?.forEach { medication ->
                         if (medication.notify) {
                             //Create alarm
-                            alarmIntent =
-                                Intent(context, AlarmReceiver::class.java).let { innerIntent ->
-                                    innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-                                    innerIntent.putExtra(
-                                        getString(R.string.med_id_key),
-                                        medication.id
-                                    )
-                                    PendingIntent.getBroadcast(
-                                        context,
-                                        medication.id.toInt(),
-                                        innerIntent,
-                                        0
-                                    )
-                                }
+                            alarmIntent = AlarmIntentManager.build(context, medication)
 
                             alarmManager.cancel(alarmIntent)
 
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                alarmManager.setExactAndAllowWhileIdle(
-                                    AlarmManager.RTC_WAKEUP,
-                                    medication.calculateNextDose().timeInMillis,
-                                    alarmIntent
-                                )
-                            } else {
-                                alarmManager.set(
-                                    AlarmManager.RTC_WAKEUP,
-                                    medication.calculateNextDose().timeInMillis,
-                                    alarmIntent
-                                )
-                            }
-
+                            AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
                         }
                     }
                 }

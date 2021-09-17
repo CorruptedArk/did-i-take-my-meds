@@ -118,35 +118,8 @@ class AlarmReceiver : BroadcastReceiver() {
                         medication.updateStartsToFuture()
                         if (medication.notify) {
                             //Create alarm
-                            alarmIntent =
-                                Intent(context, AlarmReceiver::class.java).let { innerIntent ->
-                                    innerIntent.action = NOTIFY_ACTION
-                                    innerIntent.putExtra(
-                                        context.getString(R.string.med_id_key),
-                                        medication.id
-                                    )
-                                    PendingIntent.getBroadcast(
-                                        context,
-                                        medication.id.toInt(),
-                                        innerIntent,
-                                        0
-                                    )
-                                }
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                alarmManager?.setExactAndAllowWhileIdle(
-                                    AlarmManager.RTC_WAKEUP,
-                                    medication.calculateNextDose().timeInMillis,
-                                    alarmIntent
-                                )
-                            } else {
-                                alarmManager?.set(
-                                    AlarmManager.RTC_WAKEUP,
-                                    medication.calculateNextDose().timeInMillis,
-                                    alarmIntent
-                                )
-                            }
-
+                            alarmIntent = AlarmIntentManager.build(context, medication)
+                            AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
                         }
                     }
                     MedicationDB.getInstance(context).medicationDao()
@@ -159,33 +132,8 @@ class AlarmReceiver : BroadcastReceiver() {
                             .get(intent.getLongExtra(context.getString(R.string.med_id_key), -1))
 
                     medication.updateStartsToFuture()
-                    alarmIntent =
-                        Intent(context, AlarmReceiver::class.java).let { innerIntent ->
-                            innerIntent.action = NOTIFY_ACTION
-                            innerIntent.putExtra(context.getString(R.string.med_id_key), medication.id)
-                            PendingIntent.getBroadcast(
-                                context,
-                                medication.id.toInt(),
-                                innerIntent,
-                                0
-                            )
-                        }
-
-                    val notificationDose = medication.calculateNextDose()
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        alarmManager?.setExactAndAllowWhileIdle(
-                            AlarmManager.RTC_WAKEUP,
-                            notificationDose.timeInMillis,
-                            alarmIntent
-                        )
-                    } else {
-                        alarmManager?.set(
-                            AlarmManager.RTC_WAKEUP,
-                            notificationDose.timeInMillis,
-                            alarmIntent
-                        )
-                    }
+                    alarmIntent = AlarmIntentManager.build(context, medication)
+                    AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
 
                     if (!medication.closestDoseAlreadyTaken()) {
                         val notification = configureNotification(context, medication).build()

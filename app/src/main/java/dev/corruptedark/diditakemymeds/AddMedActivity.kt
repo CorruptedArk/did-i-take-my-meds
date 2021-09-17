@@ -284,29 +284,12 @@ class AddMedActivity() : AppCompatActivity() {
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAllRaw().last()
 
-            alarmIntent = Intent(this, AlarmReceiver::class.java).let { innerIntent ->
-                innerIntent.action = AlarmReceiver.NOTIFY_ACTION
-                innerIntent.putExtra(getString(R.string.med_id_key), medication.id)
-                PendingIntent.getBroadcast(this, medication.id.toInt(), innerIntent, 0)
-            }
+            alarmIntent = AlarmIntentManager.build(this, medication)
 
             if (notify) {
                 //Set alarm
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    alarmManager?.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        medication.calculateNextDose().timeInMillis,
-                        alarmIntent
-                    )
-                }
-                else {
-                    alarmManager?.set(
-                        AlarmManager.RTC_WAKEUP,
-                        medication.calculateNextDose().timeInMillis,
-                        alarmIntent
-                    )
-                }
+                AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
 
                 val receiver = ComponentName(this, AlarmReceiver::class.java)
 
@@ -315,7 +298,6 @@ class AddMedActivity() : AppCompatActivity() {
                     PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP
                 )
-
             }
 
             runOnUiThread {
