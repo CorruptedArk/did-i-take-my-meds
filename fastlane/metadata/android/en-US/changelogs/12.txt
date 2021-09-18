@@ -1,7 +1,7 @@
 v1.2.0
 
 Changes
-- Moved 'add medication' functionality to a floating action
+- Moved 'add medication' functionality to a floating action button
 - Updated German translations by jpameli on GitHub
 - Adjusted margins to make layouts look nicer
 - Updated Brazilian Portuguese translations by mezysinc on GitHub
