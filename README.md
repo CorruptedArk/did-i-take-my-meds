@@ -31,8 +31,8 @@ Did I Take My Meds? allows a user save multiple medications with complex schedul
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="200" />
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="200" />
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/10.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/11.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/12.png" width="200" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/13.png" width="200" />
 
 ---
 ## Credits
