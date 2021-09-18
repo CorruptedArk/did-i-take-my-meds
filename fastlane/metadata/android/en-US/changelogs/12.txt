@@ -1,0 +1,16 @@
+v1.2.0
+
+Changes
+- Moved 'add medication' functionality to a floating action
+- Updated German translations by jpameli on GitHub
+- Adjusted margins to make layouts look nicer
+- Updated Brazilian Portuguese translations by mezysinc on GitHub
+- Changed default launcher label to abbreviation "DITMM?"
+
+Addition
+- Added database backup and restore
+- Added notification action to take medication
+- Added notification action to resend a notification in 15 minutes
+
+Fixes
+- Fix crashes caused by clicking on a notification for a deleted medication
