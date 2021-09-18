@@ -85,7 +85,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false)
                 .addAction(NO_ICON, context.getString(R.string.took_it), tookMedPendingIntent)
-                .addAction(NO_ICON, "Remind in 15 minutes", remindPendingIntent)
+                .addAction(NO_ICON, context.getString(R.string.remind_in_15), remindPendingIntent)
         }
     }
 

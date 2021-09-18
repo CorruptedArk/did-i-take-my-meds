@@ -82,5 +82,6 @@
     <string name="database_restored">Database restored</string>
     <string name="took_it">Took it</string>
     <string name="app_name_short">DITMM?</string>
+    <string name="remind_in_15">Remind in 15 minutes</string>
 
 </resources>

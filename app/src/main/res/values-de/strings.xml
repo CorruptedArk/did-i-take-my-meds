@@ -82,4 +82,5 @@
     <string name="database_restored">Datenbank wiederhergestellt</string>
     <string name="took_it">Bereits eingenommen</string>
     <string name="app_name_short">DITMM?</string>
+    <string name="remind_in_15">Remind in 15 minutes</string>
 </resources>
