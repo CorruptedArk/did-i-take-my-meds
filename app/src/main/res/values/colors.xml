@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="sub_purple">#CCEE00FF</color>
-    <color name="background">#222222</color>
+    <color name="background">#FF101010</color>
     <color name="liberapay">#FFF6C915</color>
     <color name="github">#FF4078c0</color>
-    <color name="item_background">#252525</color>
+    <color name="item_background">#FF252525</color>
 </resources>
