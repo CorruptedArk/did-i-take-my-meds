@@ -43,6 +43,10 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
 //import kotlinx.coroutines.Dispatchers.Main
 //import kotlinx.coroutines.launch
 //import kotlinx.coroutines.runBlocking
@@ -66,14 +70,14 @@ class MedDetailActivity : AppCompatActivity() {
     private val calendar = Calendar.getInstance()
     private var isSystem24Hour: Boolean = false
     private var closestDose: Long = -1L
-    private lateinit var executorService: ExecutorService
+    private var dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val editResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            executorService.execute {
-                medication = MedicationDB.getInstance(this).medicationDao()
+            GlobalScope.launch(dispatcher) {
+                medication = MedicationDB.getInstance(context).medicationDao()
                     .get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
 
-                runOnUiThread {
+                mainScope.launch {
                     nameLabel.text = medication!!.name
 
                     if (medication!!.isAsNeeded()) {
@@ -87,13 +91,13 @@ class MedDetailActivity : AppCompatActivity() {
                         timeLabel.text =
                             getString(
                                 R.string.next_dose_label,
-                                Medication.doseString(this, nextDose)
+                                Medication.doseString(context, nextDose)
                             )
                         closestDoseLabel.visibility = View.VISIBLE
                         closestDose = medication!!.calculateClosestDose().timeInMillis
                         closestDoseLabel.text = getString(
                             R.string.closest_dose_label,
-                            Medication.doseString(this, closestDose)
+                            Medication.doseString(context, closestDose)
                         )
                         notificationSwitch.visibility = View.VISIBLE
                         notificationSwitch.isChecked = medication!!.notify
@@ -115,9 +119,9 @@ class MedDetailActivity : AppCompatActivity() {
 
                         AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
-                        val receiver = ComponentName(this, AlarmReceiver::class.java)
+                        val receiver = ComponentName(context, AlarmReceiver::class.java)
 
-                        this.packageManager.setComponentEnabledSetting(
+                        context.packageManager.setComponentEnabledSetting(
                             receiver,
                             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                             PackageManager.DONT_KILL_APP
@@ -132,6 +136,7 @@ class MedDetailActivity : AppCompatActivity() {
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
     private val context = this
+    private val mainScope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -157,18 +162,17 @@ class MedDetailActivity : AppCompatActivity() {
 
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         isSystem24Hour = DateFormat.is24HourFormat(this)
-        executorService = Executors.newSingleThreadExecutor()
     }
 
     override fun onResume() {
         super.onResume()
-        executorService.execute {
+       GlobalScope.launch(dispatcher) {
                 refreshFromDatabase()
                 if(medication != null)
                     MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
         }
         MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {
-            executorService.execute {
+            GlobalScope.launch(dispatcher) {
                 refreshFromDatabase()
             }
         })
@@ -184,7 +188,7 @@ class MedDetailActivity : AppCompatActivity() {
             calendar.set(Calendar.HOUR_OF_DAY, medication!!.hour)
             calendar.set(Calendar.MINUTE, medication!!.minute)
 
-            runOnUiThread {
+            mainScope.launch {
                 nameLabel.text = medication!!.name
 
                 if (medication!!.isAsNeeded()) {
@@ -210,8 +214,8 @@ class MedDetailActivity : AppCompatActivity() {
                     notificationSwitch.isChecked = medication!!.notify
                     notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                         medication!!.notify = isChecked
-                        executorService.execute {
-                            MedicationDB.getInstance(this).medicationDao()
+                        GlobalScope.launch(dispatcher) {
+                            MedicationDB.getInstance(context).medicationDao()
                                 .updateMedications(medication!!)
                         }
                         if (isChecked) {
@@ -304,8 +308,8 @@ class MedDetailActivity : AppCompatActivity() {
                         dialog.dismiss()
                     }
                     .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
-                        executorService.execute {
-                            val db = MedicationDB.getInstance(this)
+                        GlobalScope.launch(dispatcher) {
+                            val db = MedicationDB.getInstance(context)
                             db.medicationDao().delete(medication!!)
                             alarmManager?.cancel(alarmIntent)
                             finish()
@@ -345,8 +349,8 @@ class MedDetailActivity : AppCompatActivity() {
 
             doseRecordAdapter.notifyDataSetChanged()
             medication!!.addNewTakenDose(newDose)
-            executorService.execute {
-                val db = MedicationDB.getInstance(this)
+            GlobalScope.launch(dispatcher) {
+                val db = MedicationDB.getInstance(context)
                 db.medicationDao().updateMedications(medication!!)
             }
         }

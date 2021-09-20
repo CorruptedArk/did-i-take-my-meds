@@ -40,6 +40,10 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.TimeFormat
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -72,9 +76,11 @@ class AddMedActivity() : AppCompatActivity() {
     var monthsBetween = 0
     var yearsBetween = 0
     var notify = true
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
+    private val mainScope = MainScope()
+    private val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -250,7 +256,7 @@ class AddMedActivity() : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.save -> {
-                executorService.execute {
+                GlobalScope.launch(dispatcher) {
                     if (saveMedication())
                         finish()
                 }
@@ -267,14 +273,14 @@ class AddMedActivity() : AppCompatActivity() {
 
     private fun saveMedication(): Boolean {
         return if (nameInput.text.isNullOrBlank()) {
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.fill_fields), Toast.LENGTH_SHORT).show()
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.fill_fields), Toast.LENGTH_SHORT).show()
             }
             false
         }
         else if (!allSchedulesAreValid() && !asNeededSwitch.isChecked) {
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.fill_out_all_schedules), Toast.LENGTH_SHORT).show()
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.fill_out_all_schedules), Toast.LENGTH_SHORT).show()
             }
             false
         }
@@ -300,8 +306,8 @@ class AddMedActivity() : AppCompatActivity() {
                 )
             }
 
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()
             }
             true
         }
