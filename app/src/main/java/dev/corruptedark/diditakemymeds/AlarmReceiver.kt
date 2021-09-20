@@ -19,7 +19,7 @@ import java.util.concurrent.Executors
 class AlarmReceiver : BroadcastReceiver() {
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
-    val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     companion object {
         const val NOTIFY_ACTION = "NOTIFY"
