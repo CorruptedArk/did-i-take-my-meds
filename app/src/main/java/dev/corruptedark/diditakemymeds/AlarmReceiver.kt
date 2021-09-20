@@ -111,11 +111,11 @@ class AlarmReceiver : BroadcastReceiver() {
 
         createNotificationChannel(context)
         executorService.execute {
-            val medications = MedicationDB.getInstance(context).medicationDao().getAll()
+            val medications = MedicationDB.getInstance(context).medicationDao().getAllRaw()
 
             when (intent.action) {
                 Intent.ACTION_BOOT_COMPLETED -> {
-                    medications.value?.forEach { medication ->
+                    medications.forEach { medication ->
                         medication.updateStartsToFuture()
                         if (medication.notify) {
                             //Create alarm
@@ -124,7 +124,7 @@ class AlarmReceiver : BroadcastReceiver() {
                         }
                     }
                     MedicationDB.getInstance(context).medicationDao()
-                        .updateMedications(*medications.value!!.toTypedArray())
+                        .updateMedications(*medications.toTypedArray())
                 }
                 NOTIFY_ACTION -> {
                     //Handle alarm
