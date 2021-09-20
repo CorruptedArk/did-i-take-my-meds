@@ -1,0 +1,5 @@
+v1.2.1
+
+Change
+- Darken background to improve contrast
+
