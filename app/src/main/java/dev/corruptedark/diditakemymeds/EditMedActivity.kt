@@ -14,7 +14,7 @@
  *     GNU General Public License for more details.
  *
  *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *     along with context program.  If not, see <https://www.gnu.org/licenses/>.
  */
 package dev.corruptedark.diditakemymeds
 
@@ -34,8 +34,11 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.TimeFormat
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
 import java.util.*
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class EditMedActivity : AppCompatActivity() {
@@ -53,9 +56,11 @@ class EditMedActivity : AppCompatActivity() {
     private lateinit var schedulePicker: RepeatScheduleDialog
     private var schedulePickerCaller: View? = null
     private var repeatScheduleList: ArrayList<RepeatSchedule> = ArrayList()
+    private val context = this
+    private val mainScope = MainScope()
+
 
     @Volatile var pickerIsOpen = false
-    @Volatile var waitForExecutor = false
     var hour = -1
     var minute = -1
     var startDay = -1
@@ -66,14 +71,14 @@ class EditMedActivity : AppCompatActivity() {
     var monthsBetween = 0
     var yearsBetween = 0
     var notify = true
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     lateinit var medication: Medication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_med)
-        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -94,11 +99,11 @@ class EditMedActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        executorService.execute {
-            medication = MedicationDB.getInstance(this).medicationDao().get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
+        GlobalScope.launch(dispatcher) {
+            medication = MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
             medication.updateStartsToFuture()
 
-            runOnUiThread {
+            mainScope.launch {
                 nameInput.setText(medication.name)
                 detailInput.setText(medication.description)
                 if (!medication.isAsNeeded()) {
@@ -142,7 +147,7 @@ class EditMedActivity : AppCompatActivity() {
                     )
 
                     repeatScheduleList.forEach { schedule ->
-                        val view = LayoutInflater.from(this)
+                        val view = LayoutInflater.from(context)
                             .inflate(R.layout.extra_dose_template, scheduleButtonsLayout, false)
                         scheduleButtonsRows.add(view as LinearLayoutCompat)
                         scheduleButtonsLayout.addView(view)
@@ -251,7 +256,7 @@ class EditMedActivity : AppCompatActivity() {
                 }
 
                 extraDoseButton.setOnClickListener {
-                    val view = LayoutInflater.from(this)
+                    val view = LayoutInflater.from(context)
                         .inflate(R.layout.extra_dose_template, scheduleButtonsLayout, false)
                     repeatScheduleList.add(RepeatSchedule(-1, -1, -1, -1, -1))
                     scheduleButtonsRows.add(view as LinearLayoutCompat)
@@ -274,10 +279,10 @@ class EditMedActivity : AppCompatActivity() {
 
                 }
 
-                isSystem24Hour = DateFormat.is24HourFormat(this)
+                isSystem24Hour = DateFormat.is24HourFormat(context)
                 clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
 
-                schedulePicker = RepeatScheduleDialog.newInstance(this)
+                schedulePicker = RepeatScheduleDialog.newInstance(context)
 
                 schedulePicker.addConfirmListener {
                     if (schedulePicker.scheduleIsValid()) {
@@ -356,11 +361,10 @@ class EditMedActivity : AppCompatActivity() {
                         schedulePicker.dismiss()
                     } else {
                         Toast.makeText(
-                            this,
+                            context,
                             getString(R.string.fill_out_schedule),
                             Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        ).show()
                     }
                 }
                 schedulePicker.addDismissListener {
@@ -380,14 +384,14 @@ class EditMedActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.save -> {
-                executorService.execute {
+                GlobalScope.launch(dispatcher) {
                     if (saveMedication())
                         finish()
                 }
                 true
             }
             R.id.cancel -> {
-                Toast.makeText(this, getString(R.string.edit_cancelled), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.edit_cancelled), Toast.LENGTH_SHORT).show()
                 finish()
                 true
             }
@@ -397,14 +401,14 @@ class EditMedActivity : AppCompatActivity() {
 
     private fun saveMedication(): Boolean {
         return if (nameInput.text.isNullOrBlank()) {
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.fill_fields), Toast.LENGTH_SHORT).show()
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.fill_fields), Toast.LENGTH_SHORT).show()
             }
             false
         }
         else if (!allSchedulesAreValid() && !asNeededSwitch.isChecked) {
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.fill_out_all_schedules), Toast.LENGTH_SHORT).show()
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.fill_out_all_schedules), Toast.LENGTH_SHORT).show()
             }
             false
         }
@@ -423,12 +427,12 @@ class EditMedActivity : AppCompatActivity() {
             medication.notify = notify
             medication.moreDosesPerDay = repeatScheduleList
 
-            runOnUiThread {
-                Toast.makeText(this, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()
             }
 
             medication.updateStartsToFuture()
-            MedicationDB.getInstance(this).medicationDao().updateMedications(medication)
+            MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
             true
         }
     }
@@ -465,7 +469,7 @@ class EditMedActivity : AppCompatActivity() {
 
             schedulePicker.show(supportFragmentManager, getString(R.string.schedule_picker_tag))
         }
-        //Toast.makeText(this, "onClick works", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "onClick works", Toast.LENGTH_SHORT).show()
     }
 
     private fun allSchedulesAreValid(): Boolean {

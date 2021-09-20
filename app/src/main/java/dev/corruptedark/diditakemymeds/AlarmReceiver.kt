@@ -9,6 +9,9 @@ import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -16,7 +19,7 @@ import java.util.concurrent.Executors
 class AlarmReceiver : BroadcastReceiver() {
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
-    val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     companion object {
         const val NOTIFY_ACTION = "NOTIFY"
@@ -110,7 +113,7 @@ class AlarmReceiver : BroadcastReceiver() {
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         createNotificationChannel(context)
-        executorService.execute {
+        GlobalScope.launch(dispatcher) {
             val medications = MedicationDB.getInstance(context).medicationDao().getAll()
 
             when (intent.action) {

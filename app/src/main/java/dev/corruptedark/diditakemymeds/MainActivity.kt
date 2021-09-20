@@ -36,15 +36,10 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.net.Uri
-import android.os.Looper
-import android.util.Log
-import androidx.lifecycle.Observer
+import kotlinx.coroutines.*
 //import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.Main
 import timber.log.Timber
 import java.util.concurrent.Executors
-import java.util.logging.Level
-import java.util.logging.Logger
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,37 +53,40 @@ class MainActivity : AppCompatActivity() {
     private val NAME_SORT = "name"
     private val FOOTER_PADDING_DP = 100.0F
     @Volatile private var medications: MutableList<Medication>? = null
-    private val executor = Executors.newSingleThreadExecutor()
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val context = this
+    private val mainScope = MainScope()
 
     private val restoreResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val restoreUri: Uri? = result.data?.data
 
             if (result.resultCode == Activity.RESULT_OK) {
-                executor.execute {
+                GlobalScope.launch(dispatcher) {
                         if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
                             MedicationDB.getInstance(applicationContext).close()
                             MedicationDB.wipeInstance()
 
-                            val restoreFileStream = contentResolver.openInputStream(restoreUri!!)!!
-                            restoreFileStream.copyTo(
-                                applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
-                                    .outputStream()
-                            )
+                            withContext(Dispatchers.IO) {
+                                runCatching {
+                                    val restoreFileStream =
+                                        contentResolver.openInputStream(restoreUri!!)!!
+                                    restoreFileStream.copyTo(
+                                        applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
+                                            .outputStream()
+                                    )
+                                    restoreFileStream.close()
+                                }
+                            }
 
-                            restoreFileStream.close()
-
-                            runOnUiThread {
+                            mainScope.launch {
                                 MedicationDB.getInstance(applicationContext).medicationDao().getAll()
                                     .observe(context, { medicationList ->
-                                        executor.execute {
+                                        GlobalScope.launch(dispatcher) {
                                             refreshFromDatabase(medicationList)
                                         }
                                     })
-                            }
 
-                            runOnUiThread {
                                 Toast.makeText(
                                     applicationContext,
                                     getString(R.string.database_restored),
@@ -96,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                                 ).show()
                             }
                         } else {
-                            runOnUiThread {
+                            mainScope.launch {
                                 Toast.makeText(
                                     applicationContext,
                                     getString(R.string.database_is_invalid),
@@ -176,7 +174,7 @@ class MainActivity : AppCompatActivity() {
         medListView.setFooterDividersEnabled(false)
         MedicationDB.getInstance(applicationContext).medicationDao().getAll()
             .observe(context, { medicationList ->
-                executor.execute {
+                GlobalScope.launch(dispatcher) {
                     refreshFromDatabase(medicationList)
                 }
             })
@@ -186,11 +184,11 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
-        executor.execute {
+        GlobalScope.launch(dispatcher) {
 
                 val sharedPref = getPreferences(Context.MODE_PRIVATE)
                 sortType = sharedPref.getString(getString(R.string.sort_key), TIME_SORT)!!
-                runOnUiThread {
+                mainScope.launch {
                     medListView.onItemClickListener =
                         AdapterView.OnItemClickListener { adapterView, view, i, l ->
                             openMedDetailActivity(medications!![i].id)
@@ -292,8 +290,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             medications!!.sortWith(Medication::compareByTime)
         }
-        runOnUiThread {
-            medicationListAdapter = MedListAdapter(this, medications!!)
+        mainScope.launch {
+            medicationListAdapter = MedListAdapter(context, medications!!)
             medListView.adapter = medicationListAdapter
             if (!medications.isNullOrEmpty())
                 listEmptyLabel.visibility = View.GONE
