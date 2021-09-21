@@ -30,7 +30,7 @@
     <string name="time_taken">Time taken: %1$s</string>
     <string name="delete">delete</string>
     <string name="are_you_sure">Are you sure?</string>
-    <string name="delete_warning">The medication will be permanently deleted</string>
+    <string name="medication_delete_warning">The medication will be permanently deleted</string>
     <string name="confirm">confirm</string>
     <string name="took_this_already">You took this already</string>
     <string name="edit">Edit</string>
@@ -83,5 +83,7 @@
     <string name="took_it">Took it</string>
     <string name="app_name_short">DITMM?</string>
     <string name="remind_in_15">Remind in 15 minutes</string>
+    <string name="dose_record_delete_warning">The dose record will be permanently deleted.</string>
+    <string name="record_delete_hint">(Long click a record to delete it)</string>
 
 </resources>

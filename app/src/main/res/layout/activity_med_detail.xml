@@ -111,8 +111,20 @@
                 android:textColor="@color/purple_200"
                 app:autoSizeTextType="uniform"
                 android:textSize="25sp"
-                android:padding="20dp"
+                android:paddingTop="20dp"
+                android:paddingHorizontal="20dp"
                 android:text="@string/previous_doses"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/delete_hint_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="22sp"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/record_delete_hint"/>
 
             <ListView
                 android:id="@+id/previous_doses_list"

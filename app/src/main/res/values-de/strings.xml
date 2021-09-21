@@ -30,7 +30,7 @@
     <string name="time_taken">Zeit der Einnahme: %1$s</string>
     <string name="delete">löschen</string>
     <string name="are_you_sure">Bist du sicher?</string>
-    <string name="delete_warning">Das Medikament wird dauerhaft gelöscht</string>
+    <string name="medication_delete_warning">Das Medikament wird dauerhaft gelöscht</string>
     <string name="confirm">Bestätigen</string>
     <string name="took_this_already">Du hast diese Dosis bereits eingenommen</string>
     <string name="edit">Bearbeiten</string>
@@ -83,4 +83,6 @@
     <string name="took_it">Bereits eingenommen</string>
     <string name="app_name_short">DITMM?</string>
     <string name="remind_in_15">Remind in 15 minutes</string>
+    <string name="dose_record_delete_warning">The dose record will be permanently deleted.</string>
+    <string name="record_delete_hint">(Long click a record to delete it)</string>
 </resources>

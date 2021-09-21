@@ -26,11 +26,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.*
+import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -52,7 +52,6 @@ import kotlinx.coroutines.launch
 //import kotlinx.coroutines.runBlocking
 //import kotlinx.coroutines.withContext
 import java.util.*
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class MedDetailActivity : AppCompatActivity() {
@@ -156,6 +155,24 @@ class MedDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener {
             onBackPressed()
+        }
+
+        previousDosesList.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
+            val dialogBuilder = MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.are_you_sure))
+                .setMessage(getString(R.string.dose_record_delete_warning))
+                .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
+                    GlobalScope.launch(dispatcher) {
+                        medication!!.doseRecord.removeAt(i)
+                        MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+                    }
+                }
+
+            dialogBuilder.show()
+            true
         }
 
         outerScroll = findViewById(R.id.outer_scroll)
@@ -297,7 +314,7 @@ class MedDetailActivity : AppCompatActivity() {
             R.id.delete -> {
                 MaterialAlertDialogBuilder(this)
                     .setTitle(getString(R.string.are_you_sure))
-                    .setMessage(getString(R.string.delete_warning))
+                    .setMessage(getString(R.string.medication_delete_warning))
                     .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
                         dialog.dismiss()
                     }
