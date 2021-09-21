@@ -166,7 +166,7 @@ class MedDetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-       GlobalScope.launch(dispatcher) {
+        GlobalScope.launch(dispatcher) {
                 refreshFromDatabase()
                 if(medication != null)
                     MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
@@ -179,8 +179,9 @@ class MedDetailActivity : AppCompatActivity() {
     }
 
     private fun refreshFromDatabase() {
-        medication = MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
-        if (medication != null) {
+        val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
+        if (MedicationDB.getInstance(this).medicationDao().medicationExists(medId)) {
+            medication = MedicationDB.getInstance(context).medicationDao().get(medId)
             medication!!.updateStartsToFuture()
 
             alarmIntent = AlarmIntentManager.build(context, medication!!)
@@ -279,16 +280,9 @@ class MedDetailActivity : AppCompatActivity() {
             medication!!.doseRecord.sort()
         }
         else {
-            onBackPressed()
-        }
-    }
-
-    override fun onBackPressed() {
-        if (callingActivity?.className ?: "" == MainActivity::class.simpleName) {
-            super.onBackPressed()
-        } else {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            mainScope.launch {
+                onBackPressed()
+            }
         }
     }
 

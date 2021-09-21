@@ -32,7 +32,7 @@ class AlarmReceiver : BroadcastReceiver() {
             val calendar = Calendar.getInstance()
             MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
 
-            val actionIntent = Intent(context, MedDetailActivity::class.java).apply {
+            val actionIntent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }

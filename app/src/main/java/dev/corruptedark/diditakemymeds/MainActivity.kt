@@ -57,6 +57,11 @@ class MainActivity : AppCompatActivity() {
     private val context = this
     private val mainScope = MainScope()
 
+    private val activityResultStarter =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            result.resultCode
+        }
+
     private val restoreResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val restoreUri: Uri? = result.data?.data
@@ -218,13 +223,18 @@ class MainActivity : AppCompatActivity() {
                     apply()
                 }
 
+            val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
+            if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                intent.putExtra(getString(R.string.med_id_key), -1L)
+                openMedDetailActivity(medId)
+            }
         }
     }
 
     private fun openMedDetailActivity(medId: Long) {
         val intent = Intent(this, MedDetailActivity::class.java)
         intent.putExtra(getString(R.string.med_id_key), medId)
-        startActivity(intent)
+        activityResultStarter.launch(intent)
     }
 
     override fun onResume() {
@@ -302,12 +312,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun openAboutActivity() {
         val intent = Intent(this, AboutActivity::class.java)
-        startActivity(intent)
+        activityResultStarter.launch(intent)
     }
 
     private fun openAddMedActivity() {
         val intent = Intent(this, AddMedActivity::class.java)
-        startActivity(intent)
+        activityResultStarter.launch(intent)
     }
 
     private fun restoreDatabase() {
