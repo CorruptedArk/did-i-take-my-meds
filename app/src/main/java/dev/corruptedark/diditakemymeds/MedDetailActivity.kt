@@ -67,7 +67,6 @@ class MedDetailActivity : AppCompatActivity() {
     private var medication: Medication? = null
     private lateinit var doseRecordAdapter: DoseRecordListAdapter
     private val calendar = Calendar.getInstance()
-    private var isSystem24Hour: Boolean = false
     private var closestDose: Long = -1L
     private var dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val editResultStarter =
@@ -160,7 +159,7 @@ class MedDetailActivity : AppCompatActivity() {
         previousDosesList.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
             val dialogBuilder = MaterialAlertDialogBuilder(this)
                 .setTitle(getString(R.string.are_you_sure))
-                .setMessage(getString(R.string.dose_record_delete_warning))
+                .setMessage(getString(R.string.dose_record_delete_warning) + "\n\n" + Medication.doseString(context, medication!!.doseRecord[i].doseTime) )
                 .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
                     dialog.dismiss()
                 }
@@ -178,15 +177,14 @@ class MedDetailActivity : AppCompatActivity() {
         outerScroll = findViewById(R.id.outer_scroll)
 
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        isSystem24Hour = DateFormat.is24HourFormat(this)
     }
 
     override fun onResume() {
         super.onResume()
         GlobalScope.launch(dispatcher) {
-                refreshFromDatabase()
-                if(medication != null)
-                    MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+            refreshFromDatabase()
+            if(medication != null)
+                MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
         }
         MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {
             GlobalScope.launch(dispatcher) {
