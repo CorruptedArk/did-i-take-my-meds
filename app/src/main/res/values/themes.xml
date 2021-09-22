@@ -28,5 +28,8 @@
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorAccent">@color/purple_200</item>
     </style>
+    <style name="Theme.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorControlActivated">@color/purple_200</item>
+    </style>
 
 </resources>

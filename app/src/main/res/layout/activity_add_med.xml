@@ -49,8 +49,10 @@
                 app:hintTextColor="@color/purple_200"
                 android:textColorHint="@color/purple_200"
                 app:boxStrokeColor="@color/purple_500"
+                app:boxBackgroundColor="@color/item_background"
                 app:hintTextAppearance="@style/TextLabel"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                style="@style/Theme.TextInput"
+                android:theme="@style/Theme.TextInput">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/med_name"
@@ -122,12 +124,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
                 android:hint="@string/description"
                 app:hintTextColor="@color/purple_200"
                 android:textColorHint="@color/purple_200"
                 app:boxStrokeColor="@color/purple_500"
+                app:boxBackgroundColor="@color/item_background"
                 app:hintTextAppearance="@style/TextLabel"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                style="@style/Theme.TextInput"
+                android:theme="@style/Theme.TextInput">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/med_detail"
