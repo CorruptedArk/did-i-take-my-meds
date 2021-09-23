@@ -3,7 +3,7 @@
     <style name="Theme.DidITakeMyMeds" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_700</item>
-        <item name="colorPrimaryDark">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/notification_bar</item>
         <item name="colorAccent">@color/purple_200</item>
         <item name="clockNumberTextColor">@color/purple_200</item>
         <item name="dialogTheme">@style/Theme.Dialog</item>
