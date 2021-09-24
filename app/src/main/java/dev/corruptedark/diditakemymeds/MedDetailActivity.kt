@@ -35,6 +35,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
@@ -361,6 +362,9 @@ class MedDetailActivity : AppCompatActivity() {
             GlobalScope.launch(dispatcher) {
                 val db = MedicationDB.getInstance(context)
                 db.medicationDao().updateMedications(medication!!)
+                with(NotificationManagerCompat.from(context.applicationContext)) {
+                    cancel(medication!!.id.toInt())
+                }
             }
         }
         if (!doseRecordAdapter.isEmpty) {

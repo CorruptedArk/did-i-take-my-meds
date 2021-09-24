@@ -11,6 +11,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -25,7 +26,9 @@ class AlarmReceiver : BroadcastReceiver() {
         const val NOTIFY_ACTION = "NOTIFY"
         const val TOOK_MED_ACTION = "TOOK_MED"
         const val REMIND_ACTION = "REMIND"
-        const val REMIND_DELAY = 15
+        const val REMIND_DELAY = 15 //minutes
+        const val CANCEL_DELAY = 2000L //milliseconds
+
         private const val NO_ICON = 0
 
         fun configureNotification(context: Context, medication: Medication): NotificationCompat.Builder {
@@ -173,12 +176,16 @@ class AlarmReceiver : BroadcastReceiver() {
                             .build()
 
                         with(NotificationManagerCompat.from(context.applicationContext)) {
-                            notify(
-                                medication.id.toInt(),
-                                notification
-                            )
-
+                            GlobalScope.launch(dispatcher) {
+                                notify(
+                                    medication.id.toInt(),
+                                    notification
+                                )
+                                delay(CANCEL_DELAY)
+                                cancel(medication.id.toInt())
+                            }
                         }
+
                     }
                     else {
                         with(NotificationManagerCompat.from(context.applicationContext)) {
