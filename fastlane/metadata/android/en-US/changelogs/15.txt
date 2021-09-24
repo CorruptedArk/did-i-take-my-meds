@@ -1,0 +1,4 @@
+v1.2.3
+
+Fix
+- Fix app not receiving boot intent or package update intent
