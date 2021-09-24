@@ -128,7 +128,7 @@ class AlarmReceiver : BroadcastReceiver() {
                             //Create alarm
                             alarmIntent = AlarmIntentManager.build(context, medication)
                             AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
-                            if(System.currentTimeMillis() > medication.calculateClosestDose().timeInMillis && !medication.closestDoseAlreadyTaken()) {
+                            if (System.currentTimeMillis() > medication.calculateClosestDose().timeInMillis && !medication.closestDoseAlreadyTaken()) {
                                 val notification = configureNotification(context, medication).build()
                                 with(NotificationManagerCompat.from(context.applicationContext)) {
                                     notify(
