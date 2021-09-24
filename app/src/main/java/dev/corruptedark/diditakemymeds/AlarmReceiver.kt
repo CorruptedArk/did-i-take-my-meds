@@ -121,13 +121,22 @@ class AlarmReceiver : BroadcastReceiver() {
             val medications = MedicationDB.getInstance(context).medicationDao().getAllRaw()
 
             when (intent.action) {
-                Intent.ACTION_BOOT_COMPLETED -> {
+                Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED -> {
                     medications.forEach { medication ->
                         medication.updateStartsToFuture()
                         if (medication.notify) {
                             //Create alarm
                             alarmIntent = AlarmIntentManager.build(context, medication)
                             AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
+                            if(System.currentTimeMillis() > medication.calculateClosestDose().timeInMillis && !medication.closestDoseAlreadyTaken()) {
+                                val notification = configureNotification(context, medication).build()
+                                with(NotificationManagerCompat.from(context.applicationContext)) {
+                                    notify(
+                                        medication.id.toInt(),
+                                        notification
+                                    )
+                                }
+                            }
                         }
                     }
                     MedicationDB.getInstance(context).medicationDao()
