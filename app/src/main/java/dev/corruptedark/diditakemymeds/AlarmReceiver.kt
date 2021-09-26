@@ -80,7 +80,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setColor(
                     ResourcesCompat.getColor(
                         context.resources,
-                        R.color.purple_500,
+                        R.color.notification_icon_color,
                         context.theme
                     )
                 )

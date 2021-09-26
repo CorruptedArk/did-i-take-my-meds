@@ -13,6 +13,6 @@
     <color name="github">#FF69A4EF</color>
     <color name="item_background">#FF252525</color>
     <color name="notification_bar">#FF2B00A7</color>
-    <color name="notification_icon_color">#FF511D9A</color>
+    <color name="notification_icon_color">@color/purple_500</color>
     <color name="floating_action_button">#FF6200EE</color>
 </resources>

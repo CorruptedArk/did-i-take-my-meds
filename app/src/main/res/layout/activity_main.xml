@@ -58,7 +58,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="30dp"
-        android:backgroundTint="@color/purple_500"
+        android:backgroundTint="@color/floating_action_button"
         app:borderWidth="0dp"
         android:src="@drawable/add"
         app:tint="@color/white"
