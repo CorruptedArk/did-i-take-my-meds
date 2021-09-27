@@ -23,10 +23,8 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
@@ -45,7 +43,6 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
 import java.util.*
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
@@ -297,7 +294,7 @@ class AddMedActivity() : AppCompatActivity() {
 
                 AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
 
-                val receiver = ComponentName(this, AlarmReceiver::class.java)
+                val receiver = ComponentName(this, ActionReceiver::class.java)
 
                 this.packageManager.setComponentEnabledSetting(
                     receiver,

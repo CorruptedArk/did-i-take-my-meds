@@ -14,10 +14,9 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class AlarmReceiver : BroadcastReceiver() {
+class ActionReceiver : BroadcastReceiver() {
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
@@ -56,7 +55,7 @@ class AlarmReceiver : BroadcastReceiver() {
             else DateFormat.format(context.getString(R.string.time_12), calendar)
 
             //Start building "took med" notification action
-            val tookMedIntent = Intent(context, AlarmReceiver::class.java).apply {
+            val tookMedIntent = Intent(context, ActionReceiver::class.java).apply {
                 action = TOOK_MED_ACTION
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
@@ -64,7 +63,7 @@ class AlarmReceiver : BroadcastReceiver() {
             //End building "took med" notification action
 
             //Start building "remind" notification action
-             val remindIntent = Intent(context, AlarmReceiver::class.java).apply {
+             val remindIntent = Intent(context, ActionReceiver::class.java).apply {
                 action = REMIND_ACTION
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
@@ -121,7 +120,7 @@ class AlarmReceiver : BroadcastReceiver() {
             val medications = MedicationDB.getInstance(context).medicationDao().getAllRaw()
 
             when (intent.action) {
-                Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED -> {
+                Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED -> {
                     medications.forEach { medication ->
                         medication.updateStartsToFuture()
                         if (medication.notify) {

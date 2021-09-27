@@ -9,8 +9,8 @@ import android.os.Build
 object AlarmIntentManager {
 
     fun build(context: Context, medication: Medication): PendingIntent{
-        return Intent(context, AlarmReceiver::class.java).let { innerIntent ->
-            innerIntent.action = AlarmReceiver.NOTIFY_ACTION
+        return Intent(context, ActionReceiver::class.java).let { innerIntent ->
+            innerIntent.action = ActionReceiver.NOTIFY_ACTION
             innerIntent.putExtra(
                 context.getString(R.string.med_id_key),
                 medication.id

@@ -28,7 +28,6 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ListView
@@ -118,7 +117,7 @@ class MedDetailActivity : AppCompatActivity() {
 
                         AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
-                        val receiver = ComponentName(context, AlarmReceiver::class.java)
+                        val receiver = ComponentName(context, ActionReceiver::class.java)
 
                         context.packageManager.setComponentEnabledSetting(
                             receiver,
@@ -239,7 +238,7 @@ class MedDetailActivity : AppCompatActivity() {
                             //Set alarm
                             AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
-                            val receiver = ComponentName(context, AlarmReceiver::class.java)
+                            val receiver = ComponentName(context, ActionReceiver::class.java)
 
                             context.packageManager.setComponentEnabledSetting(
                                 receiver,
