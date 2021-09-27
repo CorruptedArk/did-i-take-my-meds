@@ -21,9 +21,7 @@ package dev.corruptedark.diditakemymeds
 
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -38,19 +36,14 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.lifecycleScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.launch
-//import kotlinx.coroutines.Dispatchers.Main
-//import kotlinx.coroutines.launch
-//import kotlinx.coroutines.runBlocking
-//import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.util.*
 import java.util.concurrent.Executors
 
@@ -68,7 +61,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var doseRecordAdapter: DoseRecordListAdapter
     private val calendar = Calendar.getInstance()
     private var closestDose: Long = -1L
-    private var dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private var dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
     private val editResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             GlobalScope.launch(dispatcher) {
@@ -109,13 +102,13 @@ class MedDetailActivity : AppCompatActivity() {
                         justTookItButton.text = getString(R.string.i_just_took_it)
                     }
 
-                    alarmIntent = AlarmIntentManager.build(context, medication!!)
+                    alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication!!)
 
                     if (medication!!.notify) {
                         //Set alarm
                         alarmManager?.cancel(alarmIntent)
 
-                        AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
+                        AlarmIntentManager.setExact(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
                         val receiver = ComponentName(context, ActionReceiver::class.java)
 
@@ -135,6 +128,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var alarmIntent: PendingIntent
     private val context = this
     private val mainScope = MainScope()
+    private lateinit var refreshJob: Job
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -175,8 +169,6 @@ class MedDetailActivity : AppCompatActivity() {
         }
 
         outerScroll = findViewById(R.id.outer_scroll)
-
-        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
     override fun onResume() {
@@ -191,6 +183,8 @@ class MedDetailActivity : AppCompatActivity() {
                 refreshFromDatabase()
             }
         })
+
+        refreshJob = startRefresherLoop(intent.getLongExtra(getString(R.string.med_id_key), -1))
     }
 
     private fun refreshFromDatabase() {
@@ -199,7 +193,7 @@ class MedDetailActivity : AppCompatActivity() {
             medication = MedicationDB.getInstance(context).medicationDao().get(medId)
             medication!!.updateStartsToFuture()
 
-            alarmIntent = AlarmIntentManager.build(context, medication!!)
+            alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication!!)
 
             calendar.set(Calendar.HOUR_OF_DAY, medication!!.hour)
             calendar.set(Calendar.MINUTE, medication!!.minute)
@@ -236,7 +230,7 @@ class MedDetailActivity : AppCompatActivity() {
                         }
                         if (isChecked) {
                             //Set alarm
-                            AlarmIntentManager.set(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
+                            AlarmIntentManager.setExact(alarmManager, alarmIntent, medication!!.calculateNextDose().timeInMillis)
 
                             val receiver = ComponentName(context, ActionReceiver::class.java)
 
@@ -317,6 +311,7 @@ class MedDetailActivity : AppCompatActivity() {
                         dialog.dismiss()
                     }
                     .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
+
                         GlobalScope.launch(dispatcher) {
                             val db = MedicationDB.getInstance(context)
                             db.medicationDao().delete(medication!!)
@@ -376,6 +371,27 @@ class MedDetailActivity : AppCompatActivity() {
                     LinearLayoutCompat.LayoutParams.MATCH_PARENT,
                     height
                 )
+        }
+    }
+
+    override fun onPause() {
+        runBlocking {
+            refreshJob.cancelAndJoin()
+        }
+
+        super.onPause()
+    }
+
+    private fun startRefresherLoop(medId: Long): Job {
+        return GlobalScope.launch(dispatcher) {
+            while (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                val delayTime = MedicationDB.getInstance(context).medicationDao().get(medId).closestDoseTransitionTime() - System.currentTimeMillis()
+
+                if (delayTime > 0) {
+                    delay(delayTime)
+                }
+                refreshFromDatabase()
+            }
         }
     }
 }

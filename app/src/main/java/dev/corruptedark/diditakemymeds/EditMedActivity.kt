@@ -34,6 +34,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.TimeFormat
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -58,7 +59,6 @@ class EditMedActivity : AppCompatActivity() {
     private var repeatScheduleList: ArrayList<RepeatSchedule> = ArrayList()
     private val context = this
     private val mainScope = MainScope()
-
 
     @Volatile var pickerIsOpen = false
     var hour = -1

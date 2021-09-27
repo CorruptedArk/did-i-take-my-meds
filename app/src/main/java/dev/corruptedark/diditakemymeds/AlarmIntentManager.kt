@@ -8,7 +8,7 @@ import android.os.Build
 
 object AlarmIntentManager {
 
-    fun build(context: Context, medication: Medication): PendingIntent{
+    fun buildNotificationAlarm(context: Context, medication: Medication): PendingIntent {
         return Intent(context, ActionReceiver::class.java).let { innerIntent ->
             innerIntent.action = ActionReceiver.NOTIFY_ACTION
             innerIntent.putExtra(
@@ -24,7 +24,7 @@ object AlarmIntentManager {
         }
     }
 
-    fun set(alarmManager:AlarmManager?, alarmIntent: PendingIntent, timeInMillis: Long) {
+    fun setExact(alarmManager: AlarmManager?, alarmIntent: PendingIntent, timeInMillis: Long) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager?.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,

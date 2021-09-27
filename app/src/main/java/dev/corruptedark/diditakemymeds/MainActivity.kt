@@ -20,8 +20,10 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +38,8 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.net.Uri
+import androidx.lifecycle.lifecycleScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.coroutines.*
 //import kotlinx.coroutines.*
 import timber.log.Timber
@@ -56,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val context = this
     private val mainScope = MainScope()
+    private val refresherJobList = ArrayList<Job>()
 
     private val activityResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -128,6 +133,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -146,12 +153,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    init {
-        Timber.v("Init block")
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Timber.v("Start of onCreate")
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         setContentView(R.layout.activity_main)
@@ -183,7 +186,6 @@ class MainActivity : AppCompatActivity() {
                     refreshFromDatabase(medicationList)
                 }
             })
-        Timber.v("End of onCreate")
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -191,37 +193,45 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch(dispatcher) {
 
-                val sharedPref = getPreferences(Context.MODE_PRIVATE)
-                sortType = sharedPref.getString(getString(R.string.sort_key), TIME_SORT)!!
-                mainScope.launch {
-                    medListView.onItemClickListener =
-                        AdapterView.OnItemClickListener { adapterView, view, i, l ->
-                            openMedDetailActivity(medications!![i].id)
-                        }
-                }
+            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val sharedPref = getPreferences(Context.MODE_PRIVATE)
+            sortType = sharedPref.getString(getString(R.string.sort_key), TIME_SORT)!!
+            mainScope.launch {
+                medListView.onItemClickListener =
+                    AdapterView.OnItemClickListener { adapterView, view, i, l ->
+                        openMedDetailActivity(medications!![i].id)
+                    }
+            }
 
-                if (BuildConfig.VERSION_CODE > sharedPref.getInt(
-                        getString(R.string.last_version_used_key),
-                        0
-                    )
-                ) {
-                    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                    var alarmIntent: PendingIntent
-                    medications?.forEach { medication ->
+            if (BuildConfig.VERSION_CODE > sharedPref.getInt(
+                    getString(R.string.last_version_used_key),
+                    0
+                )
+            ) {
+                var alarmIntent: PendingIntent
+                MedicationDB.getInstance(context).medicationDao().getAllRaw()
+                    .forEach { medication ->
                         if (medication.notify) {
-                            //Create alarm
-                            alarmIntent = AlarmIntentManager.build(context, medication)
+                            GlobalScope.launch {
+                                //Create alarm
+                                alarmIntent =
+                                    AlarmIntentManager.buildNotificationAlarm(context, medication)
 
-                            alarmManager.cancel(alarmIntent)
+                                alarmManager.cancel(alarmIntent)
 
-                            AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
+                                AlarmIntentManager.setExact(
+                                    alarmManager,
+                                    alarmIntent,
+                                    medication.calculateNextDose().timeInMillis
+                                )
+                            }
                         }
                     }
-                }
-                with(sharedPref.edit()) {
-                    putInt(getString(R.string.last_version_used_key), BuildConfig.VERSION_CODE)
-                    apply()
-                }
+            }
+            with(sharedPref.edit()) {
+                putInt(getString(R.string.last_version_used_key), BuildConfig.VERSION_CODE)
+                apply()
+            }
 
             val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
             if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
@@ -238,10 +248,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        
         medicationListAdapter?.notifyDataSetChanged()
         if (!medications.isNullOrEmpty()) {
             listEmptyLabel.visibility = View.GONE
+        }
+        GlobalScope.launch(dispatcher) {
+            MedicationDB.getInstance(context).medicationDao().getAllRaw().forEach { medication ->
+                refresherJobList.add(startRefresherLoop(medication.id))
+            }
         }
         super.onResume()
     }
@@ -338,5 +352,29 @@ class MainActivity : AppCompatActivity() {
         )
 
         backUpResultStarter.launch(intent)
+    }
+
+    override fun onPause() {
+        runBlocking {
+            refresherJobList.forEach { job ->
+                job.cancelAndJoin()
+            }
+        }
+        refresherJobList.clear()
+        super.onPause()
+    }
+
+    private fun startRefresherLoop(medId: Long): Job {
+        return GlobalScope.launch(dispatcher) {
+            while (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                val delayTime = MedicationDB.getInstance(context).medicationDao().get(medId).closestDoseTransitionTime() - System.currentTimeMillis()
+
+                if (delayTime > 0) {
+                    delay(delayTime)
+                }
+
+                refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
+            }
+        }
     }
 }

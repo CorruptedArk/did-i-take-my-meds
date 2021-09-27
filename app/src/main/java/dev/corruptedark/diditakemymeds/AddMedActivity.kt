@@ -38,6 +38,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.TimeFormat
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -287,12 +288,12 @@ class AddMedActivity() : AppCompatActivity() {
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAllRaw().last()
 
-            alarmIntent = AlarmIntentManager.build(this, medication)
+            alarmIntent = AlarmIntentManager.buildNotificationAlarm(this, medication)
 
             if (notify) {
                 //Set alarm
 
-                AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
+                AlarmIntentManager.setExact(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
 
                 val receiver = ComponentName(this, ActionReceiver::class.java)
 

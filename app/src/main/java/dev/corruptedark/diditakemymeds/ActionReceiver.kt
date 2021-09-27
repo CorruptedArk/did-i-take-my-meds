@@ -9,17 +9,13 @@ import android.text.format.DateFormat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
-import java.util.concurrent.Executors
+
 
 class ActionReceiver : BroadcastReceiver() {
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
-    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     companion object {
         const val NOTIFY_ACTION = "NOTIFY"
@@ -116,7 +112,7 @@ class ActionReceiver : BroadcastReceiver() {
 
         createNotificationChannel(context)
 
-        GlobalScope.launch(dispatcher) {
+        GlobalScope.launch {
             val medications = MedicationDB.getInstance(context).medicationDao().getAllRaw()
 
             when (intent.action) {
@@ -125,8 +121,8 @@ class ActionReceiver : BroadcastReceiver() {
                         medication.updateStartsToFuture()
                         if (medication.notify) {
                             //Create alarm
-                            alarmIntent = AlarmIntentManager.build(context, medication)
-                            AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
+                            alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication)
+                            AlarmIntentManager.setExact(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
                             if (System.currentTimeMillis() > medication.calculateClosestDose().timeInMillis && !medication.closestDoseAlreadyTaken()) {
                                 val notification = configureNotification(context, medication).build()
                                 with(NotificationManagerCompat.from(context.applicationContext)) {
@@ -148,8 +144,8 @@ class ActionReceiver : BroadcastReceiver() {
                             .get(intent.getLongExtra(context.getString(R.string.med_id_key), -1))
 
                     medication.updateStartsToFuture()
-                    alarmIntent = AlarmIntentManager.build(context, medication)
-                    AlarmIntentManager.set(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
+                    alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication)
+                    AlarmIntentManager.setExact(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
 
                     if (!medication.closestDoseAlreadyTaken()) {
                         val notification = configureNotification(context, medication).build()
@@ -184,14 +180,12 @@ class ActionReceiver : BroadcastReceiver() {
                             .build()
 
                         with(NotificationManagerCompat.from(context.applicationContext)) {
-                            GlobalScope.launch(dispatcher) {
                                 notify(
                                     medication.id.toInt(),
                                     notification
                                 )
                                 delay(CANCEL_DELAY)
                                 cancel(medication.id.toInt())
-                            }
                         }
 
                     }
@@ -201,7 +195,7 @@ class ActionReceiver : BroadcastReceiver() {
                         }
                     }
                 }
-                REMIND_ACTION-> {
+                REMIND_ACTION -> {
                     val medId = intent.getLongExtra(context.getString(R.string.med_id_key), -1L)
 
                     with(NotificationManagerCompat.from(context.applicationContext)) {
@@ -213,8 +207,8 @@ class ActionReceiver : BroadcastReceiver() {
                         calendar.add(Calendar.MINUTE, REMIND_DELAY)
                         val medication: Medication =
                             MedicationDB.getInstance(context).medicationDao().get(medId)
-                        alarmIntent = AlarmIntentManager.build(context, medication)
-                        AlarmIntentManager.set(alarmManager, alarmIntent, calendar.timeInMillis)
+                        alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication)
+                        AlarmIntentManager.setExact(alarmManager, alarmIntent, calendar.timeInMillis)
                     }
                 }
             }

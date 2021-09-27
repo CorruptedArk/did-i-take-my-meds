@@ -25,6 +25,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.lang.StringBuilder
+import java.math.BigInteger
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
@@ -350,6 +351,13 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         val closestDose = calculateClosestDose().timeInMillis
 
         return lastDose == closestDose
+    }
+
+    /**
+     * Finds the time at which the closest dose will change
+     */
+    fun closestDoseTransitionTime(): Long {
+        return ((calculateClosestDose().timeInMillis.toBigInteger() + calculateNextDose().timeInMillis.toBigInteger()) / 2L.toBigInteger()).toLong() + 1L
     }
 
     fun addNewTakenDose(takenDose: DoseRecord) {
