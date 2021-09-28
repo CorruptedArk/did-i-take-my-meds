@@ -7,5 +7,5 @@ Changes
 Addition
 - Activities now update when the closest dose changes
 
-Fixes
+Fix
 - Fix an issue that didn't allow schedules with non-zero, whole number weeks
