@@ -95,7 +95,7 @@
                     android:textSize="22sp"
                     app:picker_orientation="vertical"
                     android:progress="1"
-                    app:picker_min="1"
+                    app:picker_min="0"
                     app:picker_max="6"
                     android:layout_gravity="center_vertical"/>
                 <com.google.android.material.textview.MaterialTextView

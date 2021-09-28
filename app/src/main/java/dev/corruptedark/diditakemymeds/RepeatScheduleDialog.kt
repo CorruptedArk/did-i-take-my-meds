@@ -266,7 +266,9 @@ class RepeatScheduleDialog : DialogFragment() {
     }
 
     fun scheduleIsValid(): Boolean {
-       return hour >= 0 && minute >= 0 && startDay >= 0 && startMonth >= 0 && startYear >= 0
+        val periodIsValid = daysBetween > 0 || weeksBetween > 0 || monthsBetween > 0 || yearsBetween > 0
+        val startTimeIsValid = hour >= 0 && minute >= 0 && startDay >= 0 && startMonth >= 0 && startYear >= 0
+        return periodIsValid && startTimeIsValid
     }
 
 }
