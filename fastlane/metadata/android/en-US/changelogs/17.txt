@@ -1,0 +1,4 @@
+v1.2.5
+
+Fixes
+- Revert refresh changes to fix freezing and failed notifications
