@@ -20,10 +20,8 @@
 package dev.corruptedark.diditakemymeds
 
 import android.app.*
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -39,10 +37,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.net.Uri
 import androidx.lifecycle.lifecycleScope
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.coroutines.*
 //import kotlinx.coroutines.*
-import timber.log.Timber
 import java.util.concurrent.Executors
 
 
@@ -56,11 +52,13 @@ class MainActivity : AppCompatActivity() {
     private val TIME_SORT = "time"
     private val NAME_SORT = "name"
     private val FOOTER_PADDING_DP = 100.0F
+    private val FALLBACK_DELAY = 10000L
     @Volatile private var medications: MutableList<Medication>? = null
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val context = this
     private val mainScope = MainScope()
-    private val refresherJobList = ArrayList<Job>()
+    private var refreshJob: Job? = null
 
     private val activityResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -212,7 +210,7 @@ class MainActivity : AppCompatActivity() {
                 MedicationDB.getInstance(context).medicationDao().getAllRaw()
                     .forEach { medication ->
                         if (medication.notify) {
-                            GlobalScope.launch {
+                            GlobalScope.launch(dispatcher) {
                                 //Create alarm
                                 alarmIntent =
                                     AlarmIntentManager.buildNotificationAlarm(context, medication)
@@ -252,9 +250,9 @@ class MainActivity : AppCompatActivity() {
         if (!medications.isNullOrEmpty()) {
             listEmptyLabel.visibility = View.GONE
         }
-        GlobalScope.launch(dispatcher) {
+        lifecycleScope.launch(lifecycleDispatcher) {
             MedicationDB.getInstance(context).medicationDao().getAllRaw().forEach { medication ->
-                refresherJobList.add(startRefresherLoop(medication.id))
+                refreshJob = startRefresherLoop()
             }
         }
         super.onResume()
@@ -307,6 +305,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Synchronized
     private fun refreshFromDatabase(localMedications: MutableList<Medication>) {
         medications = localMedications
         if (sortType == NAME_SORT) {
@@ -356,24 +355,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         runBlocking {
-            refresherJobList.forEach { job ->
-                job.cancelAndJoin()
+            try {
+                refreshJob!!.cancelAndJoin()
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
             }
         }
-        refresherJobList.clear()
         super.onPause()
     }
 
-    private fun startRefresherLoop(medId: Long): Job {
-        return GlobalScope.launch(dispatcher) {
-            while (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
-                val delayTime = MedicationDB.getInstance(context).medicationDao().get(medId).closestDoseTransitionTime() - System.currentTimeMillis()
+    private fun startRefresherLoop(): Job {
+        return lifecycleScope.launch(lifecycleDispatcher) {
 
-                if (delayTime > 0) {
-                    delay(delayTime)
+            while (MedicationDB.getInstance(context).medicationDao().getAllRaw().isNotEmpty()) {
+                val refreshTime = MedicationDB.getInstance(context).medicationDao().getAllRaw()
+                    .sortedWith(Medication::compareByClosestDoseTransition).first().closestDoseTransitionTime()
+                val delayDuration =  refreshTime - System.currentTimeMillis()
+
+                if (delayDuration > 0) {
+                    delay(delayDuration)
+                    refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
                 }
-
-                refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
+                else {
+                    delay(FALLBACK_DELAY)
+                }
             }
         }
     }

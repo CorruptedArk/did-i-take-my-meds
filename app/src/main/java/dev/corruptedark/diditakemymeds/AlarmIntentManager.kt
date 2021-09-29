@@ -45,13 +45,13 @@ object AlarmIntentManager {
 
     fun setExact(alarmManager: AlarmManager?, alarmIntent: PendingIntent, timeInMillis: Long) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager?.setExactAndAllowWhileIdle(
+            alarmManager!!.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
                 timeInMillis,
                 alarmIntent
             )
         } else {
-            alarmManager?.set(
+            alarmManager!!.set(
                 AlarmManager.RTC_WAKEUP,
                 timeInMillis,
                 alarmIntent

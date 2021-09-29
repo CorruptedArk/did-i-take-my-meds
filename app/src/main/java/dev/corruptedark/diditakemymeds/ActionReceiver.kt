@@ -11,11 +11,13 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.coroutines.*
 import java.util.*
+import java.util.concurrent.Executors
 
 
 class ActionReceiver : BroadcastReceiver() {
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
+    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
     companion object {
         const val NOTIFY_ACTION = "NOTIFY"
@@ -112,7 +114,7 @@ class ActionReceiver : BroadcastReceiver() {
 
         createNotificationChannel(context)
 
-        GlobalScope.launch {
+        GlobalScope.launch(dispatcher) {
             val medications = MedicationDB.getInstance(context).medicationDao().getAllRaw()
 
             when (intent.action) {
@@ -180,12 +182,12 @@ class ActionReceiver : BroadcastReceiver() {
                             .build()
 
                         with(NotificationManagerCompat.from(context.applicationContext)) {
-                                notify(
-                                    medication.id.toInt(),
-                                    notification
-                                )
-                                delay(CANCEL_DELAY)
-                                cancel(medication.id.toInt())
+                            notify(
+                                medication.id.toInt(),
+                                notification
+                            )
+                            delay(CANCEL_DELAY)
+                            cancel(medication.id.toInt())
                         }
 
                     }

@@ -104,6 +104,13 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
             else
                 (aDose.timeInMillis - bDose.timeInMillis).sign
         }
+
+        fun compareByClosestDoseTransition(a: Medication, b: Medication): Int {
+            val aTransition = a.closestDoseTransitionTime()
+            val bTransition = b.closestDoseTransitionTime()
+
+            return (aTransition - bTransition).sign
+        }
     }
 
     /**
@@ -357,7 +364,12 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
      * Finds the time at which the closest dose will change
      */
     fun closestDoseTransitionTime(): Long {
-        return ((calculateClosestDose().timeInMillis.toBigInteger() + calculateNextDose().timeInMillis.toBigInteger()) / 2L.toBigInteger()).toLong() + 1L
+        return if (!isAsNeeded()) {
+            ((calculateClosestDose().timeInMillis.toBigInteger() + calculateNextDose().timeInMillis.toBigInteger()) / 2L.toBigInteger()).toLong() + 1L
+        }
+        else {
+            0L
+        }
     }
 
     fun addNewTakenDose(takenDose: DoseRecord) {
