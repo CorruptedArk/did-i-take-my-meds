@@ -10,6 +10,6 @@ title_file=`mktemp XXXXXXXXXX.release_title.txt`
 vim $title_file
 release_title=`cat $title_file`
 echo "$release_title"
-gh release create v$version_name -F $notes_file -t "$release_title" "$PWD/app/build/outputs/apk/release/dev.corruptedark.diditakemymeds-$version_name-release.apk"
+gh release create v$version_name --target `git branch --show-current` -F $notes_file -t "$release_title" "$PWD/app/build/outputs/apk/release/dev.corruptedark.diditakemymeds-$version_name-release.apk"
 rm $notes_file
 rm $title_file
