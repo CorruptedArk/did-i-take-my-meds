@@ -369,11 +369,11 @@ class MainActivity : AppCompatActivity() {
         return lifecycleScope.launch(lifecycleDispatcher) {
 
             while (MedicationDB.getInstance(context).medicationDao().getAllRaw().isNotEmpty()) {
-                val refreshTime = MedicationDB.getInstance(context).medicationDao().getAllRaw()
-                    .sortedWith(Medication::compareByClosestDoseTransition).first().closestDoseTransitionTime()
-                val delayDuration =  refreshTime - System.currentTimeMillis()
+                val medication = MedicationDB.getInstance(context).medicationDao().getAllRaw()
+                    .sortedWith(Medication::compareByClosestDoseTransition).first()
 
-                if (delayDuration > 0) {
+                if (!medication.isAsNeeded()) {
+                    val delayDuration =  medication.closestDoseTransitionTime() - System.currentTimeMillis()
                     delay(delayDuration)
                     refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
                 }

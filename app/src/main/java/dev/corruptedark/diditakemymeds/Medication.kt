@@ -50,6 +50,10 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<RepeatSchedule> = ArrayList()
 
     companion object {
+
+        val FALLBACK_TRANSITION_TIME = Long.MAX_VALUE
+        val INVALID_MED_ID = -1L
+
         fun doseString(context: Context, doseTime: Long): String {
             val isSystem24Hour = DateFormat.is24HourFormat(context)
             val calendar = Calendar.getInstance()
@@ -353,7 +357,7 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
             doseRecord.first().closestDose
         }
         catch (except: NoSuchElementException) {
-            -1L
+            INVALID_MED_ID
         }
         val closestDose = calculateClosestDose().timeInMillis
 
@@ -364,11 +368,12 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
      * Finds the time at which the closest dose will change
      */
     fun closestDoseTransitionTime(): Long {
+        updateStartsToFuture()
         return if (!isAsNeeded()) {
             ((calculateClosestDose().timeInMillis.toBigInteger() + calculateNextDose().timeInMillis.toBigInteger()) / 2L.toBigInteger()).toLong() + 1L
         }
         else {
-            0L
+            FALLBACK_TRANSITION_TIME
         }
     }
 

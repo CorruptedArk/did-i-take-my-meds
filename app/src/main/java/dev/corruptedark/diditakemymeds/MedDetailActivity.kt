@@ -192,33 +192,6 @@ class MedDetailActivity : AppCompatActivity() {
     }
 
     @Synchronized
-    private fun refreshTimeLabels() {
-        val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
-        if(MedicationDB.getInstance(this).medicationDao().medicationExists(medId)) {
-            val refreshMed = MedicationDB.getInstance(context).medicationDao().get(medId)
-            if (!refreshMed.isAsNeeded()) {
-                refreshMed.updateStartsToFuture()
-
-                mainScope.launch {
-                    val nextDose = refreshMed.calculateNextDose().timeInMillis
-                    timeLabel.text =
-                        getString(
-                            R.string.next_dose_label,
-                            Medication.doseString(context, nextDose)
-                        )
-                    closestDoseLabel.visibility = View.VISIBLE
-                    closestDose = refreshMed.calculateClosestDose().timeInMillis
-                    closestDoseLabel.text = getString(
-                        R.string.closest_dose_label,
-                        Medication.doseString(context, closestDose)
-                    )
-                }
-
-            }
-        }
-    }
-
-    @Synchronized
     private fun refreshFromDatabase() {
         val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
         if (MedicationDB.getInstance(this).medicationDao().medicationExists(medId)) {
@@ -421,11 +394,14 @@ class MedDetailActivity : AppCompatActivity() {
     private fun startRefresherLoop(medId: Long): Job {
         return lifecycleScope.launch(lifecycleDispatcher) {
             while (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
-                val delayDuration = MedicationDB.getInstance(context).medicationDao().get(medId).closestDoseTransitionTime() - System.currentTimeMillis()
 
-                if (delayDuration > 0) {
+                val medication = MedicationDB.getInstance(context).medicationDao().get(medId)
+
+                if (!medication.isAsNeeded()) {
+                    val delayDuration = medication.closestDoseTransitionTime() - System.currentTimeMillis()
+
                     delay(delayDuration)
-                    refreshTimeLabels()
+                    refreshFromDatabase()
                 }
                 else {
                     delay(FALLBACK_DELAY)
