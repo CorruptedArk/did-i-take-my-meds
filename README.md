@@ -36,7 +36,7 @@ Did I Take My Meds? allows a user save multiple medications with complex schedul
 
 ---
 ## Credits
-Brazilian Portuguese translations by [mezysinc](https://github.com/mezysinc)
+Brazilian Portuguese translations by [mezysinc](https://github.com/mezysinc) and [lnux-usr](https://github.com/lnux-usr)
 
 German translations by [jpameli](https://github.com/jpameli)
 
