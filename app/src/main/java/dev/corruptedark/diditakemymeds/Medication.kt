@@ -377,6 +377,17 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         }
     }
 
+    fun timeSinceLastTakenDose(): Long {
+
+        return if (doseRecord.isNotEmpty()) {
+            System.currentTimeMillis() - doseRecord.first().doseTime
+        }
+        else
+        {
+            System.currentTimeMillis()
+        }
+    }
+
     fun addNewTakenDose(takenDose: DoseRecord) {
         doseRecord.add(takenDose)
         doseRecord.sort()

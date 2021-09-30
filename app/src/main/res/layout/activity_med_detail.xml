@@ -105,6 +105,17 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/time_since_dose_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="23sp"
+                android:padding="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/time_since_dose_sample"/>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/previous_doses_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

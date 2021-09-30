@@ -43,8 +43,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.*
+import java.time.Duration
 import java.util.*
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class MedDetailActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
@@ -55,6 +57,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var detailLabel: MaterialTextView
     private lateinit var closestDoseLabel: MaterialTextView
     private lateinit var justTookItButton: MaterialButton
+    private lateinit var timeSinceDoseLabel: MaterialTextView
     private lateinit var previousDosesList: ListView
     private var medication: Medication? = null
     private lateinit var doseRecordAdapter: DoseRecordListAdapter
@@ -130,7 +133,9 @@ class MedDetailActivity : AppCompatActivity() {
     private val mainScope = MainScope()
     private var refreshJob: Job? = null
 
-    private val FALLBACK_DELAY = 10000L
+    private val FALLBACK_DELAY = 60000L // 1 minute in milliseconds
+    private val DAY_TO_HOURS = 24
+    private val HOUR_TO_MINUTES = 60
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,6 +149,7 @@ class MedDetailActivity : AppCompatActivity() {
         detailLabel = findViewById(R.id.detail_label)
         closestDoseLabel = findViewById(R.id.closest_dose_label)
         justTookItButton = findViewById(R.id.just_took_it_button)
+        timeSinceDoseLabel = findViewById(R.id.time_since_dose_label)
         previousDosesList = findViewById(R.id.previous_doses_list)
         setSupportActionBar(toolbar)
         toolbar.background =
@@ -202,6 +208,11 @@ class MedDetailActivity : AppCompatActivity() {
 
             calendar.set(Calendar.HOUR_OF_DAY, medication!!.hour)
             calendar.set(Calendar.MINUTE, medication!!.minute)
+
+            val timeSinceTakenDose = medication!!.timeSinceLastTakenDose()
+            val days = TimeUnit.MILLISECONDS.toDays(timeSinceTakenDose)
+            val hours = TimeUnit.MILLISECONDS.toHours(timeSinceTakenDose) % DAY_TO_HOURS
+            val minutes = TimeUnit.MILLISECONDS.toMinutes(timeSinceTakenDose) % HOUR_TO_MINUTES
 
             mainScope.launch {
                 nameLabel.text = medication!!.name
@@ -284,6 +295,8 @@ class MedDetailActivity : AppCompatActivity() {
                 justTookItButton.setOnClickListener {
                     justTookItButtonPressed()
                 }
+
+                timeSinceDoseLabel.text = getString(R.string.time_since_dose_template, days, hours, minutes)
 
                 if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
                     justTookItButton.text = getString(R.string.took_this_already)
@@ -397,15 +410,18 @@ class MedDetailActivity : AppCompatActivity() {
 
                 val medication = MedicationDB.getInstance(context).medicationDao().get(medId)
 
-                if (!medication.isAsNeeded()) {
-                    val delayDuration = medication.closestDoseTransitionTime() - System.currentTimeMillis()
+                val transitionDelay = medication.closestDoseTransitionTime() - System.currentTimeMillis()
 
-                    delay(delayDuration)
-                    refreshFromDatabase()
-                }
-                else {
-                    delay(FALLBACK_DELAY)
-                }
+                val delayDuration =
+                    if (transitionDelay < FALLBACK_DELAY) {
+                        transitionDelay
+                    }
+                    else {
+                        FALLBACK_DELAY
+                    }
+
+                delay(delayDuration)
+                refreshFromDatabase()
             }
         }
     }
