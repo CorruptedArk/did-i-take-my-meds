@@ -43,7 +43,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.*
-import java.time.Duration
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -133,7 +132,8 @@ class MedDetailActivity : AppCompatActivity() {
     private val mainScope = MainScope()
     private var refreshJob: Job? = null
 
-    private val FALLBACK_DELAY = 60000L // 1 minute in milliseconds
+    private val MAXIMUM_DELAY = 60000L // 1 minute in milliseconds
+    private val MINIMUM_DELAY = 1000L // 1 second in milliseconds
     private val DAY_TO_HOURS = 24
     private val HOUR_TO_MINUTES = 60
 
@@ -413,11 +413,16 @@ class MedDetailActivity : AppCompatActivity() {
                 val transitionDelay = medication.closestDoseTransitionTime() - System.currentTimeMillis()
 
                 val delayDuration =
-                    if (transitionDelay < FALLBACK_DELAY) {
-                        transitionDelay
-                    }
-                    else {
-                        FALLBACK_DELAY
+                    when {
+                        transitionDelay < MINIMUM_DELAY -> {
+                            MINIMUM_DELAY
+                        }
+                        transitionDelay in MINIMUM_DELAY until MAXIMUM_DELAY -> {
+                            transitionDelay
+                        }
+                        else -> {
+                            MAXIMUM_DELAY
+                        }
                     }
 
                 delay(delayDuration)

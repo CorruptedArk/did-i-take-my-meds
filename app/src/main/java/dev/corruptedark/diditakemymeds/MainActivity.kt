@@ -52,7 +52,8 @@ class MainActivity : AppCompatActivity() {
     private val TIME_SORT = "time"
     private val NAME_SORT = "name"
     private val FOOTER_PADDING_DP = 100.0F
-    private val FALLBACK_DELAY = 10000L
+    private val MAXIMUM_DELAY = 60000L // 1 minute in milliseconds
+    private val MINIMUM_DELAY = 1000L // 1 second in milliseconds
     @Volatile private var medications: MutableList<Medication>? = null
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
@@ -372,14 +373,23 @@ class MainActivity : AppCompatActivity() {
                 val medication = MedicationDB.getInstance(context).medicationDao().getAllRaw()
                     .sortedWith(Medication::compareByClosestDoseTransition).first()
 
-                if (!medication.isAsNeeded()) {
-                    val delayDuration =  medication.closestDoseTransitionTime() - System.currentTimeMillis()
-                    delay(delayDuration)
-                    refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
-                }
-                else {
-                    delay(FALLBACK_DELAY)
-                }
+                val transitionDelay = medication.closestDoseTransitionTime() - System.currentTimeMillis()
+
+                val delayDuration =
+                    when {
+                        transitionDelay < MINIMUM_DELAY -> {
+                            MINIMUM_DELAY
+                        }
+                        transitionDelay in MINIMUM_DELAY until MAXIMUM_DELAY -> {
+                            transitionDelay
+                        }
+                        else -> {
+                            MAXIMUM_DELAY
+                        }
+                    }
+
+                delay(delayDuration)
+                refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
             }
         }
     }
