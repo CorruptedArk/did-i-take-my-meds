@@ -40,7 +40,7 @@
     <string name="channel_name">did_i_take_my_meds</string>
     <string name="channel_description">notificações de aviso</string>
     <string name="med_id_key">med_id</string>
-    <string name="time_for_your_dose">Hora para sua dose</string>
+    <string name="time_for_your_dose">Hora de tomar seu remédio</string>
     <string name="new_medication">Novo remédio</string>
     <string name="medication_details">Detalhes do remédio</string>
     <string name="edit_medication">Editar o remédio</string>
@@ -80,9 +80,9 @@
     <string name="back_up_database">Backup da base de dados</string>
     <string name="database_is_invalid">Database is invalid</string>
     <string name="database_restored">Database restored</string>
-    <string name="took_it">Took it</string>
+    <string name="took_it">Já tomei</string>
     <string name="app_name_short">DITMM?</string>
-    <string name="remind_in_15">Remind in 15 minutes</string>
+    <string name="remind_in_15">Lembre-me em 15 minutos</string>
     <string name="dose_record_delete_warning">The dose record will be permanently deleted.</string>
     <string name="record_delete_hint">(Long click a record to delete it)</string>
 
