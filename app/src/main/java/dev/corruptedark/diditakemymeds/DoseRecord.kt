@@ -21,7 +21,12 @@ package dev.corruptedark.diditakemymeds
 
 import kotlin.math.sign
 
-data class DoseRecord (val doseTime: Long, val closestDose: Long = -1L): Comparable<DoseRecord> {
+data class DoseRecord(val doseTime: Long, val closestDose: Long = NONE): Comparable<DoseRecord> {
+
+    companion object {
+        private const val NONE = -1L
+    }
+
     override fun compareTo(other: DoseRecord): Int {
         return if (closestDose == other.closestDose)
             (other.doseTime - doseTime).sign
@@ -30,6 +35,6 @@ data class DoseRecord (val doseTime: Long, val closestDose: Long = -1L): Compara
     }
 
     fun isAsNeeded(): Boolean {
-        return closestDose < 0
+        return closestDose == NONE
     }
 }

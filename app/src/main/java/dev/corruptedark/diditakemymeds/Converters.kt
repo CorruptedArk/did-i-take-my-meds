@@ -24,9 +24,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-public class Converters {
+class Converters {
     companion object {
-        val gson = Gson()
+        private val gson = Gson()
 
         @TypeConverter
         @JvmStatic
