@@ -26,7 +26,7 @@
     <string name="tomorrow">Amanhã</string>
     <string name="closest_dose_label">Próxima dose: %1$s</string>
     <string name="already_took_dose">Você já tomou esta dose\nAssegure-se de não tomar outra vez.</string>
-    <string name="date_format">MMM d, aaaa</string>
+    <string name="date_format">MMM d, yyyy</string>
     <string name="time_taken">Hora em que foi tomado: %1$s</string>
     <string name="delete">excluir</string>
     <string name="are_you_sure">Tem certeza?</string>

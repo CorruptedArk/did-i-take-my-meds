@@ -31,6 +31,7 @@ import android.text.format.DateFormat
 import androidx.test.rule.GrantPermissionRule
 import com.google.android.things.device.TimeManager
 import org.junit.Rule
+import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -39,8 +40,6 @@ import org.junit.Rule
  */
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTests {
-    @get:Rule
-    val setTimePermissionRule: GrantPermissionRule = GrantPermissionRule.grant(Manifest.permission.SET_TIME)
 
     @Test
     fun useAppContext() {
@@ -49,8 +48,128 @@ class InstrumentedTests {
         assertEquals("dev.corruptedark.diditakemymeds", appContext.packageName)
     }
 
+    //Tests assume test device is using UTC time
+
     @Test
-    fun doseString_isCorrect() {
-        // TODO
+    fun doseString_en_isCorrect() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val locale = Locale.ENGLISH
+        val localizedResources = ResourceLocalizer.localizedResources(appContext, locale)
+
+        val yesterdayString = localizedResources.getString(R.string.yesterday)
+        val todayString = localizedResources.getString(R.string.today)
+        val tomorrowString = localizedResources.getString(R.string.tomorrow)
+        val dateFormat = localizedResources.getString(R.string.date_format)
+
+        val timeFormat24 = localizedResources.getString(R.string.time_24)
+        val timeFormat12 = localizedResources.getString(R.string.time_12)
+
+
+        val doseString24 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            0L,
+            dateFormat,
+            timeFormat24,
+            locale
+        )
+
+        assertEquals("0:00 Jan 1, 1970", doseString24)
+
+        val doseString12 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            0L,
+            dateFormat,
+            timeFormat12,
+            locale
+        )
+
+        assertEquals("12:00AM Jan 1, 1970", doseString12)
+    }
+
+    @Test
+    fun doseString_de_isCorrect() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val locale = Locale.GERMANY
+        val localizedResources = ResourceLocalizer.localizedResources(appContext, locale)
+
+        val yesterdayString = localizedResources.getString(R.string.yesterday)
+        val todayString = localizedResources.getString(R.string.today)
+        val tomorrowString = localizedResources.getString(R.string.tomorrow)
+        val dateFormat = localizedResources.getString(R.string.date_format)
+
+        val timeFormat24 = localizedResources.getString(R.string.time_24)
+        val timeFormat12 = localizedResources.getString(R.string.time_12)
+
+
+        val doseString24 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            23587200000L,
+            dateFormat,
+            timeFormat24,
+            locale
+        )
+
+        assertEquals("0:00 Okt. 1, 1970", doseString24)
+
+        val doseString12 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            23587200000L,
+            dateFormat,
+            timeFormat12,
+            locale
+        )
+
+        assertEquals("12:00AM Okt. 1, 1970", doseString12)
+    }
+
+    @Test
+    fun doseString_pt_BR_isCorrect() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val locale = Locale.Builder().setLanguage("pt").setRegion("BR").build()
+        val localizedResources = ResourceLocalizer.localizedResources(appContext, locale)
+
+        val yesterdayString = localizedResources.getString(R.string.yesterday)
+        val todayString = localizedResources.getString(R.string.today)
+        val tomorrowString = localizedResources.getString(R.string.tomorrow)
+        val dateFormat = localizedResources.getString(R.string.date_format)
+
+        val timeFormat24 = localizedResources.getString(R.string.time_24)
+        val timeFormat12 = localizedResources.getString(R.string.time_12)
+
+
+        val doseString24 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            23587200000L,
+            dateFormat,
+            timeFormat24,
+            locale
+        )
+
+        assertEquals("0:00 out 1, 1970", doseString24)
+
+        val doseString12 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            23587200000L,
+            dateFormat,
+            timeFormat12,
+            locale
+        )
+
+        assertEquals("12:00AM out 1, 1970", doseString12)
     }
 }

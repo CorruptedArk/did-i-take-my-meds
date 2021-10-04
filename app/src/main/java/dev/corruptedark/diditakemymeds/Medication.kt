@@ -26,6 +26,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.lang.StringBuilder
 import java.math.BigInteger
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
@@ -54,8 +55,9 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         const val FALLBACK_TRANSITION_TIME = Long.MAX_VALUE
         const val INVALID_MED_ID = -1L
 
-        fun doseString(context: Context, doseTime: Long): String {
-            val isSystem24Hour = DateFormat.is24HourFormat(context)
+        fun doseString(yesterdayString: String, todayString: String, tomorrowString: String, doseTime: Long, dateFormat: String, timeFormat: String, locale: Locale): String {
+            val localizedFormatter = SimpleDateFormat(dateFormat, locale)
+
             val calendar = Calendar.getInstance()
             val doseCal: Calendar = Calendar.getInstance()
             doseCal.timeInMillis = doseTime
@@ -69,24 +71,21 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
                 if (doseCal.get(Calendar.DATE) == today.get(Calendar.DATE) &&
                     doseCal.get(Calendar.MONTH) == today.get(Calendar.MONTH) &&
                     doseCal.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
-                    context.getString(R.string.today)
+                    todayString
                 }
                 else if (doseCal.get(Calendar.DATE) == yesterday.get(Calendar.DATE) &&
                     doseCal.get(Calendar.MONTH) == yesterday.get(Calendar.MONTH) &&
                     doseCal.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR)) {
-                    context.getString(R.string.yesterday)
+                    yesterdayString
                 } else if (doseCal.get(Calendar.DATE) == tomorrow.get(Calendar.DATE) &&
                     doseCal.get(Calendar.MONTH) == tomorrow.get(Calendar.MONTH) &&
                     doseCal.get(Calendar.YEAR) == tomorrow.get(Calendar.YEAR)) {
-                    context.getString(R.string.tomorrow)
+                    tomorrowString
                 } else {
-                    DateFormat.format(context.getString(R.string.date_format), doseCal) as String
+                    localizedFormatter.format(doseCal.timeInMillis) as String
                 }
 
-            val time = if (isSystem24Hour)
-                DateFormat.format(context.getString(R.string.time_24), doseCal)
-            else
-                DateFormat.format(context.getString(R.string.time_12), doseCal)
+            val time = DateFormat.format(timeFormat, doseCal)
 
             val builder: StringBuilder = StringBuilder()
                 .append(time)

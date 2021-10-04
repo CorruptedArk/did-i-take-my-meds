@@ -23,9 +23,12 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.*
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ListView
@@ -70,6 +73,26 @@ class MedDetailActivity : AppCompatActivity() {
                 medication = MedicationDB.getInstance(context).medicationDao()
                     .get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
 
+                val yesterdayString = context.getString(R.string.yesterday)
+                val todayString = context.getString(R.string.today)
+                val tomorrowString = context.getString(R.string.tomorrow)
+                val dateFormat = context.getString(R.string.date_format)
+
+                val systemIs24Hour = DateFormat.is24HourFormat(context)
+
+                val timeFormat = if (systemIs24Hour) {
+                    context.getString(R.string.time_24)
+                }
+                else {
+                    context.getString(R.string.time_12)
+                }
+
+                val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    Resources.getSystem().configuration.locales[0]
+                } else {
+                    Resources.getSystem().configuration.locale
+                }
+
                 mainScope.launch {
                     nameLabel.text = medication!!.name
 
@@ -84,13 +107,29 @@ class MedDetailActivity : AppCompatActivity() {
                         timeLabel.text =
                             getString(
                                 R.string.next_dose_label,
-                                Medication.doseString(context, nextDose)
+                                Medication.doseString(
+                                    yesterdayString,
+                                    todayString,
+                                    tomorrowString,
+                                    nextDose,
+                                    dateFormat,
+                                    timeFormat,
+                                    locale
+                                )
                             )
                         closestDoseLabel.visibility = View.VISIBLE
                         closestDose = medication!!.calculateClosestDose().timeInMillis
                         closestDoseLabel.text = getString(
                             R.string.closest_dose_label,
-                            Medication.doseString(context, closestDose)
+                            Medication.doseString(
+                                yesterdayString,
+                                todayString,
+                                tomorrowString,
+                                closestDose,
+                                dateFormat,
+                                timeFormat,
+                                locale
+                            )
                         )
                         notificationSwitch.visibility = View.VISIBLE
                         notificationSwitch.isChecked = medication!!.notify
@@ -160,10 +199,40 @@ class MedDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        val yesterdayString = context.getString(R.string.yesterday)
+        val todayString = context.getString(R.string.today)
+        val tomorrowString = context.getString(R.string.tomorrow)
+        val dateFormat = context.getString(R.string.date_format)
+
+        val systemIs24Hour = DateFormat.is24HourFormat(context)
+
+        val timeFormat = if (systemIs24Hour) {
+            context.getString(R.string.time_24)
+        }
+        else {
+            context.getString(R.string.time_12)
+        }
+
+        val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Resources.getSystem().configuration.locales[0]
+        } else {
+            Resources.getSystem().configuration.locale
+        }
+
         previousDosesList.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
             val dialogBuilder = MaterialAlertDialogBuilder(this)
                 .setTitle(getString(R.string.are_you_sure))
-                .setMessage(getString(R.string.dose_record_delete_warning) + "\n\n" + Medication.doseString(context, medication!!.doseRecord[i].doseTime) )
+                .setMessage(
+                    getString(R.string.dose_record_delete_warning) + "\n\n" + Medication.doseString(
+                        yesterdayString,
+                        todayString,
+                        tomorrowString,
+                        medication!!.doseRecord[i].doseTime,
+                        dateFormat,
+                        timeFormat,
+                        locale
+                    )
+                )
                 .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
                     dialog.dismiss()
                 }
@@ -200,6 +269,27 @@ class MedDetailActivity : AppCompatActivity() {
     @Synchronized
     private fun refreshFromDatabase() {
         val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
+
+        val yesterdayString = context.getString(R.string.yesterday)
+        val todayString = context.getString(R.string.today)
+        val tomorrowString = context.getString(R.string.tomorrow)
+        val dateFormat = context.getString(R.string.date_format)
+
+        val systemIs24Hour = DateFormat.is24HourFormat(context)
+
+        val timeFormat = if (systemIs24Hour) {
+            context.getString(R.string.time_24)
+        }
+        else {
+            context.getString(R.string.time_12)
+        }
+
+        val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Resources.getSystem().configuration.locales[0]
+        } else {
+            Resources.getSystem().configuration.locale
+        }
+
         if (MedicationDB.getInstance(this).medicationDao().medicationExists(medId)) {
             medication = MedicationDB.getInstance(context).medicationDao().get(medId)
             medication!!.updateStartsToFuture()
@@ -228,13 +318,29 @@ class MedDetailActivity : AppCompatActivity() {
                     timeLabel.text =
                         getString(
                             R.string.next_dose_label,
-                            Medication.doseString(context, nextDose)
+                            Medication.doseString(
+                                yesterdayString,
+                                todayString,
+                                tomorrowString,
+                                nextDose,
+                                dateFormat,
+                                timeFormat,
+                                locale
+                            )
                         )
                     closestDoseLabel.visibility = View.VISIBLE
                     closestDose = medication!!.calculateClosestDose().timeInMillis
                     closestDoseLabel.text = getString(
                         R.string.closest_dose_label,
-                        Medication.doseString(context, closestDose)
+                        Medication.doseString(
+                            yesterdayString,
+                            todayString,
+                            tomorrowString,
+                            closestDose,
+                            dateFormat,
+                            timeFormat,
+                            locale
+                        )
                     )
                     notificationSwitch.visibility = View.VISIBLE
                     notificationSwitch.isChecked = medication!!.notify
