@@ -51,8 +51,8 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
 
     companion object {
 
-        val FALLBACK_TRANSITION_TIME = Long.MAX_VALUE
-        val INVALID_MED_ID = -1L
+        const val FALLBACK_TRANSITION_TIME = Long.MAX_VALUE
+        const val INVALID_MED_ID = -1L
 
         fun doseString(context: Context, doseTime: Long): String {
             val isSystem24Hour = DateFormat.is24HourFormat(context)
