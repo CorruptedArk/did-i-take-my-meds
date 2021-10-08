@@ -27,7 +27,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class], version = 3)
+@Database(entities = [Medication::class], version = 4)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
 
@@ -37,13 +37,13 @@ abstract  class MedicationDB: RoomDatabase() {
         const val MED_TABLE = "medication"
         const val DATABASE_FILE_EXTENSION = ".db"
         @Volatile private var instance: MedicationDB? = null
-        val MIGRATION_1_2 = object : Migration(1, 2) {
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN notify INTEGER DEFAULT 0 NOT NULL")
             }
         }
 
-        val MIGRATION_2_3 = object : Migration(2, 3) {
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 val cal = Calendar.getInstance()
                 database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN startDay INTEGER DEFAULT ${cal.get(Calendar.DAY_OF_MONTH)} NOT NULL")
@@ -57,6 +57,12 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN requirePhotoProof INTEGER DEFAULT 0 NOT NULL")
+            }
+        }
+
         fun getInstance(context: Context): MedicationDB {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also {
@@ -67,7 +73,7 @@ abstract  class MedicationDB: RoomDatabase() {
 
         private fun buildDatabase(context: Context): MedicationDB {
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build()
         }
 
         fun databaseFileIsValid(context: Context, databaseUri: Uri?): Boolean {
@@ -76,7 +82,7 @@ abstract  class MedicationDB: RoomDatabase() {
                 restoreFileStream.copyTo(context.getDatabasePath(TEST_DATABASE_NAME).outputStream())
                 restoreFileStream.close()
                 val testDatabase = Room.databaseBuilder(context, MedicationDB::class.java, TEST_DATABASE_NAME)
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build()
                 val hasEntries = testDatabase.medicationDao().getAllRaw().isNotEmpty()
                 testDatabase.close()
                 hasEntries

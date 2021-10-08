@@ -51,6 +51,7 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
     private lateinit var asNeededSwitch: SwitchMaterial
+    private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
     private lateinit var detailInput: TextInputEditText
@@ -63,17 +64,19 @@ class AddMedActivity() : AppCompatActivity() {
     private var schedulePickerCaller: View? = null
     private val repeatScheduleList: ArrayList<RepeatSchedule> = ArrayList()
 
-    @Volatile var pickerIsOpen = false
-    var hour = -1
-    var minute = -1
-    var startDay = -1
-    var startMonth = -1
-    var startYear = -1
-    var daysBetween = 1
-    var weeksBetween = 0
-    var monthsBetween = 0
-    var yearsBetween = 0
-    var notify = true
+    @Volatile
+    private var pickerIsOpen = false
+    private var hour = -1
+    private var minute = -1
+    private var startDay = -1
+    private var startMonth = -1
+    private var startYear = -1
+    private var daysBetween = 1
+    private var weeksBetween = 0
+    private var monthsBetween = 0
+    private var yearsBetween = 0
+    private var notify = true
+    private var requirePhotoProof = true
     private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
@@ -86,6 +89,7 @@ class AddMedActivity() : AppCompatActivity() {
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
+        requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
         notificationSwitch = findViewById(R.id.notification_switch)
         detailInput = findViewById(R.id.med_detail)
@@ -130,8 +134,13 @@ class AddMedActivity() : AppCompatActivity() {
             }
         }
 
-        repeatScheduleButton.setOnClickListener {
-            openSchedulePicker(it)
+        requirePhotoProofSwitch.isChecked = requirePhotoProof
+        requirePhotoProofSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            requirePhotoProof = isChecked
+        }
+
+        repeatScheduleButton.setOnClickListener {   view ->
+            openSchedulePicker(view)
         }
 
         notificationSwitch.setOnCheckedChangeListener { switchView, isChecked ->
@@ -283,7 +292,7 @@ class AddMedActivity() : AppCompatActivity() {
             false
         }
         else {
-            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify)
+            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify, requirePhotoProof = requirePhotoProof)
             medication.moreDosesPerDay = repeatScheduleList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAllRaw().last()

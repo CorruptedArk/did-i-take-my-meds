@@ -87,5 +87,6 @@
     <string name="record_delete_hint">(Long click a record to delete it)</string>
     <string name="time_since_dose_sample">Approximately 0 day(s), 0 hour(s), and 0 minute(s) since last taken dose</string>
     <string name="time_since_dose_template">Approximately %1$d day(s), %2$d hour(s), and %3$d minute(s) since last taken dose</string>
+    <string name="require_photo_proof">Require photo proof</string>
 
 </resources>

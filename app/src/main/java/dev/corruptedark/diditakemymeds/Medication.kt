@@ -44,7 +44,9 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
                        @ColumnInfo(name = "weeksBetween") var weeksBetween: Int = 0,
                        @ColumnInfo(name = "monthsBetween") var monthsBetween: Int = 0,
                        @ColumnInfo(name = "yearsBetween") var yearsBetween: Int = 0,
-                       @ColumnInfo(name = "notify") var notify: Boolean = true) {
+                       @ColumnInfo(name = "notify") var notify: Boolean = true,
+                       @ColumnInfo(name = "requirePhotoProof") var requirePhotoProof: Boolean = true
+) {
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
