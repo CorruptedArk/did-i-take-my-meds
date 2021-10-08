@@ -20,6 +20,7 @@ package dev.corruptedark.diditakemymeds
 
 import android.app.AlarmManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -250,6 +251,14 @@ class EditMedActivity : AppCompatActivity() {
                         notificationSwitch.visibility = View.VISIBLE
                         repeatScheduleButton.visibility = View.VISIBLE
                     }
+                }
+
+                if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+                    requirePhotoProofSwitch.visibility = View.VISIBLE
+                }
+                else {
+                    requirePhotoProofSwitch.visibility = View.GONE
+                    requirePhotoProof = false
                 }
 
                 requirePhotoProof = medication.requirePhotoProof

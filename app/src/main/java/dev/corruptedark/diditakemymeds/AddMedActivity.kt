@@ -134,6 +134,14 @@ class AddMedActivity() : AppCompatActivity() {
             }
         }
 
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+            requirePhotoProofSwitch.visibility = View.VISIBLE
+        }
+        else {
+            requirePhotoProofSwitch.visibility = View.GONE
+            requirePhotoProof = false
+        }
+
         requirePhotoProofSwitch.isChecked = requirePhotoProof
         requirePhotoProofSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             requirePhotoProof = isChecked

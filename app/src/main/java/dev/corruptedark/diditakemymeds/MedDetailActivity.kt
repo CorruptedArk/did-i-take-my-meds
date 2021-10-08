@@ -459,32 +459,28 @@ class MedDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun justTookItButtonPressed() {
+    private fun createAndSaveDose() {
         val calendar = Calendar.getInstance()
-        medication!!.updateStartsToFuture()
-        if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
-            Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
+        val newDose = if (medication!!.isAsNeeded()) {
+            DoseRecord(calendar.timeInMillis)
         } else {
-            val newDose = if (medication!!.isAsNeeded()) {
-                DoseRecord(calendar.timeInMillis)
-            } else {
-                justTookItButton.text = getString(R.string.took_this_already)
-                DoseRecord(
-                    calendar.timeInMillis,
-                    medication!!.calculateClosestDose().timeInMillis
-                )
-            }
+            justTookItButton.text = getString(R.string.took_this_already)
+            DoseRecord(
+                calendar.timeInMillis,
+                medication!!.calculateClosestDose().timeInMillis
+            )
+        }
 
-            doseRecordAdapter.notifyDataSetChanged()
-            medication!!.addNewTakenDose(newDose)
-            GlobalScope.launch(dispatcher) {
-                val db = MedicationDB.getInstance(context)
-                db.medicationDao().updateMedications(medication!!)
-                with(NotificationManagerCompat.from(context.applicationContext)) {
-                    cancel(medication!!.id.toInt())
-                }
+        doseRecordAdapter.notifyDataSetChanged()
+        medication!!.addNewTakenDose(newDose)
+        GlobalScope.launch(dispatcher) {
+            val db = MedicationDB.getInstance(context)
+            db.medicationDao().updateMedications(medication!!)
+            with(NotificationManagerCompat.from(context.applicationContext)) {
+                cancel(medication!!.id.toInt())
             }
         }
+
         if (!doseRecordAdapter.isEmpty) {
             val sampleView = doseRecordAdapter.getView(0, null, previousDosesList)
             sampleView.measure(0, 0)
@@ -495,6 +491,27 @@ class MedDetailActivity : AppCompatActivity() {
                     LinearLayoutCompat.LayoutParams.MATCH_PARENT,
                     height
                 )
+        }
+    }
+
+    private fun justTookItButtonPressed() {
+
+        medication!!.updateStartsToFuture()
+        if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
+            Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
+        }
+        else {
+            if(medication!!.requirePhotoProof) {
+                /*
+                    TODO:
+                        - Attempt to take a picture
+                        - If picture is successfully taken, save it, and make a new dose
+                        - If not, do nothing
+                */
+            }
+            else {
+                createAndSaveDose()
+            }
         }
     }
 
