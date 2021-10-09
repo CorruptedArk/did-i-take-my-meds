@@ -1,3 +1,19 @@
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
 <resources>
     <string name="app_name">Did I Take My Meds?</string>
     <string name="add">Neu</string>
@@ -20,7 +36,6 @@
     <string name="previous_doses">Vorherige Einnahme:</string>
     <string name="i_just_took_it">Jetzt einnehmen!</string>
     <string name="closest_dose_sample">Dosis geplant um: 1:00PM heute</string>
-    <string name="med_position_key">medication_position</string>
     <string name="today">Heute</string>
     <string name="yesterday">Gestern</string>
     <string name="tomorrow">Morgen</string>
@@ -39,7 +54,6 @@
     <string name="notifications_disabled">Benachrichtigungen deaktiviert</string>
     <string name="channel_name">did_i_take_my_meds</string>
     <string name="channel_description">Erinnerungsnotifikationen</string>
-    <string name="med_id_key">med_id</string>
     <string name="time_for_your_dose">Zeit für deine Dosis</string>
     <string name="new_medication">Neues Medikament</string>
     <string name="medication_details">Details zur Medikation</string>
@@ -54,7 +68,6 @@
     <string name="sorry">Entschuldigung!</string>
     <string name="okay">Ok</string>
     <string name="cannot_donate_explanation">Google erlaubt es Entwicklern nicht, Spendenlinks in Apps zu platzieren, um sich selbst zu unterstützen, wenn es sich nicht um steuerbefreite Wohltätigkeitsorganisationen handelt. Wenn Sie mich trotzdem unterstützen wollen, können Sie CorruptedArk auf Liberapay in einem separaten Browser aufrufen. Mein GitHub-Repository ist ein guter Startpunkt.</string>
-    <string name="last_version_used_key">last_version_used</string>
     <string name="add_another_dose">Weitere Dosis hinzufügen</string>
     <string name="taken_as_needed">Einnahme nach Bedarf</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -75,7 +88,6 @@
     <string name="taken">Eingenommen</string>
     <string name="not_taken">Nicht eingenommen</string>
     <string name="sort">Sortieren</string>
-    <string name="sort_key">Sort</string>
     <string name="restore_database">Datenbank wiederherstellen</string>
     <string name="back_up_database">Datenbank sichern</string>
     <string name="database_is_invalid">Datenbank ist ungültig</string>

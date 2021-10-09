@@ -76,7 +76,7 @@ class EditMedActivity : AppCompatActivity() {
     private var yearsBetween = 0
     private var notify = true
     private var requirePhotoProof = true
-    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     lateinit var medication: Medication
 
@@ -105,7 +105,7 @@ class EditMedActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        GlobalScope.launch(dispatcher) {
+        lifecycleScope.launch(lifecycleDispatcher) {
             medication = MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
             medication.updateStartsToFuture()
 
@@ -404,7 +404,7 @@ class EditMedActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.save -> {
-                GlobalScope.launch(dispatcher) {
+                lifecycleScope.launch(lifecycleDispatcher) {
                     if (saveMedication())
                         finish()
                 }

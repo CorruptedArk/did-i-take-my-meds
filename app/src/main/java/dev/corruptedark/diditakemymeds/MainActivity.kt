@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
     private val MAXIMUM_DELAY = 60000L // 1 minute in milliseconds
     private val MINIMUM_DELAY = 1000L // 1 second in milliseconds
     @Volatile private var medications: MutableList<Medication>? = null
-    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val context = this
     private val mainScope = MainScope()
@@ -71,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             val restoreUri: Uri? = result.data?.data
 
             if (result.resultCode == Activity.RESULT_OK) {
-                GlobalScope.launch(dispatcher) {
+                lifecycleScope.launch(lifecycleDispatcher) {
                         if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
                             MedicationDB.getInstance(applicationContext).close()
                             MedicationDB.wipeInstance()
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                             mainScope.launch {
                                 MedicationDB.getInstance(applicationContext).medicationDao().getAll()
                                     .observe(context, { medicationList ->
-                                        GlobalScope.launch(dispatcher) {
+                                        lifecycleScope.launch(lifecycleDispatcher) {
                                             refreshFromDatabase(medicationList)
                                         }
                                     })
@@ -181,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         medListView.setFooterDividersEnabled(false)
         MedicationDB.getInstance(applicationContext).medicationDao().getAll()
             .observe(context, { medicationList ->
-                GlobalScope.launch(dispatcher) {
+                lifecycleScope.launch(lifecycleDispatcher) {
                     refreshFromDatabase(medicationList)
                 }
             })
@@ -190,7 +189,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
-        GlobalScope.launch(dispatcher) {
+        lifecycleScope.launch(lifecycleDispatcher) {
 
             val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val sharedPref = getPreferences(Context.MODE_PRIVATE)
@@ -211,7 +210,7 @@ class MainActivity : AppCompatActivity() {
                 MedicationDB.getInstance(context).medicationDao().getAllRaw()
                     .forEach { medication ->
                         if (medication.notify) {
-                            GlobalScope.launch(dispatcher) {
+                            lifecycleScope.launch(lifecycleDispatcher) {
                                 //Create alarm
                                 alarmIntent =
                                     AlarmIntentManager.buildNotificationAlarm(context, medication)

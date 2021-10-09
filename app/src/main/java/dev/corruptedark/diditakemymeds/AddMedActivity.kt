@@ -39,7 +39,6 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.timepicker.TimeFormat
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -77,7 +76,7 @@ class AddMedActivity() : AppCompatActivity() {
     private var yearsBetween = 0
     private var notify = true
     private var requirePhotoProof = true
-    private val dispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
     private val mainScope = MainScope()
@@ -271,7 +270,7 @@ class AddMedActivity() : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.save -> {
-                GlobalScope.launch(dispatcher) {
+                lifecycleScope.launch(lifecycleDispatcher) {
                     if (saveMedication())
                         finish()
                 }

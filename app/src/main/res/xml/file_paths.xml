@@ -15,20 +15,11 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.-->
-<resources>
-    <color name="purple_200">#FFCBA6F8</color>
-    <color name="purple_500">#FFAC84E6</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="sub_purple">#FFF684FE</color>
-    <color name="background">#FF101010</color>
-    <color name="liberapay">#FFFFE931</color>
-    <color name="github">#FF69A4EF</color>
-    <color name="item_background">#FF252525</color>
-    <color name="notification_bar">#FF2B00A7</color>
-    <color name="notification_icon_color">#FF511D9A</color>
-    <color name="floating_action_button">#FF6200EE</color>
-</resources>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <files-path
+        name="files"
+        path="." />
+    <files-path
+        name="image_path"
+        path="@string/image_path" />
+</paths>

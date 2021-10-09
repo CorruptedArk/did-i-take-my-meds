@@ -25,9 +25,11 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.view.*
 import android.widget.AdapterView
@@ -36,6 +38,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.FileProvider
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
@@ -46,9 +49,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.*
+import java.io.File
+import java.io.IOException
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import kotlin.jvm.Throws
+import kotlinx.coroutines.launch
 
 class MedDetailActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
@@ -69,7 +76,7 @@ class MedDetailActivity : AppCompatActivity() {
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val editResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            GlobalScope.launch(dispatcher) {
+            lifecycleScope.launch(lifecycleDispatcher) {
                 medication = MedicationDB.getInstance(context).medicationDao()
                     .get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
 
@@ -165,16 +172,29 @@ class MedDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    private val photoResultStarter = registerForActivityResult(ActivityResultContracts.TakePicture()) { pictureTaken ->
+        if (pictureTaken) {
+            //TODO - Save picture
+            createAndSaveDose()
+        }
+        else {
+            //TODO - Display an error message
+        }
+    }
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
     private val context = this
     private val mainScope = MainScope()
     private var refreshJob: Job? = null
+    private var currentPhotoPath: String? = null
 
     private val MAXIMUM_DELAY = 60000L // 1 minute in milliseconds
     private val MINIMUM_DELAY = 1000L // 1 second in milliseconds
     private val DAY_TO_HOURS = 24
     private val HOUR_TO_MINUTES = 60
+
+    private val IMAGE_NAME_SEPARATOR = "_"
+    private val IMAGE_EXTENSION = ".jpg"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -237,7 +257,7 @@ class MedDetailActivity : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
-                    GlobalScope.launch(dispatcher) {
+                    lifecycleScope.launch(lifecycleDispatcher) {
                         medication!!.doseRecord.removeAt(i)
                         MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
                     }
@@ -252,13 +272,13 @@ class MedDetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        GlobalScope.launch(dispatcher) {
+        lifecycleScope.launch(lifecycleDispatcher) {
             refreshFromDatabase()
             if(medication != null)
                 MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
         }
         MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {
-            GlobalScope.launch(dispatcher) {
+            lifecycleScope.launch(lifecycleDispatcher) {
                 refreshFromDatabase()
             }
         })
@@ -346,7 +366,7 @@ class MedDetailActivity : AppCompatActivity() {
                     notificationSwitch.isChecked = medication!!.notify
                     notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                         medication!!.notify = isChecked
-                        GlobalScope.launch(dispatcher) {
+                        lifecycleScope.launch(lifecycleDispatcher) {
                             MedicationDB.getInstance(context).medicationDao()
                                 .updateMedications(medication!!)
                         }
@@ -436,7 +456,7 @@ class MedDetailActivity : AppCompatActivity() {
                     }
                     .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
 
-                        GlobalScope.launch(dispatcher) {
+                        lifecycleScope.launch(lifecycleDispatcher) {
                             val db = MedicationDB.getInstance(context)
                             db.medicationDao().delete(medication!!)
                             alarmManager?.cancel(alarmIntent)
@@ -459,6 +479,52 @@ class MedDetailActivity : AppCompatActivity() {
         }
     }
 
+    @Throws(IOException::class)
+    private fun createImageFile(medId: Long, doseTime: Long): File {
+        val medIdString = medId.toString()
+        val doseTimeString = doseTime.toString()
+        val storageDir = File(filesDir.path + File.separator + getString(R.string.image_path))
+        if (!storageDir.exists()) {
+            try {
+                storageDir.mkdir()
+            }
+            catch (exception: SecurityException) {
+                exception.printStackTrace()
+            }
+        }
+        return File.createTempFile(
+            medIdString + IMAGE_NAME_SEPARATOR + doseTimeString,
+            IMAGE_EXTENSION,
+            storageDir
+        ).apply {
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    private fun startTakePictureIntent(medId: Long, doseTime: Long) {
+        lifecycleScope.launch(lifecycleDispatcher) {
+            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                takePictureIntent.resolveActivity(packageManager)?.also {
+
+                    val photoFile: File? = withContext(Dispatchers.IO) {
+                        runCatching {
+                            createImageFile(medId, doseTime)
+                        }
+                    }.getOrNull()
+
+                    photoFile?.also { file ->
+                        val photoURI: Uri = FileProvider.getUriForFile(
+                            context,
+                            getString(R.string.file_provider),
+                            file
+                        )
+                        photoResultStarter.launch(photoURI)
+                    }
+                }
+            }
+        }
+    }
+
     private fun createAndSaveDose() {
         val calendar = Calendar.getInstance()
         val newDose = if (medication!!.isAsNeeded()) {
@@ -473,7 +539,7 @@ class MedDetailActivity : AppCompatActivity() {
 
         doseRecordAdapter.notifyDataSetChanged()
         medication!!.addNewTakenDose(newDose)
-        GlobalScope.launch(dispatcher) {
+        lifecycleScope.launch(lifecycleDispatcher) {
             val db = MedicationDB.getInstance(context)
             db.medicationDao().updateMedications(medication!!)
             with(NotificationManagerCompat.from(context.applicationContext)) {
@@ -503,11 +569,12 @@ class MedDetailActivity : AppCompatActivity() {
         else {
             if(medication!!.requirePhotoProof) {
                 /*
-                    TODO:
-                        - Attempt to take a picture
-                        - If picture is successfully taken, save it, and make a new dose
-                        - If not, do nothing
+               TODO:
+                   - Attempt to take a picture
+                   - If picture is successfully taken, save it, and make a new dose
+                   - If not, do nothing
                 */
+                startTakePictureIntent(medication!!.id, System.currentTimeMillis())
             }
             else {
                 createAndSaveDose()
