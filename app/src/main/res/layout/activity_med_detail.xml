@@ -111,7 +111,8 @@
                 android:textColor="@color/purple_200"
                 app:autoSizeTextType="uniform"
                 android:textSize="23sp"
-                android:padding="10dp"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
                 android:gravity="center_horizontal"
                 android:text="@string/time_since_dose_sample"/>
 
