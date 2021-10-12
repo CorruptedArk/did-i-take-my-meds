@@ -19,30 +19,11 @@
 
 package dev.corruptedark.diditakemymeds
 
-import androidx.lifecycle.LiveData
-import androidx.room.*
-import dev.corruptedark.diditakemymeds.MedicationDB.Companion.MED_TABLE
+import androidx.room.Entity
 
-@Dao
-interface MedicationDao {
-    @Insert
-    fun insertAll(vararg medications: Medication)
-
-    @Update
-    fun updateMedications(vararg medications: Medication)
-
-    @Delete
-    fun delete(medication: Medication)
-
-    @Query("SELECT * FROM $MED_TABLE WHERE id = :medId LIMIT 1")
-    fun get(medId: Long): Medication
-
-    @Query("SELECT * FROM $MED_TABLE")
-    fun getAll(): LiveData<MutableList<Medication>>
-
-    @Query("SELECT * FROM $MED_TABLE")
-    fun getAllRaw(): MutableList<Medication>
-
-    @Query("SELECT EXISTS(SELECT * FROM $MED_TABLE WHERE id = :medId)")
-    fun medicationExists(medId: Long): Boolean
-}
+@Entity(tableName = "proofImage", primaryKeys = ["medId", "doseTime"])
+data class ProofImage(
+    val medId: Long,
+    val doseTime: Long,
+    val filePath: String
+)

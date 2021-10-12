@@ -27,14 +27,16 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class], version = 4)
+@Database(entities = [Medication::class, ProofImage::class], version = 5)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
+    abstract fun proofImageDao(): ProofImageDao
 
     companion object {
         const val DATABASE_NAME = "medications"
         const val TEST_DATABASE_NAME = "test"
         const val MED_TABLE = "medication"
+        const val IMAGE_TABLE = "proofImage"
         const val DATABASE_FILE_EXTENSION = ".db"
         @Volatile private var instance: MedicationDB? = null
         private val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -63,6 +65,12 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS $IMAGE_TABLE (medId INTEGER NOT NULL, doseTime INTEGER NOT NULL, filePath TEXT NOT NULL, PRIMARY KEY(medId, doseTime))")
+            }
+        }
+
         fun getInstance(context: Context): MedicationDB {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also {
@@ -73,7 +81,7 @@ abstract  class MedicationDB: RoomDatabase() {
 
         private fun buildDatabase(context: Context): MedicationDB {
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build()
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5).build()
         }
 
         fun databaseFileIsValid(context: Context, databaseUri: Uri?): Boolean {
