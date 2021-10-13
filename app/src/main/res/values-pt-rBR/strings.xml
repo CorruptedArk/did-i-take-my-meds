@@ -100,5 +100,8 @@
     <string name="time_since_dose_sample">Approximately 0 day(s), 0 hour(s), and 0 minute(s) since last taken dose</string>
     <string name="time_since_dose_template">Approximately %1$d day(s), %2$d hour(s), and %3$d minute(s) since last taken dose</string>
     <string name="require_photo_proof">Require photo proof</string>
+    <string name="dose_and_proof_saved">Dose and proof saved</string>
+    <string name="failed_to_get_proof">Failed to get proof</string>
+    <string name="no_image_available">No image available</string>
 
 </resources>

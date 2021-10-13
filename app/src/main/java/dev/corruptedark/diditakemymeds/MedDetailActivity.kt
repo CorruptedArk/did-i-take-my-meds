@@ -72,7 +72,6 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var doseRecordAdapter: DoseRecordListAdapter
     private val calendar = Calendar.getInstance()
     private var closestDose: Long = -1L
-    private var dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val editResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -174,11 +173,20 @@ class MedDetailActivity : AppCompatActivity() {
         }
     private val photoResultStarter = registerForActivityResult(ActivityResultContracts.TakePicture()) { pictureTaken ->
         if (pictureTaken) {
-            //TODO - Save picture
-            createAndSaveDose()
+            val dose = createDose()
+            val proofImage = ProofImage(medication!!.id, dose.doseTime, currentPhotoPath!!)
+            saveDose(dose)
+            lifecycleScope.launch (lifecycleDispatcher) {
+                MedicationDB.getInstance(context).proofImageDao().insertAll(proofImage)
+                mainScope.launch {
+                    Toast.makeText(context, getString(R.string.dose_and_proof_saved), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
         else {
-            //TODO - Display an error message
+            mainScope.launch {
+                Toast.makeText(context, getString(R.string.failed_to_get_proof), Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private var alarmManager: AlarmManager? = null
@@ -265,6 +273,13 @@ class MedDetailActivity : AppCompatActivity() {
 
             dialogBuilder.show()
             true
+        }
+
+        previousDosesList.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(context, DoseDetailActivity::class.java)
+            intent.putExtra(getString(R.string.med_id_key), medication!!.id)
+            intent.putExtra(getString(R.string.dose_time_key), medication!!.doseRecord[position].doseTime)
+            startActivity(intent)
         }
 
         outerScroll = findViewById(R.id.outer_scroll)
@@ -525,20 +540,26 @@ class MedDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun createAndSaveDose() {
+    private fun createDose(): DoseRecord {
         val calendar = Calendar.getInstance()
-        val newDose = if (medication!!.isAsNeeded()) {
+        return if (medication!!.isAsNeeded()) {
             DoseRecord(calendar.timeInMillis)
         } else {
-            justTookItButton.text = getString(R.string.took_this_already)
             DoseRecord(
                 calendar.timeInMillis,
                 medication!!.calculateClosestDose().timeInMillis
             )
         }
+    }
+
+    private fun saveDose(newDose: DoseRecord) {
+        medication!!.addNewTakenDose(newDose)
+
+        if (!medication!!.isAsNeeded()) {
+            justTookItButton.text = getString(R.string.took_this_already)
+        }
 
         doseRecordAdapter.notifyDataSetChanged()
-        medication!!.addNewTakenDose(newDose)
         lifecycleScope.launch(lifecycleDispatcher) {
             val db = MedicationDB.getInstance(context)
             db.medicationDao().updateMedications(medication!!)
@@ -568,16 +589,10 @@ class MedDetailActivity : AppCompatActivity() {
         }
         else {
             if(medication!!.requirePhotoProof) {
-                /*
-               TODO:
-                   - Attempt to take a picture
-                   - If picture is successfully taken, save it, and make a new dose
-                   - If not, do nothing
-                */
                 startTakePictureIntent(medication!!.id, System.currentTimeMillis())
             }
             else {
-                createAndSaveDose()
+                saveDose(createDose())
             }
         }
     }
