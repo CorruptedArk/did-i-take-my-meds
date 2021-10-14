@@ -41,6 +41,7 @@ class DoseDetailActivity : AppCompatActivity() {
     private lateinit var proofImageView: AppCompatImageView
     private lateinit var noImageLabel: MaterialTextView
     private val mainScope = MainScope()
+    private var imageFolder: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +50,22 @@ class DoseDetailActivity : AppCompatActivity() {
         proofImageView = findViewById(R.id.proof_image_view)
         noImageLabel = findViewById(R.id.no_image_label)
 
+        imageFolder = File(filesDir.path + File.separator + getString(R.string.image_path))
+
         val medId = intent.getLongExtra(getString(R.string.med_id_key), Medication.INVALID_MED_ID)
         val doseTime = intent.getLongExtra(getString(R.string.dose_time_key), DoseRecord.INVALID_TIME)
 
         lifecycleScope.launch (lifecycleDispatcher) {
             proofImage = MedicationDB.getInstance(context).proofImageDao().get(medId, doseTime)
-            if(proofImage != null){
-                val imageFile = File(proofImage!!.filePath)
-                mainScope.launch {
-                    proofImageView.setImageURI(imageFile.toUri())
-                    noImageLabel.visibility = View.GONE
-                    proofImageView.visibility = View.VISIBLE
+            val imageDir = imageFolder
+            if(proofImage != null && imageDir != null){
+                val imageFile = File(imageDir.absolutePath + File.separator + proofImage!!.filePath)
+                if (imageFile.exists() && imageFile.canRead()) {
+                    mainScope.launch {
+                        proofImageView.setImageURI(imageFile.toUri())
+                        noImageLabel.visibility = View.GONE
+                        proofImageView.visibility = View.VISIBLE
+                    }
                 }
             }
             else {

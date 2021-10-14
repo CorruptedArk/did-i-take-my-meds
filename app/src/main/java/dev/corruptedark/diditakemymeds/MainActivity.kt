@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             result.resultCode
         }
 
+    //TODO - Make restoring include proof images and also keep backwards compatibility
     private val restoreResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val restoreUri: Uri? = result.data?.data
@@ -114,6 +115,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    //TODO - Make backups include proof images
     private val backUpResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val backupUri: Uri? = result.data?.data

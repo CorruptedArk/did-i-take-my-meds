@@ -203,11 +203,13 @@ class MedDetailActivity : AppCompatActivity() {
 
     private val IMAGE_NAME_SEPARATOR = "_"
     private val IMAGE_EXTENSION = ".jpg"
+    private var imageFolder: File? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_detail)
+        imageFolder = File(filesDir.path + File.separator + getString(R.string.image_path))
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         toolbar = findViewById(R.id.toolbar)
         nameLabel = findViewById(R.id.name_label)
@@ -266,6 +268,17 @@ class MedDetailActivity : AppCompatActivity() {
                 }
                 .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
                     lifecycleScope.launch(lifecycleDispatcher) {
+                        val medId = medication!!.id
+                        val doseTime = medication!!.doseRecord[i].doseTime
+
+                        if (MedicationDB.getInstance(context).proofImageDao().proofImageExists(medId, doseTime)) {
+                            val proofImage = MedicationDB.getInstance(context).proofImageDao().get(medId, doseTime)
+                            imageFolder?.apply {
+                                proofImage.deleteImageFile(imageFolder!!)
+                            }
+                            MedicationDB.getInstance(context).proofImageDao().delete(proofImage)
+                        }
+
                         medication!!.doseRecord.removeAt(i)
                         MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
                     }
@@ -473,6 +486,17 @@ class MedDetailActivity : AppCompatActivity() {
 
                         lifecycleScope.launch(lifecycleDispatcher) {
                             val db = MedicationDB.getInstance(context)
+
+                            val proofImages = db.proofImageDao().getProofImagesByMedId(medication!!.id)
+                            proofImages.forEach { proofImage ->
+                                withContext(Dispatchers.IO) {
+                                    imageFolder?.apply {
+                                        proofImage.deleteImageFile(imageFolder!!)
+                                    }
+                                    db.proofImageDao().delete(proofImage)
+                                }
+                            }
+
                             db.medicationDao().delete(medication!!)
                             alarmManager?.cancel(alarmIntent)
                             finish()
@@ -498,8 +522,8 @@ class MedDetailActivity : AppCompatActivity() {
     private fun createImageFile(medId: Long, doseTime: Long): File {
         val medIdString = medId.toString()
         val doseTimeString = doseTime.toString()
-        val storageDir = File(filesDir.path + File.separator + getString(R.string.image_path))
-        if (!storageDir.exists()) {
+        val storageDir = imageFolder
+        if (storageDir != null && !storageDir.exists()) {
             try {
                 storageDir.mkdir()
             }
@@ -512,7 +536,7 @@ class MedDetailActivity : AppCompatActivity() {
             IMAGE_EXTENSION,
             storageDir
         ).apply {
-            currentPhotoPath = absolutePath
+            currentPhotoPath = name
         }
     }
 

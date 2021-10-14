@@ -40,6 +40,7 @@
         android:theme="@style/Theme.DidITakeMyMeds"
         android:allowBackup="true"
         android:fullBackupOnly="true">
+        <activity android:name=".DoseDetailActivity"/>
         <activity android:name=".AboutActivity"
             android:label="@string/about"/>
         <activity
