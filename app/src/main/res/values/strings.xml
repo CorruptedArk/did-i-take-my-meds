@@ -110,5 +110,6 @@
     <string name="failed_to_get_proof">Failed to get proof</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
     <string name="no_image_available">No image available</string>
+    <string name="temp_dir" translatable="false">tmp</string>
 
 </resources>

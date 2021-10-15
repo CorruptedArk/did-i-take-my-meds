@@ -36,8 +36,10 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
+import java.io.File
 //import kotlinx.coroutines.*
 import java.util.concurrent.Executors
 
@@ -59,6 +61,8 @@ class MainActivity : AppCompatActivity() {
     private val context = this
     private val mainScope = MainScope()
     private var refreshJob: Job? = null
+    private var imageDir: File? = null
+    private var tempDir: File? = null
 
     private val activityResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -120,15 +124,44 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val backupUri: Uri? = result.data?.data
 
-            if (result.resultCode == Activity.RESULT_OK) {
-                if (backupUri != null && backupUri.path != null) {
+            val tempFolder = tempDir
+            val imageFolder = imageDir
 
-                    MedicationDB.getInstance(this).close()
+            if (result.resultCode == Activity.RESULT_OK && backupUri != null && backupUri.path != null && tempFolder != null && imageFolder != null) {
+                lifecycleScope.launch (lifecycleDispatcher){
+                    withContext(Dispatchers.IO) {
+                        MedicationDB.getInstance(context).close()
 
-                    val backupFileStream = contentResolver.openOutputStream(backupUri)!!
-                    getDatabasePath(MedicationDB.DATABASE_NAME).inputStream()
-                        .copyTo(backupFileStream)
-                    backupFileStream.close()
+                        runCatching {
+                            if (!tempFolder.exists()) {
+                                tempFolder.mkdir()
+                            }
+
+                            tempFolder.listFiles()?.iterator()?.forEach { entry ->
+                                entry.deleteRecursively()
+                            }
+
+                            val tempDBStream = contentResolver.openOutputStream(tempFolder.toUri())!!
+                            getDatabasePath(MedicationDB.DATABASE_NAME).inputStream()
+                                .copyTo(tempDBStream)
+                            tempDBStream.close()
+
+
+                            imageFolder.copyRecursively(tempFolder, true)
+
+                            //TODO - Create zip from temp folder and copy it to the backup location
+                            //TODO - Also update the backup file extension to .zip instead of .db
+
+                            val backupFileStream = contentResolver.openOutputStream(backupUri)!!
+                            getDatabasePath(MedicationDB.DATABASE_NAME).inputStream()
+                                .copyTo(backupFileStream)
+                            backupFileStream.close()
+
+                            tempFolder.deleteRecursively()
+                        }.onFailure { exception ->
+                            exception.printStackTrace()
+                        }
+                    }
                 }
             }
         }
@@ -158,6 +191,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         setContentView(R.layout.activity_main)
+        tempDir = File(filesDir.path + File.separator + getString(R.string.temp_dir))
+        imageDir = File(filesDir.path + File.separator + getString(R.string.image_path))
         medListView = findViewById(R.id.med_list_view)
         listEmptyLabel = findViewById(R.id.list_empty_label)
         addMedButton = findViewById(R.id.add_med_button)

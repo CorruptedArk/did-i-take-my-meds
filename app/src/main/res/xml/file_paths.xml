@@ -22,4 +22,7 @@
     <files-path
         name="image_path"
         path="@string/image_path" />
+    <files-path
+        name="tmp"
+        path="@string/temp_dir" />
 </paths>
