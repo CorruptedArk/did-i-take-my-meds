@@ -36,6 +36,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.net.Uri
+import androidx.core.net.toFile
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
@@ -118,8 +119,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-    //TODO - Make backups include proof images
+    
     private val backUpResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val backupUri: Uri? = result.data?.data
@@ -128,38 +128,39 @@ class MainActivity : AppCompatActivity() {
             val imageFolder = imageDir
 
             if (result.resultCode == Activity.RESULT_OK && backupUri != null && backupUri.path != null && tempFolder != null && imageFolder != null) {
-                lifecycleScope.launch (lifecycleDispatcher){
-                    withContext(Dispatchers.IO) {
+                lifecycleScope.launch(lifecycleDispatcher) {
+
+                    runCatching {
+                        refreshJob?.cancel()
                         MedicationDB.getInstance(context).close()
+                        MedicationDB.wipeInstance()
 
-                        runCatching {
-                            if (!tempFolder.exists()) {
-                                tempFolder.mkdir()
-                            }
+                        if (!tempFolder.exists()) {
+                            tempFolder.mkdir()
+                        }
 
-                            tempFolder.listFiles()?.iterator()?.forEach { entry ->
-                                entry.deleteRecursively()
-                            }
+                        tempFolder.listFiles()?.iterator()?.forEach { entry ->
+                            entry.deleteRecursively()
+                        }
 
-                            val tempDBStream = contentResolver.openOutputStream(tempFolder.toUri())!!
-                            getDatabasePath(MedicationDB.DATABASE_NAME).inputStream()
-                                .copyTo(tempDBStream)
-                            tempDBStream.close()
+                        val databaseFile = getDatabasePath(MedicationDB.DATABASE_NAME)
+                        databaseFile.copyTo(File(tempFolder.path + File.separator + databaseFile.name))
 
+                        imageFolder.copyRecursively(File(tempFolder.path + File.separator + imageFolder.name), true)
 
-                            imageFolder.copyRecursively(tempFolder, true)
+                        contentResolver.openOutputStream(backupUri)?.use { outputStream ->
+                            ZipFileManager.streamZipFromFolder(tempFolder, outputStream)
+                        }
 
-                            //TODO - Create zip from temp folder and copy it to the backup location
-                            //TODO - Also update the backup file extension to .zip instead of .db
-
-                            val backupFileStream = contentResolver.openOutputStream(backupUri)!!
-                            getDatabasePath(MedicationDB.DATABASE_NAME).inputStream()
-                                .copyTo(backupFileStream)
-                            backupFileStream.close()
-
-                            tempFolder.deleteRecursively()
-                        }.onFailure { exception ->
-                            exception.printStackTrace()
+                        tempFolder.deleteRecursively()
+                    }.onFailure { exception ->
+                        exception.printStackTrace()
+                        if (refreshJob == null || !refreshJob!!.isActive) {
+                            refreshJob = startRefresherLoop()
+                        }
+                    }.onSuccess {
+                        if (refreshJob == null || !refreshJob!!.isActive) {
+                            refreshJob = startRefresherLoop()
                         }
                     }
                 }
@@ -288,9 +289,7 @@ class MainActivity : AppCompatActivity() {
             listEmptyLabel.visibility = View.GONE
         }
         lifecycleScope.launch(lifecycleDispatcher) {
-            MedicationDB.getInstance(context).medicationDao().getAllRaw().forEach { medication ->
-                refreshJob = startRefresherLoop()
-            }
+            refreshJob = startRefresherLoop()
         }
         super.onResume()
     }
@@ -384,7 +383,7 @@ class MainActivity : AppCompatActivity() {
         intent.type = Intent.normalizeMimeType("application/octet-stream")
         intent.putExtra(
             Intent.EXTRA_TITLE,
-            MedicationDB.DATABASE_NAME + MedicationDB.DATABASE_FILE_EXTENSION
+            MedicationDB.DATABASE_NAME + ZipFileManager.ZIP_FILE_EXTENSION
         )
 
         backUpResultStarter.launch(intent)

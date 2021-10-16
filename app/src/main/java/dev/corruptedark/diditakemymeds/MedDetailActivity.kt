@@ -302,8 +302,9 @@ class MedDetailActivity : AppCompatActivity() {
         super.onResume()
         lifecycleScope.launch(lifecycleDispatcher) {
             refreshFromDatabase()
-            if(medication != null)
+            if(medication != null) {
                 MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+            }
         }
         MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {
             lifecycleScope.launch(lifecycleDispatcher) {
