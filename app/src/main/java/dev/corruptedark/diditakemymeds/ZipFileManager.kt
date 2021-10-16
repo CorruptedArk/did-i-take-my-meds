@@ -71,7 +71,7 @@ object ZipFileManager {
         }
     }
 
-    fun streamZipFromFolder(folder: File, outputStream: OutputStream){
+    fun streamFolderToZip(folder: File, outputStream: OutputStream){
 
         ZipOutputStream(outputStream.buffered(BUFFER_SIZE)).use { outStream ->
             zipRecursively(outStream, folder, "")

@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    
+
     private val backUpResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val backupUri: Uri? = result.data?.data
@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                         imageFolder.copyRecursively(File(tempFolder.path + File.separator + imageFolder.name), true)
 
                         contentResolver.openOutputStream(backupUri)?.use { outputStream ->
-                            ZipFileManager.streamZipFromFolder(tempFolder, outputStream)
+                            ZipFileManager.streamFolderToZip(tempFolder, outputStream)
                         }
 
                         tempFolder.deleteRecursively()
