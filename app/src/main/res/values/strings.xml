@@ -111,5 +111,7 @@
     <string name="dose_time_key" translatable="false">dose_time</string>
     <string name="no_image_available">No image available</string>
     <string name="temp_dir" translatable="false">tmp</string>
+    <string name="record_detail_hint">(Tap a record to view details)</string>
+    <string name="time_taken_key" translatable="false">time_taken</string>
 
 </resources>

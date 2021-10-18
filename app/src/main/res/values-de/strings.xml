@@ -103,4 +103,5 @@
     <string name="dose_and_proof_saved">Dose and proof saved</string>
     <string name="failed_to_get_proof">Failed to get proof</string>
     <string name="no_image_available">No image available</string>
+    <string name="record_detail_hint">(Tap a record to view details)</string>
 </resources>

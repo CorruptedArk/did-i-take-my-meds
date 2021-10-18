@@ -292,6 +292,7 @@ class MedDetailActivity : AppCompatActivity() {
             val intent = Intent(context, DoseDetailActivity::class.java)
             intent.putExtra(getString(R.string.med_id_key), medication!!.id)
             intent.putExtra(getString(R.string.dose_time_key), medication!!.doseRecord[position].doseTime)
+            intent.putExtra(getString(R.string.time_taken_key), medication!!.doseRecord[position].closestDose)
             startActivity(intent)
         }
 
@@ -487,19 +488,21 @@ class MedDetailActivity : AppCompatActivity() {
 
                         lifecycleScope.launch(lifecycleDispatcher) {
                             val db = MedicationDB.getInstance(context)
+                            alarmManager?.cancel(alarmIntent)
+                            withContext(Dispatchers.IO) {
+                                val proofImages =
+                                    db.proofImageDao().getProofImagesByMedId(medication!!.id)
+                                proofImages.forEach { proofImage ->
 
-                            val proofImages = db.proofImageDao().getProofImagesByMedId(medication!!.id)
-                            proofImages.forEach { proofImage ->
-                                withContext(Dispatchers.IO) {
                                     imageFolder?.apply {
                                         proofImage.deleteImageFile(imageFolder!!)
                                     }
                                     db.proofImageDao().delete(proofImage)
-                                }
-                            }
 
-                            db.medicationDao().delete(medication!!)
-                            alarmManager?.cancel(alarmIntent)
+                                }
+
+                                db.medicationDao().delete(medication!!)
+                            }
                             finish()
                         }
                     }
@@ -624,12 +627,7 @@ class MedDetailActivity : AppCompatActivity() {
 
     override fun onPause() {
         runBlocking {
-            try {
-                refreshJob!!.cancelAndJoin()
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
+            stopRefresherLoop(refreshJob)
         }
         super.onPause()
     }
@@ -658,6 +656,15 @@ class MedDetailActivity : AppCompatActivity() {
                 delay(delayDuration)
                 refreshFromDatabase()
             }
+        }
+
+    }
+
+    private suspend fun stopRefresherLoop(refresher: Job?) {
+        runCatching {
+            refresher?.cancelAndJoin()
+        }.onFailure { throwable ->
+            throwable.printStackTrace()
         }
     }
 }

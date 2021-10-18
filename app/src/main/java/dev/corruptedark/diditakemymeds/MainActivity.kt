@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 lifecycleScope.launch(lifecycleDispatcher) {
                     if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
+                        stopRefresherLoop(refreshJob)
                         MedicationDB.getInstance(applicationContext).close()
                         MedicationDB.wipeInstance()
 
@@ -131,6 +132,7 @@ class MainActivity : AppCompatActivity() {
 
                                     databaseFile?.inputStream()?.use { databaseStream ->
                                         if (MedicationDB.databaseFileIsValid(context, databaseFile.toUri())) {
+                                            stopRefresherLoop(refreshJob)
                                             MedicationDB.getInstance(applicationContext).close()
                                             MedicationDB.wipeInstance()
                                             context.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream().use { outStream ->
@@ -194,8 +196,8 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK && backupUri != null && backupUri.path != null && tempFolder != null && imageFolder != null) {
                 lifecycleScope.launch(lifecycleDispatcher) {
 
+                    stopRefresherLoop(refreshJob)
                     runCatching {
-                        refreshJob?.cancel()
                         MedicationDB.getInstance(context).close()
                         MedicationDB.wipeInstance()
 
@@ -424,6 +426,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openAboutActivity() {
+        lifecycleScope.launch (lifecycleDispatcher){
+            stopRefresherLoop(refreshJob)
+        }
+
         val intent = Intent(this, AboutActivity::class.java)
         activityResultStarter.launch(intent)
     }
@@ -434,6 +440,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restoreDatabase() {
+        lifecycleScope.launch (lifecycleDispatcher){
+            stopRefresherLoop(refreshJob)
+        }
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         intent.type = Intent.normalizeMimeType("application/octet-stream")
@@ -455,12 +464,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         runBlocking {
-            try {
-                refreshJob!!.cancelAndJoin()
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
+           stopRefresherLoop(refreshJob)
         }
         super.onPause()
     }
@@ -490,6 +494,14 @@ class MainActivity : AppCompatActivity() {
                 delay(delayDuration)
                 refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
             }
+        }
+    }
+
+    private suspend fun stopRefresherLoop(refresher: Job?) {
+        runCatching {
+            refresher?.cancelAndJoin()
+        }.onFailure { throwable ->
+            throwable.printStackTrace()
         }
     }
 }

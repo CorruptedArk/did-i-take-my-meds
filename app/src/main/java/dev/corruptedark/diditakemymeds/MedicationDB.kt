@@ -71,6 +71,7 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
+        @Synchronized
         fun getInstance(context: Context): MedicationDB {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also {
@@ -100,6 +101,7 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
+        @Synchronized
         fun wipeInstance() {
             instance?.close()
             instance = null

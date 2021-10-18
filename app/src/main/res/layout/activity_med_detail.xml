@@ -138,6 +138,17 @@
                 android:paddingBottom="20dp"
                 android:text="@string/record_delete_hint"/>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/detail_hint_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="22sp"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/record_detail_hint"/>
+
             <ListView
                 android:id="@+id/previous_doses_list"
                 android:layout_width="match_parent"
