@@ -19,8 +19,12 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.net.Uri
+import androidx.core.net.toFile
 import java.io.*
 import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
+import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
 
 object ZipFileManager {
@@ -61,6 +65,7 @@ object ZipFileManager {
                                     outStream.write(buffer, BUFFER_OFFSET, byteCount)
                                 }
                             }
+                            outStream.closeEntry()
                         }
                     }
                 }
@@ -71,10 +76,46 @@ object ZipFileManager {
         }
     }
 
-    fun streamFolderToZip(folder: File, outputStream: OutputStream){
 
-        ZipOutputStream(outputStream.buffered(BUFFER_SIZE)).use { outStream ->
+    fun streamFolderToZip(folder: File, zipAsStream: OutputStream) {
+
+        ZipOutputStream(zipAsStream.buffered(BUFFER_SIZE)).use { outStream ->
             zipRecursively(outStream, folder, "")
+        }
+    }
+
+    fun streamZipToFolder(zipAsStream: InputStream, folder: File) {
+        ZipInputStream(zipAsStream.buffered(BUFFER_SIZE)).use { inStream ->
+            var entry: ZipEntry? = inStream.nextEntry
+
+            val buffer = ByteArray(BUFFER_SIZE)
+
+            if (!folder.exists()) {
+                folder.mkdir()
+            }
+            while (entry != null) {
+                if (entry.isDirectory) {
+                    val file = File(folder.path + File.separator + entry.name)
+
+                    if (!file.exists()) {
+                        file.mkdirs()
+                    }
+                }
+                else {
+                    val file = File(folder.path + File.separator + entry.name)
+                    val bufferedStream = file.outputStream().buffered(BUFFER_SIZE)
+
+                    var byteCount = inStream.read(buffer)
+                    while (byteCount != END_OF_STREAM) {
+                        bufferedStream.write(buffer, BUFFER_OFFSET, byteCount)
+                        byteCount = inStream.read(buffer)
+                    }
+                    bufferedStream.close()
+                }
+
+                inStream.closeEntry()
+                entry = inStream.nextEntry
+            }
         }
     }
 

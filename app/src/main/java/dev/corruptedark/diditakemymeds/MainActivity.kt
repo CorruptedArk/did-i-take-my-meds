@@ -43,6 +43,7 @@ import kotlinx.coroutines.*
 import java.io.File
 //import kotlinx.coroutines.*
 import java.util.concurrent.Executors
+import java.util.zip.ZipInputStream
 
 
 class MainActivity : AppCompatActivity() {
@@ -70,52 +71,115 @@ class MainActivity : AppCompatActivity() {
             result.resultCode
         }
 
-    //TODO - Make restoring include proof images and also keep backwards compatibility
     private val restoreResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val restoreUri: Uri? = result.data?.data
 
+            val tempFolder = tempDir
+            val imageFolder = imageDir
+
             if (result.resultCode == Activity.RESULT_OK) {
                 lifecycleScope.launch(lifecycleDispatcher) {
-                        if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
-                            MedicationDB.getInstance(applicationContext).close()
-                            MedicationDB.wipeInstance()
+                    if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
+                        MedicationDB.getInstance(applicationContext).close()
+                        MedicationDB.wipeInstance()
 
-                            withContext(Dispatchers.IO) {
-                                runCatching {
-                                    val restoreFileStream =
-                                        contentResolver.openInputStream(restoreUri!!)!!
-                                    restoreFileStream.copyTo(
-                                        applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
-                                            .outputStream()
-                                    )
-                                    restoreFileStream.close()
-                                }
-                            }
-
-                            mainScope.launch {
-                                MedicationDB.getInstance(applicationContext).medicationDao().getAll()
-                                    .observe(context, { medicationList ->
-                                        lifecycleScope.launch(lifecycleDispatcher) {
-                                            refreshFromDatabase(medicationList)
-                                        }
-                                    })
-
-                                Toast.makeText(
-                                    applicationContext,
-                                    getString(R.string.database_restored),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        } else {
-                            mainScope.launch {
-                                Toast.makeText(
-                                    applicationContext,
-                                    getString(R.string.database_is_invalid),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                        withContext(Dispatchers.IO) {
+                            runCatching {
+                                val restoreFileStream =
+                                    contentResolver.openInputStream(restoreUri!!)!!
+                                restoreFileStream.copyTo(
+                                    applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
+                                        .outputStream()
+                                )
+                                restoreFileStream.close()
                             }
                         }
+
+                        mainScope.launch {
+                            MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+                                .observe(context, { medicationList ->
+                                    lifecycleScope.launch(lifecycleDispatcher) {
+                                        refreshFromDatabase(medicationList)
+                                    }
+                                })
+
+                            Toast.makeText(
+                                applicationContext,
+                                getString(R.string.database_restored),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    else {
+                        if (restoreUri != null && tempFolder != null && imageFolder != null) {
+
+                            withContext(Dispatchers.IO) {
+                                tempFolder.deleteRecursively()
+                                runCatching {
+                                    contentResolver.openInputStream(restoreUri)
+                                        ?.use { inputStream ->
+                                            ZipFileManager.streamZipToFolder(
+                                                inputStream,
+                                                tempFolder
+                                            )
+                                        }
+
+                                    val tempFiles = tempFolder.listFiles()
+
+                                    val databaseFile = tempFiles?.find { file -> file.name == MedicationDB.DATABASE_NAME }
+
+                                    databaseFile?.inputStream()?.use { databaseStream ->
+                                        if (MedicationDB.databaseFileIsValid(context, databaseFile.toUri())) {
+                                            MedicationDB.getInstance(applicationContext).close()
+                                            MedicationDB.wipeInstance()
+                                            context.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream().use { outStream ->
+                                                databaseStream.copyTo(outStream)
+                                            }
+                                        }
+                                    }
+
+                                    imageFolder.listFiles()?.forEach { file ->
+                                        if (file.exists()) {
+                                            file.deleteRecursively()
+                                        }
+                                    }
+
+                                    val tempImageFolder = tempFiles?.find { file -> file.isDirectory && file.name == imageFolder.name }
+
+                                    tempImageFolder?.copyRecursively(imageFolder)
+
+                                    if (tempFolder.exists()) {
+                                        tempFolder.deleteRecursively()
+                                    }
+                                }.onFailure { exception ->
+                                    exception.printStackTrace()
+                                    mainScope.launch {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            getString(R.string.database_is_invalid),
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }.onSuccess {
+                                    mainScope.launch {
+                                        MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+                                            .observe(context, { medicationList ->
+                                                lifecycleScope.launch(lifecycleDispatcher) {
+                                                    refreshFromDatabase(medicationList)
+                                                }
+                                            })
+
+                                        Toast.makeText(
+                                            applicationContext,
+                                            getString(R.string.database_restored),
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
