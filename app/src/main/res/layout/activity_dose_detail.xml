@@ -31,7 +31,8 @@
             android:id="@+id/dose_taken_time_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
             android:text="@string/midnight"
             android:textColor="@color/purple_200"
             android:textSize="25sp" />
@@ -40,7 +41,8 @@
             android:id="@+id/closest_dose_time_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
             android:text="@string/midnight"
             android:textColor="@color/sub_purple"
             android:textSize="25sp" />
@@ -48,8 +50,10 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/proof_image_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:adjustViewBounds="true" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/no_image_label"
