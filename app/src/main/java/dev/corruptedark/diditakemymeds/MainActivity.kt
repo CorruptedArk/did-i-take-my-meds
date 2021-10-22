@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     private val FOOTER_PADDING_DP = 100.0F
     private val MAXIMUM_DELAY = 60000L // 1 minute in milliseconds
     private val MINIMUM_DELAY = 1000L // 1 second in milliseconds
+    private val MIME_TYPES = "application/*"
     @Volatile private var medications: MutableList<Medication>? = null
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val context = this
@@ -94,6 +95,29 @@ class MainActivity : AppCompatActivity() {
                                         .outputStream()
                                 )
                                 restoreFileStream.close()
+                            }.onSuccess {
+                                if (refreshJob == null || !refreshJob!!.isActive) {
+                                    refreshJob = startRefresherLoop()
+                                }
+                                mainScope.launch {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        getString(R.string.database_restored),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }.onFailure { exception ->
+                                exception.printStackTrace()
+                                if (refreshJob == null || !refreshJob!!.isActive) {
+                                    refreshJob = startRefresherLoop()
+                                }
+                                mainScope.launch {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        getString(R.string.database_is_invalid),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         }
 
@@ -104,12 +128,6 @@ class MainActivity : AppCompatActivity() {
                                         refreshFromDatabase(medicationList)
                                     }
                                 })
-
-                            Toast.makeText(
-                                applicationContext,
-                                getString(R.string.database_restored),
-                                Toast.LENGTH_SHORT
-                            ).show()
                         }
                     }
                     else {
@@ -156,6 +174,9 @@ class MainActivity : AppCompatActivity() {
                                     }
                                 }.onFailure { exception ->
                                     exception.printStackTrace()
+                                    if (refreshJob == null || !refreshJob!!.isActive) {
+                                        refreshJob = startRefresherLoop()
+                                    }
                                     mainScope.launch {
                                         Toast.makeText(
                                             applicationContext,
@@ -164,6 +185,9 @@ class MainActivity : AppCompatActivity() {
                                         ).show()
                                     }
                                 }.onSuccess {
+                                    if (refreshJob == null || !refreshJob!!.isActive) {
+                                        refreshJob = startRefresherLoop()
+                                    }
                                     mainScope.launch {
                                         MedicationDB.getInstance(applicationContext).medicationDao().getAll()
                                             .observe(context, { medicationList ->
@@ -446,7 +470,7 @@ class MainActivity : AppCompatActivity() {
         }
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = Intent.normalizeMimeType("application/octet-stream")
+        intent.type = Intent.normalizeMimeType(MIME_TYPES)
 
         restoreResultStarter.launch(intent)
     }
@@ -454,7 +478,7 @@ class MainActivity : AppCompatActivity() {
     private fun backUpDatabase() {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = Intent.normalizeMimeType("application/octet-stream")
+        intent.type = Intent.normalizeMimeType(MIME_TYPES)
         intent.putExtra(
             Intent.EXTRA_TITLE,
             MedicationDB.DATABASE_NAME + ZipFileManager.ZIP_FILE_EXTENSION

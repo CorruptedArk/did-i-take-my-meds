@@ -91,7 +91,7 @@ abstract  class MedicationDB: RoomDatabase() {
                 restoreFileStream.copyTo(context.getDatabasePath(TEST_DATABASE_NAME).outputStream())
                 restoreFileStream.close()
                 val testDatabase = Room.databaseBuilder(context, MedicationDB::class.java, TEST_DATABASE_NAME)
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build()
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5).build()
                 val hasEntries = testDatabase.medicationDao().getAllRaw().isNotEmpty()
                 testDatabase.close()
                 hasEntries
