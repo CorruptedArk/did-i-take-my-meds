@@ -1,0 +1,4 @@
+v1.3.1
+
+Fix
+- Fix restore failing on some devices
