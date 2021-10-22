@@ -160,34 +160,47 @@ class ActionReceiver : BroadcastReceiver() {
                     }
                 }
                 TOOK_MED_ACTION -> {
+
                     val medId = intent.getLongExtra(context.getString(R.string.med_id_key), -1L)
 
                     if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
                         val medication: Medication =
                             MedicationDB.getInstance(context).medicationDao().get(medId)
 
-                        if (!medication.closestDoseAlreadyTaken()) {
-                            val takenDose = DoseRecord(
-                                System.currentTimeMillis(),
-                                medication.calculateClosestDose().timeInMillis
-                            )
-                            medication.addNewTakenDose(takenDose)
-                            MedicationDB.getInstance(context).medicationDao()
-                                .updateMedications(medication)
+                        if (medication.requirePhotoProof) {
+                            val takeMedIntent = Intent(context, MainActivity::class.java).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                putExtra(context.getString(R.string.med_id_key), medication.id)
+                                putExtra(context.getString(R.string.take_med_key), true)
+                            }
+
+                            context.startActivity(takeMedIntent)
                         }
+                        else {
+                            if (!medication.closestDoseAlreadyTaken()) {
 
-                        val notification = configureNotification(context, medication)
-                            .setContentText(context.getString(R.string.taken))
-                            .clearActions()
-                            .build()
+                                val takenDose = DoseRecord(
+                                    System.currentTimeMillis(),
+                                    medication.calculateClosestDose().timeInMillis
+                                )
+                                medication.addNewTakenDose(takenDose)
+                                MedicationDB.getInstance(context).medicationDao()
+                                    .updateMedications(medication)
+                            }
 
-                        with(NotificationManagerCompat.from(context.applicationContext)) {
-                            notify(
-                                medication.id.toInt(),
-                                notification
-                            )
-                            delay(CANCEL_DELAY)
-                            cancel(medication.id.toInt())
+                            val notification = configureNotification(context, medication)
+                                .setContentText(context.getString(R.string.taken))
+                                .clearActions()
+                                .build()
+
+                            with(NotificationManagerCompat.from(context.applicationContext)) {
+                                notify(
+                                    medication.id.toInt(),
+                                    notification
+                                )
+                                delay(CANCEL_DELAY)
+                                cancel(medication.id.toInt())
+                            }
                         }
 
                     }

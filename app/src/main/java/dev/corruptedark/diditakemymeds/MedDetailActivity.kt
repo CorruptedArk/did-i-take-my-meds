@@ -171,6 +171,7 @@ class MedDetailActivity : AppCompatActivity() {
                 }
             }
         }
+
     private val photoResultStarter = registerForActivityResult(ActivityResultContracts.TakePicture()) { pictureTaken ->
         if (pictureTaken) {
             val dose = createDose()
@@ -189,6 +190,7 @@ class MedDetailActivity : AppCompatActivity() {
             }
         }
     }
+
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
     private val context = this
@@ -204,6 +206,7 @@ class MedDetailActivity : AppCompatActivity() {
     private val IMAGE_NAME_SEPARATOR = "_"
     private val IMAGE_EXTENSION = ".jpg"
     private var imageFolder: File? = null
+    private var takeMed = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -297,6 +300,7 @@ class MedDetailActivity : AppCompatActivity() {
         }
 
         outerScroll = findViewById(R.id.outer_scroll)
+        takeMed = intent.getBooleanExtra(getString(R.string.take_med_key), false)
     }
 
     override fun onResume() {
@@ -305,6 +309,11 @@ class MedDetailActivity : AppCompatActivity() {
             refreshFromDatabase()
             if(medication != null) {
                 MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+
+                if (takeMed) {
+                    takeMed = false
+                    justTookItButtonPressed()
+                }
             }
         }
         MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {

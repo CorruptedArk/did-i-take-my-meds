@@ -113,5 +113,6 @@
     <string name="temp_dir" translatable="false">tmp</string>
     <string name="record_detail_hint">(Tap a record to view details)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
+    <string name="take_med_key" translatable="false">take_med</string>
 
 </resources>

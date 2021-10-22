@@ -301,7 +301,7 @@ class MainActivity : AppCompatActivity() {
             mainScope.launch {
                 medListView.onItemClickListener =
                     AdapterView.OnItemClickListener { adapterView, view, i, l ->
-                        openMedDetailActivity(medications!![i].id)
+                        openMedDetailActivity(medications!![i].id, false)
                     }
             }
 
@@ -335,17 +335,18 @@ class MainActivity : AppCompatActivity() {
                 apply()
             }
 
-            val medId = intent.getLongExtra(getString(R.string.med_id_key), -1L)
+            val medId = intent.getLongExtra(getString(R.string.med_id_key), Medication.INVALID_MED_ID)
+            val takeMed = intent.getBooleanExtra(getString(R.string.take_med_key), false)
             if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
-                intent.putExtra(getString(R.string.med_id_key), -1L)
-                openMedDetailActivity(medId)
+                openMedDetailActivity(medId, takeMed)
             }
         }
     }
 
-    private fun openMedDetailActivity(medId: Long) {
+    private fun openMedDetailActivity(medId: Long, takeMed: Boolean) {
         val intent = Intent(this, MedDetailActivity::class.java)
         intent.putExtra(getString(R.string.med_id_key), medId)
+        intent.putExtra(getString(R.string.take_med_key), takeMed)
         activityResultStarter.launch(intent)
     }
 
