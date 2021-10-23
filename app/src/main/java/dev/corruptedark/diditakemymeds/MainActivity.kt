@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     private var refreshJob: Job? = null
     private var imageDir: File? = null
     private var tempDir: File? = null
+    @Volatile private var restoreJob: Job? = null
 
     private val activityResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             val imageFolder = imageDir
 
             if (result.resultCode == Activity.RESULT_OK) {
-                lifecycleScope.launch(lifecycleDispatcher) {
+                restoreJob = lifecycleScope.launch(lifecycleDispatcher) {
                     if (MedicationDB.databaseFileIsValid(applicationContext, restoreUri)) {
                         stopRefresherLoop(refreshJob)
                         MedicationDB.getInstance(applicationContext).close()
@@ -88,13 +89,11 @@ class MainActivity : AppCompatActivity() {
 
                         withContext(Dispatchers.IO) {
                             runCatching {
-                                val restoreFileStream =
-                                    contentResolver.openInputStream(restoreUri!!)!!
-                                restoreFileStream.copyTo(
-                                    applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME)
-                                        .outputStream()
-                                )
-                                restoreFileStream.close()
+                                contentResolver.openInputStream(restoreUri!!)!!.use { inputStream ->
+                                    applicationContext.getDatabasePath(MedicationDB.DATABASE_NAME).outputStream().use { outputStream ->
+                                        inputStream.copyTo(outputStream)
+                                    }
+                                }
                             }.onSuccess {
                                 if (refreshJob == null || !refreshJob!!.isActive) {
                                     refreshJob = startRefresherLoop()
@@ -497,6 +496,7 @@ class MainActivity : AppCompatActivity() {
     private fun startRefresherLoop(): Job {
         return lifecycleScope.launch(lifecycleDispatcher) {
 
+            restoreJob?.join()
             while (MedicationDB.getInstance(context).medicationDao().getAllRaw().isNotEmpty()) {
                 val medication = MedicationDB.getInstance(context).medicationDao().getAllRaw()
                     .sortedWith(Medication::compareByClosestDoseTransition).first()
