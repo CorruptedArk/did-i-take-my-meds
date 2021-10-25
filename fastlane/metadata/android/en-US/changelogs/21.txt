@@ -1,10 +1,10 @@
 v1.3.2
 
-Changes
+Change
 - Tweaked appearance of dose detail activity
 
-Additions
+Addition
 - Add feedback Toasts on database back up
 
-Fixes
+Fix
 - Fix some crashes after database restore
