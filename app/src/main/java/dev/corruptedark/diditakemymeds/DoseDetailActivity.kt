@@ -20,15 +20,18 @@
 package dev.corruptedark.diditakemymeds
 
 import android.content.res.Resources
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -41,6 +44,7 @@ class DoseDetailActivity : AppCompatActivity() {
     private val context = this
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var proofImage: ProofImage? = null
+    private lateinit var toolbar: MaterialToolbar
     private lateinit var timeTakenLabel: MaterialTextView
     private lateinit var closestDoseLabel: MaterialTextView
     private lateinit var proofImageView: AppCompatImageView
@@ -52,12 +56,21 @@ class DoseDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dose_detail)
 
+        toolbar = findViewById(R.id.toolbar)
         timeTakenLabel = findViewById(R.id.dose_taken_time_label)
         closestDoseLabel = findViewById(R.id.closest_dose_time_label)
         proofImageView = findViewById(R.id.proof_image_view)
         noImageLabel = findViewById(R.id.no_image_label)
 
         imageFolder = File(filesDir.path + File.separator + getString(R.string.image_path))
+
+        setSupportActionBar(toolbar)
+        toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
         val medId = intent.getLongExtra(getString(R.string.med_id_key), Medication.INVALID_MED_ID)
         val doseTime = intent.getLongExtra(getString(R.string.dose_time_key), DoseRecord.INVALID_TIME)

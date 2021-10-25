@@ -114,5 +114,8 @@
     <string name="record_detail_hint">(Tap a record to view details)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
+    <string name="back_up_successful">Back up successful</string>
+    <string name="back_up_failed">Back up failed</string>
+    <string name="dose_details">Dose Details</string>
 
 </resources>

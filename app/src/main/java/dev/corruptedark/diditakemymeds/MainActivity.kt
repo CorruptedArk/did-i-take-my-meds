@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
     private var imageDir: File? = null
     private var tempDir: File? = null
     @Volatile private var restoreJob: Job? = null
+    @Volatile private var backupJob: Job? = null
 
     private val activityResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -217,7 +218,7 @@ class MainActivity : AppCompatActivity() {
             val imageFolder = imageDir
 
             if (result.resultCode == Activity.RESULT_OK && backupUri != null && backupUri.path != null && tempFolder != null && imageFolder != null) {
-                lifecycleScope.launch(lifecycleDispatcher) {
+                backupJob = lifecycleScope.launch(lifecycleDispatcher) {
 
                     stopRefresherLoop(refreshJob)
                     runCatching {
@@ -247,9 +248,15 @@ class MainActivity : AppCompatActivity() {
                         if (refreshJob == null || !refreshJob!!.isActive) {
                             refreshJob = startRefresherLoop()
                         }
+                        mainScope.launch {
+                            Toast.makeText(context, getString(R.string.back_up_failed), Toast.LENGTH_SHORT).show()
+                        }
                     }.onSuccess {
                         if (refreshJob == null || !refreshJob!!.isActive) {
                             refreshJob = startRefresherLoop()
+                        }
+                        mainScope.launch {
+                            Toast.makeText(context, getString(R.string.back_up_successful), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -496,7 +503,12 @@ class MainActivity : AppCompatActivity() {
     private fun startRefresherLoop(): Job {
         return lifecycleScope.launch(lifecycleDispatcher) {
 
-            restoreJob?.join()
+            runCatching {
+                restoreJob?.join()
+                backupJob?.join()
+            }.onFailure { throwable ->
+                throwable.printStackTrace()
+            }
             while (MedicationDB.getInstance(context).medicationDao().getAllRaw().isNotEmpty()) {
                 val medication = MedicationDB.getInstance(context).medicationDao().getAllRaw()
                     .sortedWith(Medication::compareByClosestDoseTransition).first()

@@ -15,56 +15,69 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.-->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     tools:context=".DoseDetailActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="?android:actionBarSize"
+        android:gravity="center_vertical" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/dose_taken_time_label"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:text="@string/midnight"
-            android:textColor="@color/purple_200"
-            android:textSize="25sp" />
+            android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/closest_dose_time_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
-            android:text="@string/midnight"
-            android:textColor="@color/sub_purple"
-            android:textSize="25sp" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dose_taken_time_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:text="@string/midnight"
+                android:textColor="@color/purple_200"
+                android:textSize="25sp" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/proof_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:adjustViewBounds="true" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/closest_dose_time_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:text="@string/midnight"
+                android:textColor="@color/sub_purple"
+                android:textSize="25sp" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/no_image_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="20dp"
-            android:text="@string/no_image_available"
-            android:textColor="@color/sub_purple"
-            android:textSize="32sp"
-            app:autoSizeTextType="uniform" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/proof_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:adjustViewBounds="true" />
 
-</ScrollView>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/no_image_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                android:text="@string/no_image_available"
+                android:textColor="@color/sub_purple"
+                android:textSize="32sp"
+                app:autoSizeTextType="uniform" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
