@@ -19,13 +19,11 @@
 
 package dev.corruptedark.diditakemymeds
 
-import android.content.Context
 import android.text.format.DateFormat
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.lang.StringBuilder
-import java.math.BigInteger
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -45,7 +43,8 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
                        @ColumnInfo(name = "monthsBetween") var monthsBetween: Int = 0,
                        @ColumnInfo(name = "yearsBetween") var yearsBetween: Int = 0,
                        @ColumnInfo(name = "notify") var notify: Boolean = true,
-                       @ColumnInfo(name = "requirePhotoProof") var requirePhotoProof: Boolean = true
+                       @ColumnInfo(name = "requirePhotoProof") var requirePhotoProof: Boolean = true,
+                       @ColumnInfo(name = "active") var active: Boolean = true
 ) {
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
@@ -98,23 +97,60 @@ data class Medication (@ColumnInfo(name = "name") var name: String,
         }
 
         fun compareByName(a: Medication, b: Medication): Int {
-            return a.name.compareTo(b.name)
+            val byActive = compareByActive(a, b)
+
+            return if (byActive != 0) {
+                byActive
+            }
+            else {
+                a.name.compareTo(b.name)
+            }
         }
 
         fun compareByTime(a: Medication, b: Medication): Int {
+            val byActive = compareByActive(a, b)
             val aDose = a.calculateClosestDose()
             val bDose = b.calculateClosestDose()
-            return if (aDose.timeInMillis == bDose.timeInMillis)
-                compareByName(a, b)
-            else
-                (aDose.timeInMillis - bDose.timeInMillis).sign
+
+            return when {
+                byActive != 0 -> {
+                    byActive
+                }
+                aDose.timeInMillis == bDose.timeInMillis -> {
+                    compareByName(a, b)
+                }
+                else -> {
+                    (aDose.timeInMillis - bDose.timeInMillis).sign
+                }
+            }
         }
 
         fun compareByClosestDoseTransition(a: Medication, b: Medication): Int {
+            val byActive = compareByActive(a, b)
             val aTransition = a.closestDoseTransitionTime()
             val bTransition = b.closestDoseTransitionTime()
 
-            return (aTransition - bTransition).sign
+
+            return if (byActive != 0) {
+                byActive
+            }
+            else {
+                (aTransition - bTransition).sign
+            }
+        }
+
+        private fun compareByActive(a: Medication, b: Medication): Int {
+            return when {
+                a.active && !b.active -> {
+                    -1
+                }
+                b.active && !a.active -> {
+                    1
+                }
+                else -> {
+                    0
+                }
+            }
         }
     }
 

@@ -62,6 +62,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var outerScroll: NestedScrollView
     private lateinit var nameLabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
+    private lateinit var activeSwitch: SwitchMaterial
     private lateinit var notificationSwitch: SwitchMaterial
     private lateinit var detailLabel: MaterialTextView
     private lateinit var closestDoseLabel: MaterialTextView
@@ -217,6 +218,7 @@ class MedDetailActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         nameLabel = findViewById(R.id.name_label)
         timeLabel = findViewById(R.id.time_label)
+        activeSwitch = findViewById(R.id.active_switch)
         notificationSwitch = findViewById(R.id.notification_switch)
         detailLabel = findViewById(R.id.detail_label)
         closestDoseLabel = findViewById(R.id.closest_dose_label)
@@ -365,6 +367,15 @@ class MedDetailActivity : AppCompatActivity() {
 
             mainScope.launch {
                 nameLabel.text = medication!!.name
+
+                activeSwitch.isChecked = medication!!.active
+                activeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                    medication!!.active = isChecked
+                    lifecycleScope.launch(lifecycleDispatcher) {
+                        MedicationDB.getInstance(context).medicationDao()
+                            .updateMedications(medication!!)
+                    }
+                }
 
                 if (medication!!.isAsNeeded()) {
                     timeLabel.visibility = View.GONE
@@ -619,17 +630,17 @@ class MedDetailActivity : AppCompatActivity() {
     }
 
     private fun justTookItButtonPressed() {
-
-        medication!!.updateStartsToFuture()
-        if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
-            Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
-        }
-        else {
-            if(medication!!.requirePhotoProof) {
-                startTakePictureIntent(medication!!.id, System.currentTimeMillis())
-            }
-            else {
-                saveDose(createDose())
+        if (medication!!.active) {
+            medication!!.updateStartsToFuture()
+            if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
+                Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                if (medication!!.requirePhotoProof) {
+                    startTakePictureIntent(medication!!.id, System.currentTimeMillis())
+                } else {
+                    saveDose(createDose())
+                }
             }
         }
     }

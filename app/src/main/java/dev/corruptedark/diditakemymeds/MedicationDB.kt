@@ -27,7 +27,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class, ProofImage::class], version = 5)
+@Database(entities = [Medication::class, ProofImage::class], version = 6)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
     abstract fun proofImageDao(): ProofImageDao
@@ -71,6 +71,14 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
+        private val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN active INTEGER DEFAULT 1 NOT NULL")
+            }
+        }
+
+        private val MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+
         @Synchronized
         fun getInstance(context: Context): MedicationDB {
             return instance ?: synchronized(this) {
@@ -82,7 +90,7 @@ abstract  class MedicationDB: RoomDatabase() {
 
         private fun buildDatabase(context: Context): MedicationDB {
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5).build()
+                .addMigrations(*MIGRATIONS).build()
         }
 
         fun databaseFileIsValid(context: Context, databaseUri: Uri?): Boolean {
@@ -91,7 +99,7 @@ abstract  class MedicationDB: RoomDatabase() {
                 restoreFileStream.copyTo(context.getDatabasePath(TEST_DATABASE_NAME).outputStream())
                 restoreFileStream.close()
                 val testDatabase = Room.databaseBuilder(context, MedicationDB::class.java, TEST_DATABASE_NAME)
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5).build()
+                    .addMigrations(*MIGRATIONS).build()
                 val hasEntries = testDatabase.medicationDao().getAllRaw().isNotEmpty()
                 testDatabase.close()
                 hasEntries

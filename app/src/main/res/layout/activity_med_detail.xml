@@ -60,6 +60,17 @@
                 android:text="@string/midnight"/>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/active_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/medication_active"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="28sp"
+                android:padding="20dp"
+                android:checked="true"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/notification_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -117,5 +117,7 @@
     <string name="back_up_successful">Back up successful</string>
     <string name="back_up_failed">Back up failed</string>
     <string name="dose_details">Dose Details</string>
+    <string name="medication_active">Medication active</string>
+    <string name="inactive">Inactive</string>
 
 </resources>

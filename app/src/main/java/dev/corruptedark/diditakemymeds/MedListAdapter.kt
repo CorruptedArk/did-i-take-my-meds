@@ -25,12 +25,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.appcompat.content.res.AppCompatResources
 import com.google.android.material.textview.MaterialTextView
 import java.util.*
 
 class MedListAdapter(private val context: Context, private val medications: MutableList<Medication>) : BaseAdapter() {
     private val isSystem24Hour = DateFormat.is24HourFormat(context)
     private val calendar = Calendar.getInstance()
+
+    companion object {
+        private const val INACTIVE_VIEW_ALPHA = 0.70F
+    }
 
     override fun getCount(): Int {
         return medications.size
@@ -55,21 +60,30 @@ class MedListAdapter(private val context: Context, private val medications: Muta
         val takenLabel = view?.findViewById<MaterialTextView>(R.id.taken_label)
 
         calendar.timeInMillis = medications[position].calculateClosestDose().timeInMillis
-        if (medications[position].isAsNeeded()) {
-            takenLabel?.visibility = View.GONE
-            timeLabel?.text = context.getString(R.string.taken_as_needed)
+        if (medications[position].active) {
+            if (medications[position].isAsNeeded()) {
+                takenLabel?.visibility = View.GONE
+                timeLabel?.text = context.getString(R.string.taken_as_needed)
+            } else {
+                takenLabel?.visibility = View.VISIBLE
+                timeLabel?.text = if (isSystem24Hour) DateFormat.format(
+                    context.getString(R.string.time_24),
+                    calendar
+                )
+                else DateFormat.format(context.getString(R.string.time_12), calendar)
+                if (medications[position].closestDoseAlreadyTaken()) {
+                    takenLabel?.text = context.getString(R.string.taken)
+                } else {
+                    takenLabel?.text = context.getString(R.string.not_taken)
+                }
+            }
         }
         else {
-            takenLabel?.visibility = View.VISIBLE
-            timeLabel?.text = if (isSystem24Hour) DateFormat.format(context.getString(R.string.time_24), calendar)
-                else DateFormat.format(context.getString(R.string.time_12), calendar)
-            if(medications[position].closestDoseAlreadyTaken()) {
-                takenLabel?.text = context.getString(R.string.taken)
-            }
-            else {
-                takenLabel?.text = context.getString(R.string.not_taken)
-            }
+            takenLabel?.visibility = View.GONE
+            timeLabel?.text = context.getString(R.string.inactive)
+            view?.alpha = INACTIVE_VIEW_ALPHA
         }
+        
         return view!!
     }
 }

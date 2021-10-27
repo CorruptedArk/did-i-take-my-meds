@@ -149,7 +149,7 @@ class ActionReceiver : BroadcastReceiver() {
                     alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication)
                     AlarmIntentManager.setExact(alarmManager, alarmIntent, medication.calculateNextDose().timeInMillis)
 
-                    if (!medication.closestDoseAlreadyTaken()) {
+                    if (medication.active && !medication.closestDoseAlreadyTaken()) {
                         val notification = configureNotification(context, medication).build()
                         with(NotificationManagerCompat.from(context.applicationContext)) {
                             notify(
@@ -163,7 +163,7 @@ class ActionReceiver : BroadcastReceiver() {
 
                     val medId = intent.getLongExtra(context.getString(R.string.med_id_key), -1L)
 
-                    if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                    if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId) && MedicationDB.getInstance(context).medicationDao().get(medId).active) {
                         val medication: Medication =
                             MedicationDB.getInstance(context).medicationDao().get(medId)
 
