@@ -48,4 +48,8 @@
         <item name="colorControlActivated">@color/purple_200</item>
     </style>
 
+    <style name="Theme.TextInput.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="colorControlActivated">@color/purple_200</item>
+    </style>
+
 </resources>

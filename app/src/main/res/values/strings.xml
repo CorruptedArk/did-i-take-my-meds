@@ -119,5 +119,7 @@
     <string name="dose_details">Dose Details</string>
     <string name="medication_active">Medication active</string>
     <string name="inactive">Inactive</string>
+    <string name="medication_type">Medication Type</string>
+    <string name="undefined">Undefined</string>
 
 </resources>

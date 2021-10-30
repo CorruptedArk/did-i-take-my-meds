@@ -31,25 +31,26 @@ import kotlin.math.abs
 import kotlin.math.sign
 
 @Entity(tableName = "medication")
-data class Medication (@ColumnInfo(name = "name") var name: String,
-                       @ColumnInfo(name = "hour") var hour: Int,
-                       @ColumnInfo(name = "minute") var minute: Int,
-                       @ColumnInfo(name = "description") var description: String,
-                       @ColumnInfo(name = "startDay") var startDay: Int,
-                       @ColumnInfo(name = "startMonth") var startMonth: Int,
-                       @ColumnInfo(name = "startYear") var startYear: Int,
-                       @ColumnInfo(name = "daysBetween") var daysBetween: Int = 1,
-                       @ColumnInfo(name = "weeksBetween") var weeksBetween: Int = 0,
-                       @ColumnInfo(name = "monthsBetween") var monthsBetween: Int = 0,
-                       @ColumnInfo(name = "yearsBetween") var yearsBetween: Int = 0,
-                       @ColumnInfo(name = "notify") var notify: Boolean = true,
-                       @ColumnInfo(name = "requirePhotoProof") var requirePhotoProof: Boolean = true,
-                       @ColumnInfo(name = "active") var active: Boolean = true
+data class Medication (var name: String,
+                       var hour: Int,
+                       var minute: Int,
+                       var description: String,
+                       var startDay: Int,
+                       var startMonth: Int,
+                       var startYear: Int,
+                       var daysBetween: Int = 1,
+                       var weeksBetween: Int = 0,
+                       var monthsBetween: Int = 0,
+                       var yearsBetween: Int = 0,
+                       var notify: Boolean = true,
+                       var requirePhotoProof: Boolean = true,
+                       var active: Boolean = true,
+                       var typeId: Long = 0
 ) {
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
-    @ColumnInfo(name = "moreDosesPerDay") var moreDosesPerDay: ArrayList<RepeatSchedule> = ArrayList()
+    var moreDosesPerDay: ArrayList<RepeatSchedule> = ArrayList()
 
     companion object {
 

@@ -30,6 +30,7 @@ import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import android.text.format.DateFormat
 import android.view.*
+import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -49,6 +50,7 @@ import kotlin.collections.ArrayList
 class AddMedActivity() : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
+    private lateinit var typeInput: AutoCompleteTextView
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
@@ -87,6 +89,7 @@ class AddMedActivity() : AppCompatActivity() {
         setContentView(R.layout.activity_add_med)
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
+        typeInput = findViewById(R.id.med_type_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -101,6 +104,10 @@ class AddMedActivity() : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
+
+        //TODO - Create adapter to handle medication types
+
+        typeInput.adapter
 
         asNeededSwitch.setOnCheckedChangeListener { switchView, isChecked ->
             if (isChecked) {

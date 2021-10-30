@@ -63,6 +63,28 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/medication_type"
+                app:hintTextColor="@color/purple_200"
+                android:textColorHint="@color/purple_200"
+                app:boxStrokeColor="@color/purple_500"
+                app:boxBackgroundColor="@color/item_background"
+                app:hintTextAppearance="@style/TextLabel"
+                style="@style/Theme.TextInput.ExposedDropdownMenu"
+                android:theme="@style/Theme.TextInput.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/med_type_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:hint="@string/medication_type"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/as_needed_switch"
                 android:layout_width="match_parent"

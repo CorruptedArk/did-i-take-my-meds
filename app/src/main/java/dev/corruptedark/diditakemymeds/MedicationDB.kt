@@ -19,24 +19,32 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
+import androidx.lifecycle.coroutineScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class, ProofImage::class], version = 6)
+@Database(entities = [Medication::class, ProofImage::class, MedicationType::class], version = 7)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
     abstract fun proofImageDao(): ProofImageDao
+    abstract fun medicationTypeDao(): MedicationTypeDao
 
     companion object {
         const val DATABASE_NAME = "medications"
         const val TEST_DATABASE_NAME = "test"
         const val MED_TABLE = "medication"
         const val IMAGE_TABLE = "proofImage"
+        const val MED_TYPE_TABLE = "medicationType"
         const val DATABASE_FILE_EXTENSION = ".db"
         @Volatile private var instance: MedicationDB? = null
         private val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -77,7 +85,21 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
-        private val MIGRATIONS = arrayOf(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+        private val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN typeId INTEGER DEFAULT 0 NOT NULL")
+                database.execSQL("CREATE TABLE IF NOT EXISTS $MED_TYPE_TABLE (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT NOT NULL)")
+            }
+        }
+
+        private val MIGRATIONS = arrayOf(
+            MIGRATION_1_2,
+            MIGRATION_2_3,
+            MIGRATION_3_4,
+            MIGRATION_4_5,
+            MIGRATION_5_6,
+            MIGRATION_6_7
+        )
 
         @Synchronized
         fun getInstance(context: Context): MedicationDB {
@@ -90,7 +112,29 @@ abstract  class MedicationDB: RoomDatabase() {
 
         private fun buildDatabase(context: Context): MedicationDB {
             return Room.databaseBuilder(context, MedicationDB::class.java, DATABASE_NAME)
-                .addMigrations(*MIGRATIONS).build()
+                .addMigrations(*MIGRATIONS)
+                .addCallback(
+                    object : Callback() {
+                        override fun onOpen(db: SupportSQLiteDatabase) {
+                            runBlocking {
+                                launch {
+                                    val undefinedType = MedicationType(context.getString(R.string.undefined))
+                                    undefinedType.id = 0
+                                    val defaultTypeExists = db.query("SELECT EXISTS(SELECT * FROM $MED_TYPE_TABLE WHERE id = 0)").count > 0
+                                    if (!defaultTypeExists) {
+                                        db.insert(
+                                            MED_TYPE_TABLE,
+                                            SQLiteDatabase.CONFLICT_FAIL,
+                                            undefinedType.toContentValues()
+                                        )
+                                    }
+                                    super.onOpen(db)
+                                }
+                            }
+                        }
+                    }
+                )
+                .build()
         }
 
         fun databaseFileIsValid(context: Context, databaseUri: Uri?): Boolean {
