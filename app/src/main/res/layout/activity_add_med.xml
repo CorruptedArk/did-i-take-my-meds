@@ -45,6 +45,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
                 android:hint="@string/medication_name"
                 app:hintTextColor="@color/purple_200"
                 android:textColorHint="@color/purple_200"
@@ -66,10 +67,12 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
                 android:hint="@string/medication_type"
                 app:hintTextColor="@color/purple_200"
                 android:textColorHint="@color/purple_200"
-                app:boxStrokeColor="@color/purple_500"
+                app:endIconTint="@color/purple_200"
+                app:boxStrokeColor="@color/purple_200"
                 app:boxBackgroundColor="@color/item_background"
                 app:hintTextAppearance="@style/TextLabel"
                 style="@style/Theme.TextInput.ExposedDropdownMenu"
@@ -79,9 +82,12 @@
                     android:id="@+id/med_type_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textNoSuggestions"
                     android:textSize="20sp"
-                    android:textColor="@color/white"
-                    android:hint="@string/medication_type"/>
+                    android:dropDownHeight="wrap_content"
+                    android:dropDownWidth="wrap_content"
+                    android:popupElevation="0dp"
+                    android:textColor="@color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

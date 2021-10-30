@@ -105,9 +105,18 @@ class AddMedActivity() : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
 
-        //TODO - Create adapter to handle medication types
+        lifecycleScope.launch(lifecycleDispatcher) {
+            val medTypeListAdapter = MedTypeListAdapter(context, MedicationDB.getInstance(context).medicationTypeDao().getAllRaw())
 
-        typeInput.adapter
+            mainScope.launch {
+                typeInput.setAdapter(medTypeListAdapter)
+                typeInput.setOnItemClickListener { parent, view, position, id ->
+                    typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
+
+                }
+            }
+        }
+
 
         asNeededSwitch.setOnCheckedChangeListener { switchView, isChecked ->
             if (isChecked) {
@@ -306,7 +315,20 @@ class AddMedActivity() : AppCompatActivity() {
             false
         }
         else {
-            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify, requirePhotoProof = requirePhotoProof)
+            val medTypeExists = MedicationDB.getInstance(context).medicationTypeDao().typeExists(typeInput.text.toString())
+
+
+            val typeId = if (medTypeExists) {
+                MedicationDB.getInstance(context).medicationTypeDao().get(typeInput.text.toString()).id
+            }
+            else {
+                var medicationType = MedicationType(typeInput.text.toString())
+                MedicationDB.getInstance(context).medicationTypeDao().insertAll(medicationType)
+                medicationType = MedicationDB.getInstance(context).medicationTypeDao().getAllRaw().last()
+                medicationType.id
+            }
+
+            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify, requirePhotoProof = requirePhotoProof, typeId = typeId)
             medication.moreDosesPerDay = repeatScheduleList
             MedicationDB.getInstance(this).medicationDao().insertAll(medication)
             medication = MedicationDB.getInstance(this).medicationDao().getAllRaw().last()

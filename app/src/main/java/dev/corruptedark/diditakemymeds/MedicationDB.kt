@@ -120,7 +120,7 @@ abstract  class MedicationDB: RoomDatabase() {
                                 launch {
                                     val undefinedType = MedicationType(context.getString(R.string.undefined))
                                     undefinedType.id = 0
-                                    val defaultTypeExists = db.query("SELECT EXISTS(SELECT * FROM $MED_TYPE_TABLE WHERE id = 0)").count > 0
+                                    val defaultTypeExists = db.query("SELECT * FROM $MED_TYPE_TABLE WHERE id = 0").count > 0
                                     if (!defaultTypeExists) {
                                         db.insert(
                                             MED_TYPE_TABLE,
