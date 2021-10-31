@@ -61,6 +61,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var outerScroll: NestedScrollView
     private lateinit var nameLabel: MaterialTextView
+    private lateinit var typelabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
     private lateinit var activeSwitch: SwitchMaterial
     private lateinit var notificationSwitch: SwitchMaterial
@@ -77,7 +78,7 @@ class MedDetailActivity : AppCompatActivity() {
     private val editResultStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             lifecycleScope.launch(lifecycleDispatcher) {
-                medication = MedicationDB.getInstance(context).medicationDao()
+                medication = medicationDao(context)
                     .get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
 
                 val yesterdayString = context.getString(R.string.yesterday)
@@ -100,8 +101,11 @@ class MedDetailActivity : AppCompatActivity() {
                     Resources.getSystem().configuration.locale
                 }
 
+                val typeName = medicationTypeDao(context).get(medication!!.typeId).name
+
                 mainScope.launch {
                     nameLabel.text = medication!!.name
+                    typelabel.text = getString(R.string.type_label_format, typeName)
 
                     if (medication!!.isAsNeeded()) {
                         timeLabel.visibility = View.GONE
@@ -179,7 +183,7 @@ class MedDetailActivity : AppCompatActivity() {
             val proofImage = ProofImage(medication!!.id, dose.doseTime, currentPhotoPath!!)
             saveDose(dose)
             lifecycleScope.launch (lifecycleDispatcher) {
-                MedicationDB.getInstance(context).proofImageDao().insertAll(proofImage)
+                proofImageDao(context).insertAll(proofImage)
                 mainScope.launch {
                     Toast.makeText(context, getString(R.string.dose_and_proof_saved), Toast.LENGTH_SHORT).show()
                 }
@@ -217,6 +221,7 @@ class MedDetailActivity : AppCompatActivity() {
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         toolbar = findViewById(R.id.toolbar)
         nameLabel = findViewById(R.id.name_label)
+        typelabel = findViewById(R.id.type_label)
         timeLabel = findViewById(R.id.time_label)
         activeSwitch = findViewById(R.id.active_switch)
         notificationSwitch = findViewById(R.id.notification_switch)
@@ -276,16 +281,16 @@ class MedDetailActivity : AppCompatActivity() {
                         val medId = medication!!.id
                         val doseTime = medication!!.doseRecord[i].doseTime
 
-                        if (MedicationDB.getInstance(context).proofImageDao().proofImageExists(medId, doseTime)) {
-                            val proofImage = MedicationDB.getInstance(context).proofImageDao().get(medId, doseTime)
+                        if (proofImageDao(context).proofImageExists(medId, doseTime)) {
+                            val proofImage = proofImageDao(context).get(medId, doseTime)
                             imageFolder?.apply {
                                 proofImage.deleteImageFile(imageFolder!!)
                             }
-                            MedicationDB.getInstance(context).proofImageDao().delete(proofImage)
+                            proofImageDao(context).delete(proofImage)
                         }
 
                         medication!!.doseRecord.removeAt(i)
-                        MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+                        medicationDao(context).updateMedications(medication!!)
                     }
                 }
 
@@ -310,7 +315,7 @@ class MedDetailActivity : AppCompatActivity() {
         lifecycleScope.launch(lifecycleDispatcher) {
             refreshFromDatabase()
             if(medication != null) {
-                MedicationDB.getInstance(context).medicationDao().updateMedications(medication!!)
+                medicationDao(context).updateMedications(medication!!)
 
                 if (takeMed) {
                     takeMed = false
@@ -318,7 +323,7 @@ class MedDetailActivity : AppCompatActivity() {
                 }
             }
         }
-        MedicationDB.getInstance(context).medicationDao().getAll().observe(context, {
+        medicationDao(context).getAll().observe(context, {
             lifecycleScope.launch(lifecycleDispatcher) {
                 refreshFromDatabase()
             }
@@ -351,8 +356,8 @@ class MedDetailActivity : AppCompatActivity() {
             Resources.getSystem().configuration.locale
         }
 
-        if (MedicationDB.getInstance(this).medicationDao().medicationExists(medId)) {
-            medication = MedicationDB.getInstance(context).medicationDao().get(medId)
+        if (medicationDao(this).medicationExists(medId)) {
+            medication = medicationDao(context).get(medId)
             medication!!.updateStartsToFuture()
 
             alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication!!)
@@ -365,14 +370,16 @@ class MedDetailActivity : AppCompatActivity() {
             val hours = TimeUnit.MILLISECONDS.toHours(timeSinceTakenDose) % DAY_TO_HOURS
             val minutes = TimeUnit.MILLISECONDS.toMinutes(timeSinceTakenDose) % HOUR_TO_MINUTES
 
+            val typeName = medicationTypeDao(context).get(medication!!.typeId).name
             mainScope.launch {
                 nameLabel.text = medication!!.name
+                typelabel.text = getString(R.string.type_label_format, typeName)
 
                 activeSwitch.isChecked = medication!!.active
                 activeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                     medication!!.active = isChecked
                     lifecycleScope.launch(lifecycleDispatcher) {
-                        MedicationDB.getInstance(context).medicationDao()
+                        medicationDao(context)
                             .updateMedications(medication!!)
                     }
                 }
@@ -417,7 +424,7 @@ class MedDetailActivity : AppCompatActivity() {
                     notificationSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                         medication!!.notify = isChecked
                         lifecycleScope.launch(lifecycleDispatcher) {
-                            MedicationDB.getInstance(context).medicationDao()
+                            medicationDao(context)
                                 .updateMedications(medication!!)
                         }
                         if (isChecked) {
@@ -654,9 +661,9 @@ class MedDetailActivity : AppCompatActivity() {
 
     private fun startRefresherLoop(medId: Long): Job {
         return lifecycleScope.launch(lifecycleDispatcher) {
-            while (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+            while (medicationDao(context).medicationExists(medId)) {
 
-                val medication = MedicationDB.getInstance(context).medicationDao().get(medId)
+                val medication = medicationDao(context).get(medId)
 
                 val transitionDelay = medication.closestDoseTransitionTime() - System.currentTimeMillis()
 

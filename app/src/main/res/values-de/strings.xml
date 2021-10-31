@@ -111,4 +111,7 @@
     <string name="inactive">Inactive</string>
     <string name="medication_type">Medication Type</string>
     <string name="undefined">Undefined</string>
+    <string name="type_label_format">Type: %1$s</string>
+    <string name="sample_type_label">Type: Undefined</string>
+
 </resources>

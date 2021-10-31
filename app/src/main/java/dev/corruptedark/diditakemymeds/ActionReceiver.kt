@@ -30,7 +30,7 @@ class ActionReceiver : BroadcastReceiver() {
 
         fun configureNotification(context: Context, medication: Medication): NotificationCompat.Builder {
             val calendar = Calendar.getInstance()
-            MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
+            medicationDao(context).updateMedications(medication)
 
             val actionIntent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -115,7 +115,7 @@ class ActionReceiver : BroadcastReceiver() {
         createNotificationChannel(context)
 
         GlobalScope.launch(dispatcher) {
-            val medications = MedicationDB.getInstance(context).medicationDao().getAllRaw()
+            val medications = medicationDao(context).getAllRaw()
 
             when (intent.action) {
                 Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED -> {
@@ -136,13 +136,13 @@ class ActionReceiver : BroadcastReceiver() {
                             }
                         }
                     }
-                    MedicationDB.getInstance(context).medicationDao()
+                    medicationDao(context)
                         .updateMedications(*medications.toTypedArray())
                 }
                 NOTIFY_ACTION -> {
                     //Handle alarm
                     val medication =
-                        MedicationDB.getInstance(context).medicationDao()
+                        medicationDao(context)
                             .get(intent.getLongExtra(context.getString(R.string.med_id_key), -1))
 
                     medication.updateStartsToFuture()
@@ -163,9 +163,9 @@ class ActionReceiver : BroadcastReceiver() {
 
                     val medId = intent.getLongExtra(context.getString(R.string.med_id_key), -1L)
 
-                    if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId) && MedicationDB.getInstance(context).medicationDao().get(medId).active) {
+                    if (medicationDao(context).medicationExists(medId) && medicationDao(context).get(medId).active) {
                         val medication: Medication =
-                            MedicationDB.getInstance(context).medicationDao().get(medId)
+                            medicationDao(context).get(medId)
 
                         if (medication.requirePhotoProof) {
                             val takeMedIntent = Intent(context, MainActivity::class.java).apply {
@@ -184,7 +184,7 @@ class ActionReceiver : BroadcastReceiver() {
                                     medication.calculateClosestDose().timeInMillis
                                 )
                                 medication.addNewTakenDose(takenDose)
-                                MedicationDB.getInstance(context).medicationDao()
+                                medicationDao(context)
                                     .updateMedications(medication)
                             }
 
@@ -217,11 +217,11 @@ class ActionReceiver : BroadcastReceiver() {
                         cancel(medId.toInt())
                     }
 
-                    if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+                    if (medicationDao(context).medicationExists(medId)) {
                         val calendar = Calendar.getInstance()
                         calendar.add(Calendar.MINUTE, REMIND_DELAY)
                         val medication: Medication =
-                            MedicationDB.getInstance(context).medicationDao().get(medId)
+                            medicationDao(context).get(medId)
                         alarmIntent = AlarmIntentManager.buildNotificationAlarm(context, medication)
                         AlarmIntentManager.setExact(alarmManager, alarmIntent, calendar.timeInMillis)
                     }

@@ -106,7 +106,7 @@ class AddMedActivity() : AppCompatActivity() {
         toolbar.background = ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
 
         lifecycleScope.launch(lifecycleDispatcher) {
-            val medTypeListAdapter = MedTypeListAdapter(context, MedicationDB.getInstance(context).medicationTypeDao().getAllRaw())
+            val medTypeListAdapter = MedTypeListAdapter(context, medicationTypeDao(context).getAllRaw())
 
             mainScope.launch {
                 typeInput.setAdapter(medTypeListAdapter)
@@ -116,7 +116,6 @@ class AddMedActivity() : AppCompatActivity() {
                 }
             }
         }
-
 
         asNeededSwitch.setOnCheckedChangeListener { switchView, isChecked ->
             if (isChecked) {
@@ -273,7 +272,7 @@ class AddMedActivity() : AppCompatActivity() {
             schedulePickerCaller = null
         }
 
-        MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+        medicationDao(applicationContext).getAll()
             .observe(this, {})
     }
 
@@ -315,23 +314,23 @@ class AddMedActivity() : AppCompatActivity() {
             false
         }
         else {
-            val medTypeExists = MedicationDB.getInstance(context).medicationTypeDao().typeExists(typeInput.text.toString())
+            val medTypeExists = medicationTypeDao(context).typeExists(typeInput.text.toString())
 
 
             val typeId = if (medTypeExists) {
-                MedicationDB.getInstance(context).medicationTypeDao().get(typeInput.text.toString()).id
+                medicationTypeDao(context).get(typeInput.text.toString()).id
             }
             else {
                 var medicationType = MedicationType(typeInput.text.toString())
-                MedicationDB.getInstance(context).medicationTypeDao().insertAll(medicationType)
-                medicationType = MedicationDB.getInstance(context).medicationTypeDao().getAllRaw().last()
+                medicationTypeDao(context).insertAll(medicationType)
+                medicationType = medicationTypeDao(context).getAllRaw().last()
                 medicationType.id
             }
 
             var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify, requirePhotoProof = requirePhotoProof, typeId = typeId)
             medication.moreDosesPerDay = repeatScheduleList
-            MedicationDB.getInstance(this).medicationDao().insertAll(medication)
-            medication = MedicationDB.getInstance(this).medicationDao().getAllRaw().last()
+            medicationDao(this).insertAll(medication)
+            medication = medicationDao(this).getAllRaw().last()
 
             alarmIntent = AlarmIntentManager.buildNotificationAlarm(this, medication)
 

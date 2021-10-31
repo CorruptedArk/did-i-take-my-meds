@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         mainScope.launch {
-                            MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+                            medicationDao(applicationContext).getAll()
                                 .observe(context, { medicationList ->
                                     lifecycleScope.launch(lifecycleDispatcher) {
                                         refreshFromDatabase(medicationList)
@@ -189,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                                         refreshJob = startRefresherLoop()
                                     }
                                     mainScope.launch {
-                                        MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+                                        medicationDao(applicationContext).getAll()
                                             .observe(context, { medicationList ->
                                                 lifecycleScope.launch(lifecycleDispatcher) {
                                                     refreshFromDatabase(medicationList)
@@ -312,7 +312,7 @@ class MainActivity : AppCompatActivity() {
         ).toInt()
         medListView.addFooterView(footerPadding)
         medListView.setFooterDividersEnabled(false)
-        MedicationDB.getInstance(applicationContext).medicationDao().getAll()
+        medicationDao(applicationContext).getAll()
             .observe(context, { medicationList ->
                 lifecycleScope.launch(lifecycleDispatcher) {
                     refreshFromDatabase(medicationList)
@@ -341,7 +341,7 @@ class MainActivity : AppCompatActivity() {
                 )
             ) {
                 var alarmIntent: PendingIntent
-                MedicationDB.getInstance(context).medicationDao().getAllRaw()
+                medicationDao(context).getAllRaw()
                     .forEach { medication ->
                         if (medication.notify) {
                             lifecycleScope.launch(lifecycleDispatcher) {
@@ -367,7 +367,7 @@ class MainActivity : AppCompatActivity() {
 
             val medId = intent.getLongExtra(getString(R.string.med_id_key), Medication.INVALID_MED_ID)
             val takeMed = intent.getBooleanExtra(getString(R.string.take_med_key), false)
-            if (MedicationDB.getInstance(context).medicationDao().medicationExists(medId)) {
+            if (medicationDao(context).medicationExists(medId)) {
                 openMedDetailActivity(medId, takeMed)
             }
         }
@@ -509,8 +509,8 @@ class MainActivity : AppCompatActivity() {
             }.onFailure { throwable ->
                 throwable.printStackTrace()
             }
-            while (MedicationDB.getInstance(context).medicationDao().getAllRaw().isNotEmpty()) {
-                val medication = MedicationDB.getInstance(context).medicationDao().getAllRaw()
+            while (medicationDao(context).getAllRaw().isNotEmpty()) {
+                val medication = medicationDao(context).getAllRaw()
                     .sortedWith(Medication::compareByClosestDoseTransition).first()
 
                 val transitionDelay = medication.closestDoseTransitionTime() - System.currentTimeMillis()
@@ -529,7 +529,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 delay(delayDuration)
-                refreshFromDatabase(MedicationDB.getInstance(context).medicationDao().getAllRaw())
+                refreshFromDatabase(medicationDao(context).getAllRaw())
             }
         }
     }

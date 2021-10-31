@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.*
+import android.widget.AutoCompleteTextView
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -46,6 +47,7 @@ import java.util.concurrent.Executors
 class EditMedActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
+    private lateinit var typeInput: AutoCompleteTextView
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
@@ -85,6 +87,7 @@ class EditMedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_med)
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
+        typeInput = findViewById(R.id.med_type_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -106,11 +109,19 @@ class EditMedActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch(lifecycleDispatcher) {
-            medication = MedicationDB.getInstance(context).medicationDao().get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
+            medication = medicationDao(context).get(intent.getLongExtra(getString(R.string.med_id_key), -1L))
             medication.updateStartsToFuture()
+            val medType = medicationTypeDao(context).get(medication.typeId)
+            val medTypeListAdapter = MedTypeListAdapter(context, medicationTypeDao(context).getAllRaw())
 
             mainScope.launch {
                 nameInput.setText(medication.name)
+                typeInput.setText(medType.name)
+                typeInput.setAdapter(medTypeListAdapter)
+                typeInput.setOnItemClickListener { parent, view, position, id ->
+                    typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
+
+                }
                 detailInput.setText(medication.description)
                 if (!medication.isAsNeeded()) {
                     val calendar = Calendar.getInstance()
@@ -433,6 +444,17 @@ class EditMedActivity : AppCompatActivity() {
             false
         }
         else {
+            medication.typeId = if (medicationTypeDao(context).typeExists(typeInput.text.toString())) {
+                val medicationType = medicationTypeDao(context).get(typeInput.text.toString())
+                medicationType.id
+            }
+            else {
+                var medicationType = MedicationType(typeInput.text.toString())
+                medicationTypeDao(context).insertAll(medicationType)
+                medicationType = medicationTypeDao(context).get(medicationType.name)
+                medicationType.id
+            }
+
             medication.name = nameInput.text.toString()
             medication.hour = hour
             medication.minute = minute
@@ -448,12 +470,12 @@ class EditMedActivity : AppCompatActivity() {
             medication.requirePhotoProof = requirePhotoProof
             medication.moreDosesPerDay = repeatScheduleList
 
+            medication.updateStartsToFuture()
+            medicationDao(context).updateMedications(medication)
+
             mainScope.launch {
                 Toast.makeText(context, getString(R.string.med_saved), Toast.LENGTH_SHORT).show()
             }
-
-            medication.updateStartsToFuture()
-            MedicationDB.getInstance(context).medicationDao().updateMedications(medication)
             true
         }
     }

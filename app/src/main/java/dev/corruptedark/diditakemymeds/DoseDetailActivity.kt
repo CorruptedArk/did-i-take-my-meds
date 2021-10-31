@@ -128,7 +128,7 @@ class DoseDetailActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch (lifecycleDispatcher) {
-            proofImage = MedicationDB.getInstance(context).proofImageDao().get(medId, doseTime)
+            proofImage = proofImageDao(context).get(medId, doseTime)
             val imageDir = imageFolder
             if(proofImage != null && imageDir != null){
                 val imageFile = File(imageDir.absolutePath + File.separator + proofImage!!.filePath)
