@@ -33,6 +33,15 @@
         android:textSize="25sp"
         android:text="@string/sample_medicine"/>
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/type_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        autoSizeTextType="uniform"
+        android:textSize="18sp"
+        android:text="@string/sample_type_label"/>
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

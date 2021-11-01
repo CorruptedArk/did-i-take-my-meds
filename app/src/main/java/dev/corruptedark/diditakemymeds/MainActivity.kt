@@ -466,8 +466,8 @@ class MainActivity : AppCompatActivity() {
                 medications!!.sortWith(Medication::compareByTime)
             }
         }
+        medicationListAdapter = MedListAdapter(context, medications!!, medicationTypeDao(context).getAllRaw())
         mainScope.launch {
-            medicationListAdapter = MedListAdapter(context, medications!!)
             medListView.adapter = medicationListAdapter
             if (!medications.isNullOrEmpty())
                 listEmptyLabel.visibility = View.GONE

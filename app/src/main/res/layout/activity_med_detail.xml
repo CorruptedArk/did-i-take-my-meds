@@ -46,17 +46,20 @@
                 android:textColor="@color/sub_purple"
                 app:autoSizeTextType="uniform"
                 android:textSize="32sp"
-                android:padding="20dp"
+                android:paddingTop="20dp"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="10dp"
                 android:text="@string/sample_medicine"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/type_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/sub_purple"
+                android:textColor="@color/white"
                 app:autoSizeTextType="uniform"
-                android:textSize="32sp"
-                android:padding="20dp"
+                android:textSize="28sp"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
                 android:text="@string/sample_type_label"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -66,7 +69,9 @@
                 android:textColor="@color/purple_200"
                 app:autoSizeTextType="uniform"
                 android:textSize="28sp"
-                android:padding="20dp"
+                android:paddingTop="10dp"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp"
                 android:text="@string/midnight"/>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
