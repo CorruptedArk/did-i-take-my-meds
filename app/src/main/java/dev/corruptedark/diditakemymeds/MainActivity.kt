@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sortType: String
     private val TIME_SORT = "time"
     private val NAME_SORT = "name"
+    private val TYPE_SORT = "type"
     private val FOOTER_PADDING_DP = 100.0F
     private val MAXIMUM_DELAY = 60000L // 1 minute in milliseconds
     private val MINIMUM_DELAY = 1000L // 1 second in milliseconds
@@ -405,24 +406,37 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.sortType -> {
                 val sharedPref = getPreferences(Context.MODE_PRIVATE)
-                if (sortType == TIME_SORT) {
-                    sortType = NAME_SORT
-                    item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_alpha)
-                    with(sharedPref.edit()) {
-                        putString(getString(R.string.sort_key), NAME_SORT)
-                        apply()
+                when (sortType) {
+                    TIME_SORT -> {
+                        sortType = NAME_SORT
+                        item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_alpha)
+                        with(sharedPref.edit()) {
+                            putString(getString(R.string.sort_key), NAME_SORT)
+                            apply()
+                        }
+                        medications!!.sortWith(Medication::compareByName)
+                        medicationListAdapter!!.notifyDataSetChanged()
                     }
-                    medications!!.sortWith(Medication::compareByName)
-                    medicationListAdapter!!.notifyDataSetChanged()
-                } else {
-                    sortType = TIME_SORT
-                    item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_time)
-                    with(sharedPref.edit()) {
-                        putString(getString(R.string.sort_key), TIME_SORT)
-                        apply()
+                    NAME_SORT -> {
+                        sortType = TYPE_SORT
+                        item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_type)
+                        with(sharedPref.edit()) {
+                            putString(getString(R.string.sort_key), TYPE_SORT)
+                            apply()
+                        }
+                        medications!!.sortWith(Medication::compareByType)
+                        medicationListAdapter!!.notifyDataSetChanged()
                     }
-                    medications!!.sortWith(Medication::compareByTime)
-                    medicationListAdapter!!.notifyDataSetChanged()
+                    else -> {
+                        sortType = TIME_SORT
+                        item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_sort_by_time)
+                        with(sharedPref.edit()) {
+                            putString(getString(R.string.sort_key), TIME_SORT)
+                            apply()
+                        }
+                        medications!!.sortWith(Medication::compareByTime)
+                        medicationListAdapter!!.notifyDataSetChanged()
+                    }
                 }
                 true
             }
@@ -441,10 +455,16 @@ class MainActivity : AppCompatActivity() {
     @Synchronized
     private fun refreshFromDatabase(localMedications: MutableList<Medication>) {
         medications = localMedications
-        if (sortType == NAME_SORT) {
-            medications!!.sortWith(Medication::compareByName)
-        } else {
-            medications!!.sortWith(Medication::compareByTime)
+        when (sortType) {
+            NAME_SORT -> {
+                medications!!.sortWith(Medication::compareByName)
+            }
+            TYPE_SORT -> {
+                medications!!.sortWith(Medication::compareByType)
+            }
+            else -> {
+                medications!!.sortWith(Medication::compareByTime)
+            }
         }
         mainScope.launch {
             medicationListAdapter = MedListAdapter(context, medications!!)

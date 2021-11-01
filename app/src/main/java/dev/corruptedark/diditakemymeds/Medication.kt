@@ -140,6 +140,24 @@ data class Medication (var name: String,
             }
         }
 
+        fun compareByType(a: Medication, b: Medication): Int {
+            val byActive = compareByActive(a, b)
+            val byName = compareByName(a, b)
+            val byType = (a.typeId - b.typeId).sign
+
+            return when {
+                byActive != 0 -> {
+                    byActive
+                }
+                byType == 0 -> {
+                    byName
+                }
+                else -> {
+                    byType
+                }
+            }
+        }
+
         private fun compareByActive(a: Medication, b: Medication): Int {
             return when {
                 a.active && !b.active -> {

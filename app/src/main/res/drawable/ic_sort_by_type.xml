@@ -1,0 +1,88 @@
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="m9.2359,20.7429l5.5281,0l-2.7641,2.7641z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="m14.7996,3.2926l-5.5993,0l2.7996,-2.7996z"
+      android:fillColor="#ffffff"/>
+  <path
+      android:pathData="m15.7288,16.6852 l-2.673,-2.6661 2.133,-2.1382a1.8877,1.8877 71.1472,0 1,2.6691 -0.0033,1.8877 1.8877,71.1472 0,1 0.0039,2.6694z"
+      android:strokeAlpha="0.999795"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2.418803"
+      android:fillColor="#ffffff"
+      android:strokeColor="#00000000"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="m11.1597,19.4523a1.8877,1.8877 71.1472,0 1,-0.5001 -0.358,1.8877 1.8877,71.1472 0,1 -0.0039,-2.6694l2.1333,-2.1388 2.6727,2.6667 -2.133,2.1382a1.8877,1.8877 71.1472,0 1,-2.169 0.3613z"
+      android:strokeAlpha="0.999795"
+      android:strokeLineJoin="miter"
+      android:strokeWidth="2.418803"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeColor="#00000000"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M7.7716,12.2069l-0.4855,-0.4619l-3.4641,3.6409l0.4855,0.4619z"
+      android:strokeAlpha="0.999795"
+      android:strokeWidth="2.5858884"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M13.4439,7.7033l-1.9418,-1.8475l-5.2801,5.5497l1.9418,1.8475z"
+      android:strokeAlpha="0.999795"
+      android:strokeWidth="3.6949344"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="m3.5717,16.0264 l0.7355,-0.1782 -0.4851,-0.4622z"
+      android:strokeAlpha="0.999795"
+      android:strokeWidth="4"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M7.9912,12.9164l-1.4246,-1.3554l-0.5687,0.5978l1.4246,1.3554z"
+      android:strokeAlpha="0.999795"
+      android:strokeWidth="3.545798"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M14.1395,5.7396l-0.7107,-0.6762l-1.9657,2.0661l0.7107,0.6762z"
+      android:strokeAlpha="0.999795"
+      android:strokeWidth="3.545798"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+  <path
+      android:pathData="M15.0642,6.0002l-1.9418,-1.8475l-0.3695,0.3884l1.9418,1.8475z"
+      android:strokeAlpha="0.999795"
+      android:strokeWidth="3.1486332"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.999795"
+      android:strokeLineCap="square"/>
+</vector>

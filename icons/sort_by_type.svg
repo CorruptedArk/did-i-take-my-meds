@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
+
+<svg
+   height="24px"
+   viewBox="0 0 24 24"
+   width="24px"
+   fill="#000000"
+   version="1.1"
+   id="svg908"
+   sodipodi:docname="sort_by_type.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs912" />
+  <sodipodi:namedview
+     id="namedview910"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="13.965809"
+     inkscape:cx="14.750309"
+     inkscape:cy="12.852818"
+     inkscape:window-width="1366"
+     inkscape:window-height="704"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg908"
+     inkscape:snap-global="false" />
+  <path
+     d="m -20.489911,-24.087893 h 24 v 24 h -24 z"
+     fill="none"
+     id="path1553" />
+  <path
+     d="M -2.2354524,-2.2354524 H 26.235452 V 26.235452 H -2.2354524 Z"
+     fill="none"
+     id="path904"
+     style="stroke-width:1.18629" />
+  <g
+     id="g2127"
+     transform="matrix(1.1862877,0,0,1.1862877,-3.2497284,-2.2354524)">
+    <path
+       style="fill:#ffffff"
+       d="m 10.525,19.37 h 4.66 l -2.33,2.33 z"
+       id="path1859" />
+    <path
+       style="fill:#ffffff"
+       d="m 15.215,4.66 h -4.72 l 2.36,-2.36 z"
+       id="path906" />
+  </g>
+  <g
+     id="g1177"
+     transform="translate(-0.16125402,0.16125489)">
+    <g
+       id="g12029"
+       transform="matrix(-1.0102354,-1.0077098,-1.0077098,1.0102354,38.333887,10.826299)"
+       style="display:inline;fill:#ffffff">
+      <g
+         id="g11564"
+         style="fill:#ffffff">
+        <path
+           id="rect11090"
+           style="opacity:0.999795;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:7.06317;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 48.564453,52.302734 -10.4375,3.548828 2.839844,8.34961 a 5.5122183,5.5122183 0 0 0 6.992187,3.443359 5.5122183,5.5122183 0 0 0 3.445313,-6.992187 z"
+           transform="matrix(-0.22721871,-0.0772677,0.0772677,-0.22721871,15.309505,29.571854)" />
+      </g>
+      <g
+         id="g11570"
+         transform="rotate(180,9.6389956,14.067702)"
+         style="fill:#ffffff;fill-opacity:1">
+        <path
+           id="rect11566"
+           style="opacity:0.999795;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:7.06317;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 40.148438,39.169922 a 5.5122183,5.5122183 0 0 0 -1.771485,0.294922 5.5122183,5.5122183 0 0 0 -3.445312,6.992187 l 2.839843,8.351563 10.4375,-3.550782 -2.839843,-8.349609 a 5.5122183,5.5122183 0 0 0 -5.220703,-3.738281 z"
+           transform="matrix(0.22721871,0.0772677,-0.0772677,0.22721871,3.9684858,-1.4364498)" />
+      </g>
+    </g>
+    <g
+       id="g2250"
+       transform="matrix(-0.64221576,-0.61102501,-0.61102501,0.64221576,40.556685,23.998812)">
+      <rect
+         style="opacity:0.999795;fill:#ffffff;stroke-width:2.91713;stroke-linecap:square"
+         id="rect1539"
+         width="0.75590551"
+         height="5.6692915"
+         x="35.957565"
+         y="15.598876" />
+      <rect
+         style="opacity:0.999795;fill:#ffffff;stroke-width:4.16824;stroke-linecap:square"
+         id="rect1643"
+         width="3.023622"
+         height="8.6414566"
+         x="34.823708"
+         y="7.5073719" />
+      <path
+         sodipodi:type="star"
+         style="opacity:0.999795;fill:#ffffff;stroke-width:4;stroke-linecap:square"
+         id="path1749"
+         inkscape:flatsided="true"
+         sodipodi:sides="3"
+         sodipodi:cx="36.488232"
+         sodipodi:cy="21.476715"
+         sodipodi:r1="0.61014247"
+         sodipodi:r2="0.64117402"
+         sodipodi:arg1="1.7411325"
+         sodipodi:arg2="2.7883301"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         inkscape:transform-center-x="-0.11354145"
+         inkscape:transform-center-y="0.049310575"
+         transform="matrix(0.68924918,-0.13345101,0.21240174,0.77291158,6.6525589,9.7775031)"
+         d="m 36.384804,22.078027 -0.36561,-0.991539 1.041503,0.179142 z" />
+      <rect
+         style="opacity:0.999795;fill:#ffffff;stroke-width:4;stroke-linecap:square"
+         id="rect1954"
+         width="2.2183213"
+         height="0.93076366"
+         x="35.226357"
+         y="16.007963" />
+      <rect
+         style="opacity:0.999795;fill:#ffffff;stroke-width:4;stroke-linecap:square"
+         id="rect2058"
+         width="1.1066486"
+         height="3.2170727"
+         x="35.782192"
+         y="5.3616271" />
+      <rect
+         style="opacity:0.999795;fill:#ffffff;stroke-width:3.55196;stroke-linecap:square"
+         id="rect2162"
+         width="3.023622"
+         height="0.60472441"
+         x="34.823708"
+         y="4.855547" />
+    </g>
+  </g>
+</svg>
