@@ -50,6 +50,7 @@ import kotlin.collections.ArrayList
 class AddMedActivity() : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
+    private lateinit var rxNumberInput : TextInputEditText
     private lateinit var typeInput: AutoCompleteTextView
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
@@ -89,6 +90,7 @@ class AddMedActivity() : AppCompatActivity() {
         setContentView(R.layout.activity_add_med)
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
+        rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
@@ -112,7 +114,6 @@ class AddMedActivity() : AppCompatActivity() {
                 typeInput.setAdapter(medTypeListAdapter)
                 typeInput.setOnItemClickListener { parent, view, position, id ->
                     typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
-
                 }
             }
         }
@@ -316,7 +317,6 @@ class AddMedActivity() : AppCompatActivity() {
         else {
             val medTypeExists = medicationTypeDao(context).typeExists(typeInput.text.toString())
 
-
             val typeId = if (medTypeExists) {
                 medicationTypeDao(context).get(typeInput.text.toString()).id
             }
@@ -327,7 +327,19 @@ class AddMedActivity() : AppCompatActivity() {
                 medicationType.id
             }
 
-            var medication = Medication(nameInput.text.toString(), hour, minute, detailInput.text.toString(), startDay, startMonth, startYear, notify= notify, requirePhotoProof = requirePhotoProof, typeId = typeId)
+            var medication = Medication(
+                nameInput.text.toString(),
+                hour,
+                minute,
+                detailInput.text.toString(),
+                startDay,
+                startMonth,
+                startYear,
+                notify = notify,
+                requirePhotoProof = requirePhotoProof,
+                typeId = typeId,
+                rxNumber = rxNumberInput.text.toString()
+            )
             medication.moreDosesPerDay = repeatScheduleList
             medicationDao(this).insertAll(medication)
             medication = medicationDao(this).getAllRaw().last()

@@ -45,7 +45,8 @@ data class Medication (var name: String,
                        var notify: Boolean = true,
                        var requirePhotoProof: Boolean = true,
                        var active: Boolean = true,
-                       var typeId: Long = 0
+                       var typeId: Long = 0,
+                       var rxNumber: String = UNDEFINED
 ) {
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
@@ -56,6 +57,7 @@ data class Medication (var name: String,
 
         const val FALLBACK_TRANSITION_TIME = Long.MAX_VALUE
         const val INVALID_MED_ID = -1L
+        const val UNDEFINED = ""
 
         fun doseString(yesterdayString: String, todayString: String, tomorrowString: String, doseTime: Long, dateFormat: String, timeFormat: String, locale: Locale): String {
             val localizedFormatter = SimpleDateFormat(dateFormat, locale)

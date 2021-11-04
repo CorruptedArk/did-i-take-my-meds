@@ -61,6 +61,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var outerScroll: NestedScrollView
     private lateinit var nameLabel: MaterialTextView
+    private lateinit var rxNumberLabel: MaterialTextView
     private lateinit var typelabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
     private lateinit var activeSwitch: SwitchMaterial
@@ -105,6 +106,7 @@ class MedDetailActivity : AppCompatActivity() {
 
                 mainScope.launch {
                     nameLabel.text = medication!!.name
+                    rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
                     typelabel.text = getString(R.string.type_label_format, typeName)
 
                     if (medication!!.isAsNeeded()) {
@@ -221,6 +223,7 @@ class MedDetailActivity : AppCompatActivity() {
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         toolbar = findViewById(R.id.toolbar)
         nameLabel = findViewById(R.id.name_label)
+        rxNumberLabel = findViewById(R.id.rx_number_label)
         typelabel = findViewById(R.id.type_label)
         timeLabel = findViewById(R.id.time_label)
         activeSwitch = findViewById(R.id.active_switch)
@@ -373,6 +376,7 @@ class MedDetailActivity : AppCompatActivity() {
             val typeName = medicationTypeDao(context).get(medication!!.typeId).name
             mainScope.launch {
                 nameLabel.text = medication!!.name
+                rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
                 typelabel.text = getString(R.string.type_label_format, typeName)
 
                 activeSwitch.isChecked = medication!!.active

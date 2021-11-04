@@ -113,5 +113,8 @@
     <string name="undefined">Undefined</string>
     <string name="type_label_format">Type: %1$s</string>
     <string name="sample_type_label">Type: Undefined</string>
+    <string name="rx_number_hint">Rx #</string>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
+    <string name="sample_rx_number_label">Rx #: Undefined</string>
 
 </resources>

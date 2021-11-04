@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @TypeConverters(Converters::class)
-@Database(entities = [Medication::class, ProofImage::class, MedicationType::class], version = 7)
+@Database(entities = [Medication::class, ProofImage::class, MedicationType::class], version = 8)
 abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
     abstract fun proofImageDao(): ProofImageDao
@@ -92,13 +92,20 @@ abstract  class MedicationDB: RoomDatabase() {
             }
         }
 
+        private val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN rxNumber TEXT DEFAULT '' NOT NULL")
+            }
+        }
+
         private val MIGRATIONS = arrayOf(
             MIGRATION_1_2,
             MIGRATION_2_3,
             MIGRATION_3_4,
             MIGRATION_4_5,
             MIGRATION_5_6,
-            MIGRATION_6_7
+            MIGRATION_6_7,
+            MIGRATION_7_8
         )
 
         @Synchronized

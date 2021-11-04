@@ -52,6 +52,18 @@
                 android:text="@string/sample_medicine"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rx_number_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:autoSizeTextType="uniform"
+                android:textSize="28sp"
+                android:paddingTop="10dp"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="10dp"
+                android:text="@string/sample_rx_number_label"/>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/type_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

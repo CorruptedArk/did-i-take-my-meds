@@ -47,6 +47,7 @@ import java.util.concurrent.Executors
 class EditMedActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
+    private lateinit var rxNumberInput: TextInputEditText
     private lateinit var typeInput: AutoCompleteTextView
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
@@ -87,6 +88,7 @@ class EditMedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_med)
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
+        rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
@@ -116,6 +118,7 @@ class EditMedActivity : AppCompatActivity() {
 
             mainScope.launch {
                 nameInput.setText(medication.name)
+                rxNumberInput.setText(medication.rxNumber)
                 typeInput.setText(medType.name)
                 typeInput.setAdapter(medTypeListAdapter)
                 typeInput.setOnItemClickListener { parent, view, position, id ->
@@ -456,6 +459,7 @@ class EditMedActivity : AppCompatActivity() {
             }
 
             medication.name = nameInput.text.toString()
+            medication.rxNumber = rxNumberInput.text.toString()
             medication.hour = hour
             medication.minute = minute
             medication.description = detailInput.text.toString()
