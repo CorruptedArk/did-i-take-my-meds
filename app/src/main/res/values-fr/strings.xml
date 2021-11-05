@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="medication_name">Nom du médicament</string>
+    <string name="save">Enregistrer</string>
+    <string name="fill_fields">Ajoutez le nom avant d’enregistrer</string>
+    <string name="i_just_took_it">Je viens de le prendre !</string>
+    <string name="app_name">Ai-je pris mes médicaments \?</string>
+    <string name="add">Ajouter</string>
+    <string name="add_medications">Ajouter des médicaments à votre liste</string>
+    <string name="pick_a_time">Choisissez une heure avant d’enregistrer</string>
+    <string name="med_saved">Médicament enregistré</string>
+    <string name="cancelled">Nouveau médicament annulé</string>
+    <string name="midnight">12:00 AM</string>
+    <string name="today">Aujourd’hui</string>
+    <string name="yesterday">Hier</string>
+    <string name="closest_dose_sample">Dose la plus proche : 13 h aujourd’hui</string>
+    <string name="description">Description</string>
+    <string name="select_a_time">sélectionnez une heure</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_picker_tag">time_picker</string>
+    <string name="cancel">Annuler</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">Exemple de médicament</string>
+</resources>
