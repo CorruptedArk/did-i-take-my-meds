@@ -45,9 +45,16 @@ data class Medication (var name: String,
                        var notify: Boolean = true,
                        var requirePhotoProof: Boolean = true,
                        var active: Boolean = true,
-                       var typeId: Long = 0,
-                       var rxNumber: String = UNDEFINED
+                       var typeId: Long = DEFAULT_ID,
+                       var rxNumber: String = UNDEFINED,
+                       var pharmacy: String = UNDEFINED,
+
+                       var doseUnitId: Long = DEFAULT_ID,
+                       var amountPerDose: Double = UNDEFINED_AMOUNT,
+                       var remainingDoses: Int = UNDEFINED_REMAINING,
+                       var takeWithFood: Boolean = false
 ) {
+
 
     @PrimaryKey(autoGenerate = true) var id: Long = 0
     @ColumnInfo(name = "dose_record") var doseRecord: ArrayList<DoseRecord> = ArrayList()
@@ -58,6 +65,9 @@ data class Medication (var name: String,
         const val FALLBACK_TRANSITION_TIME = Long.MAX_VALUE
         const val INVALID_MED_ID = -1L
         const val UNDEFINED = ""
+        const val DEFAULT_ID = 0L
+        const val UNDEFINED_AMOUNT = -99.0
+        const val UNDEFINED_REMAINING = -99
 
         fun doseString(yesterdayString: String, todayString: String, tomorrowString: String, doseTime: Long, dateFormat: String, timeFormat: String, locale: Locale): String {
             val localizedFormatter = SimpleDateFormat(dateFormat, locale)
