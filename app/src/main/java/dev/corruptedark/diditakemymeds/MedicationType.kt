@@ -23,9 +23,8 @@ import android.content.ContentValues
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "medicationType")
-data class MedicationType(val name: String)
-{
+@Entity(tableName = MedicationDB.MED_TYPE_TABLE)
+data class MedicationType(val name: String) {
     @PrimaryKey(autoGenerate = true) var id: Long = 0
 
     fun toContentValues(): ContentValues {
