@@ -38,6 +38,7 @@ abstract  class MedicationDB: RoomDatabase() {
     abstract fun medicationDao(): MedicationDao
     abstract fun proofImageDao(): ProofImageDao
     abstract fun medicationTypeDao(): MedicationTypeDao
+    abstract fun doseUnitDao(): DoseUnitDao
 
     companion object {
         const val DATABASE_NAME = "medications"
@@ -45,6 +46,7 @@ abstract  class MedicationDB: RoomDatabase() {
         const val MED_TABLE = "medication"
         const val IMAGE_TABLE = "proofImage"
         const val MED_TYPE_TABLE = "medicationType"
+        const val DOSE_UNIT_TABLE = "doseUnit"
         const val DATABASE_FILE_EXTENSION = ".db"
         @Volatile private var instance: MedicationDB? = null
         private val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -104,6 +106,7 @@ abstract  class MedicationDB: RoomDatabase() {
                 database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN amountPerDose DOUBLE DEFAULT ${Medication.UNDEFINED_AMOUNT} NOT NULL")
                 database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN remainingDoses INTEGER DEFAULT ${Medication.UNDEFINED_REMAINING} NOT NULL")
                 database.execSQL("ALTER TABLE $MED_TABLE ADD COLUMN takeWithFood INTEGER DEFAULT 0 NOT NULL")
+                database.execSQL("CREATE TABLE IF NOT EXISTS $DOSE_UNIT_TABLE (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, unit TEXT NOT NULL)")
             }
         }
 
@@ -143,6 +146,18 @@ abstract  class MedicationDB: RoomDatabase() {
                                             MED_TYPE_TABLE,
                                             SQLiteDatabase.CONFLICT_FAIL,
                                             undefinedType.toContentValues()
+                                        )
+
+                                    }
+
+                                    val undefinedUnit = DoseUnit(context.getString(R.string.undefined))
+                                    undefinedUnit.id = 0
+                                    val defaultUnitExists = db.query("SELECT * FROM $DOSE_UNIT_TABLE WHERE id = 0").count > 0
+                                    if (!defaultUnitExists) {
+                                        db.insert(
+                                            DOSE_UNIT_TABLE,
+                                            SQLiteDatabase.CONFLICT_FAIL,
+                                            undefinedUnit.toContentValues()
                                         )
                                     }
                                     super.onOpen(db)

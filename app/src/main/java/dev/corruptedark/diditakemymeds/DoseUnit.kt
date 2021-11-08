@@ -19,12 +19,18 @@
 
 package dev.corruptedark.diditakemymeds
 
-import android.content.Context
+import android.content.ContentValues
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-fun medicationDao(context: Context): MedicationDao = MedicationDB.getInstance(context).medicationDao()
+@Entity(tableName = MedicationDB.DOSE_UNIT_TABLE)
+data class DoseUnit(val unit: String) {
+    @PrimaryKey(autoGenerate = true) var id: Long = 0
 
-fun proofImageDao(context: Context): ProofImageDao = MedicationDB.getInstance(context).proofImageDao()
-
-fun medicationTypeDao(context: Context): MedicationTypeDao = MedicationDB.getInstance(context).medicationTypeDao()
-
-fun doseUnitDao(context: Context): DoseUnitDao = MedicationDB.getInstance(context).doseUnitDao()
+    fun toContentValues(): ContentValues {
+        val contentValues = ContentValues()
+        contentValues.put(::id.name, id)
+        contentValues.put(::unit.name, unit)
+        return contentValues
+    }
+}
