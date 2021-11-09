@@ -53,6 +53,7 @@ class EditMedActivity : AppCompatActivity() {
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
+    private lateinit var pharmacyInput: TextInputEditText
     private lateinit var detailInput: TextInputEditText
     private lateinit var scheduleButtonsLayout: LinearLayoutCompat
     private lateinit var scheduleButtonsRows: ArrayList<LinearLayoutCompat>
@@ -94,6 +95,7 @@ class EditMedActivity : AppCompatActivity() {
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
         notificationSwitch = findViewById(R.id.notification_switch)
+        pharmacyInput = findViewById(R.id.pharmacy_input)
         detailInput = findViewById(R.id.med_detail)
         toolbar = findViewById(R.id.toolbar)
 
@@ -125,6 +127,7 @@ class EditMedActivity : AppCompatActivity() {
                     typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
 
                 }
+                pharmacyInput.setText(medication.pharmacy)
                 detailInput.setText(medication.description)
                 if (!medication.isAsNeeded()) {
                     val calendar = Calendar.getInstance()

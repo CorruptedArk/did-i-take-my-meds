@@ -56,6 +56,7 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
     private lateinit var notificationSwitch: SwitchMaterial
+    private lateinit var pharmacyInput: TextInputEditText
     private lateinit var detailInput: TextInputEditText
     private lateinit var scheduleButtonsLayout: LinearLayoutCompat
     private lateinit var scheduleButtonsRows: ArrayList<LinearLayoutCompat>
@@ -96,6 +97,7 @@ class AddMedActivity() : AppCompatActivity() {
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
         notificationSwitch = findViewById(R.id.notification_switch)
+        pharmacyInput = findViewById(R.id.pharmacy_input)
         detailInput = findViewById(R.id.med_detail)
         toolbar = findViewById(R.id.toolbar)
 
@@ -338,7 +340,8 @@ class AddMedActivity() : AppCompatActivity() {
                 notify = notify,
                 requirePhotoProof = requirePhotoProof,
                 typeId = typeId,
-                rxNumber = rxNumberInput.text.toString()
+                rxNumber = rxNumberInput.text.toString(),
+                pharmacy = pharmacyInput.text.toString()
             )
             medication.moreDosesPerDay = repeatScheduleList
             medicationDao(this).insertAll(medication)

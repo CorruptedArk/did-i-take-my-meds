@@ -185,6 +185,28 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:hint="@string/pharmacy"
+                app:hintTextColor="@color/purple_200"
+                android:textColorHint="@color/purple_200"
+                app:boxStrokeColor="@color/purple_500"
+                app:boxBackgroundColor="@color/item_background"
+                app:hintTextAppearance="@style/TextLabel"
+                style="@style/Theme.TextInput"
+                android:theme="@style/Theme.TextInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pharmacy_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
                 android:hint="@string/description"
                 app:hintTextColor="@color/purple_200"
