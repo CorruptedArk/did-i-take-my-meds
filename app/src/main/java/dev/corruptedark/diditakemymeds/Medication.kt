@@ -30,7 +30,7 @@ import kotlin.collections.ArrayList
 import kotlin.math.abs
 import kotlin.math.sign
 
-@Entity(tableName = "medication")
+@Entity(tableName = MedicationDB.MED_TABLE)
 data class Medication (var name: String,
                        var hour: Int,
                        var minute: Int,
@@ -48,7 +48,6 @@ data class Medication (var name: String,
                        var typeId: Long = DEFAULT_ID,
                        var rxNumber: String = UNDEFINED,
                        var pharmacy: String = UNDEFINED,
-
                        var doseUnitId: Long = DEFAULT_ID,
                        var amountPerDose: Double = UNDEFINED_AMOUNT,
                        var remainingDoses: Int = UNDEFINED_REMAINING,

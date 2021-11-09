@@ -66,6 +66,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var timeLabel: MaterialTextView
     private lateinit var activeSwitch: SwitchMaterial
     private lateinit var notificationSwitch: SwitchMaterial
+    private lateinit var pharmacyLabel: MaterialTextView
     private lateinit var detailLabel: MaterialTextView
     private lateinit var closestDoseLabel: MaterialTextView
     private lateinit var justTookItButton: MaterialButton
@@ -148,6 +149,8 @@ class MedDetailActivity : AppCompatActivity() {
                         notificationSwitch.isChecked = medication!!.notify
                     }
 
+                    pharmacyLabel.text = medication!!.pharmacy
+
                     detailLabel.text = medication!!.description
 
                     if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
@@ -228,6 +231,7 @@ class MedDetailActivity : AppCompatActivity() {
         timeLabel = findViewById(R.id.time_label)
         activeSwitch = findViewById(R.id.active_switch)
         notificationSwitch = findViewById(R.id.notification_switch)
+        pharmacyLabel = findViewById(R.id.pharmacy_label)
         detailLabel = findViewById(R.id.detail_label)
         closestDoseLabel = findViewById(R.id.closest_dose_label)
         justTookItButton = findViewById(R.id.just_took_it_button)

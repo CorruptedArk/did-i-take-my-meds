@@ -116,5 +116,8 @@
     <string name="rx_number_hint">Rx #</string>
     <string name="rx_number_label_format">Rx #: %1$s</string>
     <string name="sample_rx_number_label">Rx #: Undefined</string>
+    <string name="pharmacy">Pharmacy</string>
+    <string name="pharmacy_label_format">Pharmacy: %1$s</string>
+    <string name="sample_pharmacy_label">Pharmacy: Undefined</string>
 
 </resources>

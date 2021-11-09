@@ -22,7 +22,7 @@ package dev.corruptedark.diditakemymeds
 import androidx.room.Entity
 import java.io.File
 
-@Entity(tableName = "proofImage", primaryKeys = ["medId", "doseTime"])
+@Entity(tableName = MedicationDB.IMAGE_TABLE, primaryKeys = ["medId", "doseTime"])
 data class ProofImage(
     val medId: Long,
     val doseTime: Long,
