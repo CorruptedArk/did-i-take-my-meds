@@ -63,6 +63,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var nameLabel: MaterialTextView
     private lateinit var rxNumberLabel: MaterialTextView
     private lateinit var typelabel: MaterialTextView
+    private lateinit var doseAmountLabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
     private lateinit var activeSwitch: SwitchMaterial
     private lateinit var notificationSwitch: SwitchMaterial
@@ -228,6 +229,7 @@ class MedDetailActivity : AppCompatActivity() {
         nameLabel = findViewById(R.id.name_label)
         rxNumberLabel = findViewById(R.id.rx_number_label)
         typelabel = findViewById(R.id.type_label)
+        doseAmountLabel = findViewById(R.id.dose_amount_label)
         timeLabel = findViewById(R.id.time_label)
         activeSwitch = findViewById(R.id.active_switch)
         notificationSwitch = findViewById(R.id.notification_switch)
@@ -378,11 +380,21 @@ class MedDetailActivity : AppCompatActivity() {
             val minutes = TimeUnit.MILLISECONDS.toMinutes(timeSinceTakenDose) % HOUR_TO_MINUTES
 
             val typeName = medicationTypeDao(context).get(medication!!.typeId).name
+
+            val doseAmountLabelString: String = if (medication!!.doseUnitId != Medication.DEFAULT_ID && medication!!.amountPerDose != Medication.UNDEFINED_AMOUNT) {
+                val doseValueString = medication!!.amountPerDose.toBigDecimal().stripTrailingZeros().toPlainString()
+                val doseUnitString = doseUnitDao(context).get(medication!!.doseUnitId).unit
+                getString(R.string.dose_amount_label_format, doseValueString, doseUnitString)
+            }
+            else {
+                Medication.UNDEFINED
+            }
+
             mainScope.launch {
                 nameLabel.text = medication!!.name
                 rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
                 typelabel.text = getString(R.string.type_label_format, typeName)
-
+                doseAmountLabel.text = doseAmountLabelString
                 activeSwitch.isChecked = medication!!.active
                 activeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                     medication!!.active = isChecked

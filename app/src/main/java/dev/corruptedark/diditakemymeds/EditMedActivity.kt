@@ -49,6 +49,8 @@ class EditMedActivity : AppCompatActivity() {
     private lateinit var nameInput: TextInputEditText
     private lateinit var rxNumberInput: TextInputEditText
     private lateinit var typeInput: AutoCompleteTextView
+    private lateinit var doseAmountInput: TextInputEditText
+    private lateinit var doseUnitInput: AutoCompleteTextView
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
@@ -91,6 +93,8 @@ class EditMedActivity : AppCompatActivity() {
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
+        doseAmountInput = findViewById(R.id.dose_amount_input)
+        doseUnitInput = findViewById(R.id.dose_unit_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -117,6 +121,8 @@ class EditMedActivity : AppCompatActivity() {
             medication.updateStartsToFuture()
             val medType = medicationTypeDao(context).get(medication.typeId)
             val medTypeListAdapter = MedTypeListAdapter(context, medicationTypeDao(context).getAllRaw())
+            val doseUnit = doseUnitDao(context).get(medication.doseUnitId)
+            val doseUnitListAdapter = DoseUnitListAdapter(context, doseUnitDao(context).getAllRaw())
 
             mainScope.launch {
                 nameInput.setText(medication.name)
@@ -125,8 +131,18 @@ class EditMedActivity : AppCompatActivity() {
                 typeInput.setAdapter(medTypeListAdapter)
                 typeInput.setOnItemClickListener { parent, view, position, id ->
                     typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
-
                 }
+
+                if (medication.amountPerDose != Medication.UNDEFINED_AMOUNT) {
+                    doseAmountInput.setText(medication.amountPerDose.toString())
+                }
+
+                doseUnitInput.setText(doseUnit.unit)
+                doseUnitInput.setAdapter(doseUnitListAdapter)
+                doseUnitInput.setOnItemClickListener { parent, view, position, id ->
+                    doseUnitInput.setText((doseUnitInput.adapter.getItem(position) as DoseUnit).unit)
+                }
+
                 pharmacyInput.setText(medication.pharmacy)
                 detailInput.setText(medication.description)
                 if (!medication.isAsNeeded()) {
@@ -450,7 +466,9 @@ class EditMedActivity : AppCompatActivity() {
             false
         }
         else {
-            medication.typeId = if (medicationTypeDao(context).typeExists(typeInput.text.toString())) {
+            val medTypeExists = medicationTypeDao(context).typeExists(typeInput.text.toString())
+
+            medication.typeId = if (medTypeExists) {
                 val medicationType = medicationTypeDao(context).get(typeInput.text.toString())
                 medicationType.id
             }
@@ -461,10 +479,32 @@ class EditMedActivity : AppCompatActivity() {
                 medicationType.id
             }
 
+            val doseAmountString = doseAmountInput.text.toString()
+            val doseAmount = if (doseAmountString.toDoubleOrNull() != null) {
+                doseAmountString.toDouble()
+            }
+            else {
+                Medication.UNDEFINED_AMOUNT
+            }
+
+            val doseUnitExists = doseUnitDao(context).unitExists(doseUnitInput.text.toString())
+            medication.doseUnitId = if (doseUnitExists) {
+                val doseUnit = doseUnitDao(context).get(doseUnitInput.text.toString())
+                doseUnit.id
+            }
+            else {
+                var doseUnit = DoseUnit(doseUnitInput.text.toString())
+                doseUnitDao(context).insertAll(doseUnit)
+                doseUnit = doseUnitDao(context).get(doseUnit.unit)
+                doseUnit.id
+            }
+
             medication.name = nameInput.text.toString()
             medication.rxNumber = rxNumberInput.text.toString()
+            medication.amountPerDose = doseAmount
             medication.hour = hour
             medication.minute = minute
+            medication.pharmacy = pharmacyInput.text.toString()
             medication.description = detailInput.text.toString()
             medication.startDay = startDay
             medication.startMonth = startMonth
