@@ -21,4 +21,22 @@
     <string name="cancel">Annuler</string>
     <string name="time_12">h:mma</string>
     <string name="sample_medicine">Exemple de médicament</string>
+    <string name="previous_doses">Doses précédentes :</string>
+    <string name="date_format">d MMM yyyy</string>
+    <string name="notifications_disabled">Notifications désactivées</string>
+    <string name="tomorrow">Demain</string>
+    <string name="time_for_your_dose">C\'est l\'heure de votre dose</string>
+    <string name="medication_delete_warning">Le médicament sera définitivement supprimé</string>
+    <string name="edit">Modifier</string>
+    <string name="edit_medication">Modifier le médicament</string>
+    <string name="about">À propos</string>
+    <string name="sample_description">Ceci est un exemple de description d\'un médicament. Il comporte plusieurs phrases et couvre plusieurs lignes.</string>
+    <string name="closest_dose_label">La dose la plus proche : %1$s</string>
+    <string name="delete">supprimer</string>
+    <string name="are_you_sure">Êtes-vous sûr(e) \?</string>
+    <string name="confirm">confirmer</string>
+    <string name="edit_cancelled">Modification annulée</string>
+    <string name="notifications_enabled">Notifications activées</string>
+    <string name="new_medication">Nouveau médicament</string>
+    <string name="medication_details">Détails des médicaments</string>
 </resources>
