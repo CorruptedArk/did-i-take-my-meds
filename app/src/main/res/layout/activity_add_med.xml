@@ -88,7 +88,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
+                android:paddingTop="10dp"
                 android:hint="@string/medication_type"
                 app:hintTextColor="@color/purple_200"
                 android:textColorHint="@color/purple_200"
@@ -101,6 +101,56 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/med_type_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textNoSuggestions"
+                    android:textSize="20sp"
+                    android:dropDownHeight="wrap_content"
+                    android:dropDownWidth="wrap_content"
+                    android:popupElevation="0dp"
+                    android:textColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:hint="@string/dose_amount"
+                app:hintTextColor="@color/purple_200"
+                android:textColorHint="@color/purple_200"
+                app:boxStrokeColor="@color/purple_500"
+                app:boxBackgroundColor="@color/item_background"
+                app:hintTextAppearance="@style/TextLabel"
+                style="@style/Theme.TextInput"
+                android:theme="@style/Theme.TextInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dose_amount_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:hint="@string/dose_unit"
+                app:hintTextColor="@color/purple_200"
+                android:textColorHint="@color/purple_200"
+                app:endIconTint="@color/purple_200"
+                app:boxStrokeColor="@color/purple_200"
+                app:boxBackgroundColor="@color/item_background"
+                app:hintTextAppearance="@style/TextLabel"
+                style="@style/Theme.TextInput.ExposedDropdownMenu"
+                android:theme="@style/Theme.TextInput.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/dose_unit_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textNoSuggestions"

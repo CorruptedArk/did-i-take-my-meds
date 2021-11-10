@@ -75,6 +75,17 @@
                 android:text="@string/sample_type_label"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dose_amount_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:autoSizeTextType="uniform"
+                android:textSize="28sp"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                android:text="@string/sample_dose_amount_label"/>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/time_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

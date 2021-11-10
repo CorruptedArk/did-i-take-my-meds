@@ -52,6 +52,8 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var nameInput: TextInputEditText
     private lateinit var rxNumberInput : TextInputEditText
     private lateinit var typeInput: AutoCompleteTextView
+    private lateinit var doseAmountInput: TextInputEditText
+    private lateinit var doseUnitInput: AutoCompleteTextView
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
@@ -93,6 +95,8 @@ class AddMedActivity() : AppCompatActivity() {
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
+        doseAmountInput = findViewById(R.id.dose_amount_input)
+        doseUnitInput = findViewById(R.id.dose_unit_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -111,11 +115,17 @@ class AddMedActivity() : AppCompatActivity() {
 
         lifecycleScope.launch(lifecycleDispatcher) {
             val medTypeListAdapter = MedTypeListAdapter(context, medicationTypeDao(context).getAllRaw())
+            val doseUnitListAdapter = DoseUnitListAdapter(context, doseUnitDao(context).getAllRaw())
 
             mainScope.launch {
                 typeInput.setAdapter(medTypeListAdapter)
                 typeInput.setOnItemClickListener { parent, view, position, id ->
                     typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
+                }
+
+                doseUnitInput.setAdapter(doseUnitListAdapter)
+                doseUnitInput.setOnItemClickListener { parent, view, position, id ->
+                    doseUnitInput.setText((doseUnitInput.adapter.getItem(position) as DoseUnit).unit)
                 }
             }
         }
@@ -329,6 +339,26 @@ class AddMedActivity() : AppCompatActivity() {
                 medicationType.id
             }
 
+            val doseAmountString = doseAmountInput.text.toString()
+            val doseAmount = if (doseAmountString.toDoubleOrNull() != null) {
+                doseAmountString.toDouble()
+            }
+            else {
+                Medication.UNDEFINED_AMOUNT
+            }
+
+            val doseUnitExists = doseUnitDao(context).unitExists(doseUnitInput.text.toString())
+            val doseUnitId = if (doseUnitExists) {
+                val doseUnit = doseUnitDao(context).get(doseUnitInput.text.toString())
+                doseUnit.id
+            }
+            else {
+                var doseUnit = DoseUnit(doseUnitInput.text.toString())
+                doseUnitDao(context).insertAll(doseUnit)
+                doseUnit = doseUnitDao(context).get(doseUnit.unit)
+                doseUnit.id
+            }
+
             var medication = Medication(
                 nameInput.text.toString(),
                 hour,
@@ -341,7 +371,9 @@ class AddMedActivity() : AppCompatActivity() {
                 requirePhotoProof = requirePhotoProof,
                 typeId = typeId,
                 rxNumber = rxNumberInput.text.toString(),
-                pharmacy = pharmacyInput.text.toString()
+                pharmacy = pharmacyInput.text.toString(),
+                amountPerDose = doseAmount,
+                doseUnitId = doseUnitId
             )
             medication.moreDosesPerDay = repeatScheduleList
             medicationDao(this).insertAll(medication)

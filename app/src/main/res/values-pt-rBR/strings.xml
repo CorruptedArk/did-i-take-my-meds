@@ -119,5 +119,9 @@
     <string name="pharmacy">Pharmacy</string>
     <string name="pharmacy_label_format">Pharmacy: %1$s</string>
     <string name="sample_pharmacy_label">Pharmacy: Undefined</string>
+    <string name="dose_unit">Dose Unit</string>
+    <string name="dose_amount">Dose Amount</string>
+    <string name="dose_amount_label_format">%1$s%2$s per dose</string>
+    <string name="sample_dose_amount_label">5mg per dose</string>
 
 </resources>
