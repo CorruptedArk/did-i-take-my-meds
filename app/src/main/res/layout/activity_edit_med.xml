@@ -34,13 +34,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="20dp">
+        android:fadeScrollbars="false">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -62,6 +63,78 @@
                     android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/as_needed_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/taken_as_needed"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="28sp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:checked="false"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/require_photo_proof_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/require_photo_proof"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="28sp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:checked="false"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/repeat_schedule_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:textSize="18sp"
+                android:text="@string/schedule_dose"
+                android:textColor="@color/purple_200"
+                app:strokeColor="@color/purple_500"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/schedule_buttons_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/extra_dose_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:paddingVertical="15dp"
+                android:textSize="20sp"
+                android:text="@string/add_another_dose"
+                app:icon="@drawable/add_box"
+                app:iconGravity="textStart"
+                android:textColor="@color/purple_200"
+                app:strokeColor="@color/purple_500"
+                app:iconTint="@color/purple_200"
+                android:visibility="visible"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/notification_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/notifications_enabled"
+                android:textColor="@color/purple_200"
+                app:autoSizeTextType="uniform"
+                android:textSize="28sp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:checked="true"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -161,76 +234,6 @@
                     android:textColor="@color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/as_needed_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/taken_as_needed"
-                android:textColor="@color/purple_200"
-                app:autoSizeTextType="uniform"
-                android:textSize="28sp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:checked="false"/>
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/require_photo_proof_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/require_photo_proof"
-                android:textColor="@color/purple_200"
-                app:autoSizeTextType="uniform"
-                android:textSize="28sp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:checked="false"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/repeat_schedule_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:textSize="18sp"
-                android:text="@string/schedule_dose"
-                android:textColor="@color/purple_200"
-                app:strokeColor="@color/purple_500"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/schedule_buttons_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/extra_dose_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:paddingVertical="15dp"
-                android:textSize="20sp"
-                android:text="@string/add_another_dose"
-                app:icon="@drawable/add_box"
-                app:iconGravity="textStart"
-                android:textColor="@color/purple_200"
-                app:strokeColor="@color/purple_500"
-                app:iconTint="@color/purple_200"
-                android:visibility="visible"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/notification_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/notifications_enabled"
-                android:textColor="@color/purple_200"
-                app:autoSizeTextType="uniform"
-                android:textSize="28sp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="15dp"
-                android:checked="true"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
