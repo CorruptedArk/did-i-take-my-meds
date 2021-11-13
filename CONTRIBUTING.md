@@ -11,6 +11,14 @@ Valid issue subjects include but are not limited to the following:
 - Feature requests / additions
 - Resource translations
 
+## Contributing Translations
+If you want to provide translations, you can either:
+- Directly submit a pull request with changes to the string resource files
+
+	**or**
+
+- Translate through the hosted Weblate instance for this project [here](https://hosted.weblate.org/projects/did-i-take-my-meds/string-resources/)
+
 ## Pull Requests
 As stated above, please submit an issue regarding changes before implementing them. Doing so gives me a chance to decide whether the change is fit for the code base, allows me to decide if I will implement it, and saves you time by preventing duplication of work.
 
