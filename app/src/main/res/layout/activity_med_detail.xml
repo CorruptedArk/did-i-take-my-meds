@@ -159,6 +159,17 @@
                 android:text="@string/sample_dose_amount_label"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/remaining_doses_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:autoSizeTextType="uniform"
+                android:textSize="23sp"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="20dp"
+                android:text="@string/sample_remaining_doses_label"/>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/pharmacy_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

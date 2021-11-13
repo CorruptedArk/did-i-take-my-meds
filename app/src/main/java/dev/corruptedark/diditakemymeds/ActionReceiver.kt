@@ -177,7 +177,7 @@ class ActionReceiver : BroadcastReceiver() {
                             context.startActivity(takeMedIntent)
                         }
                         else {
-                            if (!medication.closestDoseAlreadyTaken()) {
+                            if (!medication.closestDoseAlreadyTaken() && medication.hasDoseRemaining()) {
 
                                 val takenDose = DoseRecord(
                                     System.currentTimeMillis(),

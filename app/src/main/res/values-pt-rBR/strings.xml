@@ -118,5 +118,9 @@
     <string name="dose_amount">Dose Amount</string>
     <string name="dose_amount_label_format">%1$s%2$s per dose</string>
     <string name="sample_dose_amount_label">5mg per dose</string>
+    <string name="remaining_doses">Remaining Doses</string>
+    <string name="sample_remaining_doses_label">10 remaining doses</string>
+    <string name="remaining_doses_label_format">%1$d remaining doses</string>
+    <string name="no_remaining_doses_message">There are no doses remaining\nIf this is wrong, update the remaining doses by editing the medication</string>
 
 </resources>

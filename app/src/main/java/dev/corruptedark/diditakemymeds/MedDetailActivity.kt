@@ -64,6 +64,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var rxNumberLabel: MaterialTextView
     private lateinit var typelabel: MaterialTextView
     private lateinit var doseAmountLabel: MaterialTextView
+    private lateinit var remainingDosesLabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
     private lateinit var activeSwitch: SwitchMaterial
     private lateinit var notificationSwitch: SwitchMaterial
@@ -230,6 +231,7 @@ class MedDetailActivity : AppCompatActivity() {
         rxNumberLabel = findViewById(R.id.rx_number_label)
         typelabel = findViewById(R.id.type_label)
         doseAmountLabel = findViewById(R.id.dose_amount_label)
+        remainingDosesLabel = findViewById(R.id.remaining_doses_label)
         timeLabel = findViewById(R.id.time_label)
         activeSwitch = findViewById(R.id.active_switch)
         notificationSwitch = findViewById(R.id.notification_switch)
@@ -381,10 +383,21 @@ class MedDetailActivity : AppCompatActivity() {
 
             val typeName = medicationTypeDao(context).get(medication!!.typeId).name
 
-            val doseAmountLabelString: String = if (medication!!.doseUnitId != Medication.DEFAULT_ID && medication!!.amountPerDose != Medication.UNDEFINED_AMOUNT) {
+            var doseAmountLabelVisibility: Int = View.GONE
+            val doseAmountLabelString = if (medication!!.doseUnitId != Medication.DEFAULT_ID && medication!!.amountPerDose != Medication.UNDEFINED_AMOUNT) {
                 val doseValueString = medication!!.amountPerDose.toBigDecimal().stripTrailingZeros().toPlainString()
                 val doseUnitString = doseUnitDao(context).get(medication!!.doseUnitId).unit
+                doseAmountLabelVisibility = View.VISIBLE
                 getString(R.string.dose_amount_label_format, doseValueString, doseUnitString)
+            }
+            else {
+                Medication.UNDEFINED
+            }
+
+            var remainingDosesLabelVisibility: Int = View.GONE
+            val remainingDosesLabelString = if (medication!!.remainingDoses != Medication.UNDEFINED_REMAINING) {
+                remainingDosesLabelVisibility = View.VISIBLE
+                getString(R.string.remaining_doses_label_format, medication!!.remainingDoses)
             }
             else {
                 Medication.UNDEFINED
@@ -395,6 +408,10 @@ class MedDetailActivity : AppCompatActivity() {
                 rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
                 typelabel.text = getString(R.string.type_label_format, typeName)
                 doseAmountLabel.text = doseAmountLabelString
+                doseAmountLabel.visibility = doseAmountLabelVisibility
+                remainingDosesLabel.text = remainingDosesLabelString
+                remainingDosesLabel.visibility = remainingDosesLabelVisibility
+
                 activeSwitch.isChecked = medication!!.active
                 activeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
                     medication!!.active = isChecked
@@ -476,6 +493,12 @@ class MedDetailActivity : AppCompatActivity() {
                 }
 
                 detailLabel.text = medication!!.description
+                if (medication!!.description.isEmpty()) {
+                    detailLabel.visibility = View.GONE
+                }
+                else {
+                    detailLabel.visibility = View.VISIBLE
+                }
 
                 doseRecordAdapter = DoseRecordListAdapter(context, medication!!.doseRecord)
 
@@ -662,7 +685,11 @@ class MedDetailActivity : AppCompatActivity() {
             if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
                 Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT)
                     .show()
-            } else {
+            }
+            else if (!medication!!.hasDoseRemaining()) {
+                Toast.makeText(this, getString(R.string.no_remaining_doses_message), Toast.LENGTH_LONG).show()
+            }
+            else {
                 if (medication!!.requirePhotoProof) {
                     startTakePictureIntent(medication!!.id, System.currentTimeMillis())
                 } else {

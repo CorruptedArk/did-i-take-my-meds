@@ -54,6 +54,7 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var typeInput: AutoCompleteTextView
     private lateinit var doseAmountInput: TextInputEditText
     private lateinit var doseUnitInput: AutoCompleteTextView
+    private lateinit var remainingDosesInput: TextInputEditText
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
@@ -90,13 +91,14 @@ class AddMedActivity() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_med)
+        setContentView(R.layout.activity_add_or_edit_med)
         alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
         doseAmountInput = findViewById(R.id.dose_amount_input)
         doseUnitInput = findViewById(R.id.dose_unit_input)
+        remainingDosesInput = findViewById(R.id.remaining_doses_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -347,6 +349,14 @@ class AddMedActivity() : AppCompatActivity() {
                 Medication.UNDEFINED_AMOUNT
             }
 
+            val remainingDosesString = remainingDosesInput.text.toString()
+            val remainingDoses = if (remainingDosesString.toIntOrNull() != null) {
+                remainingDosesString.toInt()
+            }
+            else {
+                Medication.UNDEFINED_REMAINING
+            }
+
             val doseUnitExists = doseUnitDao(context).unitExists(doseUnitInput.text.toString())
             val doseUnitId = if (doseUnitExists) {
                 val doseUnit = doseUnitDao(context).get(doseUnitInput.text.toString())
@@ -373,7 +383,8 @@ class AddMedActivity() : AppCompatActivity() {
                 rxNumber = rxNumberInput.text.toString(),
                 pharmacy = pharmacyInput.text.toString(),
                 amountPerDose = doseAmount,
-                doseUnitId = doseUnitId
+                doseUnitId = doseUnitId,
+                remainingDoses = remainingDoses
             )
             medication.moreDosesPerDay = repeatScheduleList
             medicationDao(this).insertAll(medication)

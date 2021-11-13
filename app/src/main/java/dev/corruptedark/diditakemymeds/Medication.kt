@@ -455,8 +455,15 @@ data class Medication (var name: String,
         }
     }
 
+    fun hasDoseRemaining(): Boolean {
+        return remainingDoses > 0 || remainingDoses == UNDEFINED_REMAINING
+    }
+
     fun addNewTakenDose(takenDose: DoseRecord) {
         doseRecord.add(takenDose)
+        if (remainingDoses > 0) {
+            remainingDoses--
+        }
         doseRecord.sort()
     }
 

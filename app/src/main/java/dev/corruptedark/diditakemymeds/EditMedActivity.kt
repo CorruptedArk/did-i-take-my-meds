@@ -51,6 +51,7 @@ class EditMedActivity : AppCompatActivity() {
     private lateinit var typeInput: AutoCompleteTextView
     private lateinit var doseAmountInput: TextInputEditText
     private lateinit var doseUnitInput: AutoCompleteTextView
+    private lateinit var remainingDosesInput: TextInputEditText
     private lateinit var asNeededSwitch: SwitchMaterial
     private lateinit var requirePhotoProofSwitch: SwitchMaterial
     private lateinit var repeatScheduleButton: MaterialButton
@@ -88,13 +89,14 @@ class EditMedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_med)
+        setContentView(R.layout.activity_add_or_edit_med)
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
         doseAmountInput = findViewById(R.id.dose_amount_input)
         doseUnitInput = findViewById(R.id.dose_unit_input)
+        remainingDosesInput = findViewById(R.id.remaining_doses_input)
         asNeededSwitch = findViewById(R.id.as_needed_switch)
         requirePhotoProofSwitch = findViewById(R.id.require_photo_proof_switch)
         repeatScheduleButton = findViewById(R.id.repeat_schedule_button)
@@ -135,6 +137,10 @@ class EditMedActivity : AppCompatActivity() {
 
                 if (medication.amountPerDose != Medication.UNDEFINED_AMOUNT) {
                     doseAmountInput.setText(medication.amountPerDose.toString())
+                }
+
+                if (medication.remainingDoses != Medication.UNDEFINED_REMAINING) {
+                    remainingDosesInput.setText(medication.remainingDoses.toString())
                 }
 
                 doseUnitInput.setText(doseUnit.unit)
@@ -487,6 +493,14 @@ class EditMedActivity : AppCompatActivity() {
                 Medication.UNDEFINED_AMOUNT
             }
 
+            val remainingDosesString = remainingDosesInput.text.toString()
+            val remainingDoses = if (remainingDosesString.toIntOrNull() != null) {
+                remainingDosesString.toInt()
+            }
+            else {
+                Medication.UNDEFINED_REMAINING
+            }
+
             val doseUnitExists = doseUnitDao(context).unitExists(doseUnitInput.text.toString())
             medication.doseUnitId = if (doseUnitExists) {
                 val doseUnit = doseUnitDao(context).get(doseUnitInput.text.toString())
@@ -502,6 +516,7 @@ class EditMedActivity : AppCompatActivity() {
             medication.name = nameInput.text.toString()
             medication.rxNumber = rxNumberInput.text.toString()
             medication.amountPerDose = doseAmount
+            medication.remainingDoses = remainingDoses
             medication.hour = hour
             medication.minute = minute
             medication.pharmacy = pharmacyInput.text.toString()
