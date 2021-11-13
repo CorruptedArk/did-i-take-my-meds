@@ -8,6 +8,7 @@
 [![GitHub Releases](https://img.shields.io/github/downloads/CorruptedArk/did-i-take-my-meds/latest/total)](https://github.com/CorruptedArk/did-i-take-my-meds/releases)
 [![Liberapay Patrons](https://img.shields.io/liberapay/patrons/CorruptedArk.svg?logo=liberapay")](https://liberapay.com/CorruptedArk/)
 
+[![Translation status](https://hosted.weblate.org/widgets/did-i-take-my-meds/-/string-resources/287x66-black.png)](https://hosted.weblate.org/engage/did-i-take-my-meds/)
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/dev.corruptedark.diditakemymeds)
 
@@ -39,6 +40,9 @@ Did I Take My Meds? allows a user save multiple medications with complex schedul
 Brazilian Portuguese translations by [mezysinc](https://github.com/mezysinc) and [lnux-usr](https://github.com/lnux-usr)
 
 German translations by [jpameli](https://github.com/jpameli)
+
+French translations by [Edanas](https://hosted.weblate.org/user/Edanas/)
+
 
 ---
 

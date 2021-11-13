@@ -53,7 +53,7 @@
     <string name="edit_cancelled">Edit cancelled</string>
     <string name="notifications_enabled">Notifications enabled</string>
     <string name="notifications_disabled">Notifications disabled</string>
-    <string name="channel_name">did_i_take_my_meds</string>
+    <string name="channel_name" translatable="false">did_i_take_my_meds</string>
     <string name="channel_description">reminder notifications</string>
     <string name="med_id_key" translatable="false">med_id</string>
     <string name="time_for_your_dose">Time for your dose</string>
@@ -61,12 +61,12 @@
     <string name="medication_details">Medication Details</string>
     <string name="edit_medication">Edit Medication</string>
     <string name="about">About</string>
-    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nDid I Take My Meds? is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nDid I Take My Meds? is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Support me on Liberapay</string>
     <string name="view_the_project_on_github">View the project on GitHub</string>
-    <string name="github_link">https://github.com/CorruptedArk/did-i-take-my-meds</string>
-    <string name="liberapay_link">https://liberapay.com/CorruptedArk</string>
-    <string name="play_release">playRelease</string>
+    <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
+    <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
+    <string name="play_release" translatable="false">playRelease</string>
     <string name="sorry">Sorry!</string>
     <string name="okay">Okay</string>
     <string name="cannot_donate_explanation">Google doesn\'t allow developers to place donation links in apps to support themselves if they are not tax exempt charities. If you still want to support me, you can find CorruptedArk on Liberapay in a separate browser. My GitHub repository is a good place to start.</string>
@@ -84,7 +84,7 @@
     <string name="schedule_picker_tag">schedule_picker</string>
     <string name="date_picker_tag">date_picker</string>
     <string name="schedule_format">%1$s\nStarts %2$s\nRepeats every\n%3$d day(s), %4$d week(s),\n%5$d month(s), %6$d year(s)</string>
-    <string name="utc">UTC</string>
+    <string name="utc" translatable="false">UTC</string>
     <string name="fill_out_all_schedules">Fill out all schedules before saving</string>
     <string name="fill_out_schedule">Fill out schedule before confirming</string>
     <string name="next_dose_label">Next dose: %1$s</string>
