@@ -86,7 +86,7 @@
     <string name="play_release" translatable="false">playRelease</string>
     <string name="sorry">מחילה!</string>
     <string name="okay">בסדר</string>
-    <string name="cannot_donate_explanation"/>
+    <string name="cannot_donate_explanation">Google אינם מרשים למפתחים להציב קישורי תרומה ביישומונים לטובת תמיכה עצמית אם לא מדובר בקרנות צדקה פטורות ממס. אם עדיין מעניין אותך לתמוך בי, אפשר למצוא את CorruptedArk ב־Liberapay בדפדפן נפרד. מאגר ה־GitHub שלי הוא מקום טוב להתחיל בו.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
     <string name="add_another_dose">הוספת נטילה נוספת</string>
     <string name="taken_as_needed">ניטל כדרוש</string>
@@ -123,7 +123,7 @@
     <string name="dose_record_delete_warning">תיעוד הנטילה יימחק לצמיתות.</string>
     <string name="record_delete_hint">(לחיצה ארוכה על רשומה תמחק אותה)</string>
     <string name="time_since_dose_sample">בערך 0 ימים, 0 שעות ו־0 דקות מאז הנטילה האחרונה</string>
-    <string name="time_since_dose_template"/>
+    <string name="time_since_dose_template">בערך %1$d ימים, %2$d שעות, ו־%3$d דקות מאז הנטילה האחרונה</string>
     <string name="require_photo_proof">נדרשת תמונה להוכחה</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
@@ -135,27 +135,28 @@
     <string name="record_detail_hint">(יש לגעת על הקלטה כדי לצפות בפרטים)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"/>
-    <string name="back_up_failed"/>
-    <string name="dose_details"/>
-    <string name="medication_active"/>
-    <string name="inactive"/>
-    <string name="medication_type"/>
-    <string name="undefined"/>
-    <string name="type_label_format"/>
-    <string name="sample_type_label"/>
-    <string name="rx_number_hint"/>
-    <string name="rx_number_label_format"/>
-    <string name="sample_rx_number_label"/>
-    <string name="pharmacy"/>
-    <string name="pharmacy_label_format"/>
-    <string name="sample_pharmacy_label"/>
-    <string name="dose_unit"/>
-    <string name="dose_amount"/>
-    <string name="dose_amount_label_format"/>
-    <string name="sample_dose_amount_label"/>
-    <string name="remaining_doses"/>
-    <string name="sample_remaining_doses_label"/>
-    <string name="remaining_doses_label_format"/>
-    <string name="no_remaining_doses_message"/>
+    <string name="back_up_successful">הגיבוי הצליח</string>
+    <string name="back_up_failed">הגיבוי נכשל</string>
+    <string name="dose_details">פרטי הנטילה</string>
+    <string name="medication_active">תרופה פעילה</string>
+    <string name="inactive">בלתי פעילה</string>
+    <string name="medication_type">סוג התרופה</string>
+    <string name="undefined">לא מוגדרת</string>
+    <string name="type_label_format">סוג: %1$s</string>
+    <string name="sample_type_label">סוג: לא מוגדר</string>
+    <string name="rx_number_hint">מספר Rx</string>
+    <string name="rx_number_label_format">מספר Rx‏: %1$s</string>
+    <string name="sample_rx_number_label">מספר Rx: לא מוגדר</string>
+    <string name="pharmacy">בית מרקחת</string>
+    <string name="pharmacy_label_format">בית מרקחת: %1$s</string>
+    <string name="sample_pharmacy_label">בית מרקחת: לא מוגדר</string>
+    <string name="dose_unit">יחידת הנטילה</string>
+    <string name="dose_amount">כמות לנטילה</string>
+    <string name="dose_amount_label_format">%1$s%2$s לנטילה</string>
+    <string name="sample_dose_amount_label">5 מ״ג לנטילה</string>
+    <string name="remaining_doses">נטילות שנותרו</string>
+    <string name="sample_remaining_doses_label">נותרו 10 נטילות</string>
+    <string name="remaining_doses_label_format">נותרו %1$d נטילות</string>
+    <string name="no_remaining_doses_message">לא נותרו נטילות
+\nאם מדובר בטעות, יש לעדכן את הנטילות הנותרות על ידי עריכת התרופה</string>
 </resources>
