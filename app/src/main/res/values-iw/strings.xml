@@ -15,126 +15,147 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
-    <string name="time_picker_tag"></string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="app_name">לקחתי את התרופות שלי\?</string>
+    <string name="add">הוספה</string>
+    <string name="add_medications">הוספת תרופות לרשימה שלך</string>
+    <string name="medication_name">שם התרופה</string>
+    <string name="description">תיאור</string>
+    <string name="select_a_time">נא לבחור תזמון</string>
+    <string name="time_picker_tag"/>
+    <string name="save">שמירה</string>
+    <string name="cancel">ביטול</string>
+    <string name="pick_a_time">נא לבחור מועד בטרם השמירה</string>
+    <string name="fill_fields">יש למלא שם בטרם השמירה</string>
+    <string name="med_saved">התרופה נשמרה</string>
+    <string name="cancelled">תרופה חדשה בוטלה</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">תרופה לדוגמה</string>
+    <string name="midnight">12:00AM</string>
+    <string name="sample_description">זה תיאור לדוגמה של תרופה. יש בו מספר משפטים והוא חולש על מספר שורות.</string>
+    <string name="previous_doses">נטילות קודמות:</string>
+    <string name="i_just_took_it">הרגע לקחתי!</string>
+    <string name="closest_dose_sample">הנטילה הקרובה ביותר: 13:00 היום</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">היום</string>
+    <string name="yesterday">אתמול</string>
+    <string name="tomorrow">מחר</string>
+    <string name="closest_dose_label">הנטילה הקרובה ביותר: %1$s</string>
+    <string name="already_took_dose">כבר נטלת את התרופה הזאת
+\nכולי תקווה שלא נטלת אותה שוב</string>
+    <string name="date_format">d בMMM, yyyy</string>
+    <string name="time_taken">מועד הנטילה: %1$s</string>
+    <string name="delete">מחיקה</string>
+    <string name="are_you_sure">להמשיך\?</string>
+    <string name="medication_delete_warning">התרופה תימחק לצמיתות</string>
+    <string name="confirm">אישור</string>
+    <string name="took_this_already">כבר נטלת את זה</string>
+    <string name="edit">עריכה</string>
+    <string name="edit_cancelled">העריכה בוטלה</string>
+    <string name="notifications_enabled">התראות פעילות</string>
+    <string name="notifications_disabled">התראות מושבתות</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">התראות תזכורת</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">הגיע הזמן לנטילה שלך</string>
+    <string name="new_medication">תרופה חדשה</string>
+    <string name="medication_details">פרטי תרופה</string>
+    <string name="edit_medication">עריכת תרופה</string>
+    <string name="about">על היישומון</string>
+    <string name="app_description">גרסה %1$s מא נח סטנפורד (ידוע גם בשם CorruptedArk)
+\n
+\nהתרגומים לפורטוגלית ברזילאית מאת mezysinc ו־lnux-usr ב־GitHub
+\n
+\nהתרגומים לגרמנית מאת jpameli ב־GitHub
+\n
+\nהתרגומים לצרפתית מאת Edanas ב־Weblate
+\n
+\nלקחתי את התרופות שלי\? הוא יישומון חופשי ובקוד פתוח לסיוע במעקב אחר תרופות
+\nלקחתי את התרופות שלי\? תוכנן לסייע למנוע ממשתמש לדלג על נטילות ו/או ליטול מנת יתר
+\nכל הזכויות שמורות © 2021 נח סטנפורד noahstandingford@gmail.com
+\n
+\nלקחתי את התרופות שלי\? מוגש במסגרת תכנה חופשית: ניתן להפיץ אותו מחדש ו/או לשנות אותו תחת תנאי הרישיון הציבורי הכללי של גנו כפי שפורסם על ידי הקרן לתכנה חופשית, או גרסה 3 של הרישיון או (לבחירתך) כל גרסה עדכנית יותר.
+\n
+\nלקחתי את התרופות שלי\? מופצת בתקווה שתביא תועלת אך ללא כל אחריות; אפילו לא מרומזת באשר למסחריות או התאמה למטרה מסוימת. ברישיון הציבורי הכללי של גנו מופיעים פרטים נוספים.
+\n
+\nלתכנית הזאת אמור היה להיות מצורף עותק של הרישיון הציבורי הכללי של גנו. אם לא, ניתן לפנות לכאן: https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">לתמוך בי דרך Liberapay</string>
+    <string name="view_the_project_on_github">הצגת המיזם ב־GitHub</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">מחילה!</string>
+    <string name="okay">בסדר</string>
+    <string name="cannot_donate_explanation"/>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
-    <string name="schedule_picker_tag"></string>
-    <string name="date_picker_tag"></string>
-    <string name="schedule_format"></string>
+    <string name="add_another_dose">הוספת נטילה נוספת</string>
+    <string name="taken_as_needed">ניטל כדרוש</string>
+    <string name="hello_blank_fragment">שלום מקטע ריק</string>
+    <string name="select_a_start_date">תאריך התחלה</string>
+    <string name="time_between_doses">זמן בין הנטילות:</string>
+    <string name="days">ימים</string>
+    <string name="weeks">שבועות</string>
+    <string name="months">חודשים</string>
+    <string name="years">שנים</string>
+    <string name="schedule_dose">תזמון נטילה</string>
+    <string name="schedule_picker_tag"/>
+    <string name="date_picker_tag"/>
+    <string name="schedule_format">%1$s
+\nמתחיל %2$s
+\nחוזר כל
+\n%3$d ימים, %4$d שבועות,
+\n%5$d חודשים, %6$d שנים</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">יש למלא את כל התזמונים בטרם השמירה</string>
+    <string name="fill_out_schedule">יש למלא את התזמון בטרם האישור</string>
+    <string name="next_dose_label">הנטילה הבאה: %1$s</string>
+    <string name="taken">ניטל</string>
+    <string name="not_taken">לא ניטל</string>
+    <string name="sort">מיון</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">שחזור מסד הנתונים</string>
+    <string name="back_up_database">גיבוי מסד הנתונים</string>
+    <string name="database_is_invalid">מסד הנתונים שגוי</string>
+    <string name="database_restored">מסד הנתונים שוחזר</string>
+    <string name="took_it">נטלתי</string>
+    <string name="app_name_short">לאתש\?</string>
+    <string name="remind_in_15">להזכיר לי בעוד רבע שעה</string>
+    <string name="dose_record_delete_warning">תיעוד הנטילה יימחק לצמיתות.</string>
+    <string name="record_delete_hint">(לחיצה ארוכה על רשומה תמחק אותה)</string>
+    <string name="time_since_dose_sample">בערך 0 ימים, 0 שעות ו־0 דקות מאז הנטילה האחרונה</string>
+    <string name="time_since_dose_template"/>
+    <string name="require_photo_proof">נדרשת תמונה להוכחה</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">הנטילה וההוכחה נשמרו</string>
+    <string name="failed_to_get_proof">קבלת ההוכחה נכשלה</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">אין תמונה זמינה</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(יש לגעת על הקלטה כדי לצפות בפרטים)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
+    <string name="back_up_successful"/>
+    <string name="back_up_failed"/>
+    <string name="dose_details"/>
+    <string name="medication_active"/>
+    <string name="inactive"/>
+    <string name="medication_type"/>
+    <string name="undefined"/>
+    <string name="type_label_format"/>
+    <string name="sample_type_label"/>
+    <string name="rx_number_hint"/>
+    <string name="rx_number_label_format"/>
+    <string name="sample_rx_number_label"/>
+    <string name="pharmacy"/>
+    <string name="pharmacy_label_format"/>
+    <string name="sample_pharmacy_label"/>
+    <string name="dose_unit"/>
+    <string name="dose_amount"/>
+    <string name="dose_amount_label_format"/>
+    <string name="sample_dose_amount_label"/>
+    <string name="remaining_doses"/>
+    <string name="sample_remaining_doses_label"/>
+    <string name="remaining_doses_label_format"/>
+    <string name="no_remaining_doses_message"/>
 </resources>
