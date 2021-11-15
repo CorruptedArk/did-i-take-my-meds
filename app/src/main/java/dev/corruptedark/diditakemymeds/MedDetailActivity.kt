@@ -63,6 +63,7 @@ class MedDetailActivity : AppCompatActivity() {
     private lateinit var nameLabel: MaterialTextView
     private lateinit var rxNumberLabel: MaterialTextView
     private lateinit var typelabel: MaterialTextView
+    private lateinit var takeWithFoodLabel: MaterialTextView
     private lateinit var doseAmountLabel: MaterialTextView
     private lateinit var remainingDosesLabel: MaterialTextView
     private lateinit var timeLabel: MaterialTextView
@@ -230,6 +231,7 @@ class MedDetailActivity : AppCompatActivity() {
         nameLabel = findViewById(R.id.name_label)
         rxNumberLabel = findViewById(R.id.rx_number_label)
         typelabel = findViewById(R.id.type_label)
+        takeWithFoodLabel = findViewById(R.id.take_with_food_label)
         doseAmountLabel = findViewById(R.id.dose_amount_label)
         remainingDosesLabel = findViewById(R.id.remaining_doses_label)
         timeLabel = findViewById(R.id.time_label)
@@ -407,6 +409,14 @@ class MedDetailActivity : AppCompatActivity() {
                 nameLabel.text = medication!!.name
                 rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
                 typelabel.text = getString(R.string.type_label_format, typeName)
+
+                takeWithFoodLabel.visibility = if (medication!!.takeWithFood) {
+                    View.VISIBLE
+                }
+                else {
+                    View.GONE
+                }
+
                 doseAmountLabel.text = doseAmountLabelString
                 doseAmountLabel.visibility = doseAmountLabelVisibility
                 remainingDosesLabel.text = remainingDosesLabelString
