@@ -52,6 +52,7 @@ class AddMedActivity() : AppCompatActivity() {
     private lateinit var nameInput: TextInputEditText
     private lateinit var rxNumberInput : TextInputEditText
     private lateinit var typeInput: AutoCompleteTextView
+    private lateinit var takeWithFoodSwitch: SwitchMaterial
     private lateinit var doseAmountInput: TextInputEditText
     private lateinit var doseUnitInput: AutoCompleteTextView
     private lateinit var remainingDosesInput: TextInputEditText
@@ -83,6 +84,7 @@ class AddMedActivity() : AppCompatActivity() {
     private var yearsBetween = 0
     private var notify = true
     private var requirePhotoProof = true
+    private var takeWithFood = false
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     private lateinit var alarmIntent: PendingIntent
@@ -96,6 +98,7 @@ class AddMedActivity() : AppCompatActivity() {
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
+        takeWithFoodSwitch = findViewById(R.id.take_with_food_switch)
         doseAmountInput = findViewById(R.id.dose_amount_input)
         doseUnitInput = findViewById(R.id.dose_unit_input)
         remainingDosesInput = findViewById(R.id.remaining_doses_input)
@@ -205,6 +208,12 @@ class AddMedActivity() : AppCompatActivity() {
                 scheduleButtonsLayout.removeView(view)
             }
 
+        }
+
+        takeWithFoodSwitch.isChecked = takeWithFood
+
+        takeWithFoodSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            takeWithFood = isChecked
         }
 
         isSystem24Hour = DateFormat.is24HourFormat(this)
@@ -384,7 +393,8 @@ class AddMedActivity() : AppCompatActivity() {
                 pharmacy = pharmacyInput.text.toString(),
                 amountPerDose = doseAmount,
                 doseUnitId = doseUnitId,
-                remainingDoses = remainingDoses
+                remainingDoses = remainingDoses,
+                takeWithFood = takeWithFood
             )
             medication.moreDosesPerDay = repeatScheduleList
             medicationDao(this).insertAll(medication)

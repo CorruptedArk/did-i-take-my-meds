@@ -137,5 +137,6 @@
     <string name="sample_remaining_doses_label">10 remaining doses</string>
     <string name="remaining_doses_label_format">%1$d remaining doses</string>
     <string name="no_remaining_doses_message">There are no doses remaining\nIf this is wrong, update the remaining doses by editing the medication</string>
+    <string name="take_with_food">Take with food</string>
 
 </resources>

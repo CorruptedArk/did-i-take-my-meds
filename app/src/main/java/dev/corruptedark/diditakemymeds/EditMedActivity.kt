@@ -49,6 +49,7 @@ class EditMedActivity : AppCompatActivity() {
     private lateinit var nameInput: TextInputEditText
     private lateinit var rxNumberInput: TextInputEditText
     private lateinit var typeInput: AutoCompleteTextView
+    private lateinit var takeWithFoodSwitch: SwitchMaterial
     private lateinit var doseAmountInput: TextInputEditText
     private lateinit var doseUnitInput: AutoCompleteTextView
     private lateinit var remainingDosesInput: TextInputEditText
@@ -83,6 +84,7 @@ class EditMedActivity : AppCompatActivity() {
     private var yearsBetween = 0
     private var notify = true
     private var requirePhotoProof = true
+    private var takeWithFood = false
     private val lifecycleDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private var alarmManager: AlarmManager? = null
     lateinit var medication: Medication
@@ -94,6 +96,7 @@ class EditMedActivity : AppCompatActivity() {
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
         typeInput = findViewById(R.id.med_type_input)
+        takeWithFoodSwitch = findViewById(R.id.take_with_food_switch)
         doseAmountInput = findViewById(R.id.dose_amount_input)
         doseUnitInput = findViewById(R.id.dose_unit_input)
         remainingDosesInput = findViewById(R.id.remaining_doses_input)
@@ -126,6 +129,8 @@ class EditMedActivity : AppCompatActivity() {
             val doseUnit = doseUnitDao(context).get(medication.doseUnitId)
             val doseUnitListAdapter = DoseUnitListAdapter(context, doseUnitDao(context).getAllRaw())
 
+            takeWithFood = medication.takeWithFood
+
             mainScope.launch {
                 nameInput.setText(medication.name)
                 rxNumberInput.setText(medication.rxNumber)
@@ -133,6 +138,12 @@ class EditMedActivity : AppCompatActivity() {
                 typeInput.setAdapter(medTypeListAdapter)
                 typeInput.setOnItemClickListener { parent, view, position, id ->
                     typeInput.setText((typeInput.adapter.getItem(position) as MedicationType).name)
+                }
+
+                takeWithFoodSwitch.isChecked = takeWithFood
+
+                takeWithFoodSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+                    takeWithFood = isChecked
                 }
 
                 if (medication.amountPerDose != Medication.UNDEFINED_AMOUNT) {
@@ -531,6 +542,7 @@ class EditMedActivity : AppCompatActivity() {
             medication.notify = notify
             medication.requirePhotoProof = requirePhotoProof
             medication.moreDosesPerDay = repeatScheduleList
+            medication.takeWithFood = takeWithFood
 
             medication.updateStartsToFuture()
             medicationDao(context).updateMedications(medication)
