@@ -161,5 +161,5 @@
     <string name="remaining_doses_label_format">נותרו %1$d נטילות</string>
     <string name="no_remaining_doses_message">לא נותרו נטילות
 \nאם מדובר בטעות, יש לעדכן את הנטילות הנותרות על ידי עריכת התרופה</string>
-    <string name="take_with_food">Take with food</string>
+    <string name="take_with_food">ליטול עם אוכל</string>
 </resources>
