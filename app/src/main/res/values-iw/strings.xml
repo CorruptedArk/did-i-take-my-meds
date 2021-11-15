@@ -70,6 +70,8 @@
 \n
 \nהתרגומים לצרפתית מאת Edanas ב־Weblate
 \n
+\nHebrew translations by Yaron on Weblate
+\n
 \nלקחתי את התרופות שלי\? הוא יישומון חופשי ובקוד פתוח לסיוע במעקב אחר תרופות
 \nלקחתי את התרופות שלי\? תוכנן לסייע למנוע ממשתמש לדלג על נטילות ו/או ליטול מנת יתר
 \nכל הזכויות שמורות © 2021 נח סטנפורד noahstandingford@gmail.com
@@ -159,4 +161,5 @@
     <string name="remaining_doses_label_format">נותרו %1$d נטילות</string>
     <string name="no_remaining_doses_message">לא נותרו נטילות
 \nאם מדובר בטעות, יש לעדכן את הנטילות הנותרות על ידי עריכת התרופה</string>
+    <string name="take_with_food">Take with food</string>
 </resources>

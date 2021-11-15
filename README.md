@@ -43,6 +43,7 @@ German translations by [jpameli](https://github.com/jpameli)
 
 French translations by [Edanas](https://hosted.weblate.org/user/Edanas/)
 
+Hebrew translations by [Yaron](https://hosted.weblate.org/user/Yaron/)
 
 ---
 
