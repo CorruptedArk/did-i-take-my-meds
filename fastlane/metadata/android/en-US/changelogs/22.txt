@@ -1,0 +1,18 @@
+v1.4.0
+
+Changes
+- Medication types are now shown in the main medication list
+- Views have been rearranged and tweaked to accommodate the new options
+- German translations have been updated by jpameli on GitHub
+
+Additions
+- Add option to make a medication inactive
+- Add option to specify medication types
+- Add option to sort by med types
+- Add option to specify the Rx number for each medication
+- Add option to specify dosage size for each medication
+- Add option to specify pharmacy name for each medication
+- Add option to track the number of remaining doses for each medication
+- Add option to specify if each medication should be taken with food
+- Add French translations by Edanas on Weblate
+- Add Hebrew translations by Yaron on Weblate
