@@ -60,7 +60,7 @@ class MedListAdapter(private val context: Context, private val medications: Muta
         val takenLabel = view?.findViewById<MaterialTextView>(R.id.taken_label)
 
         val typeName = medicationTypes.find { type ->
-            type.id == medications[position].id
+            type.id == medications[position].typeId
         }?.name
 
         typeName?.apply {
