@@ -1,0 +1,4 @@
+v1.4.2
+
+Fix
+- Fix displaying incorrect med types in main activity

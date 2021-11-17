@@ -21,7 +21,6 @@
     <string name="medication_name">Name des Medikaments</string>
     <string name="description">Beschreibung</string>
     <string name="select_a_time">Zeit auswählen</string>
-    <string name="time_picker_tag">time_picker</string>
     <string name="save">Speichern</string>
     <string name="cancel">Abbrechen</string>
     <string name="pick_a_time">Zeit vor dem Speichern wählen</string>
@@ -74,8 +73,6 @@
     <string name="months">Monat(e)</string>
     <string name="years">Jahr(e)</string>
     <string name="schedule_dose">Einnahme planen</string>
-    <string name="schedule_picker_tag">schedule_picker</string>
-    <string name="date_picker_tag">date_picker</string>
     <string name="schedule_format">%1$s\nStartet %2$s\nWiederholt sich alle\n%3$d Tag(e), %4$d Woche(n),\n%5$d Monat(e), %6$d Jahr(e)</string>
     <string name="fill_out_all_schedules">Vor dem Speichern alle Zeitpläne ausfüllen</string>
     <string name="fill_out_schedule">Vor dem Speichern den Zeitplan ausfüllen</string>

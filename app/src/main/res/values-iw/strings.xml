@@ -21,7 +21,6 @@
     <string name="medication_name">שם התרופה</string>
     <string name="description">תיאור</string>
     <string name="select_a_time">נא לבחור תזמון</string>
-    <string name="time_picker_tag"/>
     <string name="save">שמירה</string>
     <string name="cancel">ביטול</string>
     <string name="pick_a_time">נא לבחור מועד בטרם השמירה</string>
@@ -93,8 +92,6 @@
     <string name="months">חודשים</string>
     <string name="years">שנים</string>
     <string name="schedule_dose">תזמון נטילה</string>
-    <string name="schedule_picker_tag"/>
-    <string name="date_picker_tag"/>
     <string name="schedule_format">%1$s
 \nמתחיל %2$s
 \nחוזר כל

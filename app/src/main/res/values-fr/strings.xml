@@ -32,7 +32,6 @@
     <string name="description">Description</string>
     <string name="select_a_time">sélectionnez une heure</string>
     <string name="time_24">H:mm</string>
-    <string name="time_picker_tag">time_picker</string>
     <string name="cancel">Annuler</string>
     <string name="time_12">h:mma</string>
     <string name="sample_medicine">Exemple de médicament</string>
@@ -93,8 +92,6 @@
     <string name="months">Month(s)</string>
     <string name="years">Year(s)</string>
     <string name="schedule_dose">Schedule dose</string>
-    <string name="schedule_picker_tag">schedule_picker</string>
-    <string name="date_picker_tag">date_picker</string>
     <string name="schedule_format">%1$s\nStarts %2$s\nRepeats every\n%3$d day(s), %4$d week(s),\n%5$d month(s), %6$d year(s)</string>
     <string name="fill_out_all_schedules">Fill out all schedules before saving</string>
     <string name="fill_out_schedule">Fill out schedule before confirming</string>
