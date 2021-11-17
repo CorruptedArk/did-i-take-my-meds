@@ -21,7 +21,7 @@
     <string name="medication_name">Medication name</string>
     <string name="description">Description</string>
     <string name="select_a_time">select a time</string>
-    <string name="time_picker_tag">time_picker</string>
+    <string name="time_picker_tag" translatable="false">time_picker</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="pick_a_time">Pick a time before saving</string>
@@ -81,8 +81,8 @@
     <string name="months">Month(s)</string>
     <string name="years">Year(s)</string>
     <string name="schedule_dose">Schedule dose</string>
-    <string name="schedule_picker_tag">schedule_picker</string>
-    <string name="date_picker_tag">date_picker</string>
+    <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
+    <string name="date_picker_tag" translatable="false">date_picker</string>
     <string name="schedule_format">%1$s\nStarts %2$s\nRepeats every\n%3$d day(s), %4$d week(s),\n%5$d month(s), %6$d year(s)</string>
     <string name="utc" translatable="false">UTC</string>
     <string name="fill_out_all_schedules">Fill out all schedules before saving</string>

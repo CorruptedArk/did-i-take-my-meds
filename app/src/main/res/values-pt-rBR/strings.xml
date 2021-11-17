@@ -21,7 +21,6 @@
     <string name="medication_name">Nome do remédio</string>
     <string name="description">Descrição</string>
     <string name="select_a_time">selecione um horário</string>
-    <string name="time_picker_tag">time_picker</string>
     <string name="save">Salvar</string>
     <string name="cancel">Cancelar</string>
     <string name="pick_a_time">Escolha um horário antes de salvar</string>
@@ -74,8 +73,6 @@
     <string name="months">Mês(es)</string>
     <string name="years">Ano(s)</string>
     <string name="schedule_dose">Dose programada</string>
-    <string name="schedule_picker_tag">schedule_picker</string>
-    <string name="date_picker_tag">date_picker</string>
     <string name="schedule_format">%1$s\nInício %2$s\nRepete a cada\n%3$d dia(s), %4$d semana(s),\n%5$d mês(es), %6$d ano(s)</string>
     <string name="fill_out_all_schedules">Completar todos os horários antes de salvar</string>
     <string name="fill_out_schedule">Completar todos os horários antes de confirmar</string>
