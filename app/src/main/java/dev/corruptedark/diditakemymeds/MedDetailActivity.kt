@@ -108,9 +108,17 @@ class MedDetailActivity : AppCompatActivity() {
 
                 val typeName = medicationTypeDao(context).get(medication!!.typeId).name
 
+                val rxNumberText = if (medication!!.rxNumber == Medication.UNDEFINED) {
+                    val undefinedText = getString(R.string.undefined)
+                    getString(R.string.rx_number_label_format, undefinedText)
+                }
+                else {
+                    getString(R.string.rx_number_label_format, medication!!.rxNumber)
+                }
+
                 mainScope.launch {
                     nameLabel.text = medication!!.name
-                    rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
+                    rxNumberLabel.text = rxNumberText
                     typelabel.text = getString(R.string.type_label_format, typeName)
 
                     if (medication!!.isAsNeeded()) {
@@ -152,7 +160,14 @@ class MedDetailActivity : AppCompatActivity() {
                         notificationSwitch.isChecked = medication!!.notify
                     }
 
-                    pharmacyLabel.text = medication!!.pharmacy
+                    val pharmacyText = if (medication!!.pharmacy == Medication.UNDEFINED) {
+                        val undefinedString = getString(R.string.undefined)
+                        getString(R.string.pharmacy_label_format, undefinedString)
+                    }
+                    else {
+                        getString(R.string.pharmacy_label_format, medication!!.pharmacy)
+                    }
+                    pharmacyLabel.text = pharmacyText
 
                     detailLabel.text = medication!!.description
 
@@ -383,6 +398,14 @@ class MedDetailActivity : AppCompatActivity() {
             val hours = TimeUnit.MILLISECONDS.toHours(timeSinceTakenDose) % DAY_TO_HOURS
             val minutes = TimeUnit.MILLISECONDS.toMinutes(timeSinceTakenDose) % HOUR_TO_MINUTES
 
+            val rxNumberText = if (medication!!.rxNumber == Medication.UNDEFINED) {
+                val undefinedText = getString(R.string.undefined)
+                getString(R.string.rx_number_label_format, undefinedText)
+            }
+            else {
+                getString(R.string.rx_number_label_format, medication!!.rxNumber)
+            }
+
             val typeName = medicationTypeDao(context).get(medication!!.typeId).name
 
             var doseAmountLabelVisibility: Int = View.GONE
@@ -407,7 +430,7 @@ class MedDetailActivity : AppCompatActivity() {
 
             mainScope.launch {
                 nameLabel.text = medication!!.name
-                rxNumberLabel.text = getString(R.string.rx_number_label_format, medication!!.rxNumber)
+                rxNumberLabel.text = rxNumberText
                 typelabel.text = getString(R.string.type_label_format, typeName)
 
                 takeWithFoodLabel.visibility = if (medication!!.takeWithFood) {
@@ -501,6 +524,15 @@ class MedDetailActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                val pharmacyText = if (medication!!.pharmacy == Medication.UNDEFINED) {
+                    val undefinedString = getString(R.string.undefined)
+                    getString(R.string.pharmacy_label_format, undefinedString)
+                }
+                else {
+                    getString(R.string.pharmacy_label_format, medication!!.pharmacy)
+                }
+                pharmacyLabel.text = pharmacyText
 
                 detailLabel.text = medication!!.description
                 if (medication!!.description.isEmpty()) {
