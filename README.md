@@ -45,6 +45,13 @@ French translations by [Edanas](https://hosted.weblate.org/user/Edanas/)
 
 Hebrew translations by [Yaron](https://hosted.weblate.org/user/Yaron/)
 
+Chinese Simplified translations by [luxu](https://hosted.weblate.org/user/luxu/)
+
+Spanish translations by [sguinetti](https://hosted.weblate.org/user/sguinetti/0) and [caos30](https://hosted.weblate.org/user/caos30/)
+
+Catalan translations by [caos30](https://hosted.weblate.org/user/caos30/)
+
+
 ---
 
 ## License

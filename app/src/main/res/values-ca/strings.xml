@@ -21,7 +21,6 @@
     <string name="medication_name">Nom del medicament</string>
     <string name="description">Descripció</string>
     <string name="select_a_time">seleccionar una hora</string>
-    <string name="time_picker_tag" translatable="false">time_picker</string>
     <string name="save">Desar</string>
     <string name="cancel">Cancel·lar</string>
     <string name="pick_a_time">Trieu una hora abans de desar</string>
@@ -36,7 +35,6 @@
     <string name="previous_doses">Dosis anteriors:</string>
     <string name="i_just_took_it">L\'acabo de prendre!</string>
     <string name="closest_dose_sample">Propera dosi: 1:00PM avui</string>
-    <string name="med_position_key" translatable="false">medication_position</string>
     <string name="today">Avui</string>
     <string name="yesterday">Ahir</string>
     <string name="tomorrow">Demà</string>
@@ -54,25 +52,14 @@
     <string name="edit_cancelled">S\'ha cancel·lat l\'edició</string>
     <string name="notifications_enabled">S\'han activat les notificacions</string>
     <string name="notifications_disabled">S\'han desactivat les notificacions</string>
-    <string name="channel_name" translatable="false">did_i_take_my_meds</string>
     <string name="channel_description">notificacions de recordatori</string>
-    <string name="med_id_key" translatable="false">med_id</string>
     <string name="time_for_your_dose">És hora de la vostra dosi</string>
     <string name="new_medication">Nou medicament</string>
     <string name="medication_details">Detalls del medicament</string>
     <string name="edit_medication">Editar el medicament</string>
     <string name="about">Quant a</string>
-    <string name="app_description">v%1$s per Noah Stanford (aka CorruptedArk)
-\n
-\nTraduccions del portuguès brasiler fetes per mezysinc i lnux-usr a GitHub
-\n
-\nTraduccions a l\'alemany de jpameli a GitHub
-\n
-\nTraduccions al francès d\'Edanas a Weblate
-\n
-\nTraduccions a l\'hebreu de Yaron a Weblate
-\n
-\nHe pres els meus medicaments\? és una aplicació FOSS per fer un seguiment dels medicaments
+    <string name="app_description">v%1$s per Noah Stanford (aka CorruptedArk)\n\n
+He pres els meus medicaments\? és una aplicació FOSS per fer un seguiment dels medicaments
 \nHe pres els meus medicaments\? està dissenyat per ajudar a evitar que un usuari oblidi una dosi o la prengui vàries vegades
 \nDid I Take My Meds\?
 \nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
@@ -84,13 +71,9 @@
 \nHauríeu d\'haver rebut una còpia de la Llicència Pública General de GNU juntament amb aquest programa. Si no, consulteu https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Doneu-me suport a Liberapay</string>
     <string name="view_the_project_on_github">Visiteu el projecte a GitHub</string>
-    <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
-    <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
-    <string name="play_release" translatable="false">playRelease</string>
     <string name="sorry">Disculpeu!</string>
     <string name="okay">Bé</string>
     <string name="cannot_donate_explanation">Google no permet als desenvolupadors col·locar enllaços de donació a les aplicacions per rebre suport del usuaris si no són organitzacions benèfiques exemptes d\'impostos. Si encara voleu donar-me suport, podeu trobar CorruptedArk a Liberapay des del navegador web. El meu repositori de programari lliure a GitHub és un bon lloc per començar.</string>
-    <string name="last_version_used_key" translatable="false">last_version_used</string>
     <string name="add_another_dose">Afegir una altra dosi</string>
     <string name="taken_as_needed">Pres com calia</string>
     <string name="hello_blank_fragment">Fragment en blanc de salutació</string>
@@ -101,21 +84,17 @@
     <string name="months">Mes(os)</string>
     <string name="years">Any(s)</string>
     <string name="schedule_dose">Programar dosi</string>
-    <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
-    <string name="date_picker_tag" translatable="false">date_picker</string>
     <string name="schedule_format">%1$s
 \nInici %2$s
 \nRepetir cada
 \n%3$d dia(es), %4$d setmana(es),
 \n%5$d mes(os), %6$d any(s)</string>
-    <string name="utc" translatable="false">UTC</string>
     <string name="fill_out_all_schedules">Ompliu tots els horaris abans de desar</string>
     <string name="fill_out_schedule">Ompliu el calendari abans de confirmar</string>
     <string name="next_dose_label">Propera dosi: %1$s</string>
     <string name="taken">Pres</string>
     <string name="not_taken">No pres</string>
     <string name="sort">Ordenar</string>
-    <string name="sort_key" translatable="false">Sort</string>
     <string name="restore_database">Restaurar la base de dades</string>
     <string name="back_up_database">Còpia de seguretat de la base de dades</string>
     <string name="database_is_invalid">La base de dades no és vàlida</string>
@@ -128,16 +107,10 @@
     <string name="time_since_dose_sample">Aproximadament 0 dia(es), 0 hora(es), i 0 minut(s) des de la darrera dosi presa</string>
     <string name="time_since_dose_template">Aproximadament %1$d dia(es), %2$d hora(es), i %3$d minut(s) des de la darrera dosi presa</string>
     <string name="require_photo_proof">Es requereix una foto com a prova</string>
-    <string name="image_path" translatable="false">images</string>
-    <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
     <string name="dose_and_proof_saved">S\'ha desat la dosi i la prova</string>
     <string name="failed_to_get_proof">Ha fallat l\'obtenció de la prova</string>
-    <string name="dose_time_key" translatable="false">dose_time</string>
     <string name="no_image_available">No hi ha cap imatge disponible</string>
-    <string name="temp_dir" translatable="false">tmp</string>
     <string name="record_detail_hint">(Premeu un registre per veure els detalls)</string>
-    <string name="time_taken_key" translatable="false">time_taken</string>
-    <string name="take_med_key" translatable="false">take_med</string>
     <string name="back_up_successful">S\'ha fet amb èxit la còpia de seguretat</string>
     <string name="back_up_failed">No s\'ha pogut fer la còpia de seguretat</string>
     <string name="dose_details">Detalls de la dosi</string>
@@ -163,4 +136,6 @@
     <string name="no_remaining_doses_message">Ja no queden dosis
 \nSi això és incorrecte, actualitzeu les dosis restants editant el medicament</string>
     <string name="take_with_food">Prendre amb aliments</string>
+    <string name="translation_credits">Traduccions del portuguès brasiler fetes per mezysinc i lnux-usr a GitHub\n\nTraduccions a l\'alemany de jpameli a GitHub\n\nTraduccions al francès d\'Edanas a Weblate\n\nTraduccions a l\'hebreu de Yaron a Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+
 </resources>

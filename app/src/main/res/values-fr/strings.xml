@@ -60,14 +60,6 @@
     <string name="channel_description">notifications de rappel</string>
     <string name="app_description">v %1$s par Noah Stanford (alias CorruptedArk)
 \n
-\nTraductions en portugais brésilien par mezysinc et lnux-usr sur GitHub
-\n
-\nTraductions en allemand par jpameli sur GitHub
-\n
-\nTraductions en français par Edanas sur Weblate
-\n
-\nTraductions en hébreu par Yaron sur Weblate
-\n
 \nDid I Take My Meds\? est une application libre et gratuite pour garder la trace des médicaments.
 \nDid I Take My Meds\? est conçu pour aider à empêcher un utilisateur de sauter des doses et/ou de faire une surdose.
 \nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
@@ -140,4 +132,5 @@
     <string name="no_remaining_doses_message">Il n\'y a pas de doses restantes
 \nSi c\'est faux, mettez à jour les doses restantes en modifiant le médicament</string>
     <string name="take_with_food">À prendre en mangeant</string>
+    <string name="translation_credits">Traductions en portugais brésilien par mezysinc et lnux-usr sur GitHub\n\nTraductions en allemand par jpameli sur GitHub\n\nTraductions en français par Edanas sur Weblate\n\nTraductions en hébreu par Yaron sur Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
 </resources>
