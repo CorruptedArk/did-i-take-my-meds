@@ -146,8 +146,8 @@
     <string name="undefined">Sin definir</string>
     <string name="type_label_format">Tipo: %1$s</string>
     <string name="sample_type_label">Tipo: Sin definir</string>
-    <string name="rx_number_hint"/>
-    <string name="rx_number_label_format"/>
+    <string name="rx_number_hint">Rx #</string>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
     <string name="sample_rx_number_label">Rx #: Sin definir</string>
     <string name="pharmacy">Farmacia</string>
     <string name="pharmacy_label_format">Farmacia: %1$s</string>
