@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.-->
 <resources>
-    <string name="app_name">Did I Take My Meds?</string>
+    <string name="app_name">Medis eingenommen?</string>
     <string name="add">Neu</string>
     <string name="add_medications">Medikamente zur Liste hinzufügen</string>
     <string name="medication_name">Name des Medikaments</string>
@@ -57,7 +57,7 @@
     <string name="medication_details">Details zur Medikation</string>
     <string name="edit_medication">Medikament bearbeiten</string>
     <string name="about">Über</string>
-    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nDid I Take My Meds? is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nDid I Take My Meds? (Deutscher App-Titel: Medikamente eingenommen?) is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Unterstütze mich auf Liberapay</string>
     <string name="view_the_project_on_github">Projekt auf GitHub ansehen</string>
     <string name="sorry">Entschuldigung!</string>
@@ -85,7 +85,7 @@
     <string name="database_is_invalid">Datenbank ist ungültig</string>
     <string name="database_restored">Datenbank wiederhergestellt</string>
     <string name="took_it">Bereits eingenommen</string>
-    <string name="app_name_short">DITMM?</string>
+    <string name="app_name_short">Medis eingenommen?</string>
     <string name="remind_in_15">In 15 Minuten erinnern</string>
     <string name="dose_record_delete_warning">Der Eintrag wird endgültig gelöscht.</string>
     <string name="record_delete_hint">(Klicke lange auf einen Eintrag, um ihn zu löschen)</string>
@@ -105,9 +105,9 @@
     <string name="undefined">Undefiniert</string>
     <string name="type_label_format">Typ: %1$s</string>
     <string name="sample_type_label">Typ: undefiniert</string>
-    <string name="rx_number_hint">Rx #</string>
-    <string name="rx_number_label_format">Rx #: %1$s</string>
-    <string name="sample_rx_number_label">Rx #: undefiniert</string>
+    <string name="rx_number_hint">Rx#</string>
+    <string name="rx_number_label_format">Rx#: %1$s</string>
+    <string name="sample_rx_number_label">Rx#: undefiniert</string>
     <string name="pharmacy">Pharmazie</string>
     <string name="pharmacy_label_format">Pharmazie: %1$s</string>
     <string name="sample_pharmacy_label">Pharmazie: undefiniert</string>
@@ -115,10 +115,10 @@
     <string name="dose_amount">Menge</string>
     <string name="dose_amount_label_format">%1$s%2$s pro Dosis</string>
     <string name="sample_dose_amount_label">5mg pro Dosis</string>
-    <string name="remaining_doses">Remaining Doses</string>
-    <string name="sample_remaining_doses_label">10 remaining doses</string>
-    <string name="remaining_doses_label_format">%1$d remaining doses</string>
-    <string name="no_remaining_doses_message">There are no doses remaining\nIf this is wrong, update the remaining doses by editing the medication</string>
-    <string name="take_with_food">Take with food</string>
+    <string name="remaining_doses">Verbleibende Dosen</string>
+    <string name="sample_remaining_doses_label">10 verbleibende Dosen</string>
+    <string name="remaining_doses_label_format">%1$d verbleibende Dosen</string>
+    <string name="no_remaining_doses_message">Keine verbleibende Dosis\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
+    <string name="take_with_food">Mit Essen einnehmen</string>
 
 </resources>
