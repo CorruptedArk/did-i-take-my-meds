@@ -125,7 +125,7 @@ abstract  class MedicationDB: RoomDatabase() {
         @Synchronized
         fun getInstance(context: Context): MedicationDB {
             return instance ?: synchronized(this) {
-                instance ?: buildDatabase(context).also {
+                instance ?: buildDatabase(context.applicationContext).also {
                     instance = it
                 }
             }

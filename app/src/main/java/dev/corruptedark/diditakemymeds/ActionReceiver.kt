@@ -119,6 +119,7 @@ class ActionReceiver : BroadcastReceiver() {
 
             when (intent.action) {
                 Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED -> {
+                    SimpleSingleMedWidget.
                     medications.forEach { medication ->
                         medication.updateStartsToFuture()
                         if (medication.notify) {
@@ -179,10 +180,17 @@ class ActionReceiver : BroadcastReceiver() {
                         else {
                             if (!medication.closestDoseAlreadyTaken() && medication.hasDoseRemaining()) {
 
-                                val takenDose = DoseRecord(
-                                    System.currentTimeMillis(),
-                                    medication.calculateClosestDose().timeInMillis
-                                )
+                                val takenDose = if(medication.isAsNeeded()) {
+                                    DoseRecord(
+                                        System.currentTimeMillis()
+                                    )
+                                }
+                                else {
+                                    DoseRecord(
+                                        System.currentTimeMillis(),
+                                        medication.calculateClosestDose().timeInMillis
+                                    )
+                                }
                                 medication.addNewTakenDose(takenDose)
                                 medicationDao(context)
                                     .updateMedications(medication)

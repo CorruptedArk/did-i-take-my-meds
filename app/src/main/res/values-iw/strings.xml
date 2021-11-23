@@ -144,4 +144,6 @@
     <string name="no_remaining_doses_message">לא נותרו נטילות
 \nאם מדובר בטעות, יש לעדכן את הנטילות הנותרות על ידי עריכת התרופה</string>
     <string name="take_with_food">Take with food</string>
+    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+
 </resources>
