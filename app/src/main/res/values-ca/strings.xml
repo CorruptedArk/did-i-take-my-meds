@@ -28,7 +28,7 @@
     <string name="med_saved">S\'ha desat el medicament</string>
     <string name="cancelled">S\'ha cancel·lat el nou medicament</string>
     <string name="time_24">H:mm</string>
-    <string name="time_12">h:mma</string>
+    <string name="time_12">h:mm a</string>
     <string name="sample_medicine">Medicament d\'exemple</string>
     <string name="midnight">12:00AM</string>
     <string name="sample_description">Aquesta és un exemple de descripció d\'un medicament. Té diverses frases i cobreix diverses línies.</string>
@@ -41,7 +41,7 @@
     <string name="closest_dose_label">Propera dosi: %1$s</string>
     <string name="already_took_dose">Ja heu pres aquesta dosi
 \nEspero que no l\'hagueu tornat a prendre</string>
-    <string name="date_format">MMM d, yyyy</string>
+    <string name="date_format">d MMM yyyy</string>
     <string name="time_taken">Quan s\'ha pres: %1$s</string>
     <string name="delete">esborrar</string>
     <string name="are_you_sure">Esteu segur\?</string>
