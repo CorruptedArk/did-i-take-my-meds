@@ -61,14 +61,6 @@
     <string name="about">关于</string>
     <string name="app_description">v%1$s 作者：Noah Stanford（又名 CorruptedArk）。
 \n
-\n巴西葡萄牙语翻译：GitHub 上的 mezysinc 和 lnux-usr
-\n
-\n德文翻译：GitHub 上的 Jpameli
-\n
-\n法语翻译：Weblate 上的 Edanas
-\n
-\n希伯来语翻译 作者：Weblate 上的 Yaron
-\n
 \n我吃药了吗？是一个用于跟踪药物的自由开源应用程序
 \n我吃药了吗？旨在帮助用户防止漏服和/或过量服药
 \nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
@@ -156,5 +148,4 @@
 \n希伯来语翻译 作者：Weblate 上的 Yaron
 \n
 \nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
-
 </resources>
