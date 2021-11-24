@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/purple_200"
         autoSizeTextType="uniform"
-        android:textSize="20sp"
+        android:textSize="@dimen/medium_text_size"
         android:text="@string/midnight"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/sub_purple"
         autoSizeTextType="uniform"
-        android:textSize="18sp"
+        android:textSize="@dimen/small_text_size"
         android:text="@string/midnight"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

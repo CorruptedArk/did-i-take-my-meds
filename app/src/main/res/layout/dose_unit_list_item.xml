@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/small_text_size"
         android:padding="10dp"
         android:text="@string/undefined"
         android:ellipsize="end"

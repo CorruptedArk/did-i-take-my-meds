@@ -60,14 +60,6 @@
     <string name="about">על היישומון</string>
     <string name="app_description">גרסה %1$s מא נח סטנפורד (ידוע גם בשם CorruptedArk)
 \n
-\nהתרגומים לפורטוגלית ברזילאית מאת mezysinc ו־lnux-usr ב־GitHub
-\n
-\nהתרגומים לגרמנית מאת jpameli ב־GitHub
-\n
-\nהתרגומים לצרפתית מאת Edanas ב־Weblate
-\n
-\nHebrew translations by Yaron on Weblate
-\n
 \nלקחתי את התרופות שלי\? הוא יישומון חופשי ובקוד פתוח לסיוע במעקב אחר תרופות
 \nלקחתי את התרופות שלי\? תוכנן לסייע למנוע ממשתמש לדלג על נטילות ו/או ליטול מנת יתר
 \nכל הזכויות שמורות © 2021 נח סטנפורד noahstandingford@gmail.com
@@ -143,7 +135,15 @@
     <string name="remaining_doses_label_format">נותרו %1$d נטילות</string>
     <string name="no_remaining_doses_message">לא נותרו נטילות
 \nאם מדובר בטעות, יש לעדכן את הנטילות הנותרות על ידי עריכת התרופה</string>
-    <string name="take_with_food">Take with food</string>
+    <string name="take_with_food">ליטול עם אוכל</string>
+    <string name="translation_credits">התרגומים לפורטוגלית ברזילאית מאת mezysinc ו־lnux-usr ב־GitHub
+\n
+\nהתרגומים לגרמנית מאת jpameli ב־GitHub
+\n
+\nהתרגומים לצרפתית מאת Edanas ב־Weblate
+\n
+\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+
 
 </resources>

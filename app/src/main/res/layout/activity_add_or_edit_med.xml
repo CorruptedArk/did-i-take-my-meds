@@ -59,7 +59,7 @@
                     android:id="@+id/med_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +71,7 @@
                 android:text="@string/taken_as_needed"
                 android:textColor="@color/purple_200"
                 app:autoSizeTextType="uniform"
-                android:textSize="28sp"
+                android:textSize="@dimen/medium_text_size"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
                 android:checked="false"/>
@@ -83,7 +83,7 @@
                 android:text="@string/require_photo_proof"
                 android:textColor="@color/purple_200"
                 app:autoSizeTextType="uniform"
-                android:textSize="28sp"
+                android:textSize="@dimen/medium_text_size"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
                 android:checked="false"/>
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 android:text="@string/schedule_dose"
                 android:textColor="@color/purple_200"
                 app:strokeColor="@color/purple_500"
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:paddingVertical="15dp"
-                android:textSize="20sp"
+                android:textSize="@dimen/medium_text_size"
                 android:text="@string/add_another_dose"
                 app:icon="@drawable/add_box"
                 app:iconGravity="textStart"
@@ -129,7 +129,7 @@
                 android:text="@string/notifications_enabled"
                 android:textColor="@color/purple_200"
                 app:autoSizeTextType="uniform"
-                android:textSize="28sp"
+                android:textSize="@dimen/medium_text_size"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
                 android:checked="true"/>
@@ -151,7 +151,7 @@
                     android:id="@+id/rx_number_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -175,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textNoSuggestions"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:dropDownHeight="wrap_content"
                     android:dropDownWidth="wrap_content"
                     android:popupElevation="0dp"
@@ -189,8 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/take_with_food"
                 android:textColor="@color/purple_200"
-                app:autoSizeTextType="uniform"
-                android:textSize="28sp"
+                android:textSize="@dimen/medium_text_size"
                 android:paddingHorizontal="10dp"
                 android:paddingTop="15dp"
                 android:checked="false"/>
@@ -213,7 +212,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -237,7 +236,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textNoSuggestions"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:dropDownHeight="wrap_content"
                     android:dropDownWidth="wrap_content"
                     android:popupElevation="0dp"
@@ -263,7 +262,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -285,7 +284,7 @@
                     android:id="@+id/pharmacy_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -308,7 +307,7 @@
                     android:id="@+id/med_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/small_text_size"
                     android:textColor="@color/white"
                     android:gravity="start|top"
                     android:minLines="4"/>
