@@ -13,7 +13,7 @@
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:paddingVertical="15dp"
-        android:textSize="18sp"
+        android:textSize="@dimen/medium_text_size"
         android:text="@string/schedule_dose"
         android:textColor="@color/purple_200"
         app:strokeColor="@color/purple_500"
