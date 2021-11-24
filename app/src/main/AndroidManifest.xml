@@ -59,7 +59,8 @@
             android:name=".SimpleSingleMedWidgetConfigureActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"
+                    android:label="@string/choose_a_medication"/>
             </intent-filter>
         </activity>
         <activity

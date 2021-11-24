@@ -119,7 +119,6 @@ class ActionReceiver : BroadcastReceiver() {
 
             when (intent.action) {
                 Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_LOCKED_BOOT_COMPLETED, Intent.ACTION_MY_PACKAGE_REPLACED -> {
-                    SimpleSingleMedWidget.
                     medications.forEach { medication ->
                         medication.updateStartsToFuture()
                         if (medication.notify) {

@@ -137,5 +137,6 @@
     <string name="take_with_food">Tomar con comida</string>
     <string name="translation_credits">Traducciones al portugués brasileño por mezysinc y lnux-usr en GitHub\n\nTraducciones al alemán por jpameli en GitHub\n\nTraducción al francés por Edanas en Weblate\n\nTraducciones al hebreo por Yaron en Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+    <string name="choose_a_medication">Choose A Medication</string>
 
 </resources>

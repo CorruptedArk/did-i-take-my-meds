@@ -62,7 +62,7 @@ class SimpleSingleMedWidgetConfigureActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.background =
             ColorDrawable(ResourcesCompat.getColor(resources, R.color.purple_700, null))
-        supportActionBar?.title = getString(R.string.app_name)
+        supportActionBar?.title = getString(R.string.choose_a_medication)
 
 
         medListView = binding.medListView

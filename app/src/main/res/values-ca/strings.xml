@@ -138,5 +138,6 @@ He pres els meus medicaments\? és una aplicació FOSS per fer un seguiment dels
     <string name="take_with_food">Prendre amb aliments</string>
     <string name="translation_credits">Traduccions del portuguès brasiler fetes per mezysinc i lnux-usr a GitHub\n\nTraduccions a l\'alemany de jpameli a GitHub\n\nTraduccions al francès d\'Edanas a Weblate\n\nTraduccions a l\'hebreu de Yaron a Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+    <string name="choose_a_medication">Choose A Medication</string>
 
 </resources>
