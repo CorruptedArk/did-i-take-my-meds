@@ -21,8 +21,8 @@
     android:initialKeyguardLayout="@layout/simple_single_med_widget"
     android:initialLayout="@layout/simple_single_med_widget"
     android:minWidth="250dp"
-    android:minHeight="180dp"
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:minHeight="110dp"
+    android:previewImage="@drawable/simple_single_med_widget_preview"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="60000"
     android:widgetCategory="home_screen" />
