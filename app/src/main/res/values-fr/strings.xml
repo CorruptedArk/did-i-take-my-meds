@@ -14,7 +14,8 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
+<resources>
     <string name="medication_name">Nom du médicament</string>
     <string name="save">Enregistrer</string>
     <string name="fill_fields">Ajoutez le nom avant d’enregistrer</string>
@@ -135,5 +136,4 @@
     <string name="translation_credits">Traductions en portugais brésilien par mezysinc et lnux-usr sur GitHub\n\nTraductions en allemand par jpameli sur GitHub\n\nTraductions en français par Edanas sur Weblate\n\nTraductions en hébreu par Yaron sur Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
     <string name="choose_a_medication">Choose A Medication</string>
-
 </resources>
