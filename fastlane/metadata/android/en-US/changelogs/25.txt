@@ -2,6 +2,7 @@ v1.5.0
 
 Change
 - Adjust text views to use standardized text sizes
+- Updated German translations by jpameli on GitHub
 
 Additions
 - Add option to add simple home screen widgets for each medication
