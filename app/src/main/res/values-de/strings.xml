@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--Did I Take My Meds? is a FOSS app to keep track of medications
     Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
     Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
@@ -13,8 +14,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see https://www.gnu.org/licenses.-->
-<resources>
+    along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
     <string name="app_name">Medis eingenommen?</string>
     <string name="add">Neu</string>
     <string name="add_medications">Medikamente zur Liste hinzufügen</string>
@@ -61,7 +61,7 @@
     <string name="support_me_on_liberapay">Unterstütze mich auf Liberapay</string>
     <string name="view_the_project_on_github">Projekt auf GitHub ansehen</string>
     <string name="sorry">Entschuldigung!</string>
-    <string name="okay">Ok</string>
+    <string name="okay">Okay</string>
     <string name="cannot_donate_explanation">Google erlaubt es Entwicklern nicht, Spendenlinks in Apps zu platzieren, um sich selbst zu unterstützen, wenn es sich nicht um steuerbefreite Wohltätigkeitsorganisationen handelt. Wenn Sie mich trotzdem unterstützen wollen, können Sie CorruptedArk auf Liberapay in einem separaten Browser aufrufen. Mein GitHub-Repository ist ein guter Startpunkt.</string>
     <string name="add_another_dose">Weitere Dosis hinzufügen</string>
     <string name="taken_as_needed">Einnahme nach Bedarf</string>
@@ -123,5 +123,4 @@
     <string name="translation_credits">Brazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
     <string name="choose_a_medication">Choose A Medication</string>
-
 </resources>
