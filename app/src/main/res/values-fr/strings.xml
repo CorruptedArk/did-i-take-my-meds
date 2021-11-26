@@ -14,8 +14,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see https://www.gnu.org/licenses.-->
-<resources>
+    along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
     <string name="medication_name">Nom du médicament</string>
     <string name="save">Enregistrer</string>
     <string name="fill_fields">Ajoutez le nom avant d’enregistrer</string>
@@ -72,36 +71,40 @@
 \nVous devriez avoir reçu une copie de la Licence Publique Générale GNU avec ce programme. Si ce n\'est pas le cas, consultez https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Support me on Liberapay</string>
     <string name="view_the_project_on_github">View the project on GitHub</string>
-    <string name="sorry">Sorry!</string>
+    <string name="sorry">Désolé !</string>
     <string name="okay">Okay</string>
     <string name="cannot_donate_explanation">Google doesn\'t allow developers to place donation links in apps to support themselves if they are not tax exempt charities. If you still want to support me, you can find CorruptedArk on Liberapay in a separate browser. My GitHub repository is a good place to start.</string>
-    <string name="add_another_dose">Add another dose</string>
-    <string name="taken_as_needed">Taken as needed</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_another_dose">Ajouter une autre dose</string>
+    <string name="taken_as_needed">Pris au besoin</string>
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
     <string name="select_a_start_date">Start date</string>
-    <string name="time_between_doses">Time between doses:</string>
+    <string name="time_between_doses">Temps entre les doses :</string>
     <string name="days">Day(s)</string>
-    <string name="weeks">Week(s)</string>
-    <string name="months">Month(s)</string>
-    <string name="years">Year(s)</string>
-    <string name="schedule_dose">Schedule dose</string>
-    <string name="schedule_format">%1$s\nStarts %2$s\nRepeats every\n%3$d day(s), %4$d week(s),\n%5$d month(s), %6$d year(s)</string>
-    <string name="fill_out_all_schedules">Fill out all schedules before saving</string>
-    <string name="fill_out_schedule">Fill out schedule before confirming</string>
-    <string name="next_dose_label">Next dose: %1$s</string>
-    <string name="taken">Taken</string>
-    <string name="not_taken">Not taken</string>
-    <string name="sort">Sort</string>
-    <string name="restore_database">Restore database</string>
-    <string name="back_up_database">Back up database</string>
-    <string name="database_is_invalid">Database is invalid</string>
-    <string name="database_restored">Database restored</string>
-    <string name="took_it">Took it</string>
+    <string name="weeks">Semaine(s)</string>
+    <string name="months">Mois</string>
+    <string name="years">An(s)</string>
+    <string name="schedule_dose">Programmer la dose</string>
+    <string name="schedule_format">%1$s
+\nCommence %2$s
+\nSe répète tous les
+\n%3$d jour(s), %4$d semaine(s),
+\n%5$d mois(s), %6$d an(s).</string>
+    <string name="fill_out_all_schedules">Remplissez tous les horaires avant d’enregistrer</string>
+    <string name="fill_out_schedule">Remplissez le calendrier avant de confirmer</string>
+    <string name="next_dose_label">Prochaine dose : %1$s</string>
+    <string name="taken">Pris</string>
+    <string name="not_taken">Pas pris</string>
+    <string name="sort">Trier</string>
+    <string name="restore_database">Restaurer la base de données</string>
+    <string name="back_up_database">Sauvegarder la base de données</string>
+    <string name="database_is_invalid">La base de données est invalide</string>
+    <string name="database_restored">Base de données restaurée</string>
+    <string name="took_it">Déjà pris</string>
     <string name="app_name_short">JAPMM \?</string>
-    <string name="remind_in_15">Remind in 15 minutes</string>
-    <string name="dose_record_delete_warning">The dose record will be permanently deleted.</string>
-    <string name="record_delete_hint">(Long click a record to delete it)</string>
-    <string name="time_since_dose_sample">Approximately 0 day(s), 0 hour(s), and 0 minute(s) since last taken dose</string>
+    <string name="remind_in_15">Rappel dans 15 minutes</string>
+    <string name="dose_record_delete_warning">L’enregistrement de la dose sera définitivement supprimé.</string>
+    <string name="record_delete_hint">(Cliquez longuement sur un enregistrement pour le supprimer)</string>
+    <string name="time_since_dose_sample">Environ 0 jour(s), 0 heure(s) et 0 minute(s) depuis la dernière prise.</string>
     <string name="time_since_dose_template">Approximately %1$d day(s), %2$d hour(s), and %3$d minute(s) since last taken dose</string>
     <string name="require_photo_proof">Require photo proof</string>
     <string name="dose_and_proof_saved">Dose and proof saved</string>
@@ -134,6 +137,6 @@
 \nSi c\'est faux, mettez à jour les doses restantes en modifiant le médicament</string>
     <string name="take_with_food">À prendre en mangeant</string>
     <string name="translation_credits">Traductions en portugais brésilien par mezysinc et lnux-usr sur GitHub\n\nTraductions en allemand par jpameli sur GitHub\n\nTraductions en français par Edanas sur Weblate\n\nTraductions en hébreu par Yaron sur Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
-    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
-    <string name="choose_a_medication">Choose A Medication</string>
+    <string name="app_widget_description">Un widget qui affiche un seul médicament, le temps écoulé depuis la dernière prise et un bouton pour signaler une prise</string>
+    <string name="choose_a_medication">Choisir un médicament</string>
 </resources>
