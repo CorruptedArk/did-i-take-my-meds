@@ -1,0 +1,11 @@
+v1.5.0
+
+Change
+- Adjust text views to use standardized text sizes
+
+Addition
+- Add option to add simple home screen widgets for each medication
+- Add Chinese (Simplified) translations by luxu on Weblate
+- Add Spanish translations by sguinetti on Weblate and caos30 on Weblate
+- Add Catalan translations by caos30 on Weblate
+
