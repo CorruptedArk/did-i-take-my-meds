@@ -39,15 +39,83 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/dose_taken_time_label"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                android:text="@string/midnight"
-                android:textColor="@color/purple_200"
-                android:textSize="@dimen/medium_text_size" />
+                android:orientation="horizontal">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dose_taken_time_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/midnight"
+                    android:textColor="@color/purple_200"
+                    android:textSize="@dimen/medium_text_size"
+                    android:layout_gravity="center_vertical|start"/>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/start_taken_time_edit_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/edit"
+                    android:background="#00000000"
+                    android:layout_gravity="center_vertical|end" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/taken_time_edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/taken_time_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:textSize="@dimen/medium_text_size"
+                    android:text="@string/midnight"
+                    android:textColor="@color/purple_200"
+                    app:strokeColor="@color/purple_500"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/taken_date_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="15dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:textSize="@dimen/medium_text_size"
+                    android:text="@string/date_format"
+                    android:textColor="@color/purple_200"
+                    app:strokeColor="@color/purple_500"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/taken_time_confirm_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/done"
+                    android:background="#00000000"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_gravity="center_vertical|end" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/taken_time_cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/close"
+                    android:background="#00000000"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center_vertical|end" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/closest_dose_time_label"
