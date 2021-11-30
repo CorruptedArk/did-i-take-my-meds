@@ -37,6 +37,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textview.MaterialTextView
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -177,6 +178,7 @@ class DoseDetailActivity : AppCompatActivity() {
 
         takenTimeConfirmButton.setOnClickListener { view ->
             val newCalendar = Calendar.getInstance()
+            newCalendar.timeInMillis = doseTime
             newCalendar.set(Calendar.HOUR, hourTaken)
             newCalendar.set(Calendar.MINUTE, minuteTaken)
             newCalendar.set(Calendar.DAY_OF_MONTH, dayTaken)
@@ -184,51 +186,18 @@ class DoseDetailActivity : AppCompatActivity() {
             newCalendar.set(Calendar.YEAR, yearTaken)
 
             if (doseTime != newCalendar.timeInMillis) {
-                lifecycleScope.launch(lifecycleDispatcher) {
-                    if (proofImageDao(context).proofImageExists(medId, doseTime)) {
-                        val proofImage = proofImageDao(context).get(medId, doseTime)
-                        imageFolder?.apply {
-                            proofImage.deleteImageFile(this)
-                        }
-                        proofImageDao(context).delete(proofImage)
+                MaterialAlertDialogBuilder(context)
+                    .setTitle(getString(R.string.are_you_sure))
+                    .setMessage(getString(R.string.dose_update_warning))
+                    .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                        dialog.cancel()
                     }
-
-                    val doseRecord = medicationDao(context).get(medId).doseRecord.find { record ->
-                        record.doseTime == doseTime
+                    .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
+                        dialog.cancel()
+                        updateDose()
                     }
-
-                    doseRecord?.apply {
-                        val medication = medicationDao(context).get(medId)
-                        medication.doseRecord.remove(this)
-
-                        val newRecord = DoseRecord(newCalendar.timeInMillis, this.closestDose)
-                        medication.addNewTakenDose(newRecord)
-                        medicationDao(context).updateMedications(medication)
-
-                        val newDoseTimeString = Medication.doseString(
-                            yesterdayString,
-                            todayString,
-                            tomorrowString,
-                            newCalendar.timeInMillis,
-                            dateFormat,
-                            timeFormat,
-                            locale
-                        )
-
-                        this@DoseDetailActivity.doseTime = newCalendar.timeInMillis
-
-                        mainScope.launch(Dispatchers.Main) {
-                            timeTakenLabel.text = context.getString(R.string.time_taken, newDoseTimeString)
-
-                            proofImageView.visibility = View.GONE
-                            noImageLabel.visibility = View.VISIBLE
-                        }
-                    }
-                }
+                    .show()
             }
-
-            takenTimeEditLayout.visibility = View.GONE
-
         }
 
         takenTimeCancelButton.setOnClickListener { _ ->
@@ -274,6 +243,62 @@ class DoseDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun updateDose() {
+        val newCalendar = Calendar.getInstance()
+        newCalendar.timeInMillis = doseTime
+        newCalendar.set(Calendar.HOUR, hourTaken)
+        newCalendar.set(Calendar.MINUTE, minuteTaken)
+        newCalendar.set(Calendar.DAY_OF_MONTH, dayTaken)
+        newCalendar.set(Calendar.MONTH, monthTaken)
+        newCalendar.set(Calendar.YEAR, yearTaken)
+
+        if (doseTime != newCalendar.timeInMillis) {
+            lifecycleScope.launch(lifecycleDispatcher) {
+                if (proofImageDao(context).proofImageExists(medId, doseTime)) {
+                    val proofImage = proofImageDao(context).get(medId, doseTime)
+                    imageFolder?.apply {
+                        proofImage.deleteImageFile(this)
+                    }
+                    proofImageDao(context).delete(proofImage)
+                }
+
+                val doseRecord = medicationDao(context).get(medId).doseRecord.find { record ->
+                    record.doseTime == doseTime
+                }
+
+                doseRecord?.apply {
+                    val medication = medicationDao(context).get(medId)
+                    medication.doseRecord.remove(this)
+
+                    val newRecord = DoseRecord(newCalendar.timeInMillis, this.closestDose)
+                    medication.addNewTakenDose(newRecord)
+                    medicationDao(context).updateMedications(medication)
+
+                    val newDoseTimeString = Medication.doseString(
+                        yesterdayString,
+                        todayString,
+                        tomorrowString,
+                        newCalendar.timeInMillis,
+                        dateFormat,
+                        timeFormat,
+                        locale
+                    )
+
+                    this@DoseDetailActivity.doseTime = newCalendar.timeInMillis
+
+                    mainScope.launch(Dispatchers.Main) {
+                        timeTakenLabel.text = context.getString(R.string.time_taken, newDoseTimeString)
+
+                        proofImageView.visibility = View.GONE
+                        noImageLabel.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+
+        takenTimeEditLayout.visibility = View.GONE
     }
 
     private fun openTimePicker(view: View) {
