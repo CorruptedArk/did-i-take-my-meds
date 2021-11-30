@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--Did I Take My Meds? is a FOSS app to keep track of medications
     Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
     Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
@@ -53,11 +54,23 @@
     <string name="notifications_enabled">Notifications activées</string>
     <string name="new_medication">Nouveau médicament</string>
     <string name="medication_details">Détails des médicaments</string>
-    <string name="already_took_dose">You already took this dose I hope you didn\'t take it again</string>
-    <string name="time_taken">Time taken: %1$s</string>
-    <string name="took_this_already">You took this already</string>
-    <string name="channel_description">reminder notifications</string>
-    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nDid I Take My Meds? is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>    <string name="support_me_on_liberapay">Support me on Liberapay</string>
+    <string name="already_took_dose">Vous avez déjà pris cette dose
+\nJ\'espère que tu ne l\'as pas reprise</string>
+    <string name="time_taken">Heure de pris : %1$s</string>
+    <string name="took_this_already">Vous l\'avez déjà pris</string>
+    <string name="channel_description">notifications de rappel</string>
+    <string name="app_description">v %1$s par Noah Stanford (alias CorruptedArk)
+\n
+\nDid I Take My Meds\? est une application libre et gratuite pour garder la trace des médicaments.
+\nDid I Take My Meds\? est conçu pour aider à empêcher un utilisateur de sauter des doses et/ou de faire une surdose.
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\nDid I Take My Meds\? est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la licence publique générale GNU telle que publiée par la Free Software Foundation, soit la version 3 de la licence, soit (à votre choix) toute version ultérieure.
+\n
+\nDid I Take My Meds\? est distribué dans l\'espoir qu\'il sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de QUALITÉ MARCHANDE ou d\'ADÉQUATION À UN USAGE PARTICULIER. Voir la licence publique générale GNU pour plus de détails.
+\n
+\nVous devriez avoir reçu une copie de la Licence Publique Générale GNU avec ce programme. Si ce n\'est pas le cas, consultez https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Support me on Liberapay</string>
     <string name="view_the_project_on_github">View the project on GitHub</string>
     <string name="sorry">Sorry!</string>
     <string name="okay">Okay</string>
@@ -84,7 +97,7 @@
     <string name="database_is_invalid">Database is invalid</string>
     <string name="database_restored">Database restored</string>
     <string name="took_it">Took it</string>
-    <string name="app_name_short">DITMM?</string>
+    <string name="app_name_short">JAPMM \?</string>
     <string name="remind_in_15">Remind in 15 minutes</string>
     <string name="dose_record_delete_warning">The dose record will be permanently deleted.</string>
     <string name="record_delete_hint">(Long click a record to delete it)</string>
@@ -114,10 +127,13 @@
     <string name="dose_amount">Dose Amount</string>
     <string name="dose_amount_label_format">%1$s%2$s per dose</string>
     <string name="sample_dose_amount_label">5mg per dose</string>
-    <string name="remaining_doses">Remaining Doses</string>
-    <string name="sample_remaining_doses_label">10 remaining doses</string>
-    <string name="remaining_doses_label_format">%1$d remaining doses</string>
-    <string name="no_remaining_doses_message">There are no doses remaining\nIf this is wrong, update the remaining doses by editing the medication</string>
-    <string name="take_with_food">Take with food</string>
-
+    <string name="remaining_doses">Doses restantes</string>
+    <string name="sample_remaining_doses_label">10 doses restantes</string>
+    <string name="remaining_doses_label_format">%1$d doses restantes</string>
+    <string name="no_remaining_doses_message">Il n\'y a pas de doses restantes
+\nSi c\'est faux, mettez à jour les doses restantes en modifiant le médicament</string>
+    <string name="take_with_food">À prendre en mangeant</string>
+    <string name="translation_credits">Traductions en portugais brésilien par mezysinc et lnux-usr sur GitHub\n\nTraductions en allemand par jpameli sur GitHub\n\nTraductions en français par Edanas sur Weblate\n\nTraductions en hébreu par Yaron sur Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+    <string name="choose_a_medication">Choose A Medication</string>
 </resources>

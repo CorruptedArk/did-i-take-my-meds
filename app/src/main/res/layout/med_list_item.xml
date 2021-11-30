@@ -29,8 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/purple_200"
-        autoSizeTextType="uniform"
-        android:textSize="25sp"
+        android:textSize="@dimen/large_text_size"
         android:text="@string/sample_medicine"/>
 
     <com.google.android.material.textview.MaterialTextView
@@ -38,8 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        autoSizeTextType="uniform"
-        android:textSize="18sp"
+        android:textSize="@dimen/medium_text_size"
         android:text="@string/sample_type_label"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -52,8 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/sub_purple"
-            autoSizeTextType="uniform"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:text="@string/midnight"
             android:gravity="left"
             android:layout_gravity="left"/>
@@ -65,7 +62,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/sub_purple"
             autoSizeTextType="uniform"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:text="@string/not_taken"
             android:gravity="right"
             android:layout_gravity="right"/>

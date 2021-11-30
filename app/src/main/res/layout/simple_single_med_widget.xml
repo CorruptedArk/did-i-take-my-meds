@@ -1,0 +1,64 @@
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DidITakeMyMeds.AppWidget.Container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.DidITakeMyMeds.AppWidgetContainer"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/sub_purple"
+        android:textSize="@dimen/large_text_size"
+        android:paddingTop="15dp"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="5dp"
+        android:text="@string/sample_medicine"/>
+
+    <TextView
+        android:id="@+id/time_since_dose_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_200"
+        android:textSize="@dimen/medium_text_size"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/time_since_dose_sample"/>
+
+    <Button
+        android:id="@+id/just_took_it_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="10dp"
+        android:padding="15dp"
+        android:textSize="@dimen/medium_text_size"
+        android:text="@string/i_just_took_it"
+        android:textColor="@color/purple_200"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:background="@drawable/widget_button_border"/>
+
+
+
+</LinearLayout>

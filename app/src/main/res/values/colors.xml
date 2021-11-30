@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--Did I Take My Meds? is a FOSS app to keep track of medications
+<?xml version="1.0" encoding="utf-8"?><!--Did I Take My Meds? is a FOSS app to keep track of medications
     Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
     Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
 
@@ -31,4 +30,8 @@
     <color name="notification_bar">#FF2B00A7</color>
     <color name="notification_icon_color">#FF511D9A</color>
     <color name="floating_action_button">#FF6200EE</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
 </resources>

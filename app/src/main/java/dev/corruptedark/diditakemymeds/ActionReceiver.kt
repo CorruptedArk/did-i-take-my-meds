@@ -179,10 +179,17 @@ class ActionReceiver : BroadcastReceiver() {
                         else {
                             if (!medication.closestDoseAlreadyTaken() && medication.hasDoseRemaining()) {
 
-                                val takenDose = DoseRecord(
-                                    System.currentTimeMillis(),
-                                    medication.calculateClosestDose().timeInMillis
-                                )
+                                val takenDose = if(medication.isAsNeeded()) {
+                                    DoseRecord(
+                                        System.currentTimeMillis()
+                                    )
+                                }
+                                else {
+                                    DoseRecord(
+                                        System.currentTimeMillis(),
+                                        medication.calculateClosestDose().timeInMillis
+                                    )
+                                }
                                 medication.addNewTakenDose(takenDose)
                                 medicationDao(context)
                                     .updateMedications(medication)

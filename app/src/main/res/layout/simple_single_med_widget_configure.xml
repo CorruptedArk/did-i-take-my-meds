@@ -15,30 +15,22 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.-->
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/item_background"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="20dp">
+    android:orientation="vertical">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/dose_taken_time_label"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:gravity="center_vertical"/>
+
+    <ListView
+        android:id="@+id/med_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_200"
-        autoSizeTextType="uniform"
-        android:textSize="@dimen/medium_text_size"
-        android:text="@string/midnight"/>
+        android:divider="@color/background"
+        android:dividerHeight="10dp" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/closest_dose_time_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/sub_purple"
-        autoSizeTextType="uniform"
-        android:textSize="@dimen/small_text_size"
-        android:text="@string/midnight"/>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

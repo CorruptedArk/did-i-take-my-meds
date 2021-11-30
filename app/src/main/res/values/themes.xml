@@ -29,21 +29,26 @@
         <item name="materialCalendarTheme">@style/Theme.Calendar</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="Theme.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog">
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorAccent">@color/purple_200</item>
     </style>
+
     <style name="Theme.TimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorAccent">@color/purple_200</item>
     </style>
+
     <style name="Theme.Calendar" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorAccent">@color/purple_200</item>
     </style>
+
     <style name="Theme.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="colorControlActivated">@color/purple_200</item>
     </style>
@@ -51,5 +56,13 @@
     <style name="Theme.TextInput.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="colorControlActivated">@color/purple_200</item>
     </style>
+
+    <style name="Theme.DidITakeMyMeds.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">8dp</item>
+        <item name="appWidgetPadding">4dp</item>
+        <item name="appWidgetInnerRadius">4dp</item>
+    </style>
+
+    <style name="Theme.DidITakeMyMeds.AppWidgetContainer" parent="Theme.DidITakeMyMeds.AppWidgetContainerParent" />
 
 </resources>

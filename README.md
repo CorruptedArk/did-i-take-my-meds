@@ -29,11 +29,6 @@ Did I Take My Meds? allows a user save multiple medications with complex schedul
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="200" />
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="200" />
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/09.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/12.png" width="200" />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/13.png" width="200" />
 
 ---
 ## Credits
@@ -44,6 +39,13 @@ German translations by [jpameli](https://github.com/jpameli)
 French translations by [Edanas](https://hosted.weblate.org/user/Edanas/)
 
 Hebrew translations by [Yaron](https://hosted.weblate.org/user/Yaron/)
+
+Chinese Simplified translations by [luxu](https://hosted.weblate.org/user/luxu/)
+
+Spanish translations by [sguinetti](https://hosted.weblate.org/user/sguinetti/0) and [caos30](https://hosted.weblate.org/user/caos30/)
+
+Catalan translations by [caos30](https://hosted.weblate.org/user/caos30/)
+
 
 ---
 

@@ -29,6 +29,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
@@ -205,7 +206,7 @@ class RepeatScheduleDialog : DialogFragment() {
                 calendar.set(Calendar.MINUTE, timePicker.minute)
                 val formattedTime = if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
                 else DateFormat.format(getString(R.string.time_12), calendar)
-                (view as MaterialButton).text = formattedTime
+                (view as TextView).text = formattedTime
             }
             timePicker.addOnDismissListener {
                 pickerIsOpen = false
@@ -238,7 +239,7 @@ class RepeatScheduleDialog : DialogFragment() {
                 startDay = calendar.get(Calendar.DATE)
                 startMonth = calendar.get(Calendar.MONTH)
                 startYear = calendar.get(Calendar.YEAR)
-                (view as MaterialButton).text = DateFormat.format(getString(R.string.date_format), calendar)
+                (view as TextView).text = DateFormat.format(getString(R.string.date_format), calendar)
             }
             datePicker.addOnDismissListener {
                 pickerIsOpen = false

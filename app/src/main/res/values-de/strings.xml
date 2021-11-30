@@ -57,7 +57,7 @@
     <string name="medication_details">Details zur Medikation</string>
     <string name="edit_medication">Medikament bearbeiten</string>
     <string name="about">Über</string>
-    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nBrazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nDid I Take My Meds? (Deutscher App-Titel: Medikamente eingenommen?) is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nDid I Take My Meds? (Deutscher App-Titel: Medikamente eingenommen?) is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Unterstütze mich auf Liberapay</string>
     <string name="view_the_project_on_github">Projekt auf GitHub ansehen</string>
     <string name="sorry">Entschuldigung!</string>
@@ -120,5 +120,8 @@
     <string name="remaining_doses_label_format">%1$d verbleibende Dosen</string>
     <string name="no_remaining_doses_message">Keine verbleibende Dosis\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
     <string name="take_with_food">Mit Essen einnehmen</string>
+    <string name="translation_credits">Brazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+    <string name="choose_a_medication">Choose A Medication</string>
 
 </resources>

@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <!--Did I Take My Meds? is a FOSS app to keep track of medications
     Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
     Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
@@ -16,15 +14,15 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.-->
+<resources>
 
-<com.google.android.material.textview.MaterialTextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/unit_name_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="@dimen/small_text_size"
-        android:padding="10dp"
-        android:text="@string/undefined"
-        android:ellipsize="end"
-        android:textAppearance="?attr/textAppearanceSubtitle1"/>
+    <style name="Widget.DidITakeMyMeds.AppWidget.Container" parent="android:Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+    </style>
+
+    <style name="Widget.DidITakeMyMeds.AppWidget.InnerView" parent="android:Widget">
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+</resources>

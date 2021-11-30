@@ -47,7 +47,7 @@
         android:text="@string/add_medications"
         android:textColor="@color/purple_200"
         app:autoSizeTextType="uniform"
-        android:textSize="18sp"
+        android:textSize="@dimen/medium_text_size"
         android:gravity="center"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
