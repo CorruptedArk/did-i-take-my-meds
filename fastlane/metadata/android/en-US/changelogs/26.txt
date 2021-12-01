@@ -1,0 +1,9 @@
+v1.5.1
+
+Change
+- Updated Chinese Simplified translations
+- Updated Hebrew translations
+
+Additions
+- Add option to edit taken time for previous doses
+
