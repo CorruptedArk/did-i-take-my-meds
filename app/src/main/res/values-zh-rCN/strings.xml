@@ -28,12 +28,12 @@
     <string name="fill_fields">填写名称，再保存</string>
     <string name="med_saved">药品已保存</string>
     <string name="cancelled">取消新建药品</string>
-    <string name="time_24">时：分</string>
-    <string name="time_12">上/下午 时：分</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
     <string name="sample_medicine">药品示例</string>
     <string name="midnight">上午12：00</string>
     <string name="sample_description">这是药物的示例描述。它有多个句子并涵盖多行。</string>
-    <string name="previous_doses">之前服药：</string>
+    <string name="previous_doses">服药记录：</string>
     <string name="i_just_took_it">刚服用了！</string>
     <string name="closest_dose_sample">最近服药：今天下午 1:00</string>
     <string name="today">今天</string>
@@ -48,7 +48,7 @@
     <string name="are_you_sure">是否确定？</string>
     <string name="medication_delete_warning">药品将被永久删除</string>
     <string name="confirm">确认</string>
-    <string name="took_this_already">已经服用过</string>
+    <string name="took_this_already">已经服用</string>
     <string name="edit">编辑</string>
     <string name="edit_cancelled">编辑已取消</string>
     <string name="notifications_enabled">通知已启用</string>
@@ -71,12 +71,12 @@
 \n
 \n你应该已经收到了一份与本程序一起的GNU通用公共许可证的副本。如果没有，请参阅https://www.gnu.org/licenses。</string>
     <string name="support_me_on_liberapay">在 Liberapay 上支持我</string>
-    <string name="view_the_project_on_github">在GitHub上查看该项目</string>
+    <string name="view_the_project_on_github">在 GitHub 上查看该项目</string>
     <string name="sorry">抱歉！</string>
     <string name="okay">好的</string>
     <string name="cannot_donate_explanation">谷歌不允许免税慈善之外项目的开发者在应用中放置捐款链接。如果你依然想支持我，可以在浏览器中打开 Liberapay 平台搜索 CorruptedArk ，也可以在我的 Github 仓库中找到相关链接。</string>
-    <string name="add_another_dose">增加一次服用</string>
-    <string name="taken_as_needed">视需要服用</string>
+    <string name="add_another_dose">增加服用计划</string>
+    <string name="taken_as_needed">按需服用</string>
     <string name="hello_blank_fragment">你好，空白片断</string>
     <string name="select_a_start_date">开始日期</string>
     <string name="time_between_doses">服药间隔：</string>
@@ -84,12 +84,12 @@
     <string name="weeks">周</string>
     <string name="months">月</string>
     <string name="years">年</string>
-    <string name="schedule_dose">计划服药</string>
+    <string name="schedule_dose">增加服用计划</string>
     <string name="schedule_picker_tag"/>
     <string name="date_picker_tag"/>
     <string name="schedule_format">%1$s
 \n从 %2$s 开始
-\n重复间隔
+\n每隔以下时间服药
 \n%3$d 天，%4$d 周，
 \n%5$d 月，%6$d 年</string>
     <string name="fill_out_all_schedules">填写全部服用计划，再保存</string>
@@ -145,10 +145,16 @@
 \n
 \n法语翻译：Weblate 上的 Edanas
 \n
-\n希伯来语翻译 作者：Weblate 上的 Yaron
+\n希伯来语翻译：Weblate 上的 Yaron
 \n
-\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
-    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
-    <string name="choose_a_medication">Choose A Medication</string>
-    <string name="dose_update_warning">You will update the taken time of this dose and delete the associated proof image if it exists.</string>
+\n简体中文翻译：Weblate 上的 luxu
+\n
+\n西班牙语翻译：Weblate 上的 sguinetti 和 caos30
+\n
+\n加泰罗尼亚语翻译：Weblate 上的 caos30
+\n
+\n</string>
+    <string name="app_widget_description">一个显示单个药物、上次服药间隔和确认服药按钮的小部件</string>
+    <string name="choose_a_medication">选择药物</string>
+    <string name="dose_update_warning">这将更新此次服药时间，并删除相关拍照证明。</string>
 </resources>
