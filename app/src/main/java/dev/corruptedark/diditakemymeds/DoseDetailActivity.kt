@@ -83,7 +83,7 @@ class DoseDetailActivity : AppCompatActivity() {
     private var systemIs24Hour = false
     private var timeFormat = ""
     private lateinit var locale: Locale
-    private var doseTimeString = ""
+    private val workingCalendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -177,15 +177,8 @@ class DoseDetailActivity : AppCompatActivity() {
         }
 
         takenTimeConfirmButton.setOnClickListener { view ->
-            val newCalendar = Calendar.getInstance()
-            newCalendar.timeInMillis = doseTime
-            newCalendar.set(Calendar.HOUR, hourTaken)
-            newCalendar.set(Calendar.MINUTE, minuteTaken)
-            newCalendar.set(Calendar.DAY_OF_MONTH, dayTaken)
-            newCalendar.set(Calendar.MONTH, monthTaken)
-            newCalendar.set(Calendar.YEAR, yearTaken)
 
-            if (doseTime != newCalendar.timeInMillis) {
+            if (doseChanged()) {
                 MaterialAlertDialogBuilder(context)
                     .setTitle(getString(R.string.are_you_sure))
                     .setMessage(getString(R.string.dose_update_warning))
@@ -246,15 +239,8 @@ class DoseDetailActivity : AppCompatActivity() {
     }
 
     private fun updateDose() {
-        val newCalendar = Calendar.getInstance()
-        newCalendar.timeInMillis = doseTime
-        newCalendar.set(Calendar.HOUR, hourTaken)
-        newCalendar.set(Calendar.MINUTE, minuteTaken)
-        newCalendar.set(Calendar.DAY_OF_MONTH, dayTaken)
-        newCalendar.set(Calendar.MONTH, monthTaken)
-        newCalendar.set(Calendar.YEAR, yearTaken)
 
-        if (doseTime != newCalendar.timeInMillis) {
+        if (doseChanged()) {
             lifecycleScope.launch(lifecycleDispatcher) {
                 if (proofImageDao(context).proofImageExists(medId, doseTime)) {
                     val proofImage = proofImageDao(context).get(medId, doseTime)
@@ -272,7 +258,7 @@ class DoseDetailActivity : AppCompatActivity() {
                     val medication = medicationDao(context).get(medId)
                     medication.doseRecord.remove(this)
 
-                    val newRecord = DoseRecord(newCalendar.timeInMillis, this.closestDose)
+                    val newRecord = DoseRecord(workingCalendar.timeInMillis, this.closestDose)
                     medication.addNewTakenDose(newRecord)
                     medicationDao(context).updateMedications(medication)
 
@@ -280,13 +266,13 @@ class DoseDetailActivity : AppCompatActivity() {
                         yesterdayString,
                         todayString,
                         tomorrowString,
-                        newCalendar.timeInMillis,
+                        workingCalendar.timeInMillis,
                         dateFormat,
                         timeFormat,
                         locale
                     )
 
-                    this@DoseDetailActivity.doseTime = newCalendar.timeInMillis
+                    this@DoseDetailActivity.doseTime = workingCalendar.timeInMillis
 
                     mainScope.launch(Dispatchers.Main) {
                         timeTakenLabel.text = context.getString(R.string.time_taken, newDoseTimeString)
@@ -299,6 +285,17 @@ class DoseDetailActivity : AppCompatActivity() {
         }
 
         takenTimeEditLayout.visibility = View.GONE
+    }
+
+    private fun doseChanged(): Boolean {
+        workingCalendar.timeInMillis = doseTime
+        workingCalendar.set(Calendar.HOUR, hourTaken)
+        workingCalendar.set(Calendar.MINUTE, minuteTaken)
+        workingCalendar.set(Calendar.DAY_OF_MONTH, dayTaken)
+        workingCalendar.set(Calendar.MONTH, monthTaken)
+        workingCalendar.set(Calendar.YEAR, yearTaken)
+
+        return doseTime != workingCalendar.timeInMillis
     }
 
     private fun openTimePicker(view: View) {
