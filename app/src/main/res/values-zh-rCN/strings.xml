@@ -42,7 +42,7 @@
     <string name="closest_dose_label">最近服药：%1$s</string>
     <string name="already_took_dose">你已经服用此药
 \n希望你没有重复服用</string>
-    <string name="date_format">月 日，年</string>
+    <string name="date_format">MMM d, yyyy</string>
     <string name="time_taken">服用时间：%1$s</string>
     <string name="delete">删除</string>
     <string name="are_you_sure">是否确定？</string>

@@ -172,4 +172,46 @@ class InstrumentedTests {
 
         assertEquals("12:00AM out 1, 1970", doseString12)
     }
+
+    @Test
+    fun doseString_zh_CN_isCorrect() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val locale = Locale.Builder().setLanguage("zh").setRegion("CN").build()
+        val localizedResources = ResourceLocalizer.localizedResources(appContext, locale)
+
+        val yesterdayString = localizedResources.getString(R.string.yesterday)
+        val todayString = localizedResources.getString(R.string.today)
+        val tomorrowString = localizedResources.getString(R.string.tomorrow)
+        val dateFormat = localizedResources.getString(R.string.date_format)
+
+        val timeFormat24 = localizedResources.getString(R.string.time_24)
+        val timeFormat12 = localizedResources.getString(R.string.time_12)
+
+
+        val doseString24 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            23587200000L,
+            dateFormat,
+            timeFormat24,
+            locale
+        )
+
+        assertEquals("20:00 9月 30, 1970", doseString24)
+
+        val doseString12 = Medication.doseString(
+            yesterdayString,
+            todayString,
+            tomorrowString,
+            23587200000L,
+            dateFormat,
+            timeFormat12,
+            locale
+        )
+
+        assertEquals("8:00PM 9月 30, 1970", doseString12)
+    }
+
 }
