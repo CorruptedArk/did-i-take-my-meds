@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--Did I Take My Meds? is a FOSS app to keep track of medications
     Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
     Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
@@ -13,8 +14,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see https://www.gnu.org/licenses.-->
-<resources>
+    along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
     <string name="app_name">Já tomou remédios?</string>
     <string name="add">Adicionar</string>
     <string name="add_medications">Adicione remédios à sua lista</string>
@@ -39,8 +39,9 @@
     <string name="yesterday">Ontem</string>
     <string name="tomorrow">Amanhã</string>
     <string name="closest_dose_label">Próxima dose: %1$s</string>
-    <string name="already_took_dose">Você já tomou esta dose\nAssegure-se de não tomar outra vez.</string>
-    <string name="date_format">MMM d, yyyy</string>
+    <string name="already_took_dose">Você já tomou esta dose
+\nAssegure-se de não tomar outra vez</string>
+    <string name="date_format">d MMM yyyy</string>
     <string name="time_taken">Hora em que foi tomado: %1$s</string>
     <string name="delete">excluir</string>
     <string name="are_you_sure">Tem certeza?</string>
@@ -65,7 +66,7 @@
     <string name="cannot_donate_explanation">O Google não permite que os desenvolvedores coloquem links de doação em aplicativos a fim de apoiar trabalho deles, a menos que sejam instituições de caridade isentas de impostos. Se você ainda quiser me apoiar, você pode encontrar o CorruptedArk online no Liberapay via um navegador. Meu repositório no GitHub também é um bom lugar para começar.</string>
     <string name="add_another_dose">Adicionar outra dose</string>
     <string name="taken_as_needed">Tomado conforme previsto</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Fragmento de saudação em branco</string>
     <string name="select_a_start_date">Data inicial</string>
     <string name="time_between_doses">Tempo entre doses:</string>
     <string name="days">Dia(s)</string>
@@ -82,48 +83,61 @@
     <string name="sort">Ordenar</string>
     <string name="restore_database">Restaurar a base de dados</string>
     <string name="back_up_database">Backup da base de dados</string>
-    <string name="database_is_invalid">Database is invalid</string>
-    <string name="database_restored">Database restored</string>
+    <string name="database_is_invalid">Banco de dados é inválido</string>
+    <string name="database_restored">Banco de dados restaurado</string>
     <string name="took_it">Já tomei</string>
     <string name="app_name_short">DITMM?</string>
     <string name="remind_in_15">Lembre-me em 15 minutos</string>
-    <string name="dose_record_delete_warning">The dose record will be permanently deleted.</string>
-    <string name="record_delete_hint">(Long click a record to delete it)</string>
-    <string name="time_since_dose_sample">Approximately 0 day(s), 0 hour(s), and 0 minute(s) since last taken dose</string>
-    <string name="time_since_dose_template">Approximately %1$d day(s), %2$d hour(s), and %3$d minute(s) since last taken dose</string>
-    <string name="require_photo_proof">Require photo proof</string>
-    <string name="dose_and_proof_saved">Dose and proof saved</string>
-    <string name="failed_to_get_proof">Failed to get proof</string>
-    <string name="no_image_available">No image available</string>
-    <string name="record_detail_hint">(Tap a record to view details)</string>
-    <string name="back_up_successful">Back up successful</string>
-    <string name="back_up_failed">Back up failed</string>
-    <string name="dose_details">Dose Details</string>
-    <string name="medication_active">Medication active</string>
-    <string name="inactive">Inactive</string>
-    <string name="medication_type">Medication Type</string>
-    <string name="undefined">Undefined</string>
+    <string name="dose_record_delete_warning">O registro da dose será excluído permanentemente.</string>
+    <string name="record_delete_hint">(Dê um clique longo em um registro para excluí-lo)</string>
+    <string name="time_since_dose_sample">Aproximadamente 0 dia (s), 0 hora (s) e 0 minuto (s) desde a última dose tomada</string>
+    <string name="time_since_dose_template">Aproximadamente %1$d dia (s), %2$d hora (s) e %3$d minuto (s) desde a última dose tomada</string>
+    <string name="require_photo_proof">Exigir prova fotográfica</string>
+    <string name="dose_and_proof_saved">Dose e prova guardadas</string>
+    <string name="failed_to_get_proof">Falha ao obter provas</string>
+    <string name="no_image_available">Nenhuma imagem disponível</string>
+    <string name="record_detail_hint">(Toque em um registro para ver os detalhes)</string>
+    <string name="back_up_successful">Backup bem-sucedido</string>
+    <string name="back_up_failed">Backup falhou</string>
+    <string name="dose_details">Detalhes da dose</string>
+    <string name="medication_active">Medicação ativa</string>
+    <string name="inactive">Inativo</string>
+    <string name="medication_type">Tipo de Medicação</string>
+    <string name="undefined">Indefinido</string>
     <string name="type_label_format">Type: %1$s</string>
-    <string name="sample_type_label">Type: Undefined</string>
+    <string name="sample_type_label">Tipo: Indefinido</string>
     <string name="rx_number_hint">Rx #</string>
     <string name="rx_number_label_format">Rx #: %1$s</string>
-    <string name="sample_rx_number_label">Rx #: Undefined</string>
-    <string name="pharmacy">Pharmacy</string>
-    <string name="pharmacy_label_format">Pharmacy: %1$s</string>
-    <string name="sample_pharmacy_label">Pharmacy: Undefined</string>
-    <string name="dose_unit">Dose Unit</string>
-    <string name="dose_amount">Dose Amount</string>
-    <string name="dose_amount_label_format">%1$s%2$s per dose</string>
-    <string name="sample_dose_amount_label">5mg per dose</string>
-    <string name="remaining_doses">Remaining Doses</string>
-    <string name="sample_remaining_doses_label">10 remaining doses</string>
-    <string name="remaining_doses_label_format">%1$d remaining doses</string>
-    <string name="no_remaining_doses_message">There are no doses remaining\nIf this is wrong, update the remaining doses by editing the medication</string>
-    <string name="take_with_food">Take with food</string>
-    <string name="translation_credits">Brazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
-    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
-    <string name="choose_a_medication">Choose A Medication</string>
-    <string name="dose_update_warning">You will update the taken time of this dose and delete the associated proof image if it exists.</string>
-
-
+    <string name="sample_rx_number_label">Rx #: Indefinido</string>
+    <string name="pharmacy">Farmácia</string>
+    <string name="pharmacy_label_format">Farmácia: %1$s</string>
+    <string name="sample_pharmacy_label">Farmácia: Indefinida</string>
+    <string name="dose_unit">Unidade da Dose</string>
+    <string name="dose_amount">Quantidade da dose</string>
+    <string name="dose_amount_label_format">%1$s%2$s por dose</string>
+    <string name="sample_dose_amount_label">5mg por dose</string>
+    <string name="remaining_doses">Doses Restantes</string>
+    <string name="sample_remaining_doses_label">10 doses restantes</string>
+    <string name="remaining_doses_label_format">%1$d doses restantes</string>
+    <string name="no_remaining_doses_message">Não há doses restantes
+\nSe estiver errado, atualize as doses restantes editando o medicamento</string>
+    <string name="take_with_food">Tomar juntamente com comida</string>
+    <string name="translation_credits">Traduções para o português brasileiro por mezysinc e lnux-usr no GitHub
+\n
+\nTraduções para alemão por jpameli no GitHub
+\n
+\nTraduções para o francês por Edanas no Weblate
+\n
+\nTraduções de hebraico por Yaron no Weblate
+\n
+\nTraduções para chinês simplificado por luxu no Weblate
+\n
+\nTraduções para o espanhol por sguinetti no Weblate e caos30 no Weblate
+\n
+\nTraduções de catalão por caos30 no Weblate
+\n
+\n</string>
+    <string name="app_widget_description">Um widget que exibe um único medicamento, o tempo desde a última dose e um botão para enviar uma dose tomada</string>
+    <string name="choose_a_medication">Escolha um medicamento</string>
+    <string name="dose_update_warning">Você atualizará o tempo gasto com esta dose e excluirá a imagem de prova associada, se houver.</string>
 </resources>
