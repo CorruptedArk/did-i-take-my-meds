@@ -120,7 +120,7 @@
     <string name="remaining_doses_label_format">%1$d verbleibende Dosen</string>
     <string name="no_remaining_doses_message">Keine verbleibende Dosis\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
     <string name="take_with_food">Zu einer Mahlzeit</string>
-    <string name="translation_credits">Brazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">Ein Widget, das ein einzelnes Medikament, die Zeit seit der letzten Einnahme und eine Schaltfläche zum Übermitteln einer eingenommenen Dosis anzeigt</string>
     <string name="choose_a_medication">Wählen Sie ein Medikament</string>
     <string name="dose_update_warning">Sie ändern damit die Einnahmezeit dieser Dosis und löschen das zugehörige Beweisbild, falls es existiert.</string>

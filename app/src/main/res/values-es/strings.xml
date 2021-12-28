@@ -135,7 +135,7 @@
     <string name="no_remaining_doses_message">No hay dosis restantes
 \nSi esto es incorrecto, actualice las dosis restantes editando la medicación</string>
     <string name="take_with_food">Tomar con comida</string>
-    <string name="translation_credits">Traducciones al portugués brasileño por mezysinc y lnux-usr en GitHub\n\nTraducciones al alemán por jpameli en GitHub\n\nTraducción al francés por Edanas en Weblate\n\nTraducciones al hebreo por Yaron en Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+    <string name="translation_credits">Traducciones al portugués brasileño por mezysinc en GitHub, lnux-usr en GitHub, y Card151915 en Weblate\n\nTraducciones al alemán por jpameli en GitHub\n\nTraducción al francés por Edanas en Weblate\n\nTraducciones al hebreo por Yaron en Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">Un widget que muestra un solo medicamento, el tiempo desde la última dosis tomada, y un botón para confirmar la dosis tomada</string>
     <string name="choose_a_medication">Escoja un medicamento</string>
     <string name="dose_update_warning">Se actualizara el tiempo de toma de esta dosis y se borrará la imagen de prueba asociada si existe.</string>

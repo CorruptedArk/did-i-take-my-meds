@@ -136,13 +136,13 @@
     <string name="no_remaining_doses_message">לא נותרו נטילות
 \nאם מדובר בטעות, יש לעדכן את הנטילות הנותרות על ידי עריכת התרופה</string>
     <string name="take_with_food">ליטול עם אוכל</string>
-    <string name="translation_credits">התרגומים לפורטוגלית ברזילאית מאת mezysinc ו־lnux-usr ב־GitHub
+    <string name="translation_credits">התרגומים לפורטוגלית ברזילאית מאת mezysinc ו־lnux-usr ב־GitHub Card151915 ב־Weblate
 \n
 \nהתרגומים לגרמנית מאת jpameli ב־GitHub
 \n
 \nהתרגומים לצרפתית מאת Edanas ב־Weblate
 \n
-\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
     <string name="app_widget_description">וידג׳ט שמציג תרופה בודדת, הזמן מאז הנטילה האחרונה וכפתור להגשת נטילה</string>
     <string name="choose_a_medication">נא לבחור תרופה</string>
     <string name="dose_update_warning">פעולה זו תעדכן את זמן נטילת התרופה ותמחק את תמונת ההוכחה אם ישנה.</string>
