@@ -26,7 +26,7 @@
     <string name="pick_a_time">Zeit vor dem Speichern wählen</string>
     <string name="fill_fields">Name vor dem Speichern ausfüllen</string>
     <string name="med_saved">Medikament gespeichert</string>
-    <string name="cancelled">Neues Medikament abgebrochen</string>
+    <string name="cancelled">Eingabe abgebrochen</string>
     <string name="time_24">H:mm</string>
     <string name="time_12">h:mma</string>
     <string name="sample_medicine">Beispiel Medikament</string>
@@ -35,13 +35,13 @@
     <string name="previous_doses">Vorherige Einnahme:</string>
     <string name="i_just_took_it">Jetzt einnehmen!</string>
     <string name="closest_dose_sample">Dosis geplant um: 1:00PM heute</string>
-    <string name="today">Heute</string>
-    <string name="yesterday">Gestern</string>
-    <string name="tomorrow">Morgen</string>
+    <string name="today">heute</string>
+    <string name="yesterday">gestern</string>
+    <string name="tomorrow">morgen</string>
     <string name="closest_dose_label">Dosis geplant um: %1$s</string>
     <string name="already_took_dose">Du hast diese Dosis bereits eingenommen\nIch hoffe, du hast sie nicht nochmal genommen.</string>
     <string name="date_format">MMM d, yyyy</string>
-    <string name="time_taken">Zeit der Einnahme: %1$s</string>
+    <string name="time_taken">Einnahmezeitpunkt: %1$s</string>
     <string name="delete">löschen</string>
     <string name="are_you_sure">Bist du sicher?</string>
     <string name="medication_delete_warning">Das Medikament wird dauerhaft gelöscht</string>
@@ -78,14 +78,14 @@
     <string name="fill_out_schedule">Vor dem Speichern den Zeitplan ausfüllen</string>
     <string name="next_dose_label">Nächste Einnahme: %1$s</string>
     <string name="taken">Eingenommen</string>
-    <string name="not_taken">Nicht eingenommen</string>
+    <string name="not_taken">Ausstehend</string>
     <string name="sort">Sortieren</string>
     <string name="restore_database">Datenbank wiederherstellen</string>
     <string name="back_up_database">Datenbank sichern</string>
     <string name="database_is_invalid">Datenbank ist ungültig</string>
     <string name="database_restored">Datenbank wiederhergestellt</string>
     <string name="took_it">Bereits eingenommen</string>
-    <string name="app_name_short">Medis eingenommen?</string>
+    <string name="app_name_short">Medis?</string>
     <string name="remind_in_15">In 15 Minuten erinnern</string>
     <string name="dose_record_delete_warning">Der Eintrag wird endgültig gelöscht.</string>
     <string name="record_delete_hint">(Klicke lange auf einen Eintrag, um ihn zu löschen)</string>
@@ -102,7 +102,7 @@
     <string name="medication_active">Medikament aktiv</string>
     <string name="inactive">Inaktiv</string>
     <string name="medication_type">Medikamenten-Typ</string>
-    <string name="undefined">Undefiniert</string>
+    <string name="undefined">n.a.</string>
     <string name="type_label_format">Typ: %1$s</string>
     <string name="sample_type_label">Typ: undefiniert</string>
     <string name="rx_number_hint">Rx#</string>
@@ -119,9 +119,9 @@
     <string name="sample_remaining_doses_label">10 verbleibende Dosen</string>
     <string name="remaining_doses_label_format">%1$d verbleibende Dosen</string>
     <string name="no_remaining_doses_message">Keine verbleibende Dosis\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
-    <string name="take_with_food">Mit Essen einnehmen</string>
+    <string name="take_with_food">Zu einer Mahlzeit</string>
     <string name="translation_credits">Brazilian Portuguese translations by mezysinc and lnux-usr on GitHub\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate and caos30 on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
-    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
-    <string name="choose_a_medication">Choose A Medication</string>
-    <string name="dose_update_warning">You will update the taken time of this dose and delete the associated proof image if it exists.</string>
+    <string name="app_widget_description">Ein Widget, das ein einzelnes Medikament, die Zeit seit der letzten Einnahme und eine Schaltfläche zum Übermitteln einer eingenommenen Dosis anzeigt</string>
+    <string name="choose_a_medication">Wählen Sie ein Medikament</string>
+    <string name="dose_update_warning">Sie ändern damit die Einnahmezeit dieser Dosis und löschen das zugehörige Beweisbild, falls es existiert.</string>
 </resources>
