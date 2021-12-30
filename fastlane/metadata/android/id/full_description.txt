@@ -1,0 +1,3 @@
+Did I Take My Meds? membantu melacak kapan untuk menggunakan obat. Aplikasi ini dirancang untuk membantu mencegah pengguna dari melewati dosis dan/atau dosis berlebihan.
+
+Did I Take My Meds? memperbolehkan pengguna menyimpan berbagai medikasi dengan jadwal yang rumit. Setiap obat bisa memicu sebuah notifikasi pengingat mandiri. Dan juga, aplikasi ini memperbolehkan pengguna untuk merekam kapan mereka menggunakan dosis. Sebagai bagian dari rutinitas medikasi, aplikasi ini bisa membantu mencegah dosis berlebihan dan dosis terlewat.
