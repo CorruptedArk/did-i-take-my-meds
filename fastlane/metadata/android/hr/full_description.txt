@@ -1,0 +1,3 @@
+Program „Jesam li uzeo/la lijekove?” pomaže pratiti vremena uzimanja lijekova. Stvoren je kako bi spriječio preskakanje doza i/ili predoziranje.
+
+Jesam li uzeo/la lijekove? omogućuje spremanje više lijekova sa složenim rasporedom termina. Svaki lijek može pokrenuti neovisnu obavijest podsjetnika. Uz to, ovaj program omogućuje snimanje vremena uzimanja doza. Kao dio rutine uzimanja lijekova, ovaj program pomaže u sprečavanju preskakanja doza i/ili predoziranja.
