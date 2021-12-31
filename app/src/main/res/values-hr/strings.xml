@@ -15,131 +15,161 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">Jesam li uzeo/la lijekove\?</string>
+    <string name="add">Dodaj</string>
+    <string name="add_medications">Dodaj lijekove u popis</string>
+    <string name="medication_name">Ime lijeka</string>
+    <string name="description">Opis</string>
+    <string name="select_a_time">odaberi vrijeme</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">Spremi</string>
+    <string name="cancel">Odustani</string>
+    <string name="pick_a_time">Odaberi vrijeme prije spremanja</string>
+    <string name="fill_fields">Upiši ime prije spremanja</string>
+    <string name="med_saved">Lijek je spremljen</string>
+    <string name="cancelled">Zapisivanje novog lijeka je prekinuto</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mm a</string>
+    <string name="sample_medicine">Primjer za lijek</string>
+    <string name="midnight">12:00 AM</string>
+    <string name="sample_description">Ovo je primjer opisa lijeka. Sadrži više rečenica i redaka.</string>
+    <string name="previous_doses">Prijašnje doze:</string>
+    <string name="i_just_took_it">Upravo sam ga uzeo/la!</string>
+    <string name="closest_dose_sample">Sljedeća doza: danas u 1:00 PM</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">Danas</string>
+    <string name="yesterday">Jučer</string>
+    <string name="tomorrow">Sutra</string>
+    <string name="closest_dose_label">Sljedeća doza: %1$s</string>
+    <string name="already_took_dose">Ovu si dozu već uzeo
+\nNadam se da je nisi još jednom uzeo/la</string>
+    <string name="date_format">d. MM. yyyy.</string>
+    <string name="time_taken">Vrijema uzimanja: %1$s</string>
+    <string name="delete">izbriši</string>
+    <string name="are_you_sure">Sigurno\?</string>
+    <string name="medication_delete_warning">Lijek će se zauvijek izbrisati</string>
+    <string name="confirm">potvrdi</string>
+    <string name="took_this_already">Ovo si već uzeo</string>
+    <string name="edit">Uredi</string>
+    <string name="edit_cancelled">Uređivanje je prekinuto</string>
+    <string name="notifications_enabled">Obavijesti su aktivirane</string>
+    <string name="notifications_disabled">Obavijesti su deaktivirane</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">obavijesti podsjetnika</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">Vrijeme je za tvoju dozu</string>
+    <string name="new_medication">Novi lijek</string>
+    <string name="medication_details">Detalji lijeka</string>
+    <string name="edit_medication">Uredi lijek</string>
+    <string name="about">O programu</string>
+    <string name="app_description">v%1$s. Autor: Noah Stanford (aka CorruptedArk)
+\n
+\nJesam li uzeo/la lijekove\? je FOSS program za praćenje lijekova
+\nJesam li uzeo/la lijekove\? je stvoren kako bi spriječio preskakanje doza i/ili predoziranje
+\nAutorska prava © 2021. Noah Stanford noahstandingford@gmail.com
+\n
+\nJesam li uzeo/la lijekove\? je slobodan softver: može se redistribuirati i/ili promijeniti pod uvjetima GNU Opće javne licence koju je objavila Zaklada za slobodni softver, verzija 3 licence ili (po izboru) bilo koja novija verzija.
+\n
+\nJesam li uzeo/la lijekove\? distribuira se u nadi da će biti od koristi, BEZ IKAKVOG JAMSTVA, uključujući bez impliciranog jamstva MOGUĆNOSTI PRODAJE ili PRIKLADNOSTI ZA ODREĐENU NAMJENU. Za detaljne informcaije pogledaj GNU Opću javnu licencu.
+\n
+\nOvom programu je pridodana kopija GNU Opće javne licence. Ako nije, pogledaj https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Podrži me na Liberapay</string>
+    <string name="view_the_project_on_github">Pogledaj projekt na GitHubu</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">Oprosti!</string>
+    <string name="okay">U redu</string>
+    <string name="cannot_donate_explanation">Google ne dopušta programerima postavljanje poveznica za podržavanje programa donacijama, ukoliko se ne radi o dobrotvornim organizacijama koje su oslobođene od poreza. Ako svejedno želiš podržati program, u zasebnom pregledniku možeš pronaći CorruptedArk na Liberapayu. Moj GitHub reozitorij je dobro mjesto za početak.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">Dodaj jednu drugu dozu</string>
+    <string name="taken_as_needed">Uzet po potrebi</string>
+    <string name="hello_blank_fragment">Prazan fragment pozdrava</string>
+    <string name="select_a_start_date">Datum početka</string>
+    <string name="time_between_doses">Vrijeme između doza:</string>
+    <string name="days">dani</string>
+    <string name="weeks">tjedni</string>
+    <string name="months">mjeseci</string>
+    <string name="years">godine</string>
+    <string name="schedule_dose">Odredi termine za dozu</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\nPočinje %2$s
+\nPonavlja se svakih
+\n%3$d dana, %4$d tjedna,
+\n%5$d mjeseci, %6$d godina</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">Upiši sve termine prije spremanja</string>
+    <string name="fill_out_schedule">Upiši termine prije potvrđivanja</string>
+    <string name="next_dose_label">Sljedeća doza: %1$s</string>
+    <string name="taken">Uzet</string>
+    <string name="not_taken">Nije uzet</string>
+    <string name="sort">Redoslijed</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">Obnovi bazu podataka</string>
+    <string name="back_up_database">Spremi sigurnosnu kopiju baze podataka</string>
+    <string name="database_is_invalid">Baza podataka je neispravna</string>
+    <string name="database_restored">Baza podataka je obnovljena</string>
+    <string name="took_it">Uzeo sam ga</string>
+    <string name="app_name_short">Lijekovi uzeti\?</string>
+    <string name="remind_in_15">Podsjeti za 15 minuta</string>
+    <string name="dose_record_delete_warning">Zapis doze će se zauvijek izbrisati.</string>
+    <string name="record_delete_hint">(Za brisanje zapisa pritisni ga dugo)</string>
+    <string name="time_since_dose_sample">Približno 0 dana, 0 sati i 0 minuta od zadnje uzete doze</string>
+    <string name="time_since_dose_template">Približno %1$d dan(a), %2$d h i %3$d min od zadnje uzete doze</string>
+    <string name="require_photo_proof">Zahtijevaj foto dokaz</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">Doza i dokaz su spremljeni</string>
+    <string name="failed_to_get_proof">Neuspjelo dobivanje dokaza</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">Nema slike</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(Za prikaz detalja pritisni zapis)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
+    <string name="back_up_successful">Spremanje sigurnosne kopije je uspjelo</string>
+    <string name="back_up_failed">Spremanje sigurnosne kopije nije uspjelo</string>
+    <string name="dose_details">Detalji doze</string>
+    <string name="medication_active">Aktivni lijek</string>
+    <string name="inactive">Neaktivan</string>
+    <string name="medication_type">Vrsta lijeka</string>
+    <string name="undefined">Neodređeno</string>
+    <string name="type_label_format">Vrsta: %1$s</string>
+    <string name="sample_type_label">Vrsta: Neodređeno</string>
+    <string name="rx_number_hint">Rx broj</string>
+    <string name="rx_number_label_format">Rx broj: %1$s</string>
+    <string name="sample_rx_number_label">Rx broj: Neodređeno</string>
+    <string name="pharmacy">Apoteka</string>
+    <string name="pharmacy_label_format">Apoteka: %1$s</string>
+    <string name="sample_pharmacy_label">Apoteka: Neodređeno</string>
+    <string name="dose_unit">Jedinica doze</string>
+    <string name="dose_amount">Količina doze</string>
+    <string name="dose_amount_label_format">%1$s%2$s po dozi</string>
+    <string name="sample_dose_amount_label">5 mg po dozi</string>
+    <string name="remaining_doses">Preostale doze</string>
+    <string name="sample_remaining_doses_label">Preostalih doza: 10</string>
+    <string name="remaining_doses_label_format">Preostalih doza: %1$d</string>
+    <string name="no_remaining_doses_message">Nema preostalih doza
+\nAko je ovo kriva informacija, aktualiziraj preostale doze uređivanjem lijeka</string>
+    <string name="take_with_food">Uzmi s hranom</string>
+    <string name="translation_credits">Prijevod na brazilski portugalski: mezysinc na GitHubu, lnux-usr na GitHubu i Card151915 na Weblateu
+\n
+\nPrijevod na njemački: jpameli na GitHubu
+\n
+\nPrijevod na francuski: Edanas na Weblateu
+\n
+\nPrijevod na hebrejski: Yaron na Weblateu
+\n
+\nPrijevod na kineski pojednostavljeni: luxu na Weblateu
+\n
+\nPrijevod na španjolski: sguinetti na Weblateu, caos30 na Weblateu i nzgha na Weblateu
+\n
+\nPrijevod na katalonski: caos30 na Weblateu
+\n
+\n</string>
+    <string name="app_widget_description">Programčić koji prikazuje jedan lijek, vrijeme od zadnjeg uzimanja doze i gumb za slanje uzete doze</string>
+    <string name="choose_a_medication">Odaberi lijek</string>
+    <string name="dose_update_warning">Aktualizirat ćeš vrijeme uzimanja ove doze i izbrisati povezanu sliku dokaza ako postoji.</string>
 </resources>
