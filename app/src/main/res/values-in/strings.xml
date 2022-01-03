@@ -154,19 +154,19 @@
     <string name="no_remaining_doses_message">Tidak ada dosis yang tersisa
 \nJika ini salah, perbarui dosis tersisa dengan menyunting medikasinya</string>
     <string name="take_with_food">Gunakan dengan makanan</string>
-    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate
+    <string name="translation_credits">Terjemahan bahasa Portugis Brasil oleh mezysinc di GitHub, lnux-usr di GitHub, dan Card151915 di Weblate
 \n
-\nGerman translations by jpameli on GitHub
+\nTerjemahan bahasa Jerman oleh jpameli di GitHub
 \n
-\nFrench translations by Edanas on Weblate
+\nTerjemahan bahasa Prancis oleh Edanas di Weblate
 \n
-\nHebrew translations by Yaron on Weblate
+\nTerjemahan Ibrani oleh Yaron di Weblate
 \n
-\nChinese Simplified translations by luxu on Weblate
+\nTerjemahan Sederhana Bahasa Mandarin oleh luxu di Weblate
 \n
-\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate
+\nTerjemahan bahasa Spanyol oleh sguinetti di Weblate, caos30 di Weblate, dan nzgha di Weblate
 \n
-\nCatalan translations by caos30 on Weblate
+\nTerjemahan Bahasa Katalan oleh caos30 di Weblate
 \n
 \n</string>
     <string name="app_widget_description">Sebuah widget yang menampilkan sebuah medikasi, waktu sejak dosis terakhir digunakan, dan tombol untuk memasukkan dosis yang digunakan</string>
