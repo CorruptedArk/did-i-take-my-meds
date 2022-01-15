@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--Did I Take My Meds? is a FOSS app to keep track of medications
+<?xml version="1.0" encoding="utf-8"?><!--Did I Take My Meds? is a FOSS app to keep track of medications
     Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
     Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
 
@@ -34,7 +33,7 @@
         android:textColor="@color/sub_purple"
         android:textSize="@dimen/large_text_size"
         android:padding="20dp"
-        android:text="@string/schedule_dose"/>
+        android:text="@string/schedule_dose" />
 
     <ScrollView
         android:layout_below="@id/title"
@@ -42,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="20dp">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,118 +78,175 @@
                 android:textColor="@color/sub_purple"
                 android:textSize="@dimen/medium_text_size"
                 android:paddingVertical="20dp"
-                android:text="@string/time_between_doses"/>
+                android:text="@string/time_between_doses" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/birth_control_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <it.sephiroth.android.library.numberpicker.NumberPicker
-                    style="@style/NumberPicker.Outlined"
-                    android:id="@+id/days_between_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:backgroundTint="@color/purple_500"
-                    android:textSize="@dimen/small_text_size"
-                    app:picker_orientation="vertical"
-                    android:progress="1"
-                    app:picker_min="0"
-                    android:layout_gravity="center_vertical"/>
-                <com.google.android.material.textview.MaterialTextView
+                android:text="@string/birth_control_schedule"
+                android:textColor="@color/white"
+                android:textSize="@dimen/small_text_size"
+                android:paddingVertical="5dp"
+                android:checked="false" />
+
+            <RadioGroup
+                android:id="@+id/birth_control_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radio_button_21_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    app:autoSizeTextType="uniform"
                     android:textSize="@dimen/small_text_size"
                     android:paddingVertical="10dp"
                     android:paddingHorizontal="20dp"
-                    android:text="@string/days"
-                    android:layout_gravity="center_vertical"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:text="@string/_21_7"
+                    android:layout_gravity="center_vertical"
+                    android:checked="true" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <it.sephiroth.android.library.numberpicker.NumberPicker
-                    style="@style/NumberPicker.Outlined"
-                    android:id="@+id/weeks_between_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:backgroundTint="@color/purple_500"
-                    android:textSize="@dimen/small_text_size"
-                    app:picker_orientation="vertical"
-                    android:progress="0"
-                    app:picker_min="0"
-                    android:layout_gravity="center_vertical"/>
-                <com.google.android.material.textview.MaterialTextView
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radio_button_63_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    app:autoSizeTextType="uniform"
                     android:textSize="@dimen/small_text_size"
                     android:paddingVertical="10dp"
                     android:paddingHorizontal="20dp"
-                    android:text="@string/weeks"
-                    android:layout_gravity="center_vertical"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:text="@string/_63_7"
+                    android:layout_gravity="center_vertical"
+                    android:checked="false" />
+
+            </RadioGroup>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/time_between_pickers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <it.sephiroth.android.library.numberpicker.NumberPicker
-                    style="@style/NumberPicker.Outlined"
-                    android:id="@+id/months_between_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:backgroundTint="@color/purple_500"
-                    android:textSize="@dimen/small_text_size"
-                    app:picker_orientation="vertical"
-                    android:progress="0"
-                    app:picker_min="0"
-                    android:layout_gravity="center_vertical"/>
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    app:autoSizeTextType="uniform"
-                    android:textSize="@dimen/small_text_size"
-                    android:paddingVertical="10dp"
-                    android:paddingHorizontal="20dp"
-                    android:text="@string/months"
-                    android:layout_gravity="center_vertical"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <it.sephiroth.android.library.numberpicker.NumberPicker
-                    style="@style/NumberPicker.Outlined"
-                    android:id="@+id/years_between_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:backgroundTint="@color/purple_500"
-                    android:textSize="@dimen/small_text_size"
-                    app:picker_orientation="vertical"
-                    android:progress="0"
-                    app:picker_min="0"
-                    android:layout_gravity="center_vertical"/>
-                <com.google.android.material.textview.MaterialTextView
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    app:autoSizeTextType="uniform"
-                    android:textSize="@dimen/small_text_size"
-                    android:paddingVertical="10dp"
-                    android:paddingHorizontal="20dp"
-                    android:text="@string/years"
-                    android:layout_gravity="center_vertical"/>
+                    android:orientation="horizontal">
+
+                    <it.sephiroth.android.library.numberpicker.NumberPicker
+                        style="@style/NumberPicker.Outlined"
+                        android:id="@+id/days_between_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:backgroundTint="@color/white"
+                        android:textSize="@dimen/small_text_size"
+                        app:picker_orientation="vertical"
+                        android:progress="1"
+                        app:picker_min="0"
+                        android:layout_gravity="center_vertical" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        app:autoSizeTextType="uniform"
+                        android:textSize="@dimen/small_text_size"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="20dp"
+                        android:text="@string/days"
+                        android:layout_gravity="center_vertical" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <it.sephiroth.android.library.numberpicker.NumberPicker
+                        style="@style/NumberPicker.Outlined"
+                        android:id="@+id/weeks_between_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:backgroundTint="@color/purple_500"
+                        android:textSize="@dimen/small_text_size"
+                        app:picker_orientation="vertical"
+                        android:progress="0"
+                        app:picker_min="0"
+                        android:layout_gravity="center_vertical" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        app:autoSizeTextType="uniform"
+                        android:textSize="@dimen/small_text_size"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="20dp"
+                        android:text="@string/weeks"
+                        android:layout_gravity="center_vertical" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <it.sephiroth.android.library.numberpicker.NumberPicker
+                        style="@style/NumberPicker.Outlined"
+                        android:id="@+id/months_between_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:backgroundTint="@color/purple_500"
+                        android:textSize="@dimen/small_text_size"
+                        app:picker_orientation="vertical"
+                        android:progress="0"
+                        app:picker_min="0"
+                        android:layout_gravity="center_vertical" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        app:autoSizeTextType="uniform"
+                        android:textSize="@dimen/small_text_size"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="20dp"
+                        android:text="@string/months"
+                        android:layout_gravity="center_vertical" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <it.sephiroth.android.library.numberpicker.NumberPicker
+                        style="@style/NumberPicker.Outlined"
+                        android:id="@+id/years_between_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:backgroundTint="@color/purple_500"
+                        android:textSize="@dimen/small_text_size"
+                        app:picker_orientation="vertical"
+                        android:progress="0"
+                        app:picker_min="0"
+                        android:layout_gravity="center_vertical" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        app:autoSizeTextType="uniform"
+                        android:textSize="@dimen/small_text_size"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="20dp"
+                        android:text="@string/years"
+                        android:layout_gravity="center_vertical" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
@@ -202,6 +259,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:orientation="horizontal">
+
         <com.google.android.material.button.MaterialButton
             android:layout_gravity="end"
             android:gravity="end"
@@ -215,7 +273,8 @@
             android:text="@string/cancel"
             android:textColor="@color/purple_200"
             app:strokeColor="@color/purple_500"
-            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
         <com.google.android.material.button.MaterialButton
             android:layout_gravity="end"
             android:gravity="end"
@@ -229,6 +288,6 @@
             android:text="@string/confirm"
             android:textColor="@color/purple_200"
             app:strokeColor="@color/purple_500"
-            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>
