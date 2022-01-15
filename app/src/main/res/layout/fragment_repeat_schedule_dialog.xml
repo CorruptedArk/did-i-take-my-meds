@@ -95,7 +95,6 @@
                     app:picker_orientation="vertical"
                     android:progress="1"
                     app:picker_min="0"
-                    app:picker_max="6"
                     android:layout_gravity="center_vertical"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -124,7 +123,6 @@
                     app:picker_orientation="vertical"
                     android:progress="0"
                     app:picker_min="0"
-                    app:picker_max="3"
                     android:layout_gravity="center_vertical"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -153,7 +151,6 @@
                     app:picker_orientation="vertical"
                     android:progress="0"
                     app:picker_min="0"
-                    app:picker_max="11"
                     android:layout_gravity="center_vertical"/>
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
