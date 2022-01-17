@@ -434,6 +434,10 @@ class AddMedActivity() : AppCompatActivity() {
                 0
             )
 
+            selectButton.setOnClickListener {
+                openSchedulePicker(it)
+            }
+
             deleteButton.setOnClickListener {
                 val callingIndex = scheduleButtonsRows.indexOf(view)
                 if (repeatScheduleList.count() > callingIndex)

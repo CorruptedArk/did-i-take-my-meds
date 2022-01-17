@@ -170,6 +170,11 @@ class RepeatScheduleDialog : DialogFragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        birthControlSwitch.isChecked = false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
