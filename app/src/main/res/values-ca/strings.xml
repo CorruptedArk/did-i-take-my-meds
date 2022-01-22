@@ -110,7 +110,7 @@ He pres els meus medicaments\? és una aplicació FOSS per fer un seguiment dels
     <string name="dose_and_proof_saved">S\'ha desat la dosi i la prova</string>
     <string name="failed_to_get_proof">Ha fallat l\'obtenció de la prova</string>
     <string name="no_image_available">No hi ha cap imatge disponible</string>
-    <string name="record_detail_hint">(premeu un registre per veure els detalls)</string>
+    <string name="record_detail_hint">(premeu un registre per veure/editar els detalls)</string>
     <string name="back_up_successful">S\'ha fet amb èxit la còpia de seguretat</string>
     <string name="back_up_failed">No s\'ha pogut fer la còpia de seguretat</string>
     <string name="dose_details">Detalls de la dosi</string>
