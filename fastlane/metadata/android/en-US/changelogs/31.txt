@@ -1,0 +1,7 @@
+v1.6.2
+
+Changes
+- Update string translations
+
+Fix
+- Fix backup failing when no proof images exist (by johannes87 on GitHub)
