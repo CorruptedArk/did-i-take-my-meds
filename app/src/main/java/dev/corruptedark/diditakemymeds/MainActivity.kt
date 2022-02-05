@@ -305,6 +305,13 @@ class MainActivity : AppCompatActivity() {
             openAddMedActivity()
         }
 
+        // imageDir needs to exist for backup to work
+        imageDir?.let {
+            if (!it.exists()) {
+                it.mkdir()
+            }
+        }
+
         val footerPadding = Space(this)
         footerPadding.minimumHeight = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
