@@ -1,0 +1,5 @@
+v1.6.1
+
+Fixes
+- Default RepeatScheduleDialog to a normal schedule whenever it opens
+- Fix schedule buttons doing nothing when added from a birth control schedule
