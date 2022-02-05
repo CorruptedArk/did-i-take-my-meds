@@ -150,6 +150,8 @@ He pres els meus medicaments\? és una aplicació FOSS per fer un seguiment dels
 \n
 \nTraducció al català feta per caos30 a Weblate.
 \n
+\nBug fix by johannes87 on GitHub
+\n
 \n</string>
     <string name="app_widget_description">Un widget que mostra un sol medicament, el temps des de l\'última dosi presa i un botó per comunicar que s\'ha pres una dosi.</string>
     <string name="choose_a_medication">Triar un medicament</string>

@@ -136,6 +136,8 @@
 \n
 \nTraduções de catalão por caos30 no Weblate
 \n
+\nBug fix by johannes87 on GitHub
+\n
 \n</string>
     <string name="app_widget_description">Um widget que exibe um único medicamento, o tempo desde a última dose e um botão para enviar uma dose tomada</string>
     <string name="choose_a_medication">Escolha um medicamento</string>

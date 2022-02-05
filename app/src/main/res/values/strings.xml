@@ -138,7 +138,7 @@
     <string name="remaining_doses_label_format">%1$d remaining doses</string>
     <string name="no_remaining_doses_message">There are no doses remaining\nIf this is wrong, update the remaining doses by editing the medication</string>
     <string name="take_with_food">Take with food</string>
-    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\nBug fix by johannes87 on GitHub\n\n</string>
     <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
     <string name="choose_a_medication">Choose A Medication</string>
     <string name="dose_update_warning">You will update the taken time of this dose and delete the associated proof image if it exists.</string>

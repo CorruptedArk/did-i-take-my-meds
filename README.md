@@ -46,6 +46,11 @@ Spanish translations by [sguinetti](https://hosted.weblate.org/user/sguinetti/0)
 
 Catalan translations by [caos30](https://hosted.weblate.org/user/caos30/)
 
+Bug fix by [johannes87](https://github.com/johannes87)
+
+
+***Is your name missing from this list?*** <br/>
+If so, please submit an issue or send me an email at noahstandingford@gmail.com and I will correct it
 
 ---
 

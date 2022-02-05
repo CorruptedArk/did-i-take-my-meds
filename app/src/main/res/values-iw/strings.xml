@@ -142,7 +142,7 @@
 \n
 \nהתרגומים לצרפתית מאת Edanas ב־Weblate
 \n
-\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\n</string>
+\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\nBug fix by johannes87 on GitHub\n\n</string>
     <string name="app_widget_description">וידג׳ט שמציג תרופה בודדת, הזמן מאז הנטילה האחרונה וכפתור להגשת נטילה</string>
     <string name="choose_a_medication">נא לבחור תרופה</string>
     <string name="dose_update_warning">פעולה זו תעדכן את זמן נטילת התרופה ותמחק את תמונת ההוכחה אם ישנה.</string>

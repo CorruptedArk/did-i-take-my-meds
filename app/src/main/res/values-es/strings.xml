@@ -149,6 +149,8 @@
 \n
 \nTraducción al catalán por caos30 en Weblate.
 \n
+\nBug fix by johannes87 on GitHub
+\n
 \n</string>
     <string name="app_widget_description">Un widget que muestra un solo medicamento, el tiempo transcurrido desde la última dosis tomada, y un botón para comunicar que se ha tomado una dosis.</string>
     <string name="choose_a_medication">Escoja un medicamento</string>

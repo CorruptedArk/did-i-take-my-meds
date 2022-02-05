@@ -153,6 +153,8 @@
 \n
 \n加泰罗尼亚语翻译：Weblate 上的 caos30
 \n
+\nBug fix by johannes87 on GitHub
+\n
 \n</string>
     <string name="app_widget_description">一个显示单个药物、上次服药间隔和确认服药按钮的小部件</string>
     <string name="choose_a_medication">选择药物</string>
