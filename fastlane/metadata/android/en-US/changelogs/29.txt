@@ -1,0 +1,7 @@
+v1.6.0
+
+Changes
+- Schedule number pickers now have no upper limit
+
+Addition
+- New options to easily add 21+7 and 63+7 birth control schedules

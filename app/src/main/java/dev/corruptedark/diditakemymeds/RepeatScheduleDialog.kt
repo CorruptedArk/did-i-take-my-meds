@@ -29,11 +29,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import it.sephiroth.android.library.numberpicker.NumberPicker
@@ -46,6 +49,9 @@ class RepeatScheduleDialog : DialogFragment() {
     private lateinit var callingContext: Context
     private lateinit var timePickerButton: MaterialButton
     private lateinit var startDateButton: MaterialButton
+    private lateinit var birthControlSwitch: SwitchMaterial
+    private lateinit var birthControlGroup: RadioGroup
+    private lateinit var timeBetweenPickers: LinearLayoutCompat
     private lateinit var daysBetweenPicker: NumberPicker
     private lateinit var weeksBetweenPicker: NumberPicker
     private lateinit var monthsBetweenPicker: NumberPicker
@@ -64,6 +70,7 @@ class RepeatScheduleDialog : DialogFragment() {
     var weeksBetween = 0
     var monthsBetween = 0
     var yearsBetween = 0
+    var birthControlSchedule: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +86,9 @@ class RepeatScheduleDialog : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_repeat_schedule_dialog, container, false)
         timePickerButton = view.findViewById(R.id.time_picker_button)
         startDateButton = view.findViewById(R.id.start_date_button)
+        birthControlSwitch = view.findViewById(R.id.birth_control_switch)
+        birthControlGroup = view.findViewById(R.id.birth_control_group)
+        timeBetweenPickers = view.findViewById(R.id.time_between_pickers)
         daysBetweenPicker = view.findViewById(R.id.days_between_picker)
         weeksBetweenPicker = view.findViewById(R.id.weeks_between_picker)
         monthsBetweenPicker = view.findViewById(R.id.months_between_picker)
@@ -86,6 +96,22 @@ class RepeatScheduleDialog : DialogFragment() {
         cancelButton = view.findViewById(R.id.cancel_button)
         confirmButton = view.findViewById(R.id.confirm_button)
 
+        birthControlSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                birthControlGroup.visibility = View.VISIBLE
+                timeBetweenPickers.visibility = View.GONE
+                birthControlSchedule = birthControlGroup.checkedRadioButtonId
+            }
+            else {
+                birthControlGroup.visibility = View.GONE
+                timeBetweenPickers.visibility = View.VISIBLE
+                birthControlSchedule = null
+            }
+        }
+
+        birthControlGroup.setOnCheckedChangeListener { group, checkedId ->
+            birthControlSchedule = checkedId
+        }
 
         if (scheduleIsValid()) {
             val calendar = Calendar.getInstance()
@@ -142,6 +168,11 @@ class RepeatScheduleDialog : DialogFragment() {
         }
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        birthControlSwitch.isChecked = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -269,7 +300,7 @@ class RepeatScheduleDialog : DialogFragment() {
     fun scheduleIsValid(): Boolean {
         val periodIsValid = daysBetween > 0 || weeksBetween > 0 || monthsBetween > 0 || yearsBetween > 0
         val startTimeIsValid = hour >= 0 && minute >= 0 && startDay >= 0 && startMonth >= 0 && startYear >= 0
-        return periodIsValid && startTimeIsValid
+        return (periodIsValid || birthControlSwitch.isChecked) && startTimeIsValid
     }
 
 }

@@ -1,0 +1,6 @@
+v1.5.3
+
+Changes
+- Update Spanish translations by nzgha on Weblate
+- Update Brazilian Portuguese translations by Card151915 on Weblate
+- Update German translations by jpameli on GitHub

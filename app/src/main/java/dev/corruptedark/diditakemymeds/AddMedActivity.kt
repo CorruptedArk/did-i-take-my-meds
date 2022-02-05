@@ -19,6 +19,7 @@
 
 package dev.corruptedark.diditakemymeds
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.ComponentName
@@ -48,6 +49,10 @@ import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
 class AddMedActivity() : AppCompatActivity() {
+    private val ONE_WEEK = 7
+    private val THREE_WEEKS = 21
+    private val NINE_WEEKS = 63
+
     private lateinit var toolbar: MaterialToolbar
     private lateinit var nameInput: TextInputEditText
     private lateinit var rxNumberInput : TextInputEditText
@@ -91,6 +96,7 @@ class AddMedActivity() : AppCompatActivity() {
     private val mainScope = MainScope()
     private val context = this
 
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_or_edit_med)
@@ -222,7 +228,10 @@ class AddMedActivity() : AppCompatActivity() {
         schedulePicker = RepeatScheduleDialog.newInstance(this)
 
         schedulePicker.addConfirmListener {
-            if (schedulePicker.scheduleIsValid()) {
+            if (schedulePicker.scheduleIsValid() && schedulePicker.birthControlSchedule != null) {
+                addBirthControlSchedule()
+            }
+            else if (schedulePicker.scheduleIsValid()) {
                 val calendar = Calendar.getInstance()
                 if (schedulePickerCaller == repeatScheduleButton) {
                     hour = schedulePicker.hour
@@ -234,7 +243,8 @@ class AddMedActivity() : AppCompatActivity() {
                     weeksBetween = schedulePicker.weeksBetween
                     monthsBetween = schedulePicker.monthsBetween
                     yearsBetween = schedulePicker.yearsBetween
-                } else {
+                }
+                else {
                     val callingIndex =
                         scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
 
@@ -248,7 +258,8 @@ class AddMedActivity() : AppCompatActivity() {
                         repeatScheduleList[callingIndex].weeksBetween = schedulePicker.weeksBetween
                         repeatScheduleList[callingIndex].monthsBetween = schedulePicker.monthsBetween
                         repeatScheduleList[callingIndex].yearsBetween = schedulePicker.yearsBetween
-                    } else {
+                    }
+                    else {
                         repeatScheduleList.add(
                             RepeatSchedule(
                                 schedulePicker.hour,
@@ -324,6 +335,126 @@ class AddMedActivity() : AppCompatActivity() {
         }
     }
 
+    private fun addBirthControlSchedule() {
+        val activeDays = when (schedulePicker.birthControlSchedule) {
+            R.id.radio_button_21_7 -> THREE_WEEKS
+            R.id.radio_button_63_7 -> NINE_WEEKS
+            else -> -7
+        }
+
+        val calendar = Calendar.getInstance()
+        // if else sets schedule for clicked button, whatever it is
+        if (schedulePickerCaller == repeatScheduleButton) {
+            hour = schedulePicker.hour
+            minute = schedulePicker.minute
+            startDay = schedulePicker.startDay
+            startMonth = schedulePicker.startMonth
+            startYear = schedulePicker.startYear
+            daysBetween = activeDays + ONE_WEEK
+            weeksBetween = 0
+            monthsBetween = 0
+            yearsBetween = 0
+        }
+        else {
+            val callingIndex =
+                scheduleButtonsRows.indexOf(schedulePickerCaller!!.parent as LinearLayoutCompat)
+
+            if (repeatScheduleList.count() > callingIndex) {
+                repeatScheduleList[callingIndex].hour = schedulePicker.hour
+                repeatScheduleList[callingIndex].minute = schedulePicker.minute
+                repeatScheduleList[callingIndex].startDay = schedulePicker.startDay
+                repeatScheduleList[callingIndex].startMonth = schedulePicker.startMonth
+                repeatScheduleList[callingIndex].startYear = schedulePicker.startYear
+                repeatScheduleList[callingIndex].daysBetween = activeDays + ONE_WEEK
+                repeatScheduleList[callingIndex].weeksBetween = 0
+                repeatScheduleList[callingIndex].monthsBetween = 0
+                repeatScheduleList[callingIndex].yearsBetween = 0
+            }
+            else {
+                repeatScheduleList.add(
+                    RepeatSchedule(
+                        schedulePicker.hour,
+                        schedulePicker.minute,
+                        schedulePicker.startDay,
+                        schedulePicker.startMonth,
+                        schedulePicker.startYear,
+                        activeDays + ONE_WEEK,
+                        0,
+                        0,
+                        0
+                    )
+                )
+            }
+
+        }
+
+        calendar.set(Calendar.HOUR_OF_DAY, schedulePicker.hour)
+        calendar.set(Calendar.MINUTE, schedulePicker.minute)
+        calendar.set(Calendar.DAY_OF_MONTH, schedulePicker.startDay)
+        calendar.set(Calendar.MONTH, schedulePicker.startMonth)
+        calendar.set(Calendar.YEAR, schedulePicker.startYear)
+        val formattedTime =
+            if (isSystem24Hour) DateFormat.format(getString(R.string.time_24), calendar)
+            else DateFormat.format(getString(R.string.time_12), calendar)
+        var formattedDate = DateFormat.format(getString(R.string.date_format), calendar)
+        (schedulePickerCaller as MaterialButton).text = getString(
+            R.string.schedule_format,
+            formattedTime,
+            formattedDate,
+            activeDays + ONE_WEEK,
+            0,
+            0,
+            0
+        )
+
+        // this loop needs to add the remaining schedules and set the text for the added buttons
+        for (i in 1 until activeDays) {
+            val startDay = schedulePicker.startDay + i
+
+            calendar.set(Calendar.HOUR_OF_DAY, schedulePicker.hour)
+            calendar.set(Calendar.MINUTE, schedulePicker.minute)
+            calendar.set(Calendar.DAY_OF_MONTH, startDay)
+            calendar.set(Calendar.MONTH, schedulePicker.startMonth)
+            calendar.set(Calendar.YEAR, schedulePicker.startYear)
+
+            formattedDate = DateFormat.format(getString(R.string.date_format), calendar)
+
+            val view = LayoutInflater.from(this).inflate(R.layout.extra_dose_template, scheduleButtonsLayout, false)
+            repeatScheduleList.add(RepeatSchedule(schedulePicker.hour, schedulePicker.minute, startDay, schedulePicker.startMonth, schedulePicker.startYear, daysBetween = activeDays + ONE_WEEK))
+            val selectButton = view.findViewById<MaterialButton>(R.id.schedule_dose_button);
+            val deleteButton: ImageButton = view.findViewById(R.id.delete_dose_button)
+
+            selectButton.text = getString(
+                R.string.schedule_format,
+                formattedTime,
+                formattedDate,
+                activeDays + ONE_WEEK,
+                0,
+                0,
+                0
+            )
+
+            selectButton.setOnClickListener {
+                openSchedulePicker(it)
+            }
+
+            deleteButton.setOnClickListener {
+                val callingIndex = scheduleButtonsRows.indexOf(view)
+                if (repeatScheduleList.count() > callingIndex)
+                    repeatScheduleList.removeAt(callingIndex)
+                scheduleButtonsRows.remove(view)
+                scheduleButtonsLayout.removeView(view)
+            }
+
+            scheduleButtonsRows.add(view as LinearLayoutCompat)
+            scheduleButtonsLayout.addView(view)
+        }
+
+        extraDoseButton.visibility = View.VISIBLE
+        pickerIsOpen = false
+        schedulePicker.dismiss()
+    }
+
     private fun saveMedication(): Boolean {
         return if (nameInput.text.isNullOrBlank()) {
             mainScope.launch {
@@ -386,6 +517,10 @@ class AddMedActivity() : AppCompatActivity() {
                 startDay,
                 startMonth,
                 startYear,
+                daysBetween = daysBetween,
+                weeksBetween = weeksBetween,
+                monthsBetween = monthsBetween,
+                yearsBetween = yearsBetween,
                 notify = notify,
                 requirePhotoProof = requirePhotoProof,
                 typeId = typeId,
