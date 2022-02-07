@@ -1,0 +1,4 @@
+v1.6.3
+
+Fix
+- Fix incorrect time sometimes in 24 hour format
