@@ -146,7 +146,7 @@
     <string name="app_widget_description">וידג׳ט שמציג תרופה בודדת, הזמן מאז הנטילה האחרונה וכפתור להגשת נטילה</string>
     <string name="choose_a_medication">נא לבחור תרופה</string>
     <string name="dose_update_warning">פעולה זו תעדכן את זמן נטילת התרופה ותמחק את תמונת ההוכחה אם ישנה.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">תזמון אמצעי מניעה</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
