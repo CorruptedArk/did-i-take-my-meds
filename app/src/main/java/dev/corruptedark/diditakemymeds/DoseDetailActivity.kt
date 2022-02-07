@@ -149,7 +149,7 @@ class DoseDetailActivity : AppCompatActivity() {
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = doseTime
-        hourTaken = calendar.get(Calendar.HOUR)
+        hourTaken = calendar.get(Calendar.HOUR_OF_DAY)
         minuteTaken = calendar.get(Calendar.MINUTE)
         dayTaken = calendar.get(Calendar.DAY_OF_MONTH)
         monthTaken = calendar.get(Calendar.MONTH)
@@ -289,7 +289,7 @@ class DoseDetailActivity : AppCompatActivity() {
 
     private fun doseChanged(): Boolean {
         workingCalendar.timeInMillis = doseTime
-        workingCalendar.set(Calendar.HOUR, hourTaken)
+        workingCalendar.set(Calendar.HOUR_OF_DAY, hourTaken)
         workingCalendar.set(Calendar.MINUTE, minuteTaken)
         workingCalendar.set(Calendar.DAY_OF_MONTH, dayTaken)
         workingCalendar.set(Calendar.MONTH, monthTaken)

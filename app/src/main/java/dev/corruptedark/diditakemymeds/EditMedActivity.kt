@@ -96,6 +96,9 @@ class EditMedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_or_edit_med)
+
+        isSystem24Hour = DateFormat.is24HourFormat(context)
+        clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
         alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         nameInput = findViewById(R.id.med_name)
         rxNumberInput = findViewById(R.id.rx_number_input)
@@ -352,9 +355,6 @@ class EditMedActivity : AppCompatActivity() {
                     }
 
                 }
-
-                isSystem24Hour = DateFormat.is24HourFormat(context)
-                clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
 
                 schedulePicker = RepeatScheduleDialog.newInstance(context)
 
