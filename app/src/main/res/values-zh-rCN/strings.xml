@@ -159,7 +159,7 @@
     <string name="app_widget_description">一个显示单个药物、上次服药间隔和确认服药按钮的小部件</string>
     <string name="choose_a_medication">选择药物</string>
     <string name="dose_update_warning">这将更新此次服药时间，并删除相关拍照证明。</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">生育控制计划</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
