@@ -1,0 +1,5 @@
+v1.1.3
+
+Düzeltmeler:
+- Listedeki ilk dozdan farklı süreleri olan ek dozlar arasında bulunan en yakın doz hesaplamaları düzeltidir
+- Listedeki ilk dozdan farklı süreye sahip ek dozlar arasındaki zamanlama düğmelerinde göründülenen yanlış süre düzeltildi

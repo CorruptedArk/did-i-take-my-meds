@@ -1,0 +1,3 @@
+İlaçlarımı aldım mı? İlaçların ne zaman alınacağını takip etmeye yardımcı olur. Bir kullanıcının doz atlamasını veya aşırı dozda ilaç kullanmasını önlemeye yardımcı olur.
+
+İlaçlarımı aldım mı? kullanıcının karmaşık programlarda bile birden fazla ilacı zamanlamasını sağlar. Her bir ilaç için hatırlatıcı bildirim kurulabilir. Bunlara ek olarak bu uygulama bir kullanıcının ilacı kullandığına dair kayıt tutabilir. Bir ilaç rutininin parçası olarak, bu uygulama aşırı doz ve doz atlamaya engel olması için yardımcı olabilir.

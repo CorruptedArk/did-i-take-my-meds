@@ -1,0 +1,12 @@
+v1.1.4
+
+Değişiklikler
+- Bildirimler artık manuel olarak iptal edilmediği sürece tıklamadan sonra kalıyor
+- Bildirimler artık bir ilaca birden fazla tıklandığında açılabilir
+
+Eklemeler
+- Almanca çeviri jpameli tarafından GitHub'da yapıldı
+
+Düzeltmeler
+- EditMedActivity, açıldığında bildirimlerin her zaman etkin olduğunu göstermesi düzeltildi
+- Bazen bildirimlerin tıklandığında yanlış ilacı açılması düzeltildi
