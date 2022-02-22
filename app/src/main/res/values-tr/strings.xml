@@ -15,134 +15,168 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">İlaçlarımı aldım mı\?</string>
+    <string name="add">Ekle</string>
+    <string name="add_medications">Listendeki ilaçları ekle</string>
+    <string name="medication_name">İlaç ismi</string>
+    <string name="description">Açıklama</string>
+    <string name="select_a_time">bir saat seç</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">Kayıt et</string>
+    <string name="cancel">İptal et</string>
+    <string name="pick_a_time">Kayıt etmeden önce bir saat seçin</string>
+    <string name="fill_fields">Kayıt etmeden önce ismi doldurun</string>
+    <string name="med_saved">İlaç kayıt edildi</string>
+    <string name="cancelled">Yeni ilaç iptal edildi</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">İlaç örneği</string>
+    <string name="midnight">12:00</string>
+    <string name="sample_description">Bu bir örnek ilaç açıklamasıdır. Birden çok cümlesi vardır ve birden çok satırı kapsar.</string>
+    <string name="previous_doses">Önceki dozlar:</string>
+    <string name="i_just_took_it">Şimdi aldım!</string>
+    <string name="closest_dose_sample">En yakın doz bugün saat 13:00\'de</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">Bugün</string>
+    <string name="yesterday">Dün</string>
+    <string name="tomorrow">Yarın</string>
+    <string name="closest_dose_label">En yakın doz: %1$s</string>
+    <string name="already_took_dose">Bu dozu zaten aldın
+\nUmarım yine almamışsındır</string>
+    <string name="date_format">d MMM yyy</string>
+    <string name="time_taken">Geçen süre: %1$s</string>
+    <string name="delete">sil</string>
+    <string name="are_you_sure">Emin misin\?</string>
+    <string name="medication_delete_warning">İlaç kalıcı olarak silinecek</string>
+    <string name="confirm">onayla</string>
+    <string name="took_this_already">Bunu zaten aldın</string>
+    <string name="edit">Düzenle</string>
+    <string name="edit_cancelled">Düzenleme iptal edildi</string>
+    <string name="notifications_enabled">Bildirimler etkinleştirildi</string>
+    <string name="notifications_disabled">Bildirimler etkisizleştirildi</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">hatırlarma bildirimleri</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">İlacını içme zamanı</string>
+    <string name="new_medication">Yeni İlaç</string>
+    <string name="medication_details">İlaç Detayları</string>
+    <string name="edit_medication">İlacı Düzenle</string>
+    <string name="about">Hakkında</string>
+    <string name="app_description">v%1$s Noah Stanford tarafından yapıldı (namı diğer CorruptedArk)
+\n
+\nİlaçlarımı aldım mı\? ilaç içimini takip etmeyi sağlayan bir FOSS uygulamasıdır
+\nİlaçlarımı aldım mı\? kullanıcının aşırı doz veya doz atlamaya engel olması için tasarlanmıştır
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\nİlaçlarımı aldım mı\? ücretsiz bir yazılımdır: Özgür Yazılım Kuruluşu tarafından yayınlanmış olan GNU Genel Kamu Lisansı altında yeniden dağıtabilir ve/veya değiştirebilirsiniz, 3. lisans sürümü veya (istenilen bir versiyon) herhangi bir versiyon için geçerlidir.
+\n
+\nİlaçlarımı aldım mı\? yardımcı olması amacıyla dağıtılmıştır, ama HİÇBİR GARANTİ OLMAKSIZIN; SATILABİLİRLİK veya BELİRLİ BİR AMACA UYGUNLUK İÇERİK garantisi bile olmadan. Daha fazla ayrıntı için GNU Genel Kamu Lisansına bakın.
+\n
+\nBu programla birlikte GNU Genel Kamu Lisansının bir kopyasını almış olmalısınız. Eğer öyle değilse, bkz. https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Liberapay\'da beni destekleyin</string>
+    <string name="view_the_project_on_github">Projeyi GitHub\'da görüntüleyin</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">Üzgünüm!</string>
+    <string name="okay">Tamam</string>
+    <string name="cannot_donate_explanation">Google geliştiricilerin kendilerini desteklemek için uygulamalara bağış bağlantıları yerleştirmelerine izin vermez eğer vergiden muaf hayır kurumu değilse. Hala beni desteklemek istiyorsanız, ayrı bir tarayıcıdan beni CorruptedArk olak Liberapay\'de bulabilirsiniz. GitHub de depom başlamak için iyi bir yer.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">Başka bir doz ekle</string>
+    <string name="taken_as_needed">Gerektiğinde alındı</string>
+    <string name="hello_blank_fragment">Merhaba boş parça</string>
+    <string name="select_a_start_date">Başlangıç tarihi</string>
+    <string name="time_between_doses">Dozlar arasındaki süre:</string>
+    <string name="days">Gün</string>
+    <string name="weeks">Hafta</string>
+    <string name="months">Ay</string>
+    <string name="years">Yıl</string>
+    <string name="schedule_dose">Doz Programı</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\n%2$s\'de Başlar
+\nHer
+\n%3$d gün, %4$d hafta,
+\n%5$d ay, %6$d yılda tekrar eder</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">Kaydetmeden önce tüm programları doldurun</string>
+    <string name="fill_out_schedule">Onaylamadan önce programı doldurun</string>
+    <string name="next_dose_label">Sonraki doz: %1$s</string>
+    <string name="taken">Alındı</string>
+    <string name="not_taken">Alınmadı</string>
+    <string name="sort">Tür</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">Veritabanını geri yükle</string>
+    <string name="back_up_database">Veritabanını yedekle</string>
+    <string name="database_is_invalid">Veritabanı geçersiz</string>
+    <string name="database_restored">Veritabanı geri yüklendi</string>
+    <string name="took_it">Alındı</string>
+    <string name="app_name_short">DITMM\?</string>
+    <string name="remind_in_15">15 dakika sonra hatırlat</string>
+    <string name="dose_record_delete_warning">Doz kaydı kalıcı olarak silinecek.</string>
+    <string name="record_delete_hint">(Bir kayıtı silmek için basılı tutun)</string>
+    <string name="time_since_dose_sample">Son alınan dozdan bu yana yaklaşık 0 gün, 0 saat ve 0 dakika geçti</string>
+    <string name="time_since_dose_template">Son alınan dozdan bu yana yaklaşık %1$d gün, %2$d saat ve %3$d dakika geçti</string>
+    <string name="require_photo_proof">Fotoğraf kanıtı gerektir</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">Doz ve kanıt kaydedildi</string>
+    <string name="failed_to_get_proof">Kanıt alınamadı</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">Resim mevcut değil</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(Ayrıntıları görüntülemek için bir kayda dokunun)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="back_up_successful">Yedekleme başarılı</string>
+    <string name="back_up_failed">Yedekleme başarısız</string>
+    <string name="dose_details">Doz Ayrıntıları</string>
+    <string name="medication_active">İlaç etkin</string>
+    <string name="inactive">Etkin değil</string>
+    <string name="medication_type">İlaç Türü</string>
+    <string name="undefined">Tanımsız</string>
+    <string name="type_label_format">Tür: %1$s</string>
+    <string name="sample_type_label">Tür: Tanımsız</string>
+    <string name="rx_number_hint">Rx #</string>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
+    <string name="sample_rx_number_label">Rx #: Tanımsız</string>
+    <string name="pharmacy">Eczane</string>
+    <string name="pharmacy_label_format">Eczane: %1$s</string>
+    <string name="sample_pharmacy_label">Eczane: Tanımsız</string>
+    <string name="dose_unit">Birim Doz</string>
+    <string name="dose_amount">Doz Miktarı</string>
+    <string name="dose_amount_label_format">Doz başına %1$s%2$s</string>
+    <string name="sample_dose_amount_label">Doz başına 5 mg</string>
+    <string name="remaining_doses">Kalan Dozlar</string>
+    <string name="sample_remaining_doses_label">Kalan doz 10</string>
+    <string name="remaining_doses_label_format">Kalan doz %1$d</string>
+    <string name="no_remaining_doses_message">Kalan doz yok
+\nBu yanlışsa ilacı düzenleyerek kalan dozları güncelleyin</string>
+    <string name="take_with_food">Yemekle birlikte al</string>
+    <string name="translation_credits">Almanca çevrisi jpameli tarafından GitHub\'da yapılı
+\n
+\nBrezilya Portekizcesi çevrisi mezysinc ve lnux-usr tarafından GitHub\'da yapıldı ve Card151915 tarafından da Weblate\'de yapıldı
+\n
+\nÇince (Basitleştirilmiş) çevrisi luxu tarafından Weblate\'de yapıldı
+\n
+\nFransızca çevrisi Edanas tarafından Weblate\'de yapıldı
+\n
+\nİbranice çevirisi Yaron tarafından Weblate\'de yapıldı
+\n
+\nİspanyolca çevrisi sguinetti, caos30 ve nzgha tarafından Weblate\'de yapıldı
+\n
+\nKatalanca çevrisi caos30 tarafından Weblate\'de yapıldı
+\n
+\nTürkçe çevrisi Lion tarafından Weblate\'de yapıldı
+\n
+\njohannes87 tarafından hata düzeltmeleri GitHub\'da yapıldı
+\n
+\n</string>
+    <string name="app_widget_description">Tek bir ilacı, son alınan dozun üzerinden geçen süreyi ve alınan dozu göndermek için bir düğmeyi görüntüleyen bir widget</string>
+    <string name="choose_a_medication">Bir İlaç Seç</string>
+    <string name="dose_update_warning">Bu dozun alınan süresini güncelleyecek ve varsa ilgili kanıt resmini sileceksiniz.</string>
+    <string name="birth_control_schedule">Doğum kontrol programı</string>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
 </resources>
