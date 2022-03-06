@@ -1,0 +1,4 @@
+v1.2.3
+
+Javítás
+- App nem kap boot szándék vagy csomag frissítési szándékot kijavítva

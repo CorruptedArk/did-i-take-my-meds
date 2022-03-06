@@ -1,0 +1,8 @@
+v1.2.6
+
+Változások
+- Újra engedélyezve a periodikus UI frissítés fagyás nélkül
+- A brazil portugál fordításokat frissítette az lnux-usr a GitHubon
+
+Hozzáadás
+- Címke hozzáadva a gyógyszerekkel kapcsolatos részletes tevékenységhez, amely nyomon követi az utolsó bevett adag óta eltelt időt

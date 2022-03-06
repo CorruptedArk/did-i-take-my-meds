@@ -1,0 +1,3 @@
+A Bevettem a gyógyszereimet? segít nyomon követni, hogy mikor kell bevenni a gyógyszereket. Úgy tervezték, hogy segítsen megelőzni, hogy a felhasználó kihagyja az adagokat és/vagy túladagolja azokat.
+
+A Bevettem a gyógyszereimet? lehetővé teszi a felhasználó számára, hogy több összetett ütemezésű gyógyszert mentsen el. Minden egyes gyógyszer önálló emlékeztető értesítést indíthat el. Ezenkívül ez az alkalmazás lehetővé teszi a felhasználó számára, hogy rögzítse, mikor veszi be az adagot. A gyógyszerelési rutin részeként ez az alkalmazás segíthet megelőzni a túladagolást és a kihagyott adagokat.

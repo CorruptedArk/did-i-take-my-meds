@@ -1,0 +1,12 @@
+v1.1.4
+
+Változások
+- Az értesítések mostantól kattintás után is maradnak, kivéve, ha manuálisan lemondják őket
+- Az értesítések mostantól többször is megnyithatnak egy gyógyszert kattintásra
+
+Kiegészítés
+- Német fordítások hozzáadása jpameli által a GitHubon
+
+Javítások
+- Javítva: az EditMedActivity megnyitásakor az értesítések mindig engedélyezve voltak.
+- Javítottuk, hogy az értesítések néha rossz gyógyszert nyitottak meg kattintásra

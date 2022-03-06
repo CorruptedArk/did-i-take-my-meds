@@ -1,0 +1,4 @@
+v1.2.1
+
+Változás
+- Sötétebb háttér a kontraszt javítása érdekében
