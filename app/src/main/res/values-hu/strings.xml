@@ -15,134 +15,168 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">Did I Take My Meds\?</string>
+    <string name="add">Hozzáadás</string>
+    <string name="add_medications">Gyógyszerek hozzáadása a listához</string>
+    <string name="medication_name">Gyógyszer neve</string>
+    <string name="description">Leírás</string>
+    <string name="select_a_time">válasszon egy időpontot</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">Mentés</string>
+    <string name="cancel">Visszavonás</string>
+    <string name="pick_a_time">Válasszon egy időpontot a mentés előtt</string>
+    <string name="fill_fields">Mentés előtt adjon meg egy nevet</string>
+    <string name="med_saved">Gyógyszer elmentve</string>
+    <string name="cancelled">Új gyógyszer visszavonva</string>
+    <string name="time_24"/>
+    <string name="time_12"/>
+    <string name="sample_medicine">Minta gyógyszer</string>
+    <string name="midnight">12:00</string>
+    <string name="sample_description">Ez egy gyógyszer leírásának mintája. Több mondatból áll, és több sorra terjed ki.</string>
+    <string name="previous_doses">Előző adagok:</string>
+    <string name="i_just_took_it">Bevettem!</string>
+    <string name="closest_dose_sample">Legközelebbi adag: ma 13:00</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">Ma</string>
+    <string name="yesterday">Tegnap</string>
+    <string name="tomorrow">Holnap</string>
+    <string name="closest_dose_label">Legközelebbi adag: %1$s</string>
+    <string name="already_took_dose">Ezt az adagot már bevetted.
+\nRemélem, nem vetted be újra</string>
+    <string name="date_format"/>
+    <string name="time_taken">Beszedés ideje: %1$s</string>
+    <string name="delete">Törlés</string>
+    <string name="are_you_sure">Biztos vagy benne\?</string>
+    <string name="medication_delete_warning">A gyógyszer véglegesen törlésre kerül</string>
+    <string name="confirm">Megerősítés</string>
+    <string name="took_this_already">Ezt már bevetted</string>
+    <string name="edit">Módosítás</string>
+    <string name="edit_cancelled">Módosítások elvetve</string>
+    <string name="notifications_enabled">Értesítések engedélyezve</string>
+    <string name="notifications_disabled">Értesítések letiltva</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">Emlékeztető értesítések</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">Ideje bevenni az adagot</string>
+    <string name="new_medication">Új gyógyszer</string>
+    <string name="medication_details">Gyógyszer Részletek</string>
+    <string name="edit_medication">Gyógyszer módosítása</string>
+    <string name="about">Rólunk</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)
+\n
+\nA Did I Take My Meds\? egy nyílt forráskódú alkalmazás a gyógyszerek nyomon követésére.
+\nA Did I Take My Meds\? célja, hogy megakadályozza a felhasználó számára az adagok kihagyását és/vagy a túladagolást.
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com noahstandingford@gmail.com Noah Stanford noahstandingford@gmail.com
+\n
+\nA Did I Take My Meds\? szabad szoftver: a Free Software Foundation által kiadott GNU General Public License feltételei szerint terjesztheti és/vagy módosíthatja, akár a License 3. verziója, akár (tetszés szerint) bármely későbbi verziója szerint.
+\n
+\nA Did I Take My Meds\? abban a reményben kerül terjesztésre, hogy hasznos lesz, de MINDEN JÓTÁMOGATÁS NÉLKÜL; még a MERCHANTABILITY vagy a FITNESS FOR A PARTICIAL PURPORTPURPORTED PURPORTPORNOSE (egy adott célra való alkalmasság) hallgatólagos garanciája nélkül. További részletekért lásd a GNU General Public License-t.
+\n
+\nA GNU General Public License egy példányát a programmal együtt kellett megkapnia. Ha nem, lásd: https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Támogass Liberapay-on</string>
+    <string name="view_the_project_on_github">Tekintsd meg a projektet GitHub-on</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">Bocsánat!</string>
+    <string name="okay">Oké</string>
+    <string name="cannot_donate_explanation">A Google nem engedi meg a fejlesztőknek, hogy adományozási linkeket helyezzenek el az alkalmazásokban, hogy támogassák magukat, ha nem adómentes jótékonysági szervezetek. Ha mégis támogatni szeretnél, akkor a CorruptedArk-ot a Liberapay-on találod meg egy külön böngészőben. A GitHub tároló egy jó hely a kezdéshez.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">Adjon hozzá még egy adagot</string>
+    <string name="taken_as_needed">Szükség szerinti bevétel</string>
+    <string name="hello_blank_fragment">Hello üres töredék</string>
+    <string name="select_a_start_date">Kezdési időpont</string>
+    <string name="time_between_doses">Az adagok közötti idő:</string>
+    <string name="days">Nap(ok)</string>
+    <string name="weeks">Hét(ek)</string>
+    <string name="months">Hónap(ok)</string>
+    <string name="years">Év(ek)</string>
+    <string name="schedule_dose">Dózis ütemezése</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\nKezdődik %2$s
+\nIsmétlődik minden
+\n%3$d nap(ok), %4$d hét(ek),
+\n%5$d hónap(ok)ban, %6$d év(ek)ben</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">Mentés előtt töltse ki az összes mezőt</string>
+    <string name="fill_out_schedule">Töltse ki az összes mezőt megerősítés előtt</string>
+    <string name="next_dose_label">Következő adag: %1$s</string>
+    <string name="taken">Beszedve</string>
+    <string name="not_taken">Nincs beszedve</string>
+    <string name="sort">Rendezés</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">Adatbázis visszaállítása</string>
+    <string name="back_up_database">Adatbázis biztonsági mentése</string>
+    <string name="database_is_invalid">Az adatbázis érvénytelen</string>
+    <string name="database_restored">Adatbázis visszaállítva</string>
+    <string name="took_it">Bevettem</string>
+    <string name="app_name_short">DITMM\?</string>
+    <string name="remind_in_15">Emlékeztess 15 percen belül</string>
+    <string name="dose_record_delete_warning">A dózisrekord véglegesen törlésre kerül.</string>
+    <string name="record_delete_hint">(Hosszan kattintson egy elemre a törléshez)</string>
+    <string name="time_since_dose_sample">Körülbelül 0 nap, 0 óra és 0 perc telt el az utolsó adag bevétele óta</string>
+    <string name="time_since_dose_template">Körülbelül %1$d nap, %2$d óra és %3$d perc telt el az utolsó adag bevétele óta</string>
+    <string name="require_photo_proof">Fényképes bizonyíték igénylése</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">Adag és bizonyíték elmentve</string>
+    <string name="failed_to_get_proof">Bizonyíték igénylése sikertelen</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">Kép nem elérhető</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(A részletek megtekintéséhez koppintson a rekordra)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="back_up_successful">Sikeres biztonsági mentés</string>
+    <string name="back_up_failed">A biztonsági mentés nem sikerült</string>
+    <string name="dose_details">Adag részletei</string>
+    <string name="medication_active">Gyógyszer aktív</string>
+    <string name="inactive">Inaktív</string>
+    <string name="medication_type">Gyógyszer típusa</string>
+    <string name="undefined">Meghatározatlan</string>
+    <string name="type_label_format">Típus: %1$s</string>
+    <string name="sample_type_label">Típus: Nem meghatározott</string>
+    <string name="rx_number_hint"/>
+    <string name="rx_number_label_format"/>
+    <string name="sample_rx_number_label"/>
+    <string name="pharmacy">Gyógyszertár</string>
+    <string name="pharmacy_label_format">Gyógyszertár: %1$s</string>
+    <string name="sample_pharmacy_label">Gyógyszertár: Meghatározatlan</string>
+    <string name="dose_unit">Dózis Egység</string>
+    <string name="dose_amount">Dózis mennyisége</string>
+    <string name="dose_amount_label_format">%1$s%2$s dózisonként</string>
+    <string name="sample_dose_amount_label">5mg dózisonként</string>
+    <string name="remaining_doses">Visszamaradt Dózisok</string>
+    <string name="sample_remaining_doses_label">10 visszamaradt dózis</string>
+    <string name="remaining_doses_label_format">%1$d visszamaradt dózis</string>
+    <string name="no_remaining_doses_message">Nincs több adag.
+\nHa ez téves, frissítse a fennmaradó adagokat a gyógyszer szerkesztésével</string>
+    <string name="take_with_food">Étellel együtt bevenni</string>
+    <string name="translation_credits">Brazil portugál fordítások mezysinc által a GitHub-on, lnux-usr a GitHub-on, és Card151915 a Weblate-on.
+\n
+\nNémet fordítások: jpameli a GitHubon
+\n
+\nFrancia fordítások: Edanas a Weblate-en
+\n
+\nHéber fordítások Yaron által a Weblate-en
+\n
+\nKínai egyszerűsített fordítások luxu által a Weblate-en
+\n
+\nSpanyol fordítások: sguinetti a Weblate-en, caos30 a Weblate-en és nzgha a Weblate-en.
+\n
+\nKatalán fordítások caos30 által a Weblate-en
+\n
+\nLion török fordítása a Weblate-en
+\n
+\nHibajavítás johannes87 által a GitHubon
+\n
+\n</string>
+    <string name="app_widget_description">Egy modul, amely egyetlen gyógyszert, az utolsó bevett adag óta eltelt időt és egy gombot jelenít meg a bevett adag elküldésére</string>
+    <string name="choose_a_medication">Válassz gyógyszert</string>
+    <string name="dose_update_warning">Frissíti az adag felvételi idejét, és törli a hozzá tartozó bizonylatképet, ha létezik.</string>
+    <string name="birth_control_schedule">Fogamzásgátlási ütemezés</string>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
 </resources>
