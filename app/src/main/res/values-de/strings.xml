@@ -28,7 +28,7 @@
     <string name="med_saved">Medikament gespeichert</string>
     <string name="cancelled">Eingabe abgebrochen</string>
     <string name="time_24">H:mm</string>
-    <string name="time_12">h:mma</string>
+    <string name="time_12">hh:mm</string>
     <string name="sample_medicine">Beispiel Medikament</string>
     <string name="midnight">12:00AM</string>
     <string name="sample_description">Dies ist eine Beispielbeschreibung für ein Medikament. Sie besteht aus mehreren Sätzen und umfasst mehrere Zeilen.</string>
@@ -39,8 +39,9 @@
     <string name="yesterday">gestern</string>
     <string name="tomorrow">morgen</string>
     <string name="closest_dose_label">Dosis geplant um: %1$s</string>
-    <string name="already_took_dose">Du hast diese Dosis bereits eingenommen\nIch hoffe, du hast sie nicht nochmal genommen.</string>
-    <string name="date_format">MMM d, yyyy</string>
+    <string name="already_took_dose">Du hast diese Dosis bereits eingenommen
+\nIch hoffe, du hast sie nicht nochmal genommen</string>
+    <string name="date_format">MM dd, yyyy</string>
     <string name="time_taken">Einnahmezeitpunkt: %1$s</string>
     <string name="delete">löschen</string>
     <string name="are_you_sure">Bist du sicher?</string>
@@ -61,11 +62,11 @@
     <string name="support_me_on_liberapay">Unterstütze mich auf Liberapay</string>
     <string name="view_the_project_on_github">Projekt auf GitHub ansehen</string>
     <string name="sorry">Entschuldigung!</string>
-    <string name="okay">Okay</string>
+    <string name="okay">Einverstanden</string>
     <string name="cannot_donate_explanation">Google erlaubt es Entwicklern nicht, Spendenlinks in Apps zu platzieren, um sich selbst zu unterstützen, wenn es sich nicht um steuerbefreite Wohltätigkeitsorganisationen handelt. Wenn Sie mich trotzdem unterstützen wollen, können Sie CorruptedArk auf Liberapay in einem separaten Browser aufrufen. Mein GitHub-Repository ist ein guter Startpunkt.</string>
     <string name="add_another_dose">Weitere Dosis hinzufügen</string>
     <string name="taken_as_needed">Einnahme nach Bedarf</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Hallo leeres Feld</string>
     <string name="select_a_start_date">Startdatum</string>
     <string name="time_between_doses">Zeit zwischen den Einnahmen:</string>
     <string name="days">Tag(e)</string>
@@ -89,8 +90,8 @@
     <string name="remind_in_15">In 15 Minuten erinnern</string>
     <string name="dose_record_delete_warning">Der Eintrag wird endgültig gelöscht.</string>
     <string name="record_delete_hint">(Klicke lange auf einen Eintrag, um ihn zu löschen)</string>
-    <string name="time_since_dose_sample">Ungefähr 0 Tag(e), 0 Stunde(n) und 0 Minute(n) seit der letzten Einnahme.</string>
-    <string name="time_since_dose_template">Ungefähr %1$d Tag(e), %2$d Stunde(n) und %3$d Minute(n) seit der letzten Einnahme.</string>
+    <string name="time_since_dose_sample">Ungefähr 0 Tag(e), 0 Stunde(n) und 0 Minute(n) seit der letzten Einnahme</string>
+    <string name="time_since_dose_template">Ungefähr %1$d Tag(e), %2$d Stunde(n) und %3$d Minute(n) seit der letzten Einnahme</string>
     <string name="require_photo_proof">Fotonachweis erforderlich</string>
     <string name="dose_and_proof_saved">Einnahme und Nachweis gespeichert</string>
     <string name="failed_to_get_proof">Nachweis konnte nicht geladen werden</string>
@@ -102,7 +103,7 @@
     <string name="medication_active">Medikament aktiv</string>
     <string name="inactive">Inaktiv</string>
     <string name="medication_type">Medikamenten-Typ</string>
-    <string name="undefined">n.a.</string>
+    <string name="undefined">Unbestimmt</string>
     <string name="type_label_format">Typ: %1$s</string>
     <string name="sample_type_label">Typ: undefiniert</string>
     <string name="rx_number_hint">Rx#</string>
@@ -118,13 +119,32 @@
     <string name="remaining_doses">Verbleibende Dosen</string>
     <string name="sample_remaining_doses_label">10 verbleibende Dosen</string>
     <string name="remaining_doses_label_format">%1$d verbleibende Dosen</string>
-    <string name="no_remaining_doses_message">Keine verbleibende Dosis\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
-    <string name="take_with_food">Zu einer Mahlzeit</string>
-    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\nBug fix by johannes87 on GitHub\n\n</string>
+    <string name="no_remaining_doses_message">Keine verbleibende Dosis
+\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
+    <string name="take_with_food">Zum Essen einnehmen</string>
+    <string name="translation_credits">Brasilianisch-portugiesische Übersetzungen von mezysinc auf GitHub, lnux-usr auf GitHub, und Card151915 auf Weblate
+\n
+\nDeutsche Übersetzungen von jpameli auf GitHub
+\n
+\nFranzösische Übersetzungen von Edanas auf Weblate
+\n
+\nHebräische Übersetzungen von Yaron auf Weblate
+\n
+\nVereinfachte chinesische Übersetzungen von luxu auf Weblate
+\n
+\nSpanische Übersetzungen von sguinetti auf Weblate, caos30 auf Weblate, und nzgha auf Weblate
+\n
+\nKatalanische Übersetzungen von caos30 auf Weblate
+\n
+\nTürkische Übersetzung von Lion auf Weblate
+\n
+\nFehlerbehebung von johannes87 auf GitHub
+\n
+\n</string>
     <string name="app_widget_description">Ein Widget, das ein einzelnes Medikament, die Zeit seit der letzten Einnahme und eine Schaltfläche zum Übermitteln einer eingenommenen Dosis anzeigt</string>
-    <string name="choose_a_medication">Wählen Sie ein Medikament</string>
+    <string name="choose_a_medication">Wähle ein Medikament</string>
     <string name="dose_update_warning">Sie ändern damit die Einnahmezeit dieser Dosis und löschen das zugehörige Beweisbild, falls es existiert.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">Zeitplan für die Geburtskontrolle</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
