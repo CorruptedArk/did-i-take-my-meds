@@ -1,0 +1,4 @@
+v1.4.2
+
+Behoben
+- Fix für die Anzeige falscher Med-Typen in der Hauptaktivität

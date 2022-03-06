@@ -1,0 +1,4 @@
+v1.2.3
+
+Behoben
+- Fix: App empfängt keine Boot-Intention oder Paket-Update-Intention

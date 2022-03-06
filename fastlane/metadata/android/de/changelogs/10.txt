@@ -1,0 +1,5 @@
+v1.1.3
+
+Behoben:
+- Die Berechnung der nächstgelegenen Dosis für zusätzliche Dosen, zwischen denen ein anderer Zeitraum liegt als zwischen der ersten Dosis in der Liste, wurde korrigiert.
+- Behebung der fehlerhaften Anzeige der Zeitspanne auf den Schaltflächen zur Auswahl des Zeitplans für zusätzliche Dosen mit einer anderen Zeitspanne als die erste Dosis in der Liste

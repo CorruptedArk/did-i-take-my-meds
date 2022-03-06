@@ -1,0 +1,8 @@
+v1.2.6
+
+Änderungen
+- Regelmäßiges Aktualisieren der Benutzeroberfläche ohne Einfrieren wieder aktiviert
+- Brasilianisch-portugiesische Übersetzungen aktualisiert von lnux-usr auf GitHub
+
+Hinzugefügt
+- Etikett zur Medikamentendetailaktivität hinzugefügt, das die Zeitspanne seit der letzten Einnahme anzeigt

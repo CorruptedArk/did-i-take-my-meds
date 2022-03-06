@@ -1,0 +1,4 @@
+v1.4.1
+
+Behoben
+- Korrektur der Anzeige von Etiketten mit falschem Text in der medizinischen Detailaktivität

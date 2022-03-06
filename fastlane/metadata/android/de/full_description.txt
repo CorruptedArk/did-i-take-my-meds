@@ -1,0 +1,3 @@
+Did I Take My Meds? hilft dabei, den Überblick zu behalten, wann die Medikamente eingenommen werden müssen. Es wurde entwickelt, um zu verhindern, dass der Benutzer die Einnahme auslässt und/oder eine Überdosierung vornimmt.
+
+Did I Take My Meds? ermöglicht es dem Benutzer, mehrere Medikamente mit komplexen Zeitplänen zu speichern. Jedes Medikament kann eine unabhängige Erinnerungsmeldung auslösen. Außerdem kann der Benutzer mit dieser Anwendung aufzeichnen, wann er eine Dosis einnimmt. Als Teil einer Medikamentenroutine kann diese Anwendung helfen, Überdosierungen und ausgelassene Dosen zu verhindern.

@@ -1,0 +1,13 @@
+v1.2.2
+
+Änderungen
+- Konvertierung von ExecutorService-Multithreading in Kotlin-Coroutinen
+- Aktualisierung der Farben zur Einhaltung der Web Content Accessibility Guidelines
+- die Benachrichtigungen nun nach der Einnahme einer Dosis beendet
+
+Zusatz
+- Option zum Löschen eines Dosisdatensatzes hinzugefügt
+
+Behoben
+- Behebung von Abstürzen, die durch den erfolglosen Versuch, Daten aus der Datenbank abzurufen, verursacht wurden
+- Seltsamer Wechsel der Ansicht beim Drücken der Zurück-Taste behoben

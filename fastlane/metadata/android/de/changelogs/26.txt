@@ -1,0 +1,8 @@
+v1.5.1
+
+Änderungen
+- Aktualisierte Übersetzungen für Chinesisch (vereinfacht)
+- Aktualisierte hebräische Übersetzungen
+
+Hinzugefügt
+- Option zum Bearbeiten der Einnahmezeit für frühere Dosen hinzugefügt

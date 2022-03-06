@@ -1,0 +1,4 @@
+v1.3.1
+
+Behoben
+- Fix, dass die Wiederherstellung auf einigen Geräten fehlschlägt

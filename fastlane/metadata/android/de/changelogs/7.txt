@@ -1,0 +1,12 @@
+v1.1.0
+
+Änderungen:
+- Kleine Änderungen an der Darstellung einiger Ansichten
+- Detailansicht für die Medikamente
+
+Hinzufügungen:
+- Mehrere Dosispläne pro Medikament mit beliebigen Wiederholungszeiten
+- Option zum Hinzufügen von Medikamenten nach Bedarf ohne Zeitplan
+- Brasilianisch-portugiesische Übersetzungen von mezysinc auf GitHub
+- Zurück-Schaltfläche in Symbolleisten
+- Optionen zum Sortieren nach nächstem Einnahmezeitpunkt und nach Medikamentennamen

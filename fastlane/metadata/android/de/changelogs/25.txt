@@ -1,0 +1,11 @@
+v1.5.0
+
+Änderungen
+- Anpassung der Textansichten an standardisierte Textgrößen
+- Aktualisierte deutsche Übersetzungen von jpameli auf GitHub
+
+Ergänzungen
+- Option zum Hinzufügen einfacher Startbildschirm-Widgets für jedes Medikament hinzugefügt
+- Chinesische (vereinfachte) Übersetzungen hinzugefügt von luxu auf Weblate
+- Spanische Übersetzungen hinzugefügt von sguinetti auf Weblate und caos30 auf Weblate
+- Katalanische Übersetzungen hinzugefügt von caos30 auf Weblate

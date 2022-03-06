@@ -1,0 +1,14 @@
+v1.4.0
+
+Änderungen
+- Medikationstypen in Hauptmedikationsliste 
+- Deutsche Übersetzungen wurden von jpameli auf GitHub aktualisiert
+
+Ergänzungen
+- Medikament inaktiv zu machen
+- Medikationstypen und Sortieren
+- Dosierungsgröße, Apothekennamen jedes Medikaments
+- Anzahl der Dosen für jedes Medikament
+- Medikament mit Nahrung eingenommen werden sollte
+- Französische Übersetzungen von Edanas auf Weblate hinzufügen
+- Hebräische Übersetzungen von Yaron auf Weblate hinzufügen

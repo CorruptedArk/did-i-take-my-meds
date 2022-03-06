@@ -1,0 +1,12 @@
+v1.1.4
+
+Änderungen
+- Benachrichtigungen bleiben nun nach einem Klick erhalten, sofern sie nicht manuell abgebrochen werden
+- Benachrichtigungen können nun ein Medikament mehr als einmal auf Klick öffnen
+
+Zusatz
+- Deutsche Übersetzungen von jpameli auf GitHub hinzugefügt
+
+Behoben
+- Behoben EditMedActivity zeigt immer aktivierte Benachrichtigungen beim Öffnen
+- Es wurde behoben, dass Benachrichtigungen manchmal das falsche Medikament öffnen

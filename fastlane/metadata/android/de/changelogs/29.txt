@@ -1,0 +1,7 @@
+v1.6.0
+
+Änderungen
+- Zeitplannummern-Picker haben jetzt keine Obergrenze mehr
+
+Zusatz
+- Neue Optionen zum einfachen Hinzufügen von 21+7 und 63+7 Geburtenkontrollplänen

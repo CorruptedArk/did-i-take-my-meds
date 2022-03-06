@@ -1,0 +1,12 @@
+v1.3.0
+
+Änderungen
+- Verbesserte Polsterung
+- Neue Backups sind jetzt im Zip-Format und enthalten Bilder (ältere Backups können weiterhin wiederhergestellt werden)
+
+Ergänzungen
+- Option hinzugefügt, um bei der Einnahme von Medikamenten ein Foto zu verlangen
+- Ansicht zur Anzeige von Dosierungsdetails hinzugefügt
+
+Behoben
+- Einige brasilianisch-portugiesische Formatstrings korrigiert

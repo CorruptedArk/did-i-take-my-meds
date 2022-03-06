@@ -1,0 +1,4 @@
+v1.0.2
+
+Änderung:
+- Benachrichtigungen werden nun auch im Ruhezustand des Geräts zu exakten Zeiten ausgelöst

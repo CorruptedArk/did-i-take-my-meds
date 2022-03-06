@@ -1,0 +1,4 @@
+v1.0.5
+
+Behoben:
+- Die Benachrichtigung wurde nach dem Hinzufügen von Medikamenten nicht gesetzt

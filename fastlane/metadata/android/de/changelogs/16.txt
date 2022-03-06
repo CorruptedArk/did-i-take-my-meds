@@ -1,0 +1,11 @@
+v1.2.4
+
+Änderungen
+- Die Farben des Benachrichtigungssymbols und des Aktionstextes entsprechen jetzt den WCAG. 
+- Benachrichtigungen sollten jetzt beim Booten und beim Ersetzen von Paketen wieder erscheinen, wenn sie nicht genommen wurden
+
+Zusatz
+- Aktivitäten werden nun aktualisiert, wenn sich die nächstgelegene Dosis ändert
+
+Behoben
+- Behebung eines Problems, das Zeitpläne mit ganzzahligen Wochen ungleich Null nicht zuließ

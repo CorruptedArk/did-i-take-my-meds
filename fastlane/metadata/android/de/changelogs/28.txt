@@ -1,0 +1,6 @@
+v1.5.3
+
+Änderungen
+- Aktualisierung der spanischen Übersetzungen von nzgha auf Weblate
+- Aktualisierung der brasilianisch-portugiesischen Übersetzungen von Card151915 auf Weblate
+- Aktualisierung der deutschen Übersetzungen von jpameli auf GitHub

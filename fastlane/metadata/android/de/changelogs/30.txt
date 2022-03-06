@@ -1,0 +1,5 @@
+v1.6.1
+
+Behoben
+- RepeatScheduleDialog wird standardmäßig zu einem normalen Zeitplan, wenn er geöffnet wird
+- Die Schaltflächen des Zeitplans funktionieren nicht mehr, wenn sie aus einem Zeitplan für die Geburtenkontrolle hinzugefügt werden

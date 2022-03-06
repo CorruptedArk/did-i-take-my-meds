@@ -1,0 +1,4 @@
+v1.0.1
+
+Behoben:
+- Fix: Benachrichtigungen werden nicht gesendet
