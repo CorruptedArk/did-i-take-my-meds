@@ -139,8 +139,8 @@
     <string name="type_label_format">Típus: %1$s</string>
     <string name="sample_type_label">Típus: Nem meghatározott</string>
     <string name="rx_number_hint"/>
-    <string name="rx_number_label_format"/>
-    <string name="sample_rx_number_label"/>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
+    <string name="sample_rx_number_label">Rx #: Nem definiált</string>
     <string name="pharmacy">Gyógyszertár</string>
     <string name="pharmacy_label_format">Gyógyszertár: %1$s</string>
     <string name="sample_pharmacy_label">Gyógyszertár: Meghatározatlan</string>
