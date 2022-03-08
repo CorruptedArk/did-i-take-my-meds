@@ -122,21 +122,23 @@
     <string name="no_remaining_doses_message">Não há doses restantes
 \nSe estiver errado, atualize as doses restantes editando o medicamento</string>
     <string name="take_with_food">Tomar juntamente com comida</string>
-    <string name="translation_credits">Traduções para o português brasileiro por mezysinc no GitHub, lnux-usr no GitHub, e Card151915 no Weblate
+    <string name="translation_credits">Traduções do português brasileiro por mezysinc em GitHub, lnux-usr em GitHub, e Card151915 em Weblate
 \n
-\nTraduções para alemão por jpameli no GitHub
+\nTraduções em alemão por jpameli em GitHub
 \n
-\nTraduções para o francês por Edanas no Weblate
+\nTraduções francesas por Edanas em Weblate
 \n
-\nTraduções de hebraico por Yaron no Weblate
+\nTraduções em hebraico por Yaron em Weblate
 \n
-\nTraduções para chinês simplificado por luxu no Weblate
+\nChinês Traduções simplificadas por luxo na Weblate
 \n
-\nTraduções para o espanhol por sguinetti no Weblate, caos30 no Weblate, e nzgha no Weblate
+\nTraduções em espanhol por sguinetti em Weblate, caos30 em Weblate, e nzgha em Weblate
 \n
-\nTraduções de catalão por caos30 no Weblate
+\nTraduções catalãs por caos30 em Weblate
 \n
-\nBug fix by johannes87 on GitHub
+\nTradução turca por Lion on Weblate
+\n
+\nCorreção de erros por johannes87 em GitHub
 \n
 \n</string>
     <string name="app_widget_description">Um widget que exibe um único medicamento, o tempo desde a última dose e um botão para enviar uma dose tomada</string>
