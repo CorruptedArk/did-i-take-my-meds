@@ -58,7 +58,7 @@
     <string name="time_taken">Heure de pris : %1$s</string>
     <string name="took_this_already">Vous l\'avez déjà pris</string>
     <string name="channel_description">notifications de rappel</string>
-    <string name="app_description">v %1$s par Noah Stanford (alias CorruptedArk)
+    <string name="app_description">v%1$s par Noah Stanford (alias CorruptedArk)
 \n
 \nDid I Take My Meds\? est une application libre et gratuite pour garder la trace des médicaments.
 \nDid I Take My Meds\? est conçu pour aider à empêcher un utilisateur de sauter des doses et/ou de faire une surdose.
@@ -136,7 +136,25 @@
     <string name="no_remaining_doses_message">Il n\'y a pas de doses restantes
 \nSi c\'est faux, mettez à jour les doses restantes en modifiant le médicament</string>
     <string name="take_with_food">À prendre en mangeant</string>
-    <string name="translation_credits">Traductions en portugais brésilien par mezysinc sur GitHub, lnux-usr sur GitHub, et Card151915 sur Weblate\n\nTraductions en allemand par jpameli sur GitHub\n\nTraductions en français par Edanas sur Weblate\n\nTraductions en hébreu par Yaron sur Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\nBug fix by johannes87 on GitHub\n\n</string>
+    <string name="translation_credits">Traductions en portugais brésilien par mezysinc sur GitHub, lnux-usr sur GitHub, et Card151915 sur Weblate
+\n
+\nTraductions en allemand par jpameli sur GitHub
+\n
+\nTraductions en français par Edanas sur Weblate
+\n
+\nTraductions en hébreu par Yaron sur Weblate
+\n
+\nTraductions en chinois simplifié par luxu sur Weblate
+\n
+\nTraductions en espagnol par sguinetti sur Weblate, caos30 sur Weblate, et nzgha sur Weblate
+\n
+\nTraductions en catalan par caos30 sur Weblate
+\n
+\nTraduction turque par Lion sur Weblate
+\n
+\nCorrection d\'un bug par johannes87 sur GitHub
+\n
+\n</string>
     <string name="app_widget_description">Un widget qui affiche un seul médicament, le temps écoulé depuis la dernière prise et un bouton pour signaler une prise</string>
     <string name="choose_a_medication">Choisir un médicament</string>
     <string name="dose_update_warning">Vous allez mettre à jour le temps pris de cette dose et supprimer l\'image de preuve associé si elle existe.</string>
