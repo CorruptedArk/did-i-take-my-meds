@@ -153,27 +153,29 @@
     <string name="no_remaining_doses_message">Nema preostalih doza
 \nAko je ovo kriva informacija, aktualiziraj preostale doze uređivanjem lijeka</string>
     <string name="take_with_food">Uzmi s hranom</string>
-    <string name="translation_credits">Prijevod na brazilski portugalski: mezysinc na GitHubu, lnux-usr na GitHubu i Card151915 na Weblateu
+    <string name="translation_credits">Prijevodi na brazilski portugalski od mezysinc na GitHub, linux-usr na GitHub i Card151915 na Weblate
 \n
-\nPrijevod na njemački: jpameli na GitHubu
+\nPamelini prijevodi na Njemački jezik na Ainsuin
 \n
-\nPrijevod na francuski: Edanas na Weblateu
+\nEdanasovi prijevodi na Francuski
 \n
-\nPrijevod na hebrejski: Yaron na Weblateu
+\nHebrejski prijevodi Jarona na internetskoj stranici
 \n
-\nPrijevod na kineski pojednostavljeni: luxu na Weblateu
+\nPojednostavljeni prijevodi na Kineski od ainsin do ainsin
 \n
-\nPrijevod na španjolski: sguinetti na Weblateu, caos30 na Weblateu i nzgha na Weblateu
+\nPrijevode na španjolski sguinetti na Weblate, caos30 na Weblate i nzgha na Weblate
 \n
-\nPrijevod na katalonski: caos30 na Weblateu
+\nKatalonski prijevodi od innoini30 do innoiniena
 \n
-\nBug fix by johannes87 on GitHub
+\nPrevedeno na Turski od Ainsusa do Ainsusa
+\n
+\nIspravak pogreške Johannes 87 na Ainsuin
 \n
 \n</string>
     <string name="app_widget_description">Programčić koji prikazuje jedan lijek, vrijeme od zadnjeg uzimanja doze i gumb za slanje uzete doze</string>
     <string name="choose_a_medication">Odaberi lijek</string>
     <string name="dose_update_warning">Aktualizirat ćeš vrijeme uzimanja ove doze i izbrisati povezanu sliku dokaza ako postoji.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">Raspored kontrole rađanja</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
