@@ -153,27 +153,29 @@
     <string name="no_remaining_doses_message">Tidak ada dosis yang tersisa
 \nJika ini salah, perbarui dosis tersisa dengan menyunting medikasinya</string>
     <string name="take_with_food">Gunakan dengan makanan</string>
-    <string name="translation_credits">Terjemahan bahasa Portugis Brasil oleh mezysinc di GitHub, lnux-usr di GitHub, dan Card151915 di Weblate
+    <string name="translation_credits">Terjemahan Portugis Brasil oleh mezysinc di GitHub, lnux-usr di GitHub, dan Card151915 di Weblate
 \n
-\nTerjemahan bahasa Jerman oleh jpameli di GitHub
+\nTerjemahan bahasa Jerman oleh pamela di GitHub
 \n
 \nTerjemahan bahasa Prancis oleh Edanas di Weblate
 \n
 \nTerjemahan Ibrani oleh Yaron di Weblate
 \n
-\nTerjemahan Sederhana Bahasa Mandarin oleh luxu di Weblate
+\nTerjemahan Sederhana Cina oleh luxu di Weblate
 \n
-\nTerjemahan bahasa Spanyol oleh sguinetti di Weblate, caos30 di Weblate, dan nzgha di Weblate
+\nTerjemahan Spanyol oleh sguinetti di Weblate, caos30 di Weblate, dan nzgha di Weblate
 \n
-\nTerjemahan Bahasa Katalan oleh caos30 di Weblate
+\nTerjemahan Catalan oleh caos30 di Weblate
 \n
-\nBug fix by johannes87 on GitHub
+\nTerjemahan Bahasa Turki oleh Lion on Weblate
+\n
+\nPerbaikan Bug oleh johannes87 di GitHub
 \n
 \n</string>
     <string name="app_widget_description">Sebuah widget yang menampilkan sebuah medikasi, waktu sejak dosis terakhir digunakan, dan tombol untuk memasukkan dosis yang digunakan</string>
     <string name="choose_a_medication">Pilih Sebuah Medikasi</string>
     <string name="dose_update_warning">Anda akan memperbarui waktu dosis ini digunakan dan menghapus bukti yang terhubung jika tersedia.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">Jadwal pengendalian kelahiran</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
