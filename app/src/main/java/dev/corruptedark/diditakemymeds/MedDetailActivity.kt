@@ -725,18 +725,16 @@ class MedDetailActivity : AppCompatActivity() {
         if (medication!!.active) {
             medication!!.updateStartsToFuture()
             if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
-                Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
             }
-            else if (!medication!!.hasDoseRemaining()) {
+            if (!medication!!.hasDoseRemaining()) {
                 Toast.makeText(this, getString(R.string.no_remaining_doses_message), Toast.LENGTH_LONG).show()
             }
-            else {
-                if (medication!!.requirePhotoProof) {
-                    startTakePictureIntent(medication!!.id, System.currentTimeMillis())
-                } else {
-                    saveDose(createDose())
-                }
+
+            if (medication!!.requirePhotoProof) {
+                startTakePictureIntent(medication!!.id, System.currentTimeMillis())
+            } else {
+                saveDose(createDose())
             }
         }
     }
