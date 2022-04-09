@@ -351,11 +351,11 @@ class MedDetailActivity : AppCompatActivity() {
                 }
             }
         }
-        medicationDao(context).getAll().observe(context, {
+        medicationDao(context).getAll().observe(context) {
             lifecycleScope.launch(lifecycleDispatcher) {
                 refreshFromDatabase()
             }
-        })
+        }
 
         refreshJob = startRefresherLoop(intent.getLongExtra(getString(R.string.med_id_key), -1))
     }
@@ -725,16 +725,18 @@ class MedDetailActivity : AppCompatActivity() {
         if (medication!!.active) {
             medication!!.updateStartsToFuture()
             if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
-                Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.already_took_dose), Toast.LENGTH_SHORT)
+                    .show()
             }
-            if (!medication!!.hasDoseRemaining()) {
+            else if (!medication!!.hasDoseRemaining()) {
                 Toast.makeText(this, getString(R.string.no_remaining_doses_message), Toast.LENGTH_LONG).show()
             }
-
-            if (medication!!.requirePhotoProof) {
-                startTakePictureIntent(medication!!.id, System.currentTimeMillis())
-            } else {
-                saveDose(createDose())
+            else {
+                if (medication!!.requirePhotoProof) {
+                    startTakePictureIntent(medication!!.id, System.currentTimeMillis())
+                } else {
+                    saveDose(createDose())
+                }
             }
         }
     }
