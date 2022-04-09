@@ -564,8 +564,15 @@ class MedDetailActivity : AppCompatActivity() {
                     justTookItButtonPressed()
                 }
 
-                timeSinceDoseLabel.text = getString(R.string.time_since_dose_template, days, hours, minutes)
-
+                medication?.let {
+                    if (it.doseRecord.isNotEmpty()) {
+                        timeSinceDoseLabel.text =
+                            getString(R.string.time_since_dose_template, days, hours, minutes)
+                        timeSinceDoseLabel.visibility = View.VISIBLE
+                    } else {
+                        timeSinceDoseLabel.visibility = View.GONE
+                    }
+                }
                 if (medication!!.closestDoseAlreadyTaken() && !medication!!.isAsNeeded()) {
                     justTookItButton.text = getString(R.string.took_this_already)
                 } else {
