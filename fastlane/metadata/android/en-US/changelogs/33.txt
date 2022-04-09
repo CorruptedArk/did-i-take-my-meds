@@ -1,0 +1,5 @@
+v1.6.4
+
+Fixes
+- Fixes inability to record multiple taken doses for the same closest dose
+- Fixes thousands of days shown since last taken dose if no doses have been recorded
