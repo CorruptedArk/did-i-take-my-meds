@@ -1,0 +1,4 @@
+v1.6.5
+
+Fix
+- Fix crashes on Android 12 devices
