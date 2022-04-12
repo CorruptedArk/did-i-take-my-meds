@@ -24,6 +24,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.widget.RemoteViews
 import java.util.concurrent.TimeUnit
 import androidx.lifecycle.Observer
@@ -169,7 +170,11 @@ internal fun updateAppWidget(
                 action = ActionReceiver.TOOK_MED_ACTION
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
-            val tookMedPendingIntent = PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, 0)
+            val tookMedPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, PendingIntent.FLAG_IMMUTABLE)
+            } else {
+                PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, 0)
+            }
             val justTookItString = context.applicationContext.getString(R.string.i_just_took_it)
             val tookAlreadyString = context.applicationContext.getString(R.string.took_this_already)
             val buttonText = if (medication.closestDoseAlreadyTaken()) {

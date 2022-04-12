@@ -37,7 +37,11 @@ class ActionReceiver : BroadcastReceiver() {
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
 
-            val pendingIntent = PendingIntent.getActivity(context, medication.id.toInt(), actionIntent, 0)
+            val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.getActivity(context, medication.id.toInt(), actionIntent, PendingIntent.FLAG_IMMUTABLE)
+            } else {
+                PendingIntent.getActivity(context, medication.id.toInt(), actionIntent, 0)
+            }
 
             val closestDose = medication.calculateClosestDose()
             val hour = closestDose.schedule.hour
@@ -57,7 +61,11 @@ class ActionReceiver : BroadcastReceiver() {
                 action = TOOK_MED_ACTION
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
-            val tookMedPendingIntent = PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, 0)
+            val tookMedPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, PendingIntent.FLAG_IMMUTABLE)
+            } else {
+                PendingIntent.getBroadcast(context, medication.id.toInt(), tookMedIntent, 0)
+            }
             //End building "took med" notification action
 
             //Start building "remind" notification action
@@ -65,7 +73,11 @@ class ActionReceiver : BroadcastReceiver() {
                 action = REMIND_ACTION
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
-            val remindPendingIntent = PendingIntent.getBroadcast(context, medication.id.toInt(), remindIntent, 0)
+            val remindPendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.getBroadcast(context, medication.id.toInt(), remindIntent, PendingIntent.FLAG_IMMUTABLE)
+            } else {
+                PendingIntent.getBroadcast(context, medication.id.toInt(), remindIntent, 0)
+            }
             //End building "remind" notification action
 
 

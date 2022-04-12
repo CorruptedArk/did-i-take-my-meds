@@ -34,12 +34,21 @@ object AlarmIntentManager {
                 context.getString(R.string.med_id_key),
                 medication.id
             )
-            PendingIntent.getBroadcast(
-                context,
-                medication.id.toInt(),
-                innerIntent,
-                0
-            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.getBroadcast(
+                    context,
+                    medication.id.toInt(),
+                    innerIntent,
+                    PendingIntent.FLAG_IMMUTABLE
+                )
+            } else {
+                PendingIntent.getBroadcast(
+                    context,
+                    medication.id.toInt(),
+                    innerIntent,
+                    0
+                )
+            }
         }
     }
 
