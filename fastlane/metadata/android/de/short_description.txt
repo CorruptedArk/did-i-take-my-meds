@@ -1,1 +1,1 @@
-Eine App zur Verwaltung und Verfolgung von Medikamentendosen
+Eine App zur Verwaltung und Verfolgung von Medikamenteneinnahmen
