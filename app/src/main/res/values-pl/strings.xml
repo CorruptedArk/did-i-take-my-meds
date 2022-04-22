@@ -15,135 +15,150 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name">Czy Wziąłem Leki\?</string>
+    <string name="app_name">Czy przyjąłem leki\?</string>
     <string name="add">Dodaj</string>
-    <string name="add_medications">Dodaj leki do swojej listy</string>
+    <string name="add_medications">Dodaj leki do listy</string>
     <string name="medication_name">Nazwa leku</string>
     <string name="description">Opis</string>
-    <string name="select_a_time">wybierz czas</string>
+    <string name="select_a_time">wybierz godzinę</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
     <string name="save">Zapisz</string>
     <string name="cancel">Anuluj</string>
-    <string name="pick_a_time">Wybierz czas przed zapisaniem</string>
-    <string name="fill_fields">Wpisz nazwę przed zapisaniem</string>
-    <string name="med_saved">Leki zapisane</string>
-    <string name="cancelled">Anulowanie nowego leku</string>
-    <string name="time_24">H:mm</string>
+    <string name="pick_a_time">Ustaw godzinę przed zapisaniem</string>
+    <string name="fill_fields">Uzupełnij nazwę leku przed zapisaniem</string>
+    <string name="med_saved">Lek zapisano</string>
+    <string name="cancelled">Dodawanie anulowano</string>
+    <string name="time_24">hh:mm</string>
     <string name="time_12">h:mma</string>
-    <string name="sample_medicine">Przykładowe Leki</string>
-    <string name="midnight">12:00AM</string>
-    <string name="sample_description">To jest przykładowy opis leku. Zawiera on wiele zdań i obejmuje wiele wierszy.</string>
-    <string name="previous_doses">Poprzednie dawki:</string>
-    <string name="i_just_took_it">Właśnie wziąłem!</string>
-    <string name="closest_dose_sample">Najbliższa dawka: dziś o 1:00PM</string>
+    <string name="sample_medicine">Przykładowy lek</string>
+    <string name="midnight">12:00</string>
+    <string name="sample_description">Oto przykładowy opis leku. Składa się z wielu zdań i obejmuje wiele wierszy.</string>
+    <string name="previous_doses">Poprzednia dawka:</string>
+    <string name="i_just_took_it">Dawka zażyta!</string>
+    <string name="closest_dose_sample">Nadchodząca dawka: 13:00 dziś</string>
     <string name="med_position_key" translatable="false">medication_position</string>
     <string name="today">Dzisiaj</string>
     <string name="yesterday">Wczoraj</string>
     <string name="tomorrow">Jutro</string>
-    <string name="closest_dose_label">Najbliższa dawka: %1$s</string>
-    <string name="already_took_dose">Przyjąłeś już tą dawkę
-\nMam nadzieję, że nie zażyłeś jej ponownie</string>
+    <string name="closest_dose_label">Nadchodząca dawka: %1$s</string>
+    <string name="already_took_dose">Dawka została już zazyta
+\nMam nadzieję, że nie została zażyta ponownie</string>
     <string name="date_format">MMM d, yyyy</string>
-    <string name="time_taken"/>
-    <string name="delete"/>
-    <string name="are_you_sure"/>
-    <string name="medication_delete_warning"/>
-    <string name="confirm"/>
-    <string name="took_this_already"/>
-    <string name="edit"/>
-    <string name="edit_cancelled"/>
-    <string name="notifications_enabled"/>
-    <string name="notifications_disabled"/>
+    <string name="time_taken">Czas zażycia: %1$s</string>
+    <string name="delete">usuń</string>
+    <string name="are_you_sure">Czy napewno\?</string>
+    <string name="medication_delete_warning">Lek zostanie trwale usunięty</string>
+    <string name="confirm">potwierdź</string>
+    <string name="took_this_already">Dawka została uz zażyta</string>
+    <string name="edit">Edytuj</string>
+    <string name="edit_cancelled">Edycja anulowana</string>
+    <string name="notifications_enabled">Powiadomienia aktywowane</string>
+    <string name="notifications_disabled">Powiadomienia aulowane</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"/>
+    <string name="channel_description">Przypomnienia</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"/>
-    <string name="new_medication"/>
-    <string name="medication_details"/>
-    <string name="edit_medication"/>
-    <string name="about"/>
-    <string name="app_description"/>
-    <string name="support_me_on_liberapay"/>
-    <string name="view_the_project_on_github"/>
+    <string name="time_for_your_dose">Pora na dawkę</string>
+    <string name="new_medication">Nowy lek</string>
+    <string name="medication_details">Opis leku</string>
+    <string name="edit_medication">Edytuj</string>
+    <string name="about">O aplikacji</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)
+\nDid I Take My Meds\? is a FOSS app to keep track of medications
+\nDid I Take My Meds\? is designed to help prevent a user from skipping doses and/or overdosing
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\nDid I Take My Meds\? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+\n
+\nCzy przyjąłem leki\? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+\n
+\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Wspomóż nas na Liberapay</string>
+    <string name="view_the_project_on_github">Zobacz projekt na GitHub</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"/>
-    <string name="okay"/>
-    <string name="cannot_donate_explanation"/>
+    <string name="sorry">Przepraszam!</string>
+    <string name="okay">Ok</string>
+    <string name="cannot_donate_explanation">Google nie zezwala programistom na umieszczanie w aplikacjach linków do darowizn w celu wspierania siebie, jeśli nie są to organizacje charytatywne zwolnione z podatku. Jeśli nadal chcesz mnie wesprzeć, możesz wyszukać CorruptedArk na Liberapay w osobnej przeglądarce. Moje repozytorium na GitHub to dobre miejsce na początek.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"/>
-    <string name="taken_as_needed"/>
-    <string name="hello_blank_fragment"/>
-    <string name="select_a_start_date"/>
-    <string name="time_between_doses"/>
-    <string name="days"/>
-    <string name="weeks"/>
-    <string name="months"/>
-    <string name="years"/>
-    <string name="schedule_dose"/>
+    <string name="add_another_dose">Dodaj kolejną dawkę</string>
+    <string name="taken_as_needed">Przyjmowana w razie potrzeby</string>
+    <string name="hello_blank_fragment">Witaj pusty fragmencie</string>
+    <string name="select_a_start_date">Data rozpoczęcia</string>
+    <string name="time_between_doses">Odstęp między dawkami:</string>
+    <string name="days">Dzień/dni</string>
+    <string name="weeks">Tyg.</string>
+    <string name="months">Miesiąc(e)</string>
+    <string name="years">Rok/lata</string>
+    <string name="schedule_dose">Zaplanuj dawkę</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"/>
+    <string name="schedule_format">%1$s
+\nRozpoczyna się %2$s
+\nPowtarza się co
+\n%3$d dzień/dni, %4$d tyg.
+\n%5$d miesiąc(e), %6$d rok/lata</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"/>
-    <string name="fill_out_schedule"/>
-    <string name="next_dose_label"/>
-    <string name="taken"/>
-    <string name="not_taken"/>
-    <string name="sort"/>
+    <string name="fill_out_all_schedules">Wypełnij wszystkie harmonogramy przed zapisaniem</string>
+    <string name="fill_out_schedule">Wypełnij harmonogram przed potwierdzeniem</string>
+    <string name="next_dose_label">Następna dawka: %1$s</string>
+    <string name="taken">Przyjęto</string>
+    <string name="not_taken">Nie przyjęto</string>
+    <string name="sort">Sort</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"/>
-    <string name="back_up_database"/>
-    <string name="database_is_invalid"/>
-    <string name="database_restored"/>
-    <string name="took_it"/>
-    <string name="app_name_short"/>
-    <string name="remind_in_15"/>
-    <string name="dose_record_delete_warning"/>
-    <string name="record_delete_hint"/>
-    <string name="time_since_dose_sample"/>
-    <string name="time_since_dose_template"/>
-    <string name="require_photo_proof"/>
+    <string name="restore_database">Przywróć bazę danych</string>
+    <string name="back_up_database">Zapisz kopię zapasową bazy danych</string>
+    <string name="database_is_invalid">Nieprawidłowa baza danych</string>
+    <string name="database_restored">Przywrócono bazę danych</string>
+    <string name="took_it">Już przyjęto</string>
+    <string name="app_name_short">Leki\?</string>
+    <string name="remind_in_15">Przypomnienie za 15 min</string>
+    <string name="dose_record_delete_warning">Zapis przyjmowania leku zostanie trwale usunięty.</string>
+    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem)</string>
+    <string name="time_since_dose_sample">Około 0 dn., 0 godz. i 0 min od ostatniej przyjętej dawki</string>
+    <string name="time_since_dose_template">Około %1$d dn., %2$d godz. i %3$d min od ostatniej przyjętej dawki</string>
+    <string name="require_photo_proof">Wymagane zdjęcie potwierdzające</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"/>
-    <string name="failed_to_get_proof"/>
+    <string name="dose_and_proof_saved">Zapisano dawkę i zdjęcie</string>
+    <string name="failed_to_get_proof">Nie udało się załadować zdjęcia</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"/>
+    <string name="no_image_available">Zdjęcie jest niedostępne</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"/>
+    <string name="record_detail_hint">(Przytrzymaj aby usunąć)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"/>
-    <string name="back_up_failed"/>
-    <string name="dose_details"/>
-    <string name="medication_active"/>
-    <string name="inactive"/>
-    <string name="medication_type"/>
-    <string name="undefined"/>
-    <string name="type_label_format"/>
-    <string name="sample_type_label"/>
-    <string name="rx_number_hint"/>
-    <string name="rx_number_label_format"/>
-    <string name="sample_rx_number_label"/>
-    <string name="pharmacy"/>
-    <string name="pharmacy_label_format"/>
-    <string name="sample_pharmacy_label"/>
-    <string name="dose_unit"/>
-    <string name="dose_amount"/>
-    <string name="dose_amount_label_format"/>
-    <string name="sample_dose_amount_label"/>
-    <string name="remaining_doses"/>
-    <string name="sample_remaining_doses_label"/>
-    <string name="remaining_doses_label_format"/>
-    <string name="no_remaining_doses_message"/>
-    <string name="take_with_food"/>
-    <string name="translation_credits"/>
-    <string name="app_widget_description"/>
-    <string name="choose_a_medication"/>
-    <string name="dose_update_warning"/>
-    <string name="birth_control_schedule"/>
-    <string name="_21_7"/>
-    <string name="_63_7"/>
+    <string name="back_up_successful">Pomyślnie utworzono kopię zapasową</string>
+    <string name="back_up_failed">Nie udało się utworzyć kopii zapasowej</string>
+    <string name="dose_details">Szczegóły dawki</string>
+    <string name="medication_active">Leczenie zapisano</string>
+    <string name="inactive">Nieaktywne</string>
+    <string name="medication_type">Typ leku</string>
+    <string name="undefined">Nieokreślony</string>
+    <string name="type_label_format">Typ: %1$s</string>
+    <string name="sample_type_label">Typ: nieokreślony</string>
+    <string name="rx_number_hint">Rx #</string>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
+    <string name="sample_rx_number_label">Rx#: nie określono</string>
+    <string name="pharmacy">Apteka</string>
+    <string name="pharmacy_label_format">Apteka: %1$s</string>
+    <string name="sample_pharmacy_label">Apteka: nie określono</string>
+    <string name="dose_unit">Dawka</string>
+    <string name="dose_amount">Ilość dawki</string>
+    <string name="dose_amount_label_format">%1$s%2$s/dawka</string>
+    <string name="sample_dose_amount_label">5mg/dawka</string>
+    <string name="remaining_doses">Pozostałe dawki</string>
+    <string name="sample_remaining_doses_label">10 pozostałych dawek</string>
+    <string name="remaining_doses_label_format">Pozostałe dawki: %1$d</string>
+    <string name="no_remaining_doses_message">Brak pozostałych dawek. Jeśli to jest błąd, zaktualizuj pozostałe dawki poprzez edytowanie leku</string>
+    <string name="take_with_food">Brać z jedzeniem</string>
+    <string name="translation_credits">Brazylijsko-portugalskie tłumaczenia mezysinc na GitHub, Inux-usr na GitHub i Card151915 na Weblate \\n n\\Niemieckie tłumaczenia jpameli na GitHub \\n \\nFrancuskie tłumaczenia Edanasa na Weblate \\n \\nHebrajskie tłumaczenia Yarona na Weblate \\n \\nUproszczone chińskie tłumaczenia luxu na Weblate \\n \\nHiszpańskie tłumaczenia sguinetti na Weblate, caos30 na Weblate i nzgha na Weblate \\n \\nKatalońskie tłumaczenia caos30 na Weblate \\n \\nTureckie tłumaczenia Lion na Weblate \\n \\nUsuwanie błędów johannes87 na GitHub \\n \\n
+\n
+\n</string>
+    <string name="app_widget_description">Widżet pokazuje pojedynczy lek, czas od ostatniej dawki i przycisk do zatwierdzania przyjętej dawki</string>
+    <string name="choose_a_medication">Wybierz lek</string>
+    <string name="dose_update_warning">Zaktualizujesz czas przyjętej dawki i usuniesz połączone z nią obrazy, jeśli istnieją.</string>
+    <string name="birth_control_schedule">Plan dawkowania antykoncepcji</string>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
 </resources>
