@@ -1,0 +1,3 @@
+Czy wziąłem leki? pomaga pilnować terminów brania leków. Została zaprojektowana, aby zapobiegać zapomnieniu o dawce i/lub przedawkowaniu.
+
+Czy wziąłem leki? pozwala użytkownikowi na zapisanie wielu lekarstw ze złożonymi harmonogramami. Każdy lek może wywołać niezależne przypomnienie. Dodatkowo ta aplikacja pozwala na rejestrowanie przyjętych dawek. W ramach rutynowego leczenia ta aplikacja może pomóc w zapobieganiu przedawkowania i pomijaniu dawek.
