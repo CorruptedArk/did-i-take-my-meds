@@ -15,7 +15,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name">Czy przyjąłem leki\?</string>
+    <string name="app_name">Leki przyjęte\?</string>
     <string name="add">Dodaj</string>
     <string name="add_medications">Dodaj leki do listy</string>
     <string name="medication_name">Nazwa leku</string>
@@ -34,52 +34,53 @@
     <string name="midnight">12:00</string>
     <string name="sample_description">Oto przykładowy opis leku. Składa się z wielu zdań i obejmuje wiele wierszy.</string>
     <string name="previous_doses">Poprzednia dawka:</string>
-    <string name="i_just_took_it">Dawka zażyta!</string>
-    <string name="closest_dose_sample">Nadchodząca dawka: 13:00 dziś</string>
+    <string name="i_just_took_it">Dawka przyjęta!</string>
+    <string name="closest_dose_sample">Następna dawka: 13:00 dzisiaj</string>
     <string name="med_position_key" translatable="false">medication_position</string>
     <string name="today">Dzisiaj</string>
     <string name="yesterday">Wczoraj</string>
     <string name="tomorrow">Jutro</string>
-    <string name="closest_dose_label">Nadchodząca dawka: %1$s</string>
-    <string name="already_took_dose">Dawka została już zazyta
-\nMam nadzieję, że nie została zażyta ponownie</string>
-    <string name="date_format">MMM d, yyyy</string>
-    <string name="time_taken">Czas zażycia: %1$s</string>
-    <string name="delete">usuń</string>
-    <string name="are_you_sure">Czy napewno\?</string>
+    <string name="closest_dose_label">Następna dawka: %1$s</string>
+    <string name="already_took_dose">Dawka została już przyjęta
+\nMam nadzieję, że nie została przyjęta ponownie</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="time_taken">Czas przyjęcia: %1$s</string>
+    <string name="delete">Usuń</string>
+    <string name="are_you_sure">Czy na pewno\?</string>
     <string name="medication_delete_warning">Lek zostanie trwale usunięty</string>
-    <string name="confirm">potwierdź</string>
-    <string name="took_this_already">Dawka została uz zażyta</string>
+    <string name="confirm">Potwierdź</string>
+    <string name="took_this_already">Dawka została już przyjęta</string>
     <string name="edit">Edytuj</string>
     <string name="edit_cancelled">Edycja anulowana</string>
     <string name="notifications_enabled">Powiadomienia aktywowane</string>
-    <string name="notifications_disabled">Powiadomienia aulowane</string>
+    <string name="notifications_disabled">Powiadomienia anulowane</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
     <string name="channel_description">Przypomnienia</string>
     <string name="med_id_key" translatable="false">med_id</string>
     <string name="time_for_your_dose">Pora na dawkę</string>
     <string name="new_medication">Nowy lek</string>
-    <string name="medication_details">Opis leku</string>
-    <string name="edit_medication">Edytuj</string>
+    <string name="medication_details">Przyjmowanie leku</string>
+    <string name="edit_medication">Edytuj lek</string>
     <string name="about">O aplikacji</string>
     <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)
-\nDid I Take My Meds\? is a FOSS app to keep track of medications
+\n
+\nLeki przyjęte\? is a FOSS app to keep track of medications
 \nDid I Take My Meds\? is designed to help prevent a user from skipping doses and/or overdosing
 \nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
 \n
 \nDid I Take My Meds\? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 \n
-\nCzy przyjąłem leki\? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+\nLeki przyjęte\? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 \n
 \nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
-    <string name="support_me_on_liberapay">Wspomóż nas na Liberapay</string>
+    <string name="support_me_on_liberapay">Wesprzyj nas na Liberapay</string>
     <string name="view_the_project_on_github">Zobacz projekt na GitHub</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
     <string name="sorry">Przepraszam!</string>
     <string name="okay">Ok</string>
-    <string name="cannot_donate_explanation">Google nie zezwala programistom na umieszczanie w aplikacjach linków do darowizn w celu wspierania siebie, jeśli nie są to organizacje charytatywne zwolnione z podatku. Jeśli nadal chcesz mnie wesprzeć, możesz wyszukać CorruptedArk na Liberapay w osobnej przeglądarce. Moje repozytorium na GitHub to dobre miejsce na początek.</string>
+    <string name="cannot_donate_explanation">Google nie zezwala programistom na umieszczanie w aplikacjach linków do darowizn w celu wspierania swojej działalności, jeśli nie są to organizacje charytatywne zwolnione z podatku. Jeśli nadal chcesz nas wesprzeć, możesz wyszukać CorruptedArk na Liberapay w osobnej przeglądarce. Moje repozytorium na GitHub to dobre miejsce, by zacząć.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
     <string name="add_another_dose">Dodaj kolejną dawkę</string>
     <string name="taken_as_needed">Przyjmowana w razie potrzeby</string>
@@ -99,22 +100,22 @@
 \n%3$d dzień/dni, %4$d tyg.
 \n%5$d miesiąc(e), %6$d rok/lata</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules">Wypełnij wszystkie harmonogramy przed zapisaniem</string>
-    <string name="fill_out_schedule">Wypełnij harmonogram przed potwierdzeniem</string>
-    <string name="next_dose_label">Następna dawka: %1$s</string>
+    <string name="fill_out_all_schedules">Wypełnij wszystkie harmonogramy przed zapisaniem.</string>
+    <string name="fill_out_schedule">Uzupełnij harmonogram przed zatwierdzeniem.</string>
+    <string name="next_dose_label">Najbliższa dawka: %1$s</string>
     <string name="taken">Przyjęto</string>
     <string name="not_taken">Nie przyjęto</string>
-    <string name="sort">Sort</string>
+    <string name="sort">Sortuj</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database">Przywróć bazę danych</string>
-    <string name="back_up_database">Zapisz kopię zapasową bazy danych</string>
+    <string name="restore_database">Przywróć bazę danych.</string>
+    <string name="back_up_database">Zapisz kopię zapasową bazy danych.</string>
     <string name="database_is_invalid">Nieprawidłowa baza danych</string>
     <string name="database_restored">Przywrócono bazę danych</string>
     <string name="took_it">Już przyjęto</string>
     <string name="app_name_short">Leki\?</string>
     <string name="remind_in_15">Przypomnienie za 15 min</string>
     <string name="dose_record_delete_warning">Zapis przyjmowania leku zostanie trwale usunięty.</string>
-    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem)</string>
+    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem).</string>
     <string name="time_since_dose_sample">Około 0 dn., 0 godz. i 0 min od ostatniej przyjętej dawki</string>
     <string name="time_since_dose_template">Około %1$d dn., %2$d godz. i %3$d min od ostatniej przyjętej dawki</string>
     <string name="require_photo_proof">Wymagane zdjęcie potwierdzające</string>
@@ -125,7 +126,7 @@
     <string name="dose_time_key" translatable="false">dose_time</string>
     <string name="no_image_available">Zdjęcie jest niedostępne</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint">(Przytrzymaj aby usunąć)</string>
+    <string name="record_detail_hint">(Przytrzymaj, aby usunąć)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
     <string name="back_up_successful">Pomyślnie utworzono kopię zapasową</string>
