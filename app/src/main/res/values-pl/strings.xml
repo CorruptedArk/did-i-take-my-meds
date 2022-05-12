@@ -28,8 +28,8 @@
     <string name="fill_fields">Uzupełnij nazwę leku przed zapisaniem</string>
     <string name="med_saved">Lek zapisano</string>
     <string name="cancelled">Dodawanie anulowano</string>
-    <string name="time_24">hh:mm</string>
-    <string name="time_12">h:mma</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">hh:mm</string>
     <string name="sample_medicine">Przykładowy lek</string>
     <string name="midnight">12:00</string>
     <string name="sample_description">Oto przykładowy opis leku. Składa się z wielu zdań i obejmuje wiele wierszy.</string>
@@ -87,10 +87,10 @@
     <string name="hello_blank_fragment">Witaj pusty fragmencie</string>
     <string name="select_a_start_date">Data rozpoczęcia</string>
     <string name="time_between_doses">Odstęp między dawkami:</string>
-    <string name="days">Dzień/dni</string>
-    <string name="weeks">Tyg.</string>
-    <string name="months">Miesiąc(e)</string>
-    <string name="years">Rok/lata</string>
+    <string name="days">dn.</string>
+    <string name="weeks">tyg.</string>
+    <string name="months">mies.</string>
+    <string name="years">rok/lata</string>
     <string name="schedule_dose">Zaplanuj dawkę</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
@@ -100,22 +100,22 @@
 \n%3$d dzień/dni, %4$d tyg.
 \n%5$d miesiąc(e), %6$d rok/lata</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules">Wypełnij wszystkie harmonogramy przed zapisaniem.</string>
-    <string name="fill_out_schedule">Uzupełnij harmonogram przed zatwierdzeniem.</string>
+    <string name="fill_out_all_schedules">Wypełnij wszystkie harmonogramy przed zapisaniem</string>
+    <string name="fill_out_schedule">Uzupełnij harmonogram przed zatwierdzeniem</string>
     <string name="next_dose_label">Najbliższa dawka: %1$s</string>
     <string name="taken">Przyjęto</string>
     <string name="not_taken">Nie przyjęto</string>
     <string name="sort">Sortuj</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database">Przywróć bazę danych.</string>
-    <string name="back_up_database">Zapisz kopię zapasową bazy danych.</string>
+    <string name="restore_database">Przywróć bazę danych</string>
+    <string name="back_up_database">Zapisz kopię zapasową bazy danych</string>
     <string name="database_is_invalid">Nieprawidłowa baza danych</string>
     <string name="database_restored">Przywrócono bazę danych</string>
     <string name="took_it">Już przyjęto</string>
     <string name="app_name_short">Leki\?</string>
     <string name="remind_in_15">Przypomnienie za 15 min</string>
     <string name="dose_record_delete_warning">Zapis przyjmowania leku zostanie trwale usunięty.</string>
-    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem).</string>
+    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem)</string>
     <string name="time_since_dose_sample">Około 0 dn., 0 godz. i 0 min od ostatniej przyjętej dawki</string>
     <string name="time_since_dose_template">Około %1$d dn., %2$d godz. i %3$d min od ostatniej przyjętej dawki</string>
     <string name="require_photo_proof">Wymagane zdjęcie potwierdzające</string>
@@ -138,22 +138,39 @@
     <string name="undefined">Nieokreślony</string>
     <string name="type_label_format">Typ: %1$s</string>
     <string name="sample_type_label">Typ: nieokreślony</string>
-    <string name="rx_number_hint">Rx #</string>
-    <string name="rx_number_label_format">Rx #: %1$s</string>
-    <string name="sample_rx_number_label">Rx#: nie określono</string>
+    <string name="rx_number_hint">Kod recepty</string>
+    <string name="rx_number_label_format">Kod recepty: %1$s</string>
+    <string name="sample_rx_number_label">Kod recepty: nie określono</string>
     <string name="pharmacy">Apteka</string>
     <string name="pharmacy_label_format">Apteka: %1$s</string>
     <string name="sample_pharmacy_label">Apteka: nie określono</string>
-    <string name="dose_unit">Dawka</string>
+    <string name="dose_unit">Jednostka dawkowania</string>
     <string name="dose_amount">Ilość dawki</string>
     <string name="dose_amount_label_format">%1$s%2$s/dawka</string>
     <string name="sample_dose_amount_label">5mg/dawka</string>
     <string name="remaining_doses">Pozostałe dawki</string>
     <string name="sample_remaining_doses_label">10 pozostałych dawek</string>
     <string name="remaining_doses_label_format">Pozostałe dawki: %1$d</string>
-    <string name="no_remaining_doses_message">Brak pozostałych dawek. Jeśli to jest błąd, zaktualizuj pozostałe dawki poprzez edytowanie leku</string>
+    <string name="no_remaining_doses_message">Brak pozostałych dawek.
+\nJeśli to jest błąd, zaktualizuj pozostałe dawki poprzez edytowanie leku</string>
     <string name="take_with_food">Brać z jedzeniem</string>
-    <string name="translation_credits">Brazylijsko-portugalskie tłumaczenia mezysinc na GitHub, Inux-usr na GitHub i Card151915 na Weblate \\n n\\Niemieckie tłumaczenia jpameli na GitHub \\n \\nFrancuskie tłumaczenia Edanasa na Weblate \\n \\nHebrajskie tłumaczenia Yarona na Weblate \\n \\nUproszczone chińskie tłumaczenia luxu na Weblate \\n \\nHiszpańskie tłumaczenia sguinetti na Weblate, caos30 na Weblate i nzgha na Weblate \\n \\nKatalońskie tłumaczenia caos30 na Weblate \\n \\nTureckie tłumaczenia Lion na Weblate \\n \\nUsuwanie błędów johannes87 na GitHub \\n \\n
+    <string name="translation_credits">Brazylijsko-portugalskie tłumaczenia mezysinc na GitHub, Inux-usr na GitHub i Card151915 na Weblate
+\n
+\nNiemieckie tłumaczenia jpameli na GitHub
+\n
+\nFrancuskie tłumaczenia Edanasa na Weblate
+\n
+\nHebrajskie tłumaczenia Yarona na Weblate
+\n
+\nUproszczone chińskie tłumaczenia luxu na Weblate
+\n
+\nHiszpańskie tłumaczenia sguinetti na Weblate, caos30 na Weblate i nzgha na Weblate
+\n
+\nKatalońskie tłumaczenia caos30 na Weblate
+\n
+\nTureckie tłumaczenia Lion na Weblate
+\n
+\nUsuwanie błędów johannes87 na GitHub
 \n
 \n</string>
     <string name="app_widget_description">Widżet pokazuje pojedynczy lek, czas od ostatniej dawki i przycisk do zatwierdzania przyjętej dawki</string>
