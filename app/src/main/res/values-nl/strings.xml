@@ -15,134 +15,168 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">Medicatie ingenomen\?</string>
+    <string name="add">Toevoegen</string>
+    <string name="add_medications">Voeg medicatie toen aan je lijst</string>
+    <string name="medication_name">Naam van medicijn</string>
+    <string name="description">Omschrijving</string>
+    <string name="select_a_time">Kies een tijdstip</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">Opslaan</string>
+    <string name="cancel">Annuleren</string>
+    <string name="pick_a_time">Kies eerst een tijdstip</string>
+    <string name="fill_fields">Voer eerst een naam in</string>
+    <string name="med_saved">Het medicijn is opgeslagen</string>
+    <string name="cancelled">Het toevoegen is afgebroken</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">Voorbeeld</string>
+    <string name="midnight">12:00 a.m.</string>
+    <string name="sample_description">Dit is een voorbeeldomschrijving met meerdere zinnen en regels.</string>
+    <string name="previous_doses">Eerdere innames:</string>
+    <string name="i_just_took_it">Ik nam het nét in!</string>
+    <string name="closest_dose_sample">Eerstvolgende inname: 13:00 (vandaag)</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">Vandaag</string>
+    <string name="yesterday">Gisteren</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="closest_dose_label">Eerstvolgende inname: %1$s</string>
+    <string name="already_took_dose">Je hebt het medicijn al ingenomen.
+\nHopelijk neem je het niet nog een keer in…</string>
+    <string name="date_format">d MMM yyyy</string>
+    <string name="time_taken">Ingenomen om %1$s</string>
+    <string name="delete">Verwijderen</string>
+    <string name="are_you_sure">Weet je zeker dat je wilt doorgaan\?</string>
+    <string name="medication_delete_warning">Het medicijn wordt permanent verwijderd.</string>
+    <string name="confirm">Ja</string>
+    <string name="took_this_already">Je hebt dit medicijn al ingenomen</string>
+    <string name="edit">Bewerken</string>
+    <string name="edit_cancelled">Het bewerken is afgebroken</string>
+    <string name="notifications_enabled">Meldingen zijn ingeschakeld</string>
+    <string name="notifications_disabled">Meldingen zijn uitgeschakeld</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">Herinneringen</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">Het is tijd om je medicijn in te nemen</string>
+    <string name="new_medication">Nieuw medicijn</string>
+    <string name="medication_details">Medicijninformatie</string>
+    <string name="edit_medication">Medicijn bewerken</string>
+    <string name="about">Over</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)
+\n
+\nDid I Take My Meds\? is a FOSS app to keep track of medications
+\nDid I Take My Meds\? is designed to help prevent a user from skipping doses and/or overdosing
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\nDid I Take My Meds\? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+\n
+\nDid I Take My Meds\? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+\n
+\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Ondersteun me via Liberapay</string>
+    <string name="view_the_project_on_github">Projectwebsite openen (GitHub)</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">Sorry!</string>
+    <string name="okay">Oké</string>
+    <string name="cannot_donate_explanation">Google staat ontwikkelaars niet toe om donatielinks in apps te plaatsen (met uitzondering van belastingvrije goede doelen). Als je me wilt ondersteunen, dan kun je een donatie via Liberapay doen. Mijn gebruikersnaam aldaar is CorruptedArk. De link is ook te vinden in mijn GitHub-repo.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">Dosering toevoegen</string>
+    <string name="taken_as_needed">Indien nodig</string>
+    <string name="hello_blank_fragment">Hallo, blanco item</string>
+    <string name="select_a_start_date">Begindatum</string>
+    <string name="time_between_doses">Tijd tussen doseringen:</string>
+    <string name="days">dag(en)</string>
+    <string name="weeks">week/weken</string>
+    <string name="months">maand(en)</string>
+    <string name="years">jaar</string>
+    <string name="schedule_dose">Dosering inplannen</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\nBegindatum: %2$s
+\nHerhaling gedurende
+\n%3$d dag(en), %4$d week/weken,
+\n%5$d maand(en), %6$d jaar</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">Plan eerst alle schema\'s in</string>
+    <string name="fill_out_schedule">Plan eerst het schema in</string>
+    <string name="next_dose_label">Eerstvolgende dosering: %1$s</string>
+    <string name="taken">Ingenomen</string>
+    <string name="not_taken">Niet ingenomen</string>
+    <string name="sort">Sorteren</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">Databank herstellen</string>
+    <string name="back_up_database">Reservekopie maken</string>
+    <string name="database_is_invalid">De databank is ongeldig</string>
+    <string name="database_restored">De databank is hersteld</string>
+    <string name="took_it">Ingenomen</string>
+    <string name="app_name_short">MI\?</string>
+    <string name="remind_in_15">Herinneren over 15 minuten</string>
+    <string name="dose_record_delete_warning">Deze dosering wordt permanent verwijderd.</string>
+    <string name="record_delete_hint">(Houd een item lang ingedrukt om te verwijderen.)</string>
+    <string name="time_since_dose_sample">Er is/zijn ongeveer 0 dag(en), 0 uur en 0 minuut/minuten verstreken sinds de vorige dosering</string>
+    <string name="time_since_dose_template">Er is/zijn ongeveer %1$d dag(en), %2$d uur en %3$d minuut/minuten verstreken sinds de vorige dosering</string>
+    <string name="require_photo_proof">Fotografisch bewijs benodigd</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">De dosering en het bewijs zijn opgeslagen</string>
+    <string name="failed_to_get_proof">Er kan geen bewijs worden verkregen</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">Er is geen foto beschikbaar</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(Druk op een item om de details ervan te bekijken.)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="back_up_successful">De reservekopie is gemaakt</string>
+    <string name="back_up_failed">Er kan geen reservekopie worden gemaakt</string>
+    <string name="dose_details">Doseringsinformatie</string>
+    <string name="medication_active">Huidige medicatie</string>
+    <string name="inactive">Eerdere medicatie</string>
+    <string name="medication_type">Soort medicatie</string>
+    <string name="undefined">Niet-opgegeven</string>
+    <string name="type_label_format">Soort: %1$s</string>
+    <string name="sample_type_label">Soort: niet opgegeven</string>
+    <string name="rx_number_hint">Rx-nummer</string>
+    <string name="rx_number_label_format">Rx-nummer: %1$s</string>
+    <string name="sample_rx_number_label">Rx-nummer: niet opgegeven</string>
+    <string name="pharmacy">Apotheek</string>
+    <string name="pharmacy_label_format">Naam van apotheek: %1$s</string>
+    <string name="sample_pharmacy_label">Naam van apotheek: niet opgegeven</string>
+    <string name="dose_unit">Doseringseenheid</string>
+    <string name="dose_amount">Aantal doseringen</string>
+    <string name="dose_amount_label_format">%1$s%2$s per dosering</string>
+    <string name="sample_dose_amount_label">5 mg per dosering</string>
+    <string name="remaining_doses">Voorraad</string>
+    <string name="sample_remaining_doses_label">Nog 10 doseringen op voorraad</string>
+    <string name="remaining_doses_label_format">Nog %1$d doseringen op voorraad</string>
+    <string name="no_remaining_doses_message">Je voorraad is op.
+\nAls dit niet klopt, werk dan de voorraad bij.</string>
+    <string name="take_with_food">Innemen met voedsel</string>
+    <string name="translation_credits">Braziliaans-Portugese vertaling, met dank aan @mezysinc op GitHub, @lnux-usr op GitHub en @Card151915 op Weblate
+\n
+\nDuitse vertaling, met dank aan @jpameli op GitHub
+\n
+\nFranse vertaling, met dank aan @Edanas op Weblate
+\n
+\nHebreeuwse vertaling, met dank aan @Yaron op Weblate
+\n
+\nVereenvoudigd Chinese vertaling, met dank aan @luxu op Weblate
+\n
+\nSpaanse vertaling, met dank aan @sguinetti op Weblate, @caos30 op Weblate en @nzgha op Weblate
+\n
+\nCatalaanse vertaling, met dank aan @caos30 op Weblate
+\n
+\nTurkse vertaling, met dank aan @Lion op Weblate
+\n
+\nBugs opgelost, met dank aan @johannes87 op GitHub
+\n
+\n</string>
+    <string name="app_widget_description">Een widget die toont welke medicatie je gebruikt, wanneer je de medicatie voor het laatst hebt ingenomen en beschikt over een bevestigingsknop</string>
+    <string name="choose_a_medication">Kies een medicijn</string>
+    <string name="dose_update_warning">Hiermee werk je de innametijd bij en verwijder je de bewijsfoto (indien aanwezig).</string>
+    <string name="birth_control_schedule">Anticonceptieschema</string>
+    <string name="_21_7">21 +7</string>
+    <string name="_63_7">63 + 7</string>
 </resources>
