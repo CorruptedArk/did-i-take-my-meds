@@ -1,0 +1,8 @@
+v1.2.6
+
+Changes
+- Re-enabled periodic UI refreshing without causing freezing
+- Brazilian Portuguese translations updated by lnux-usr on GitHub
+
+Addition
+- Added label to medication detail activity that tracks the amount of time since the last taken dose

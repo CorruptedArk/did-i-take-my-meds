@@ -1,0 +1,12 @@
+v1.1.4
+
+Changes
+- Notifications now stay after click unless manually cancelled
+- Notifications can now open a medication more than once on click
+
+Addition
+- Added German translations by jpameli on GitHub
+
+Fixes
+- Fixed EditMedActivity always showing notifications enabled when opened
+- Fixed notifications sometimes opening wrong medication on click

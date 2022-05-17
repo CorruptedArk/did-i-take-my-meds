@@ -1,0 +1,3 @@
+Medicatie ingenomen? helpt je bij het op tijd innemen van medicatie zodat je geen dosering overslaat of een overdosis inneemt.
+
+Medicatie ingenomen? biedt ondersteuning voor meerdere medicijnen en complexe innameschema's. Er kan per medicijn een herinnering, in de vorm van een melding, worden getoond. Ook kun je bijhouden wanneer je een medicijn hebt ingenomen zodat je geen dosering overslaat of een overdosis inneemt.

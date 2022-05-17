@@ -1,0 +1,13 @@
+v1.2.2
+
+Changes
+- Convert ExecutorService multithreading to Kotlin coroutines
+- Update colors to comply with Web Content Accessibility Guidelines
+- By popular demand, notifications will now be dismissed after a dose is taken
+
+Addition
+- Add option to delete a dose record when the "taken" button is pressed accidentally
+
+Fixes
+- Fixed crashes caused by unsuccessfully trying to get data from the database
+- Fixed weird view cycling on back button press

@@ -1,0 +1,4 @@
+v1.1.1
+
+Fix:
+- Fix dialogs not properly displaying on some screen sizes

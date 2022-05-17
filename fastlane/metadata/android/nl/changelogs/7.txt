@@ -1,0 +1,12 @@
+v1.1.0
+
+Changes:
+- Small tweaks to visuals of some views
+- Clicking on a notification now opens the detail view for its medication
+
+Additions:
+- Multiple dose schedules per medication with arbitrary repeat times
+- Option to add as-needed medications without schedules
+- Brazilian Portuguese translations by mezysinc on GitHub
+- Back button in toolbars
+- Options to sort by closest dose time and by medication name

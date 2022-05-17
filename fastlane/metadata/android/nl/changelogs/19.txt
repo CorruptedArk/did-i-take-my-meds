@@ -1,0 +1,12 @@
+v1.3.0
+
+Changes
+- Improved padding
+- New backups are now in a zip format to include images (Older backups can still be restored)
+
+Additions
+- Added option to require a photo when taking medications
+- Added a view to view dose record details
+
+Fixes
+- Fixed some Brazilian Portuguese format strings

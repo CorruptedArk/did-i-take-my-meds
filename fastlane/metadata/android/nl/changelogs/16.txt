@@ -1,0 +1,11 @@
+v1.2.4
+
+Changes
+- Notification icon and action text colors now comply with WCAG, however if you switch device theme, an active notification will not change colors to stay compliant. New notifications after the change will be compliant again.
+- Notifications should now reappear on boot and package replacement if not taken, but these features depend on if the system allows it
+
+Addition
+- Activities now update when the closest dose changes
+
+Fix
+- Fix an issue that didn't allow schedules with non-zero, whole number weeks

@@ -1,0 +1,4 @@
+v1.6.0
+
+- [[NIEUW]] Er is geen limiet meer bij het maken van schema's;
+- [[NIEUW]] Instellingen omtrent het innemen van anticonceptie.

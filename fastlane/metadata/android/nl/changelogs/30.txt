@@ -1,0 +1,4 @@
+v1.6.1
+
+- [[OPGELOST]] Het herhaalschema wordt voortaan hersteld na het opnieuw openen ervan;
+- [[OPGELOST]] De schemaknoppen werkten niet na het toevoegen van een anticonceptieschema.
