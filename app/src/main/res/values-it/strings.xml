@@ -15,134 +15,168 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">Ho Preso I Miei Medicinali\?</string>
+    <string name="add">Aggiungi</string>
+    <string name="add_medications">Aggiungi medicinali alla tua lista</string>
+    <string name="medication_name">Nome medicinale</string>
+    <string name="description">Descrizione</string>
+    <string name="select_a_time">seleziona un\'ora</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">Salva</string>
+    <string name="cancel">Annulla</string>
+    <string name="pick_a_time">Seleziona un\'ora prima di salvare</string>
+    <string name="fill_fields">Compila il nome prima di salvare</string>
+    <string name="med_saved">Medicinale salvato</string>
+    <string name="cancelled">Nuovo medicinale annullato</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">Esempio Medicina</string>
+    <string name="midnight">12:00AM</string>
+    <string name="sample_description">Questo è un esempio di medicina. Ha multiple frasi e copre multiple linee.</string>
+    <string name="previous_doses">Dosi precedenti:</string>
+    <string name="i_just_took_it">L\'ho appena presa!</string>
+    <string name="closest_dose_sample">Dose più recente: 13:00 oggi</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">Oggi</string>
+    <string name="yesterday">Ieri</string>
+    <string name="tomorrow">Domani</string>
+    <string name="closest_dose_label">Dose più recente: %1$s</string>
+    <string name="already_took_dose">Hai già preso questa dose
+\nSpero tu non l\'abbia presa di nuovo</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="time_taken">Presa alle: %1$s</string>
+    <string name="delete">elimina</string>
+    <string name="are_you_sure">Sei sicuro\?</string>
+    <string name="medication_delete_warning">Il medicinale verrà eliminato permanentemente</string>
+    <string name="confirm">conferma</string>
+    <string name="took_this_already">Hai già preso questa dose</string>
+    <string name="edit">Modifica</string>
+    <string name="edit_cancelled">Modifica annullata</string>
+    <string name="notifications_enabled">Notifiche abilitate</string>
+    <string name="notifications_disabled">Notifiche disabilitate</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">notifiche promemoria</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">È ora della tua dose</string>
+    <string name="new_medication">Nuovo Medicinale</string>
+    <string name="medication_details">Dettagli Medicinale</string>
+    <string name="edit_medication">Modifica Medicinale</string>
+    <string name="about">Informazioni</string>
+    <string name="app_description">v%1$s Noah Stanford (aka CorruptedArk)
+\n
+\nHo Preso I Miei Medicinali\? è un\'app FOSS per tenere traccia dei medicinali
+\nHo Preso I Miei Medicinali\? è progettato per aiutare a prevenire un utente di saltare le dosi e/o sovradosaggio
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\nHo Preso I Miei Medicinali\? è software libero: puoi ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia la versione 3 della Licenza, sia (a tua scelta) qualsiasi versione successiva.
+\n
+\nHo Preso I Miei Medicinali\? è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza nemmeno la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ AD UNO SCOPO PARTICOLARE. Vedere la GNU General Public License per maggiori dettagli.
+\n
+\nAvresti dovuto ricevere una copia della GNU General Public License insieme a questo programma. In caso contrario, vedi https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Supportami su Librepay</string>
+    <string name="view_the_project_on_github">Guarda il progetto su GitHub</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">Scusa!</string>
+    <string name="okay">Okay</string>
+    <string name="cannot_donate_explanation">Google non consente agli sviluppatori di inserire link dper le donazioni nelle applicazioni per sostenere sè stessi, se non sono esenti da imposte di beneficenza. Se vuoi ancora supportarmi, puoi trovare CorruptedArk su Liberapay in un browser separato. Il mio repository GitHub è un buon punto di partenza.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">Aggiungi un\'altra dose</string>
+    <string name="taken_as_needed">Preso se necessario</string>
+    <string name="hello_blank_fragment">Ciao fragment bianco</string>
+    <string name="select_a_start_date">Data di inizio</string>
+    <string name="time_between_doses">Tempo tra le dosi:</string>
+    <string name="days">Giorno/i</string>
+    <string name="weeks">Settimana/e</string>
+    <string name="months">Mese/i</string>
+    <string name="years">Anno/i</string>
+    <string name="schedule_dose">Programma la dose</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\nInizia %2$s
+\nSi ripete ogni
+\n%3$d giorno/i, %4$d settimana/e,
+\n%5$d mese/i, %6$d anno/i</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">Compila tutte le programmazioni prima di salvare</string>
+    <string name="fill_out_schedule">Compila la programmazione prima di continuare</string>
+    <string name="next_dose_label">Prossima dose: %1$s</string>
+    <string name="taken">Presa</string>
+    <string name="not_taken">Non presa</string>
+    <string name="sort">Ordina</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">Ripristina database</string>
+    <string name="back_up_database">Salva database</string>
+    <string name="database_is_invalid">Il database non è valido</string>
+    <string name="database_restored">Database ripristinato</string>
+    <string name="took_it">Presa</string>
+    <string name="app_name_short">DITMM\?</string>
+    <string name="remind_in_15">Ricordami in 15 minuti</string>
+    <string name="dose_record_delete_warning">La dose registrata sarà eliminata permanentemente.</string>
+    <string name="record_delete_hint">(Premi a lungo una dose registrata per eliminarla)</string>
+    <string name="time_since_dose_sample">Circa 0 giorno/i, 0 ora/e, e 0 minuto/i dall\'ultima dose presa</string>
+    <string name="time_since_dose_template">Circa %1$d giorno/i, %2$d ora/e, e %3$d minuto/i dall\'ultima dose presa</string>
+    <string name="require_photo_proof">Richiedi prova fotografica</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">Dose e prova salvate</string>
+    <string name="failed_to_get_proof">Errore nell\'ottenere la prova</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">Nessuna immagine disponibile</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(Premi su una dose registrata per vedere i dettagli)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="back_up_successful">Salvataggio avvenuto con successo</string>
+    <string name="back_up_failed">Salvataggio fallito</string>
+    <string name="dose_details">Dettagli Dose</string>
+    <string name="medication_active">Medicinale attivo</string>
+    <string name="inactive">Inattivo</string>
+    <string name="medication_type">Tipo Medicinale</string>
+    <string name="undefined">Non definito</string>
+    <string name="type_label_format">Tipo: %1$s</string>
+    <string name="sample_type_label">Tipo: Non definito</string>
+    <string name="rx_number_hint">N° Prescrizione</string>
+    <string name="rx_number_label_format">N° Prescrizione: %1$s</string>
+    <string name="sample_rx_number_label">N° Prescrizione: Non definito</string>
+    <string name="pharmacy">Farmacia</string>
+    <string name="pharmacy_label_format">Farmacia: %1$s</string>
+    <string name="sample_pharmacy_label">Farmacia: Non definito</string>
+    <string name="dose_unit">Unità Dose</string>
+    <string name="dose_amount">Quantità Dose</string>
+    <string name="dose_amount_label_format">%1$s%2$s per dose</string>
+    <string name="sample_dose_amount_label">5mg per dose</string>
+    <string name="remaining_doses">Dosi Rimanenti</string>
+    <string name="sample_remaining_doses_label">10 dosi rimanenti</string>
+    <string name="remaining_doses_label_format">%1$d dosi rimanenti</string>
+    <string name="no_remaining_doses_message">Non ci sono dosi rimanenti
+\nSe questo è sbagliato, aggiorna le dosi rimanenti modificando il medicinale</string>
+    <string name="take_with_food">Da prendere con il cibo</string>
+    <string name="translation_credits">Traduzioni in portoghese brasiliano di mezysinc su GitHub, lnux-usr su GitHub, e Card151915 su Weblate
+\n
+\nTraduzioni in tedesco di jpameli su GitHub
+\n
+\nTraduzioni in francese di Edanas su Weblate
+\n
+\nTraduzioni ebraiche di Yaron su Weblate
+\n
+\nTraduzioni cinese semplificato da luxu su Weblate
+\n
+\nTraduzioni in spagnolo di sguinetti su Weblate, caos30 su Weblate, e nzgha su Weblate
+\n
+\nTraduzioni catalane di caos30 su Weblate
+\n
+\nTraduzione turca di Lion su Weblate
+\n
+\nBug fix di johannes87 su GitHub
+\n
+\n</string>
+    <string name="app_widget_description">Un widget che mostra un singolo medicinale, il tempo passato dall\'ultima dose presa, e un pulsante per segnare una dose presa</string>
+    <string name="choose_a_medication">Scegli Un Medicinale</string>
+    <string name="dose_update_warning">Aggiornerai l\'ora di questa dose presa e cancellerai la prova fotografica se esiste.</string>
+    <string name="birth_control_schedule">Programmazione contraccettivo</string>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
 </resources>
