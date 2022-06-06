@@ -1,0 +1,11 @@
+v1.5.0
+
+Cambiamenti
+- Regolare le viste di testo per utilizzare dimensioni di testo standardizzate
+- Traduzioni tedesche aggiornate da jpameli su GitHub
+
+Aggiunto
+- Aggiunta la possibilità di aggiungere semplici widget schermata iniziale per ogni farmaco
+- Aggiunte le traduzione in cinese (semplificato) da luxu su Weblate
+- Aggiunte le traduzioni in spagnolo di sguinetti su Weblate e caos30 su Weblate
+- Aggiunte le traduzioni catalane da caos30 su Weblate

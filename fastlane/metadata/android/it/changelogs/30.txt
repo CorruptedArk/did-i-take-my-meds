@@ -1,0 +1,5 @@
+v1.6.1
+
+Risolto
+- Default RepeatScheduleDialog ad una normale pianificazione ogni volta che si apre
+- Risolto pulsanti di pianificazione non fanno nulla quando aggiungi da una programmazione di contraccettivo

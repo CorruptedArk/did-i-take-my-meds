@@ -1,0 +1,13 @@
+v1.4.0
+
+Cambiamenti
+- I tipi di farmaci sono ora indicati nella lista principale dei farmaci
+- Traduzioni tedesche aggiornate da jpameli su GitHub
+
+Aggiunto
+- Aggiunta la possibilità di rendere inattivo un farmaco
+- Aggiunta la possibilità di specificare i tipi di farmaci
+- Aggiunta l'opzione di ordinare per tipo di medicinale
+- Aggiunta la possibilità di specificare il numero Rx per ciascun farmaco
+- Aggiunta la possibilità di specificare il dosaggio per ciascun farmaco
+- Altro e traduzioni

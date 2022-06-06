@@ -1,0 +1,7 @@
+v1.6.0
+
+Cambiamenti
+- Scelta di numeri per programmazione non hanno un limite superiore ora
+
+Aggiunto
+- Nuove opzioni per aggiungere facilmente programmazioni contraccettivi 21+7 e 63+7

@@ -1,0 +1,4 @@
+v1.3.1
+
+Risolto
+- Risolto ripristino fallito su alcuni dispositivi

@@ -1,0 +1,12 @@
+v1.3.0
+
+Cambiamenti
+- Padding migliorato
+- I nuovi backup sono ora in formato zip per includere le immagini (i backup più vecchi possono ancora essere ripristinati)
+
+Aggiunto
+- Aggiunta l'opzione di richiedere una foto durante l'assunzione di farmaci
+- Aggiunta una vista per visualizzare i dettagli della registrazione delle dosi
+
+Correzioni
+- Risolto alcune stringhe in formato portoghese brasiliano

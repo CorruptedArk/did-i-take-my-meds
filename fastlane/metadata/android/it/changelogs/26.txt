@@ -1,0 +1,8 @@
+v1.5.1
+
+Cambiamenti
+- Traduzione cinese semplificato aggiornate
+- Traduzioni ebraiche aggiornate
+
+Aggiunto
+- Aggiunta la possibilità di modificare le dosi precedenti

@@ -1,0 +1,11 @@
+v1.2.2
+
+Cambiamenti
+- Convertire il multithreading ExecutorService in Kotlin coroutines
+- Su richiesta popolare, le notifiche saranno ora respinte dopo l'assunzione di una dose
+
+Aggiunto
+- Aggiungere la possibilità di cancellare una dose registrata quando si preme accidentalmente il tasto "presa"
+
+Correzioni
+- Risolto crash causati dal tentativo senza successo di ottenere i dati dal database

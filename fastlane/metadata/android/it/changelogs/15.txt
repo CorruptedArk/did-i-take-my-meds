@@ -1,0 +1,4 @@
+v1.2.3
+
+Risolto
+- Risolto l'applicazione che non riceve l'intento di avvio o l'intento di aggiornamento del pacchetto

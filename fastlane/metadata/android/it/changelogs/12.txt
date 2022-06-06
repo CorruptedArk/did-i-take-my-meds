@@ -1,0 +1,14 @@
+v1.2.0
+
+Cambiamenti
+- Funzionalità 'aggiungi farmaci' spostata su un pulsante ad azione fluttuante
+- Traduzioni tedesche aggiornate da jpameli su GitHub
+- Traduzioni aggiornate del portoghese brasiliano da mezysinc su GitHub
+- Cambiato l'etichetta di default launcher di abbreviazione "DITMM?"
+
+Aggiunte
+- Aggiunta dei backup e ripristino del database
+- Aggiunta azione di notifica per l'assunzione di farmaci
+- Aggiunta azione di notifica per inviare nuovamente una notifica in 15 minuti
+
+Altri fix

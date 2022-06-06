@@ -1,0 +1,8 @@
+v1.2.4
+
+Cambiamenti
+- L'icona di notifica e i colori del testo di azione ora sono conformi alle WCAG, tuttavia se si cambia il tema del dispositivo, una notifica attiva non cambierà i colori per rimanere conformi. Le nuove notifiche dopo la modifica saranno nuovamente conformi.
+
+Risolto
+- Risolto un problema che non consentiva orari con non zero, intere settimane
+Altri fix

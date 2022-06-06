@@ -1,0 +1,6 @@
+v1.5.3
+
+Cambiamenti
+- Aggiornate traduzioni spagnole di nzgha su Weblate
+- Aggiornate traduzioni in portoghese brasiliano di Card151915 su Weblate
+- Aggiornate traduzioni tedesche di jpameli su GitHub

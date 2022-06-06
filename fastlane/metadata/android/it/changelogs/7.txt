@@ -1,0 +1,11 @@
+v1.1.0
+
+Modifiche:
+- Cliccando su una notifica si apre ora la vista dettagliata per il suo farmaco
+
+Aggiunte:
+- Programmazione di dosi multiple per farmaco con tempi di ripetizione arbitrari
+- Possibilità di aggiungere i farmaci necessari senza orari
+- Traduzioni in portoghese brasiliano di mezysinc su GitHub
+- Pulsante posteriore nelle barre degli strumenti
+- Possibilità di ordinare secondo il tempo di dose più vicino e secondo il nome del medicinale

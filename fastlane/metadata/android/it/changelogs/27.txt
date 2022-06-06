@@ -1,0 +1,8 @@
+v1.5.2
+
+Cambiamenti
+- Aggiornate traduzioni in ebraico
+- Aggiornate traduzioni cinese semplificato
+
+Risolto
+- Risolti i formati di data e ora del cinese semplificato

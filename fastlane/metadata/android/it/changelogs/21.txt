@@ -1,0 +1,10 @@
+v1.3.2
+
+Cambiamenti
+- Aspetto ottimizzato dell'attività di dettaglio della dose
+
+Aggiunto
+- Aggiunto Toast feedback sul backup del database
+
+Risolto
+- Risolti alcuni crash dopo il ripristino del database

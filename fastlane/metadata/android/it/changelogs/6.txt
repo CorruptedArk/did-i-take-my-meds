@@ -1,0 +1,4 @@
+v1.0.5
+
+Risolto:
+- Risolto notifiche non impostate dopo aver aggiunto medicinale

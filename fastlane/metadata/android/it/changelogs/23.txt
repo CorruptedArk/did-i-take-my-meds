@@ -1,0 +1,4 @@
+v1.4.1
+
+Risolto
+- Risolto etichette che mostravano testo incorretto nei dettagli dell'attivtà del medicinale

@@ -1,0 +1,4 @@
+v1.0.1
+
+Risolto:
+- Risolto notifiche che non venivano inviate

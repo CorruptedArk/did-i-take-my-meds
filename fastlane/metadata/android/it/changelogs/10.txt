@@ -1,0 +1,5 @@
+v1.1.3
+
+Correzioni:
+- Risolto i calcoli della dose più vicina non corretti per le dosi supplementari con tempi diversi tra la prima dose dell'elenco
+- Risolto il tempo non corretto tra la visualizzazione su pulsanti di programmazione selezionata per le dosi aggiuntive con tempo diverso tra la prima dose nell'elenco

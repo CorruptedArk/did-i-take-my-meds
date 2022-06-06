@@ -1,0 +1,3 @@
+Ho Preso I Miei Medicinali? aiuta a tenere traccia di quando prendere farmaci. È progettato per aiutare a prevenire un utente di saltare le dosi e/o sovradosaggio.
+
+Ho Preso I Miei Medicinali? consente a un utente di salvare più farmaci con orari complessi. Ogni farmaco può innescare una notifica di promemoria indipendente. Inoltre, questa applicazione consente a un utente di registrare quando prende una dose. Come parte di una routine di farmaci, questa applicazione può aiutare a prevenire le overdose e le dosi saltate.

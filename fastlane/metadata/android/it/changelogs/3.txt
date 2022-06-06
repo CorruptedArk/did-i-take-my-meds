@@ -1,0 +1,4 @@
+v1.0.2
+
+Cambiamenti:
+- Far partire le notifiche all'ora esatta anche se il telefono è inattivo

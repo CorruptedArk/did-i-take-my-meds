@@ -1,0 +1,4 @@
+v1.2.1
+
+Cambiato
+- Scurito sfondo per migliorare contrasto

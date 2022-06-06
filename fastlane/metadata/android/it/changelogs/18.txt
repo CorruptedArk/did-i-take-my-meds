@@ -1,0 +1,8 @@
+v1.2.6
+
+Cambiamenti
+- Rinnovo periodico dell'interfaccia utente riattivato senza causare il congelamento
+- Traduzioni brasiliane in portoghese aggiornate da lnux-usr su GitHub
+
+Aggiunto
+- Aggiunta un'etichetta all'attività di dettaglio del farmaco che tiene traccia del tempo trascorso dall'ultima dose assunta

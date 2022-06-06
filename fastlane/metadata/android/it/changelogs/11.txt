@@ -1,0 +1,12 @@
+v1.1.4
+
+Cambiamenti
+- Le notifiche ora rimangono dopo il clic a meno che non vengano cancellate manualmente
+- Le notifiche possono ora aprire un farmaco più di una volta con un clic
+
+Addizione
+- Aggiunte traduzioni in tedesco da jpameli su GitHub
+
+Correzioni
+- Risolto EditMedActivity che mostrava sempre le notifiche abilitate quando aperto
+- Risolto notifiche che a volte aprono farmaci sbagliati cliccandoci
