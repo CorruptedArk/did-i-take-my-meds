@@ -37,12 +37,12 @@
     <string name="i_just_took_it">Dawka przyjęta!</string>
     <string name="closest_dose_sample">Następna dawka: 13:00 dzisiaj</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today">Dzisiaj</string>
-    <string name="yesterday">Wczoraj</string>
-    <string name="tomorrow">Jutro</string>
+    <string name="today">dzisiaj</string>
+    <string name="yesterday">wczoraj</string>
+    <string name="tomorrow">jutro</string>
     <string name="closest_dose_label">Następna dawka: %1$s</string>
-    <string name="already_took_dose">Dawka została już przyjęta
-\nMam nadzieję, że nie została przyjęta ponownie</string>
+    <string name="already_took_dose">Dawka została już przyjęta.
+\nMam nadzieję, że nie została przyjęta ponownie.</string>
     <string name="date_format">dd/MM/yyyy</string>
     <string name="time_taken">Czas przyjęcia: %1$s</string>
     <string name="delete">Usuń</string>
@@ -57,22 +57,22 @@
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
     <string name="channel_description">Przypomnienia</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose">Pora na dawkę</string>
+    <string name="time_for_your_dose">Czas przyjąć lek</string>
     <string name="new_medication">Nowy lek</string>
     <string name="medication_details">Przyjmowanie leku</string>
     <string name="edit_medication">Edytuj lek</string>
     <string name="about">O aplikacji</string>
     <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)
 \n
-\nLeki przyjęte\? is a FOSS app to keep track of medications
-\nDid I Take My Meds\? is designed to help prevent a user from skipping doses and/or overdosing
-\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\nLeki przyjęte\? to wolne i otwarte oprogramowanie pozwalające śledzić przyjmowanie leków
+\nLeki przyjęte\? ma na celu zapobieganie pomijaniu dawek i przedawkowaniu leku przez użytkownika
+\nPrawa autorskie zastrzeżone © 2021 Noah Stanford noahstandingford@gmail.com
 \n
-\nDid I Take My Meds\? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+\nLeki przyjęte\? jest wolnym oprogramowaniem: możesz je rozprowadzać i/lub modyfikować zgodnie z warunkami licencji wolnego i otwartego oprogramowania GPL opublikowanej przez Fundacja Wolnego Oprogramowania, w wersji 3 tej Licencji lub (według własnego uznania) w dowolnej późniejszej wersji.
 \n
-\nLeki przyjęte\? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+\nLeki przyjęte\? jest rozpowszechniana z nadzieją, że będzie przydatna, ale BEZ JAKIEJKOLWIEK GWARANCJI; nawet bez domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ lub PRZYDATNOŚCI DO OKREŚLONEGO CELU. Więcej szczegółów można znaleźć w licencji wolnego i otwartego oprogramowania GPL.
 \n
-\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+\nWraz z tą aplikacją powinieneś otrzymać kopię licencji wolnego i otwartego oprogramowania GPL. Jeśli tak się nie stało, wejdź na https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Wesprzyj nas na Liberapay</string>
     <string name="view_the_project_on_github">Zobacz projekt na GitHub</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
@@ -83,7 +83,7 @@
     <string name="cannot_donate_explanation">Google nie zezwala programistom na umieszczanie w aplikacjach linków do darowizn w celu wspierania swojej działalności, jeśli nie są to organizacje charytatywne zwolnione z podatku. Jeśli nadal chcesz nas wesprzeć, możesz wyszukać CorruptedArk na Liberapay w osobnej przeglądarce. Moje repozytorium na GitHub to dobre miejsce, by zacząć.</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
     <string name="add_another_dose">Dodaj kolejną dawkę</string>
-    <string name="taken_as_needed">Przyjmowana w razie potrzeby</string>
+    <string name="taken_as_needed">Przyjmowany w razie potrzeby</string>
     <string name="hello_blank_fragment">Witaj pusty fragmencie</string>
     <string name="select_a_start_date">Data rozpoczęcia</string>
     <string name="time_between_doses">Odstęp między dawkami:</string>
@@ -97,11 +97,11 @@
     <string name="schedule_format">%1$s
 \nRozpoczyna się %2$s
 \nPowtarza się co
-\n%3$d dzień/dni, %4$d tyg.
-\n%5$d miesiąc(e), %6$d rok/lata</string>
+\n%3$d dn., %4$d tyg.
+\n%5$d mies., %6$d rok/lata</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules">Wypełnij wszystkie harmonogramy przed zapisaniem</string>
-    <string name="fill_out_schedule">Uzupełnij harmonogram przed zatwierdzeniem</string>
+    <string name="fill_out_all_schedules">Uzupełnij wszystkie plany dawkowania przed zapisaniem.</string>
+    <string name="fill_out_schedule">Uzupełnij plan dawkowania przed zatwierdzeniem.</string>
     <string name="next_dose_label">Najbliższa dawka: %1$s</string>
     <string name="taken">Przyjęto</string>
     <string name="not_taken">Nie przyjęto</string>
@@ -115,7 +115,7 @@
     <string name="app_name_short">Leki\?</string>
     <string name="remind_in_15">Przypomnienie za 15 min</string>
     <string name="dose_record_delete_warning">Zapis przyjmowania leku zostanie trwale usunięty.</string>
-    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem)</string>
+    <string name="record_delete_hint">(W celu usunięcia przytrzymaj pole z zapisem).</string>
     <string name="time_since_dose_sample">Około 0 dn., 0 godz. i 0 min od ostatniej przyjętej dawki</string>
     <string name="time_since_dose_template">Około %1$d dn., %2$d godz. i %3$d min od ostatniej przyjętej dawki</string>
     <string name="require_photo_proof">Wymagane zdjęcie potwierdzające</string>
@@ -126,7 +126,7 @@
     <string name="dose_time_key" translatable="false">dose_time</string>
     <string name="no_image_available">Zdjęcie jest niedostępne</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint">(Przytrzymaj, aby usunąć)</string>
+    <string name="record_detail_hint">(Przytrzymaj, aby usunąć).</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
     <string name="back_up_successful">Pomyślnie utworzono kopię zapasową</string>
@@ -144,16 +144,15 @@
     <string name="pharmacy">Apteka</string>
     <string name="pharmacy_label_format">Apteka: %1$s</string>
     <string name="sample_pharmacy_label">Apteka: nie określono</string>
-    <string name="dose_unit">Jednostka dawkowania</string>
-    <string name="dose_amount">Ilość dawki</string>
+    <string name="dose_unit">Sposób dawkowania</string>
+    <string name="dose_amount">Wielkość dawki</string>
     <string name="dose_amount_label_format">%1$s%2$s/dawka</string>
     <string name="sample_dose_amount_label">5mg/dawka</string>
     <string name="remaining_doses">Pozostałe dawki</string>
     <string name="sample_remaining_doses_label">10 pozostałych dawek</string>
     <string name="remaining_doses_label_format">Pozostałe dawki: %1$d</string>
-    <string name="no_remaining_doses_message">Brak pozostałych dawek.
-\nJeśli to jest błąd, zaktualizuj pozostałe dawki poprzez edytowanie leku</string>
-    <string name="take_with_food">Brać z jedzeniem</string>
+    <string name="no_remaining_doses_message">Brak pozostałych dawek. Jeśli to jest błąd, zaktualizuj pozostałe dawki poprzez edytowanie leku</string>
+    <string name="take_with_food">Przyjmowany z jedzeniem</string>
     <string name="translation_credits">Brazylijsko-portugalskie tłumaczenia mezysinc na GitHub, Inux-usr na GitHub i Card151915 na Weblate
 \n
 \nNiemieckie tłumaczenia jpameli na GitHub
