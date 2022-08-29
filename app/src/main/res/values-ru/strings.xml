@@ -24,12 +24,12 @@
     <string name="time_picker_tag" translatable="false">time_picker</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
-    <string name="pick_a_time"/>
-    <string name="fill_fields"/>
-    <string name="med_saved"/>
+    <string name="pick_a_time">Выберите время перед сохранением</string>
+    <string name="fill_fields">Заполните имя перед сохранением</string>
+    <string name="med_saved">Лекарство сохранено</string>
     <string name="cancelled">Новое лекарство отменено</string>
-    <string name="time_24"/>
-    <string name="time_12"/>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
     <string name="sample_medicine">Пример лекарства</string>
     <string name="midnight">12:00</string>
     <string name="sample_description">Это пример описания лекарства. Он состоит из нескольких предложений и охватывает несколько строк.</string>
@@ -43,7 +43,7 @@
     <string name="closest_dose_label">Ближайшая доза: %1$s</string>
     <string name="already_took_dose">Вы уже приняли эту дозу
 \nНадеемся, вы не взяли ее снова</string>
-    <string name="date_format"/>
+    <string name="date_format">d MMM, yyyy</string>
     <string name="time_taken">Времени принятия: %1$s</string>
     <string name="delete">удалить</string>
     <string name="are_you_sure">Вы уверены\?</string>
@@ -100,8 +100,8 @@
 \n%3$d дн., %4$d нед.,
 \n%5$d мес., %6$d г.</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"/>
-    <string name="fill_out_schedule"/>
+    <string name="fill_out_all_schedules">Заполните все расписания перед сохранением</string>
+    <string name="fill_out_schedule">Заполните расписание перед подтверждением</string>
     <string name="next_dose_label">Следующая доза: %1$s</string>
     <string name="taken">Принято</string>
     <string name="not_taken">Не принято</string>
@@ -111,12 +111,12 @@
     <string name="back_up_database">Резервное копирование базы данных</string>
     <string name="database_is_invalid">База данных недействительна</string>
     <string name="database_restored">База данных восстановлена</string>
-    <string name="took_it"/>
+    <string name="took_it">Принято</string>
     <string name="app_name_short">DITMM\?</string>
     <string name="remind_in_15">Напомнить через 15 минут</string>
     <string name="dose_record_delete_warning">Запись дозы будет безвозвратно удалена.</string>
     <string name="record_delete_hint">(Нажмите и удерживайте запись, чтобы удалить)</string>
-    <string name="time_since_dose_sample"/>
+    <string name="time_since_dose_sample">Примерно 0 дня(ей), 0 часа(ов) и 0 минут(ы) с момента последнего приема дозы</string>
     <string name="time_since_dose_template"/>
     <string name="require_photo_proof">Требовать фотодоказательство</string>
     <string name="image_path" translatable="false">images</string>
@@ -131,13 +131,13 @@
     <string name="take_med_key" translatable="false">take_med</string>
     <string name="back_up_successful"/>
     <string name="back_up_failed"/>
-    <string name="dose_details"/>
-    <string name="medication_active"/>
-    <string name="inactive"/>
-    <string name="medication_type"/>
-    <string name="undefined"/>
-    <string name="type_label_format"/>
-    <string name="sample_type_label"/>
+    <string name="dose_details">Подробности о дозе</string>
+    <string name="medication_active">Лекарство активно</string>
+    <string name="inactive">Неактивно</string>
+    <string name="medication_type">Тип лекарства</string>
+    <string name="undefined">Не определено</string>
+    <string name="type_label_format">Тип: %1$s</string>
+    <string name="sample_type_label">Тип: не определено</string>
     <string name="rx_number_hint"/>
     <string name="rx_number_label_format"/>
     <string name="sample_rx_number_label"/>
@@ -154,9 +154,9 @@
     <string name="no_remaining_doses_message"/>
     <string name="take_with_food"/>
     <string name="translation_credits"/>
-    <string name="app_widget_description"/>
-    <string name="choose_a_medication"/>
-    <string name="dose_update_warning"/>
+    <string name="app_widget_description">Виджет, отображающий отдельное лекарство, время, прошедшее с момента последней принятой дозы, и кнопку для отправки принятой дозы</string>
+    <string name="choose_a_medication">Выберите лекарство</string>
+    <string name="dose_update_warning">Вы обновите время приема этой дозы и удалите связанное изображение с доказательством, если оно существует.</string>
     <string name="birth_control_schedule"/>
     <string name="_21_7"/>
     <string name="_63_7"/>
