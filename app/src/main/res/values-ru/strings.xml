@@ -124,7 +124,7 @@
     <string name="dose_and_proof_saved"/>
     <string name="failed_to_get_proof"/>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"/>
+    <string name="no_image_available">Изображение недоступно</string>
     <string name="temp_dir" translatable="false">tmp</string>
     <string name="record_detail_hint"/>
     <string name="time_taken_key" translatable="false">time_taken</string>
