@@ -2,9 +2,9 @@ v1.2.0
 
 Mudanças
 - Movemos a funcionalidade "adicionar medicação" para um botão de ação flutuante
-- Atualizamos as traduções alemães por jpameli no GitHub
+- Atualizamos a tradução alemã por jpameli no GitHub
 - Ajustamos as margens pro layout ficar com uma cara melhor
-- Atualizamos as traduções português brasileiras por mezysinc no GitHub
+- Atualizamos a tradução de português brasil por mezysinc no GitHub
 - Mudamos o rótulo do iniciador padrão para a abreviação "JTMR?" (DITMM?)
 
 Adições

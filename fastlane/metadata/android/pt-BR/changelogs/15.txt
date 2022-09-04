@@ -1,0 +1,4 @@
+v1.2.3
+
+Correções
+- Corrigido aplicativo não recebendo propósito de inicialização (boot intent) ou propósito de atualização de pacote (package update intent)
