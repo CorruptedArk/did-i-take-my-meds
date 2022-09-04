@@ -1,3 +1,2 @@
-O App, Já tomou remédios? ajuda a manter o controle de remédios que precisam ser tomados. Além disso ajuda a não esquser e não multiplicar as mesmas doses de remédios.
-
-Já tomou remédios? permite a usuário salvar vários remédios com horários diferentes. Cada remédio pode ter uma notificação de lembrete independente. Além disso, este aplicativo permite registrar quando uma dose foi tomada e com funcionalidade de agenda de remédios ajuda a prevenir overdoses e avisa para não esquecer de tomá-los.
+O app Já Tomei Meus Remédios? ajuda a manter registros de quais remédios e quando precisam ser tomados. Com o objetivo de ajudar o usuario a não esquecer de tomar seus remédios ou de repetir doses por acidentes.
+Já Tomei Meus Remédios? permite que o usuário salve vários cronogramas remédios com horários diferentes. Cada remédio pode ter uma notificação de lembrete independente. Além disso, este aplicativo permite registrar quando uma dose foi tomada e com funcionalidade de agenda de remédios ajuda a prevenir overdoses e avisa para não esquecer de tomá-los.

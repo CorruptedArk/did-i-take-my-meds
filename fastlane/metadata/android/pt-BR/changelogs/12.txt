@@ -1,0 +1,16 @@
+v1.2.0
+
+Mudanças
+- Movemos a funcionalidade "adicionar medicação" para um botão de ação flutuante
+- Atualizamos as traduções alemães por jpameli no GitHub
+- Ajustamos as margens pro layout ficar com uma cara melhor
+- Atualizamos as traduções português brasileiras por mezysinc no GitHub
+- Mudamos o rótulo do iniciador padrão para a abreviação "JTMR?" (DITMM?)
+
+Adições
+- Adicionamos restauração e backup da base de dados
+- Adicionamos ação de notificação para "tomar remédio"
+- Adicionamos ação de notificação para "reenviar notificação daqui 15 minutos"
+
+Correções
+- Corrigimos falhas causadas ao clicar numa notificação de uma medicação deletada
