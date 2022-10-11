@@ -28,7 +28,7 @@
     <string name="med_saved">Medicamento guardado</string>
     <string name="cancelled">Nuevo medicamento cancelado</string>
     <string name="time_24">H:mm</string>
-    <string name="time_12">h:mma</string>
+    <string name="time_12">Hora</string>
     <string name="sample_medicine">Medicamento de muestra</string>
     <string name="midnight">12:00AM</string>
     <string name="sample_description">Este es un ejemplo de descripción de un medicamento. Tiene varias frases y abarca varias líneas.</string>
@@ -39,9 +39,9 @@
     <string name="yesterday">Ayer</string>
     <string name="tomorrow">Mañana</string>
     <string name="closest_dose_label">Dosis más cercana: %1$s</string>
-    <string name="already_took_dose">Ya ha tomado esta dosis.
-\nEspero que no la haya vuelto a tomar.</string>
-    <string name="date_format">MMM d, yyyy</string>
+    <string name="already_took_dose">Ya has tomado esta dosis
+\nEspero que no la tomes de nuevo</string>
+    <string name="date_format">Més Día, Año</string>
     <string name="time_taken">Cuándo se tomó: %1$s</string>
     <string name="delete">borrar</string>
     <string name="are_you_sure">¿Está seguro\?</string>
@@ -132,30 +132,32 @@
     <string name="remaining_doses">Dosis restantes</string>
     <string name="sample_remaining_doses_label">10 dosis restantes</string>
     <string name="remaining_doses_label_format">%1$d dosis restantes</string>
-    <string name="no_remaining_doses_message">No hay dosis restantes.
-\nSi esto es incorrecto, actualice las dosis restantes editando la medicación.</string>
+    <string name="no_remaining_doses_message">No hay dosis restantes
+\nSi esto es incorrecto, actualice las dosis restantes editando la medicación</string>
     <string name="take_with_food">Tomar con alimentos</string>
-    <string name="translation_credits">Traducción al portugués brasileño por mezysinc en GitHub, lnux-usr en GitHub, y Card151915 en Weblate.
+    <string name="translation_credits">Traducciones al portugués brasileño por mezysinc en GitHub, lnux-usr en GitHub y Card151915 en Weblate
 \n
-\nTraducción al alemán por jpameli en GitHub.
+\nTraducciones al alemán por jpameli en GitHub
 \n
-\nTraducción al francés por Edanas en Weblate.
+\nTraducciones al francés por Edanas en Weblate
 \n
-\nTraducción al hebreo por Yaron en Weblate.
+\nTraducciones al hebreo por Yaron en Weblate
 \n
-\nTraducción al chino simplificado por luxu en Weblate.
+\nTraducciones al chino simplificado por luxu en Weblate
 \n
-\nTraducción al español por sguinetti on Weblate, caos30 on Weblate, y nzgha en Weblate.
+\nTraducciones al español por sguinetti en Weblate, caos30 en Weblate y nzgha en Weblate
 \n
-\nTraducción al catalán por caos30 en Weblate.
+\nTraducción al catalán por caos30 en Weblate
 \n
-\nBug fix by johannes87 on GitHub
+\nTraducción al turco por Lion en Weblate
+\n
+\nCorrección de errores por johannes87 en GitHub
 \n
 \n</string>
-    <string name="app_widget_description">Un widget que muestra un solo medicamento, el tiempo transcurrido desde la última dosis tomada, y un botón para comunicar que se ha tomado una dosis.</string>
+    <string name="app_widget_description">Un widget que muestra un solo medicamento, el tiempo transcurrido desde la última dosis tomada y un botón para dosis tomada</string>
     <string name="choose_a_medication">Escoja un medicamento</string>
     <string name="dose_update_warning">Se actualizará el tiempo de toma de esta dosis y se borrará la imagen de prueba asociada si existe.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">calendario de control de toma de la píldora anticonceptiva</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
