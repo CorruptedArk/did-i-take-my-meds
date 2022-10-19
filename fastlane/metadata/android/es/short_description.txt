@@ -1,0 +1,1 @@
+Una aplicación para administrar y rastrear las dosis de medicamentos

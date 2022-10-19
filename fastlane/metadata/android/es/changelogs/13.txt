@@ -1,0 +1,4 @@
+v1.2.1
+
+Cambiar
+- Oscurecer el fondo para mejorar el contraste

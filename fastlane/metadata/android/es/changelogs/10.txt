@@ -1,0 +1,5 @@
+v1.1.3
+
+Correcciones:
+- Corregir los cálculos incorrectos de la dosis más cercana para las dosis adicionales con diferente tiempo entre que la primera dosis en la lista
+- Corrección de la visualización incorrecta del tiempo entre los botones de selección del programa para las dosis adicionales con un tiempo entre ellas diferente al de la primera dosis de la lista

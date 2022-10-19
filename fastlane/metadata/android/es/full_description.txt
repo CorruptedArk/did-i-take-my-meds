@@ -1,0 +1,3 @@
+Did I Take My Meds? ayuda a llevar la cuenta de cuándo tomar los medicamentos. Está diseñado para ayudar a evitar que el usuario se salte las dosis y/o tome una sobredosis.
+
+Did I Take My Meds? permite al usuario guardar varios medicamentos con horarios complejos. Cada medicamento puede activar una notificación de recordatorio independiente. Además, esta aplicación permite al usuario registrar cuándo toma una dosis. Como parte de una rutina de medicación, esta aplicación puede ayudar a prevenir las sobredosis y las dosis omitidas.

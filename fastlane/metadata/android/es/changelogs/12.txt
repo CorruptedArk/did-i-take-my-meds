@@ -1,0 +1,16 @@
+v1.2.0
+
+Cambios
+- Mover la funcionalidad ’agregar medicación' a un botón de acción flotante
+- Traducciones al alemán actualizadas por jpameli en GitHub
+- Márgenes ajustados para hacer que los diseños se vean más agradables
+- Traducciones al portugués brasileño actualizadas por mezysinc en GitHub
+- Cambió la etiqueta del lanzador por defecto a la abreviatura «DITMM?»
+
+Adiciones
+- Añadido copia de seguridad y restauración de la base de datos
+- Acciones de notificación añadidas para tomar medicamentos
+- Acciones de notificación añadidas para reenviar una notificación en 15 minutos
+
+Fijaciones
+- Arreglar los accidentes causados por hacer clic en una notificación de un medicamento eliminado

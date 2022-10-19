@@ -1,0 +1,13 @@
+v1.2.2
+
+Cambios
+- Convertir ExecutorService multithreading en Kotlin coroutines
+- Actualizar colores para cumplir con las Directrices de Accesibilidad de Contenido Web
+- Por demanda popular, las notificaciones se desestimarán después de tomar una dosis
+
+Adiciones
+- Añadir opción para borrar un registro de dosis cuando se pulsa accidentalmente el botón «tomar»
+
+Fijaciones
+- Se han corregido los fallos causados por intentar sin éxito obtener datos de la base de datos
+- Fija extraña vista ciclismo en la pulsación del botón trasero

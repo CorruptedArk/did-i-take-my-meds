@@ -1,0 +1,12 @@
+v1.1.4
+
+Cambios
+- Las notificaciones ahora permanecen después de hacer clic a menos que se cancelen manualmente
+- Las notificaciones ahora pueden abrir un medicamento más de una vez al hacer clic
+
+Adiciones
+- Se han añadido traducciones alemanas de jpameli en GitHub
+
+Fijaciones
+- Corregido EditMedActivity siempre mostrando las notificaciones habilitadas cuando se abre
+- Corregido notificaciones a veces abriendo medicamentos equivocados al hacer clic
