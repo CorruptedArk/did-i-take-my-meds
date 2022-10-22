@@ -1,0 +1,11 @@
+v1.2.4
+
+Cambios
+- Icono de notificación y colores de texto de acción ahora cumplen con WCAG, sin embargo, si cambia el tema del dispositivo, una notificación activa no cambiará los colores para seguir cumpliendo. Las nuevas notificaciones después del cambio serán conformes de nuevo.
+- Las notificaciones deben reaparecer ahora en el arranque y el reemplazo del paquete si no se toman, pero estas características dependen de si el sistema lo permite
+
+Adiciones
+- Las actividades se actualizan cuando cambia la dosis más cercana
+
+Fijar
+- Solucione un problema que no permitía horarios con semanas de número entero distintas de cero

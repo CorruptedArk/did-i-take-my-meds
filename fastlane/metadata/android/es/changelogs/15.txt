@@ -1,0 +1,4 @@
+v1.2.3
+
+Fijar
+- Arreglar la aplicación que no recibe la intent de arranque o la intent de actualización del paquete
