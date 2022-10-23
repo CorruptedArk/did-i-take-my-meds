@@ -1,0 +1,8 @@
+v1.2.6
+
+Cambios
+- Reactivado el refresco periódico de la interfaz de usuario sin causar congelación
+- Traducciones al portugués brasileño actualizadas por lnux-usr en GitHub
+
+Adición
+- Se ha añadido una etiqueta a la actividad de detalle de la medicación que registra el tiempo transcurrido desde la última dosis tomada
