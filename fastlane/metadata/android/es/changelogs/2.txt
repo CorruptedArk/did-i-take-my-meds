@@ -1,0 +1,4 @@
+v1.0.1
+
+Corregido:
+- Arreglar las notificaciones que no se muestran

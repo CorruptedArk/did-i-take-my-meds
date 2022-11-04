@@ -1,0 +1,12 @@
+v1.3.0
+
+Cambios
+- Mejora del relleno
+- Las nuevas copias de seguridad están ahora en formato zip para incluir las imágenes (las copias de seguridad más antiguas pueden seguir siendo restauradas)
+
+Agregados
+- Se ha añadido la opción para requerir una foto cuando se toman los medicamentos
+- Se ha añadido una vista para ver los detalles del registro de las dosis
+
+Correcciones
+- Se han corregido algunas cadenas de formato en portugués brasileño
