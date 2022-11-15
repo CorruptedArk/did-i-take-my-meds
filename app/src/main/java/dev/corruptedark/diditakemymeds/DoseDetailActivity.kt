@@ -256,7 +256,7 @@ class DoseDetailActivity : AppCompatActivity() {
 
                 doseRecord?.apply {
                     val medication = medicationDao(context).get(medId)
-                    medication.doseRecord.remove(this)
+                    medication.removeTakenDose(this, false)
 
                     val newRecord = DoseRecord(workingCalendar.timeInMillis, this.closestDose)
                     medication.addNewTakenDose(newRecord)

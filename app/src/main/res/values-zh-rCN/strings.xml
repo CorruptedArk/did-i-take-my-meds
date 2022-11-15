@@ -162,4 +162,8 @@
     <string name="birth_control_schedule">Birth control schedule</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
+    <string name="was_this_dose_really_taken">Was this dose really taken?</string>
+    <string name="remaining_doses_correction_message">If not, the number of remaining doses will be corrected</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>

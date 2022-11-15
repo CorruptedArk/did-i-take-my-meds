@@ -467,6 +467,19 @@ data class Medication (var name: String,
         doseRecord.sort()
     }
 
+    fun removeTakenDose(doseIndex: Int, realDose: Boolean) {
+        doseRecord.removeAt(doseIndex)
+        if (!realDose && remainingDoses >= 0) {
+            remainingDoses++
+        }
+    }
+
+    fun removeTakenDose(takenDose: DoseRecord, realDose: Boolean) {
+        if (doseRecord.remove(takenDose) && !realDose && remainingDoses >= 0) {
+            remainingDoses++
+        }
+    }
+
     fun isAsNeeded(): Boolean {
         return hour < 0 || minute < 0 || startDay < 0 || startMonth < 0 || startYear < 0
     }
