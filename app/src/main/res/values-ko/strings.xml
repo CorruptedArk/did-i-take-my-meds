@@ -15,134 +15,139 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">약 먹었나\?</string>
+    <string name="add">추가</string>
+    <string name="add_medications">약을 목록에 추가</string>
+    <string name="medication_name">약품명</string>
+    <string name="description">설명</string>
+    <string name="select_a_time">시간 선택</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">저장</string>
+    <string name="cancel">취소</string>
+    <string name="pick_a_time">저장 전에 먼저 시간을 설정하세요</string>
+    <string name="fill_fields">저장 전에 먼저 이름을 적으세요</string>
+    <string name="med_saved">약품 저장됨</string>
+    <string name="cancelled">새 약품 저장 취소됨</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">약품 보기</string>
+    <string name="midnight">오전 12:00</string>
+    <string name="sample_description">이것은 약품 설명 보기입니다. 여러 문장이 있으며 여러 줄에 걸쳐 있습니다.</string>
+    <string name="previous_doses">이전 투약:</string>
+    <string name="i_just_took_it">방금 투여했어!</string>
+    <string name="closest_dose_sample">최근 투약: 오늘 오후 1:00</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">오늘</string>
+    <string name="yesterday">어제</string>
+    <string name="tomorrow">내일</string>
+    <string name="closest_dose_label">가장 가까운 투약시간: %1$s</string>
+    <string name="already_took_dose">이미 이번 회차에 약을 투여했습니다
+\n다시 투여한 건 아니길 바라요</string>
+    <string name="date_format">yyyy MMM d</string>
+    <string name="time_taken">먹은 시간: %1$s</string>
+    <string name="delete">지우기</string>
+    <string name="are_you_sure">확실한가요\?</string>
+    <string name="medication_delete_warning">이 약품이 영구적으로 삭제됩니다</string>
+    <string name="confirm">확인</string>
+    <string name="took_this_already">이미 투약함</string>
+    <string name="edit">수정</string>
+    <string name="edit_cancelled">수정 취소됨</string>
+    <string name="notifications_enabled">알림 설정됨</string>
+    <string name="notifications_disabled">알림 설정 안 됨</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">투약 알림</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">투약할 시간입니다</string>
+    <string name="new_medication">새 약품</string>
+    <string name="medication_details">약품 정보</string>
+    <string name="edit_medication">약품 수정</string>
+    <string name="about">정보</string>
+    <string name="app_description"/>
+    <string name="support_me_on_liberapay">Liberapay에서 후원</string>
+    <string name="view_the_project_on_github">깃허브에서 프로젝트 보기</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry"/>
+    <string name="okay">확인</string>
+    <string name="cannot_donate_explanation"/>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">투약시간 추가</string>
+    <string name="taken_as_needed">필요시 투여</string>
+    <string name="hello_blank_fragment">안녕 빈 프래그먼트</string>
+    <string name="select_a_start_date">시작일</string>
+    <string name="time_between_doses">투약 시간간격:</string>
+    <string name="days">일</string>
+    <string name="weeks">주</string>
+    <string name="months">개월</string>
+    <string name="years">년</string>
+    <string name="schedule_dose">투약시간 설정</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\n%2$s날 시작
+\n매 %6$d 년 %5$d 개월
+\n%4$d 주 %3$d 일마다 반복</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">저장 전 모든 투약일정을 추가하세요</string>
+    <string name="fill_out_schedule">확인 전 투약일정을 설정하세요</string>
+    <string name="next_dose_label">다음 투약: %1$s</string>
+    <string name="taken">투약완료</string>
+    <string name="not_taken">투약 필요</string>
+    <string name="sort">정렬</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">데이터베이스 복원</string>
+    <string name="back_up_database">데이터베이스 백업</string>
+    <string name="database_is_invalid">데이터베이스가 올바르지 않음</string>
+    <string name="database_restored">데이터베이스 복원됨</string>
+    <string name="took_it">투약함</string>
+    <string name="app_name_short">약 먹었나\?</string>
+    <string name="remind_in_15">15분 후 다시 알림</string>
+    <string name="dose_record_delete_warning">이 투약기록이 영구적으로 삭제됩니다.</string>
+    <string name="record_delete_hint">(투약기록을 길게 눌러 지움)</string>
+    <string name="time_since_dose_sample">이전 투약으로부터 약 0일 0시 0분 지남</string>
+    <string name="time_since_dose_template">이전 투약으로부터 약 %1$d일 %2$d시 %3$d분 지남</string>
+    <string name="require_photo_proof">사진 증명 요구하기</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">투약기록 및 사진 저장됨</string>
+    <string name="failed_to_get_proof">사진 가져오기 실패</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">사진 없음</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">(기록 눌러서 자세히 보기)</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="back_up_successful">백업 완료됨</string>
+    <string name="back_up_failed">백업하지 못함</string>
+    <string name="dose_details">투약 정보</string>
+    <string name="medication_active">약물 사용중</string>
+    <string name="inactive">미사용</string>
+    <string name="medication_type">약물 종류</string>
+    <string name="undefined">알 수 없음</string>
+    <string name="type_label_format">종류: %1$s</string>
+    <string name="sample_type_label">종류: 알 수 없음</string>
+    <string name="rx_number_hint">처방 번호</string>
+    <string name="rx_number_label_format">처방 번호: %1$s</string>
+    <string name="sample_rx_number_label">처방 번호: 알 수 없음</string>
+    <string name="pharmacy">약국</string>
+    <string name="pharmacy_label_format">약국: %1$s</string>
+    <string name="sample_pharmacy_label">약국: 알 수 없음</string>
+    <string name="dose_unit">투약 단위</string>
+    <string name="dose_amount">투약량</string>
+    <string name="dose_amount_label_format">회당 %1$s%2$s</string>
+    <string name="sample_dose_amount_label">회당 5mg</string>
+    <string name="remaining_doses">남은 투약횟수</string>
+    <string name="sample_remaining_doses_label">10번 남음</string>
+    <string name="remaining_doses_label_format">%1$d번 남음</string>
+    <string name="no_remaining_doses_message">남은 투약횟수가 없습니다
+\n정보가 올바르지 않은 경우, 약품 정보를 수정하여 투약횟수를 변경하세요</string>
+    <string name="take_with_food">식후 복용</string>
+    <string name="translation_credits"/>
+    <string name="app_widget_description"/>
+    <string name="choose_a_medication">약품 선택</string>
+    <string name="dose_update_warning"/>
+    <string name="birth_control_schedule"/>
+    <string name="_21_7"/>
+    <string name="_63_7"/>
 </resources>
