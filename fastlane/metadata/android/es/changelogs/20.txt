@@ -1,0 +1,4 @@
+v1.3.1
+
+Arreglado
+- Corrija la restauración que falla en algunos dispositivos

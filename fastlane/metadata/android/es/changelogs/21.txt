@@ -1,0 +1,10 @@
+v1.3.2
+
+Cambiado
+- Modificado el aspecto de la actividad del detalle de las dosis
+
+Añadido
+- Añadir Toasts de retroalimentación en la copia de seguridad de la base de datos
+
+Solucionado
+- Arreglar algunos fallos después de restaurar la base de datos
