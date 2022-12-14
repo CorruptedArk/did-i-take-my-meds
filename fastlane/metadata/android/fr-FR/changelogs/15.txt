@@ -1,0 +1,4 @@
+v1.2.3
+
+Correction
+- Correction de l'app ne recevant pas les intentions de boot ou les intentions de mise à jour

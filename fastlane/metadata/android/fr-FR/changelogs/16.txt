@@ -1,0 +1,11 @@
+v1.2.4
+
+Changements
+- Les icônes et couleurs des actions des notifications respectent à présent WCAG, cependant si vous changez de thème sur l'appareil, une notification active ne changera pas les couleurs. Les nouvelles notifications seront en accords à nouveau.
+- Les notifications devraient à présent réapparaître au démarrage et mise à jour de l'application si non prises, mais ces fonctionnalités dépendent du fait que le système l'autorise
+
+Ajout
+- Les activités sont à présents mises à jour quand la dose la plus proche change
+
+Correction
+- Correction d'un problème qui ne permettait pas de programmer avec un chiffre différent de zéro une semaine

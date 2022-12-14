@@ -1,0 +1,4 @@
+v1.0.2
+
+Changement :
+- Envois les notifications au moment exacte même si l'appareil est en idle

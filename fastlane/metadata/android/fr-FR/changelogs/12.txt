@@ -1,0 +1,16 @@
+v1.2.0
+
+Changements
+- Déplacement de la fonctionnalité "Ajouter un médicament" dans un bouton d'action flottant
+- Mise à jour de la traduction en Allemand par jpameli sur GitHub
+- Ajustement des marges pour améliorer l'agencement
+- Mise à jour de la traduction en Portugais Brésilien par mezysinc sur GitHub
+- Changement de l'abbréviation du launcher de l'application pour "DITMM?"
+
+Ajout
+- Ajout de la sauvegarde et restoration de la base de données
+- Ajout de l'action de notification pour prendre les médicaments
+- Ajout d'une action dans les notifications pour renvoyer une notification dans 15 minutes
+
+Corrections
+- Correction du crash causé en cliquant sur une notification pour une médication supprimée

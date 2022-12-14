@@ -1,0 +1,4 @@
+v1.1.1
+
+Correction :
+- Correction de la boîte de dialogue ne s'affichant par correctement sur certaines tailles d'écrans

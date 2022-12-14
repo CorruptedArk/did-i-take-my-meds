@@ -1,0 +1,4 @@
+v1.1.2
+
+Correction :
+- Correction du mauvais affichage de l'heure sur certaines notifications

@@ -1,0 +1,8 @@
+v1.2.6
+
+Changements
+- Réactivation du rafraîchissement de l'UI périodique sans blocage
+- Traductions du Portugais Brésilien mise à jour par lnux-usr sur GitHub
+
+Ajout
+- Ajout d'étiquette aux activités détaillés des médications qui suivent la durée depuis la dernière dose prise

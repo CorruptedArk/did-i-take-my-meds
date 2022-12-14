@@ -1,0 +1,18 @@
+v1.4.0
+
+Changements
+- Les types de médications sont à présent visibles dans la liste principale des médications
+- Les vues sont agencées et peaufinées pour s'adapter aux nouvelles options
+- Mise à jour de la traduction en Allemand par jpameli sur GitHub
+
+Ajouts
+- Ajout d'une option pour désactiver une médication
+- Ajout d'une option pour spécifier le type de médication
+- Ajout d'une option pour trier par type de médication
+- Ajout d'une option pour spécifier le nombre de prescriptions pour chaque médication
+- Ajout d'une option pour spécifier le dosage de chaque médication
+- Ajout d'une option pour spécifier le nom de la pharmacie pour chaque médication
+- Ajout d'une option pour suivre le nombre de doses restantes pour chaque médication
+- Ajout d'une option pour spécifier si chaque médication doit être prise en mangeant
+- Ajout de la traduction en Français par Edanas sur Weblate
+- Ajout de la traduction en Hébreu par Yaron sur Weblate

@@ -1,0 +1,12 @@
+v1.3.0
+
+Changements
+- Amélioration du padding
+- Les nouvelles sauvegardes sont à présent au format zip pour inclure les images (Les anciennes sauvegardes peuvent toujours être restorées)
+
+Ajouts
+- Ajout d'une option pour demander une photo quand des médications sont prises
+- Ajout d'une vue pour voir les détails des doses enregistrées
+
+Corrections
+- Correction du formatage de certaines chaînes en Portugais Brésilien

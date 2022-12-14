@@ -1,0 +1,12 @@
+v1.1.4
+
+Changements
+- Les notifications restent à présent après un clic à moins qu'elles ne soient manuellement annulées
+- Les notifications peuvent à présent ouvrir une fiche médicament plus d'une fois par clic
+
+Ajout
+- Ajout de la traduction en Allemand par jpameli sur GitHub
+
+Correction
+- Correction de EditMedActivity affichant tout le temps les notifications actives quand il est ouvert
+- Correction des notifications ouvrant parfois la mauvaise fiche de médicament au clic

@@ -1,0 +1,4 @@
+v1.3.1
+
+Correction
+- Correction de la restoration échouant sur certains appareils

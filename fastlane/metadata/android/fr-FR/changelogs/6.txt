@@ -1,0 +1,4 @@
+v1.0.5
+
+Correction :
+- Correction des notifications non-programmées après l'ajout d'une médication

@@ -1,0 +1,5 @@
+v1.6.1
+
+Corrections
+- RepeatScheduleDialog par défaut en programmation normale peu importe quand il s'ouvre
+- Correction du bouton de programmation ne faisant rien quand ajouté depuis une programmation de contraception

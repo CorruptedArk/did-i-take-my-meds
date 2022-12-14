@@ -1,0 +1,4 @@
+v1.4.1
+
+Correction
+- Correction de l'étiquette affichant un texte incorrecte dans l'activité de détail de médication

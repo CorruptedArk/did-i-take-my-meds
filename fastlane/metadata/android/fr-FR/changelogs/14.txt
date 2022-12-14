@@ -1,0 +1,13 @@
+v1.2.2
+
+Changements
+- Conversion du multitâche de l'ExecutorService en routine Kotlin
+- Mise à jour des couleurs pour correspondre aux recommendations de Web Content Accessibility
+- Suite à une demande populaire, les notifications disparaissent après la prise d'une dose
+
+Ajout
+- Ajout d'une option pour supprimer la prise d'une dose après que le bouton "prendre" ai été accidentellement pressé
+
+Corrections
+- Correction des crash lorsque l'accès à la base de données est impossible
+- Correction de l'étrange cycle de vue lorsque le bouton de retour est pressé

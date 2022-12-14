@@ -1,0 +1,8 @@
+v1.5.1
+
+Changements
+- Mise à jour de la traduction en Cinois Simplifié
+- Mise à jour de la traduction en Hébreu
+
+Ajout
+- Ajout d'une option pour éditer l'heure de prise d'une dose déjà prise

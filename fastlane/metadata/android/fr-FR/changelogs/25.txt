@@ -1,0 +1,11 @@
+v1.5.0
+
+Changement
+- Ajustement des vues textes pour utiliser la taille de texte standard
+- Mise à jour de la traduction en Allemand par jpameli sur GitHub
+
+Ajouts
+- Ajout d'une option pour ajouter des widgets sur l'écran d'accueil pour chaque médication
+- Ajout de la traduction en Chinois (Simplifié) par luxu sur Weblate
+- Ajout de la traduction en Espagnol par sguinetti sur Weblate et caos30 sur Weblate
+- Ajout de la traduction en Catalan par caos30 sur Weblate

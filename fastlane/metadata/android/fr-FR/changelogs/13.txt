@@ -1,0 +1,4 @@
+v1.2.1
+
+Changement
+- Couleur de fond plus sombre pour améliorer le contraste

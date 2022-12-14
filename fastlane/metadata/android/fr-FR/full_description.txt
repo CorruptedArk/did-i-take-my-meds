@@ -1,0 +1,3 @@
+Ai-je pris mes médicaments ? vous aide à suivre votre prise de médicaments. Il est conçu pour aider à prévenir l'oubli de prises et/ou les overdoses.
+
+Ai-je pris mes médicaments ? permet à un·e utilisateur·ice d'enregistrer plusieurs médications avec des programmations complexes. Chaque médication peut envoyer une notification indépendante. De plus, cette application permet à l'utilisateur·ice d'enregistrer quand une dose est prise. En s'intégrant dans la routine de médication, cette application peut aider à prévenir les overdoses et les oublis de prises.

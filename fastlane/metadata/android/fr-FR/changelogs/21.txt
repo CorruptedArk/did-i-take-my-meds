@@ -1,0 +1,10 @@
+v1.3.2
+
+Changement
+- Peaufinage de l'apparence des activités de détails des doses
+
+Ajout
+- Ajout d'un Toast de notification lors des sauvegardes de base de données
+
+Correction
+- Correction de crash après la restoration de base de données

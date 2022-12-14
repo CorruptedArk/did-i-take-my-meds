@@ -1,0 +1,8 @@
+v1.5.2
+
+Changements
+- Mise à jour de la traduction en Hébreu
+- Mise à jour de la traduction en Chinois Simplifié
+
+Correction
+- Correction des formats de date et heure en Chinois Simplifié

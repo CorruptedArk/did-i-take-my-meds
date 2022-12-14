@@ -1,0 +1,12 @@
+v1.1.0
+
+Changements :
+- Petits peaufinages visuels sur certaines vues
+- Cliquer sur une notification ouvre à présent la vue détaillé de cette médication
+
+Ajouts :
+- Programmation de plusieurs doses par médication avec des temps de répétition abritraires
+- Option pour ajouter autant de médications que nécessaire sans programmation
+- Traduction en Portugais Brésilien par mezysinc sur GitHub
+- Bouton de retour dans la barre d'outils
+- Options pour trier par dose à prendre la plus proche en temps et par nom de médication

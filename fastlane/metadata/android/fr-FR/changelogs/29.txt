@@ -1,0 +1,7 @@
+v1.6.0
+
+Changements
+- Le sélecteur de nombres du programmateur n'a à présent plus de limite haute
+
+Ajout
+- Nouvelle option pour facilement ajouter 21+7 et 63+7 dans les programmations de contraception
