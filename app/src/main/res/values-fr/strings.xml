@@ -60,19 +60,19 @@
     <string name="channel_description">notifications de rappel</string>
     <string name="app_description">v%1$s par Noah Stanford (alias CorruptedArk)
 \n
-\nDid I Take My Meds\? est une application libre et gratuite pour garder la trace des médicaments.
-\nDid I Take My Meds\? est conçu pour aider à empêcher un utilisateur de sauter des doses et/ou de faire une surdose.
+\nDid I Take My Meds \? est une application libre et gratuite pour garder la trace des médicaments.
+\nDid I Take My Meds \? est conçu pour aider à empêcher un utilisateur de sauter des doses et/ou de faire une surdose.
 \nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
 \n
-\nDid I Take My Meds\? est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la licence publique générale GNU telle que publiée par la Free Software Foundation, soit la version 3 de la licence, soit (à votre choix) toute version ultérieure.
+\nDid I Take My Meds \? est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la licence publique générale GNU telle que publiée par la Free Software Foundation, soit la version 3 de la licence, soit (à votre choix) toute version ultérieure.
 \n
-\nDid I Take My Meds\? est distribué dans l\'espoir qu\'il sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de QUALITÉ MARCHANDE ou d\'ADÉQUATION À UN USAGE PARTICULIER. Voir la licence publique générale GNU pour plus de détails.
+\nDid I Take My Meds \? est distribué dans l\'espoir qu\'il sera utile, mais SANS AUCUNE GARANTIE ; sans même la garantie implicite de QUALITÉ MARCHANDE ou d\'ADÉQUATION À UN USAGE PARTICULIER. Voir la licence publique générale GNU pour plus de détails.
 \n
-\nVous devriez avoir reçu une copie de la Licence Publique Générale GNU avec ce programme. Si ce n\'est pas le cas, consultez https://www.gnu.org/licenses.</string>
+\nVous devriez avoir reçu une copie de la Licence Publique Générale GNU avec ce programme. Si ce n\'est pas le cas, consultez https  ://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Support me on Liberapay</string>
     <string name="view_the_project_on_github">View the project on GitHub</string>
     <string name="sorry">Désolé !</string>
-    <string name="okay">Okay</string>
+    <string name="okay">Ok</string>
     <string name="cannot_donate_explanation">Google n\'autorise pas les développeurs à mettre un lien de don dans les applications pour les soutenir s\'ils ne sont pas une organisation caritative exonéré d\'impot. Si vous voulez quand même me soutenir, vous pouvez trouver CorruptedArk sur Liberapay dans un autre navigateur. Mon dépot GitHub est un bon endroit pour commencer.</string>
     <string name="add_another_dose">Ajouter une autre dose</string>
     <string name="taken_as_needed">Pris au besoin</string>
@@ -88,7 +88,7 @@
 \nCommence %2$s
 \nSe répète tous les
 \n%3$d jour(s), %4$d semaine(s),
-\n%5$d mois(s), %6$d an(s).</string>
+\n%5$d mois(s), %6$d an(s)</string>
     <string name="fill_out_all_schedules">Remplissez tous les horaires avant d’enregistrer</string>
     <string name="fill_out_schedule">Remplissez le calendrier avant de confirmer</string>
     <string name="next_dose_label">Prochaine dose : %1$s</string>
@@ -104,7 +104,7 @@
     <string name="remind_in_15">Rappel dans 15 minutes</string>
     <string name="dose_record_delete_warning">L’enregistrement de la dose sera définitivement supprimé.</string>
     <string name="record_delete_hint">(Cliquez longuement sur un enregistrement pour le supprimer)</string>
-    <string name="time_since_dose_sample">Environ 0 jour(s), 0 heure(s) et 0 minute(s) depuis la dernière prise.</string>
+    <string name="time_since_dose_sample">Environ 0 jour(s), 0 heure(s) et 0 minute(s) depuis la dernière prise</string>
     <string name="time_since_dose_template">Environ %1$d jour(s), %2$d heure(s), et %3$d minute(s) depuis la dernière dose prise</string>
     <string name="require_photo_proof">Exiger une preuve avec photo</string>
     <string name="dose_and_proof_saved">Dose et preuve sauvegardées</string>
