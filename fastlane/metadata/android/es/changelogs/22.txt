@@ -1,0 +1,18 @@
+v1.4.0
+
+Cambios
+- Los tipos de medicamentos ahora se muestran en la lista principal de medicamentos
+- Las vistas se han reorganizado y ajustado para adaptarse a las nuevas opciones.
+- Las traducciones al alemán han sido actualizadas por jpameli en GitHub
+
+Adiciones
+- Agregar opción para inactivar un medicamento
+- Agregar opción para especificar tipos de medicamentos
+- Agregar opción para ordenar por tipos de medicamentos
+- Agregar opción para especificar el número Rx para cada medicamento
+- Agregar opción para especificar el tamaño de la dosis para cada medicamento
+- Agregar opción para especificar el nombre de la farmacia para cada medicamento
+- Agregar opción para rastrear el número de dosis restantes para cada medicamento
+- Agregar opción para especificar si cada medicamento debe tomarse con alimentos
+- Agregar traducciones al francés de Edanas en Weblate
+- Agregar traducciones al hebreo de Yaron en Weblate
