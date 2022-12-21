@@ -1,0 +1,12 @@
+v1.1.0
+
+Cambios:
+- Pequeños retoques visuales en algunas vistas
+- Al hacer clic en una notificación ahora se abre la vista detallada de su medicación
+
+Añadidos:
+- Múltiples horarios de dosis por medicación con tiempos de repetición arbitrarios
+- Opción de añadir medicaciones según necesidad sin horarios
+- Traducciones al portugués de Brasil por mezysinc en GitHub
+- Botón Atrás en las barras de herramientas
+- Opciones para ordenar por hora de dosis más cercana y por nombre de medicamento

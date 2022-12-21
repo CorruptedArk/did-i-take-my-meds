@@ -1,0 +1,4 @@
+v1.0.5
+
+Fijar:
+- Notificación Fix no se establece después de añadir la medicación

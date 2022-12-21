@@ -1,0 +1,4 @@
+v1.0.2
+
+Cambiar:
+- Hacer que las notificaciones se disparen a horas exactas incluso cuando el dispositivo está inactivo

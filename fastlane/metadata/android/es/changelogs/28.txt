@@ -1,0 +1,6 @@
+v1.5.3
+
+Cambios
+- Actualizar las traducciones al español por nzgha en Weblate
+- Actualización de las traducciones al portugués brasileño por Card151915 en Weblate
+- Actualización de las traducciones al alemán por jpameli en GitHub

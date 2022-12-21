@@ -1,0 +1,11 @@
+v1.5.0
+
+Cambiar
+- Ajustar las vistas de texto para utilizar tamaños de texto estandarizados
+- Traducciones al alemán actualizadas por jpameli en GitHub
+
+Adiciones
+- Añadir la opción de añadir widgets de pantalla de inicio simples para cada medicamento
+- Añadir traducciones al chino (simplificado) por luxu en Weblate
+- Añadir traducciones al español por sguinetti en Weblate y caos30 en Weblate
+- Añadir traducciones al catalán por caos30 en Weblate

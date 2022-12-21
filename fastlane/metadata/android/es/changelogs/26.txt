@@ -1,0 +1,8 @@
+v1.5.1
+
+Cambios
+- Actualizadas las traducciones al chino simplificado
+- Traducciones al hebreo actualizadas
+
+Adición
+- Añadir la opción de editar el tiempo tomado para las dosis anteriores

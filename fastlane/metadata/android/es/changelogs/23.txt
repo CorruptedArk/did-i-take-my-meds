@@ -1,0 +1,4 @@
+v1.4.1
+
+Solucionado
+- Etiqueta fija que muestra el texto incorrecto en la actividad de detalle de medicación

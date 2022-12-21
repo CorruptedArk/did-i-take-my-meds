@@ -1,0 +1,5 @@
+v1.6.1
+
+Correcciones
+- Por defecto RepeatScheduleDialog a un horario normal cada vez que se abre
+- Corrección de los botones de horario que no hacen nada cuando se añaden desde un horario de control de natalidad

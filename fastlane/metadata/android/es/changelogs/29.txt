@@ -1,0 +1,7 @@
+v1.6.0
+
+Cambios
+- Los selectores de número de horario ahora no tienen límite superior
+
+Adición
+- Nuevas opciones para añadir fácilmente horarios de control de natalidad 21+7 y 63+7
