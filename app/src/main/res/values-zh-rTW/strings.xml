@@ -15,134 +15,169 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
+    <string name="app_name">我吃藥了嗎？</string>
+    <string name="add">添加</string>
+    <string name="add_medications">向列表中添加藥物</string>
+    <string name="medication_name">藥物名稱</string>
+    <string name="description">介紹</string>
+    <string name="select_a_time">選擇時間</string>
     <string name="time_picker_tag" translatable="false">time_picker</string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
+    <string name="save">存儲</string>
+    <string name="cancel">取消</string>
+    <string name="pick_a_time">在存儲前選擇時間</string>
+    <string name="fill_fields">在存儲前填寫名稱</string>
+    <string name="med_saved">藥物已存儲</string>
+    <string name="cancelled">已取消添加新藥物</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">藥物範例</string>
+    <string name="midnight">午夜0時</string>
+    <string name="sample_description">這是範例藥物的一個範例介紹。藥品介紹允許包含多個句子與多行文字。</string>
+    <string name="previous_doses">歷史服藥記錄：</string>
+    <string name="i_just_took_it">我吃完了！</string>
+    <string name="closest_dose_sample">最近一次服用：今日下午1:00</string>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
+    <string name="today">今日</string>
+    <string name="yesterday">昨日</string>
+    <string name="tomorrow">明日</string>
+    <string name="closest_dose_label">最近一次服用：%1$s</string>
+    <string name="already_took_dose">你已經服用了今日的藥物
+\n不要重複服藥哦</string>
+    <string name="date_format">yyyy, MMM, d</string>
+    <string name="time_taken">服用時間：%1$s</string>
+    <string name="delete">刪除</string>
+    <string name="are_you_sure">你確定嗎？</string>
+    <string name="medication_delete_warning">這項藥物將會被永久移除</string>
+    <string name="confirm">確認</string>
+    <string name="took_this_already">你已經吃過了</string>
+    <string name="edit">編輯</string>
+    <string name="edit_cancelled">已取消此次編輯</string>
+    <string name="notifications_enabled">已開啟提醒</string>
+    <string name="notifications_disabled">已關閉提醒</string>
     <string name="channel_name" translatable="false">did_i_take_my_meds</string>
-    <string name="channel_description"></string>
+    <string name="channel_description">服藥提示</string>
     <string name="med_id_key" translatable="false">med_id</string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
+    <string name="time_for_your_dose">該吃藥啦</string>
+    <string name="new_medication">新建藥物</string>
+    <string name="medication_details">藥物簡介</string>
+    <string name="edit_medication">編輯藥物</string>
+    <string name="about">關於</string>
+    <string name="app_description">v%1$s ，作者 Noah Stanford (暱稱 CorruptedArk)
+\n
+\n我吃藥了嗎？是一個幫助它的用戶追蹤服藥情況的FOSS應用程式
+\n我吃藥了嗎？的設計目標是防止它的用戶忘記服藥或藥物過量
+\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\n我吃藥了嗎？是一個自由軟件：在自由軟件基金會發布的第三版或者任意未來發布的版本（使用哪一版由你決定）的GNU通用公共許可下，你享有自由地修改或重新發布它的權利。
+\n
+\n我吃藥了嗎？分發時的初衷是讓它發揮它的最大用途，但我們「不提供任何類型的保修服務」；我們甚至不會提供某種意義上屬於「保修」的「保價」或者「針對使用場景的修改服務」。關於這方面的更多信息，請閱讀GNU通用公共許可。
+\n
+\n此軟件應該已經附送了一份GNU通用公共許可。假如沒有，請看 https://www.gnu.org/licenses 。</string>
+    <string name="support_me_on_liberapay">使用 Librapay 支持開發者</string>
+    <string name="view_the_project_on_github">在 Github 上瀏覽此項目</string>
     <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
     <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
     <string name="play_release" translatable="false">playRelease</string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
+    <string name="sorry">抱歉！</string>
+    <string name="okay">好</string>
+    <string name="cannot_donate_explanation">Google並不允許慈善機構以外的開發者在自己的應用程式里提供抖內鏈接。如果您依然想要抖內，您可以打開外部瀏覽器，在 Librapay 上找到我， CorruptedArk 。還有另一個不錯的出發點便是我的 GitHub 程式庫。</string>
     <string name="last_version_used_key" translatable="false">last_version_used</string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
+    <string name="add_another_dose">添加服用時間</string>
+    <string name="taken_as_needed">按需服用</string>
+    <string name="hello_blank_fragment">你好呀，空白語段</string>
+    <string name="select_a_start_date">開始日期</string>
+    <string name="time_between_doses">兩次服藥的間隔時長：</string>
+    <string name="days">天</string>
+    <string name="weeks">周</string>
+    <string name="months">月</string>
+    <string name="years">年</string>
+    <string name="schedule_dose">計劃服藥時間</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format"></string>
+    <string name="schedule_format">%1$s
+\n從 %2$s 開始；
+\n每隔
+\n%3$d day(s), %4$d week(s),
+\n%5$d month(s), %6$d year(s)
+\n重複一次</string>
     <string name="utc" translatable="false">UTC</string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
+    <string name="fill_out_all_schedules">存儲前填寫所有計劃</string>
+    <string name="fill_out_schedule">確認前填寫所有計劃</string>
+    <string name="next_dose_label">下一次服用： %1$s</string>
+    <string name="taken">已服藥</string>
+    <string name="not_taken">未服藥</string>
+    <string name="sort">排序</string>
     <string name="sort_key" translatable="false">Sort</string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
+    <string name="restore_database">恢復數據庫</string>
+    <string name="back_up_database">備份數據庫</string>
+    <string name="database_is_invalid">數據庫無效</string>
+    <string name="database_restored">數據庫已恢復</string>
+    <string name="took_it">已服用</string>
+    <string name="app_name_short">DITMM\?</string>
+    <string name="remind_in_15">15分鐘後提醒我</string>
+    <string name="dose_record_delete_warning">這項服藥記錄將會被永久刪除。</string>
+    <string name="record_delete_hint">（長按記錄以刪除）</string>
+    <string name="time_since_dose_sample">離上次服用大概已經 0日，0時，0分了</string>
+    <string name="time_since_dose_template">離上次服用大概已經 %1$d 日， %2$d 時， %3$d 分了</string>
+    <string name="require_photo_proof">要求影像記錄</string>
     <string name="image_path" translatable="false">images</string>
     <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
+    <string name="dose_and_proof_saved">服藥記錄與影像記錄已保存</string>
+    <string name="failed_to_get_proof">影響記錄失敗</string>
     <string name="dose_time_key" translatable="false">dose_time</string>
-    <string name="no_image_available"></string>
+    <string name="no_image_available">沒有可用的圖片</string>
     <string name="temp_dir" translatable="false">tmp</string>
-    <string name="record_detail_hint"></string>
+    <string name="record_detail_hint">（點擊一項記錄以查看詳細信息）</string>
     <string name="time_taken_key" translatable="false">time_taken</string>
     <string name="take_med_key" translatable="false">take_med</string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="back_up_successful">備份成功</string>
+    <string name="back_up_failed">備份失敗</string>
+    <string name="dose_details">服藥記錄詳情</string>
+    <string name="medication_active">藥物已激活</string>
+    <string name="inactive">未激活</string>
+    <string name="medication_type">藥物類型</string>
+    <string name="undefined">未定義</string>
+    <string name="type_label_format">類型：%1$s</string>
+    <string name="sample_type_label">類型：未定義</string>
+    <string name="rx_number_hint">處方編號</string>
+    <string name="rx_number_label_format">處方編號：%1$s</string>
+    <string name="sample_rx_number_label">處方編號：未定義</string>
+    <string name="pharmacy">藥房</string>
+    <string name="pharmacy_label_format">藥房：%1$s</string>
+    <string name="sample_pharmacy_label">藥房：未定義</string>
+    <string name="dose_unit">劑量單位</string>
+    <string name="dose_amount">劑量</string>
+    <string name="dose_amount_label_format">每次%1$s%2$s</string>
+    <string name="sample_dose_amount_label">每次5毫克</string>
+    <string name="remaining_doses">剩餘劑量</string>
+    <string name="sample_remaining_doses_label">還有10次</string>
+    <string name="remaining_doses_label_format">還有%1$d次</string>
+    <string name="no_remaining_doses_message">已經沒有剩餘的劑量了
+\n假如並非如此，請使用編輯功能更新藥物情況</string>
+    <string name="take_with_food">隨餐服用</string>
+    <string name="translation_credits">巴西葡萄牙語翻譯貢獻者：使用GitHub的mezysinc與lnux-usr，以及使用Weblate的Card151915
+\n
+\n德語翻譯貢獻者：使用GitHub的jpameli
+\n
+\n法語翻譯貢獻者：使用Weblate的Edanas
+\n
+\n希伯來語翻譯貢獻者：使用Weblate的Yaron
+\n
+\n簡體中文貢獻者：使用Weblate的luxu
+\n
+\n西班牙語貢獻者：使用Weblate的sguinetti，caos30，以及nzgha
+\n
+\n加泰羅尼亞語貢獻者：使用Weblate的caos30
+\n
+\n土耳其語貢獻者：使用Weblate的Lion
+\n
+\nBug修復貢獻者：使用Github的johannes87
+\n
+\n</string>
+    <string name="app_widget_description">一個顯示單個藥物，上次服藥時間，以及一個已服藥按鈕的小組件</string>
+    <string name="choose_a_medication">選擇一個藥物</string>
+    <string name="dose_update_warning">你將更新這次服藥的時間，並且刪除任何與它關聯的影像記錄。</string>
+    <string name="birth_control_schedule">避孕藥計劃模板</string>
+    <string name="_21_7">21錠</string>
+    <string name="_63_7">63錠</string>
 </resources>
