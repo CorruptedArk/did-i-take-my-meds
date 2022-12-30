@@ -1,0 +1,11 @@
+v1.5.0
+
+修改了：
+- 為使用標準字號，修改了文字顯示大小
+- 更新了 Github 用戶 jpameli 貢獻的德語翻譯
+
+添加了：
+- 為藥物添加簡單主屏幕小組件的選項
+- Weblate 用戶 luxu 貢獻的簡體中文翻譯
+- Weblate 用戶 sguinetti 和 caos30 貢獻的西班牙語翻譯
+- Weblate 用戶 caos30 貢獻的加泰羅尼亞語翻譯

@@ -1,0 +1,6 @@
+v1.5.3
+
+修改了：
+- Weblate 用戶 nzgha 貢獻的西班牙語翻譯
+- Weblate 用戶 Card151915 貢獻的巴西語與葡萄牙語翻譯
+- Github 用戶 jpameli 貢獻的德語翻譯
