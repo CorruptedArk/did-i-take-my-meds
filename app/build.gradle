@@ -78,6 +78,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'dev.corruptedark.diditakemymeds'
 }
 
 dependencies {
