@@ -37,8 +37,8 @@ android {
         applicationId "dev.corruptedark.diditakemymeds"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 34
-        versionName "1.6.5"
+        versionCode 35
+        versionName "1.6.6"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         kapt {

@@ -1,0 +1,5 @@
+v1.6.6
+
+Fixes
+- Fix "took it" notification button appearing when the functionality is unavailable
+- Fix incorrect number of remaining doses when dose records are modified
