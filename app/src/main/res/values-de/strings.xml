@@ -29,7 +29,7 @@
     <string name="cancelled">Eingabe abgebrochen</string>
     <string name="time_24">H:mm</string>
     <string name="time_12">h:mma</string>
-    <string name="sample_medicine">Beispiel Medikament</string>
+    <string name="sample_medicine">Beispiel-Medikament</string>
     <string name="midnight">12:00AM</string>
     <string name="sample_description">Dies ist eine Beispielbeschreibung für ein Medikament. Sie besteht aus mehreren Sätzen und umfasst mehrere Zeilen.</string>
     <string name="previous_doses">Vorherige Einnahme:</string>
@@ -40,7 +40,7 @@
     <string name="tomorrow">morgen</string>
     <string name="closest_dose_label">Dosis geplant um: %1$s</string>
     <string name="already_took_dose">Du hast diese Dosis bereits eingenommen\nIch hoffe, du hast sie nicht nochmal genommen.</string>
-    <string name="date_format">MMM d, yyyy</string>
+    <string name="date_format">d. MMM yyyy</string>
     <string name="time_taken">Einnahmezeitpunkt: %1$s</string>
     <string name="delete">löschen</string>
     <string name="are_you_sure">Bist du sicher?</string>
@@ -51,13 +51,13 @@
     <string name="edit_cancelled">Bearbeitung abgebrochen</string>
     <string name="notifications_enabled">Benachrichtigungen aktiviert</string>
     <string name="notifications_disabled">Benachrichtigungen deaktiviert</string>
-    <string name="channel_description">Erinnerungsnotifikationen</string>
+    <string name="channel_description">Erinnerungsbenachrichtigungen</string>
     <string name="time_for_your_dose">Zeit für deine Dosis</string>
     <string name="new_medication">Neues Medikament</string>
     <string name="medication_details">Details zur Medikation</string>
     <string name="edit_medication">Medikament bearbeiten</string>
     <string name="about">Über</string>
-    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nDid I Take My Meds? (Deutscher App-Titel: Medikamente eingenommen?) is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="app_description">v%1$s von Noah Stanford (aka CorruptedArk)\n\nDid I Take My Meds? (Deutscher App-Titel: Medikamente eingenommen?) ist eine FOSS-App, um den Überblick über Medikamente zu behalten\nDid I Take My Meds? wurde entwickelt, um zu verhindern, dass ein Benutzer Dosen auslässt und/oder überdosiert\nCopyright © 2021 Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? ist freie Software: Sie können es unter den Bedingungen der GNU General Public License, wie sie von der Free Software Foundation veröffentlicht wurde, weitergeben und/oder modifizieren, entweder in Version 3 der Lizenz oder (nach Ihrer Wahl) in einer späteren Version.\n\nDid I Take My Meds? wird in der Hoffnung weitergegeben, dass es nützlich sein wird, jedoch OHNE JEDE GARANTIE; selbst ohne die stillschweigende Garantie der MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK.  Weitere Einzelheiten finden Sie in der GNU General Public License.\n\n Sie sollten zusammen mit diesem Programm eine Kopie der GNU General Public License erhalten haben. Falls nicht, siehe https://www.gnu.org/licenses.</string>
     <string name="support_me_on_liberapay">Unterstütze mich auf Liberapay</string>
     <string name="view_the_project_on_github">Projekt auf GitHub ansehen</string>
     <string name="sorry">Entschuldigung!</string>
@@ -98,7 +98,7 @@
     <string name="record_detail_hint">(Auf einen Eintrag tippen, um Details anzuzeigen)</string>
     <string name="back_up_successful">Sicherung erfolgreich</string>
     <string name="back_up_failed">Sicherung fehlgeschlagen</string>
-    <string name="dose_details">Details der Einnahme</string>
+    <string name="dose_details">Details der Dosis</string>
     <string name="medication_active">Medikament aktiv</string>
     <string name="inactive">Inaktiv</string>
     <string name="medication_type">Medikamenten-Typ</string>
@@ -109,10 +109,10 @@
     <string name="rx_number_label_format">Rx#: %1$s</string>
     <string name="sample_rx_number_label">Rx#: undefiniert</string>
     <string name="pharmacy">Pharmazie</string>
-    <string name="pharmacy_label_format">Pharmazie: %1$s</string>
-    <string name="sample_pharmacy_label">Pharmazie: undefiniert</string>
-    <string name="dose_unit">Einheit</string>
-    <string name="dose_amount">Menge</string>
+    <string name="pharmacy_label_format">Apotheke: %1$s</string>
+    <string name="sample_pharmacy_label">Apotheke: undefiniert</string>
+    <string name="dose_unit">Einheit der Dosis</string>
+    <string name="dose_amount">Menge der Dosis</string>
     <string name="dose_amount_label_format">%1$s%2$s pro Dosis</string>
     <string name="sample_dose_amount_label">5mg pro Dosis</string>
     <string name="remaining_doses">Verbleibende Dosen</string>
@@ -120,15 +120,15 @@
     <string name="remaining_doses_label_format">%1$d verbleibende Dosen</string>
     <string name="no_remaining_doses_message">Keine verbleibende Dosis\nFalls dies falsch ist, bitte verbleibende Dosen editieren</string>
     <string name="take_with_food">Zu einer Mahlzeit</string>
-    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\nBug fix by johannes87 on GitHub\n\n</string>
+    <string name="translation_credits">Brasilianisches Portugiesisch übersetzt von mezysinc auf GitHub, lnux-usr auf GitHub, und Card151915 auf Weblate\n\nDeutsche Übersetzungen von jpameli auf GitHub\n\nFranzösische Übersetzungen von Edanas auf Weblate\n\nHebräische Übersetzungen von Yaron auf Weblate\n\nVereinfachte chinesische Übersetzungen von luxu auf Weblate\n\nSpanische Übersetzungen von sguinetti auf Weblate, caos30 auf Weblate, und nzgha auf Weblate\n\nKatalanische Übersetzungen von caos30 auf Weblate\n\nBugfix von johannes87 auf GitHub\n\n</string>
     <string name="app_widget_description">Ein Widget, das ein einzelnes Medikament, die Zeit seit der letzten Einnahme und eine Schaltfläche zum Übermitteln einer eingenommenen Dosis anzeigt</string>
     <string name="choose_a_medication">Wählen Sie ein Medikament</string>
     <string name="dose_update_warning">Sie ändern damit die Einnahmezeit dieser Dosis und löschen das zugehörige Beweisbild, falls es existiert.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">Zeitplan zur Empfängnisverhütung</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
-    <string name="was_this_dose_really_taken">Was this dose really taken?</string>
-    <string name="remaining_doses_correction_message">If not, the number of remaining doses will be corrected</string>
+    <string name="was_this_dose_really_taken">Wurde diese Dosis wirklich genommen?</string>
+    <string name="remaining_doses_correction_message">Falls nicht, wird die Anzahl verbleibender Dosen korrigiert</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
 </resources>
