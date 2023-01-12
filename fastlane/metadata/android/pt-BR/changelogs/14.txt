@@ -1,13 +1,13 @@
 v1.2.2
 
 Mudanças
-- Convertido ExecutorService multithreading para Kotlin coroutines
-- Atualizada as cores para cumprir as Diretrizes de Acessibilidade de Conteúdo da Web
-- Por altíssima exigência, notificações agora serão descartadas após uma dose ser tomada
+- Convertidas instruções ExecutorService para corotinas Kotlin
+- Atualizadas as cores para cumprir as Diretrizes de Acessibilidade de Conteúdo da Web
+- Por alta demanda, notificações agora serão descartadas após uma dose ser tomada
 
 Adições
-- Adicionado opção de deletar registro de dose quando o botão "tomada" é apertado por acidente
+- Adicionada opção de deletar um registro de dose quando o botão "tomado" é apertado por acidente
 
 Correções
-- Consertado falhas causas por tentar pegar dados do banco de dados sem êxito
-- Consertado estranho ciclo de visa ao apertar o botão de retorno
+- Consertadas falhas causas ao tentar recuperar dados do banco de dados sem êxito
+- Consertado estranho ciclo de visão ao apertar o botão de retorno
