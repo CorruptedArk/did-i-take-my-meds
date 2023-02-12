@@ -1,0 +1,154 @@
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
+<resources>
+    <string name="app_name">هل أخذت ادويتي?</string>
+    <string name="add">إضافة</string>
+    <string name="add_medications">إضافة أدوية إلى اللأحة</string>
+    <string name="medication_name">إسم الدواء</string>
+    <string name="description">الوصف</string>
+    <string name="select_a_time">إختر وقتاً</string>
+    <string name="time_picker_tag" translatable="false">time_picker</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="pick_a_time">إختر وقتاً قبل الحفظ</string>
+    <string name="fill_fields">إكتب الإسم قبل الفظ</string>
+    <string name="med_saved">تم حفظ الدواء</string>
+    <string name="cancelled">تم إلغاءالدواء الجديد</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">مثال على إسم الدواء</string>
+    <string name="midnight">12:00ً</string>
+    <string name="sample_description">هذا مثال على وصف الدواء. فيه جمل متعددة و يغطي اسطرً متعددة.</string>
+    <string name="previous_doses">جرعات سابقة:</string>
+    <string name="i_just_took_it">لقد أخذته الأن!</string>
+    <string name="closest_dose_sample">الجرعة الأقرب: اليوم الساعة 1:00ص</string>
+    <string name="med_position_key" translatable="false">medication_position</string>
+    <string name="today">اليوم</string>
+    <string name="yesterday">البارحة</string>
+    <string name="tomorrow">غداً</string>
+    <string name="closest_dose_label">الجرعة الأقرب: %1$s</string>
+    <string name="already_took_dose">لقد أخذت هذه الجرعة بالفعل\nأتمنى أنك لم تأخذها\'مجدداً</string>
+    <string name="date_format">MMM d, yyyy</string>
+    <string name="time_taken">أخذتها الساعة: %1$s</string>
+    <string name="delete">حذف</string>
+    <string name="are_you_sure">هل أنت متأكد؟</string>
+    <string name="medication_delete_warning">سيتم حذف الدواء نهائياً</string>
+    <string name="confirm">تأكيد</string>
+    <string name="took_this_already">لقد أخذتها بالفعل</string>
+    <string name="edit">تعديل</string>
+    <string name="edit_cancelled">تم إلغاء التعديل</string>
+    <string name="notifications_enabled">تم تفعيل الإشعارات</string>
+    <string name="notifications_disabled">تم تعطيل الإشعارات</string>
+    <string name="channel_name" translatable="false">did_i_take_my_meds</string>
+    <string name="channel_description">إشعارات للتذكير</string>
+    <string name="med_id_key" translatable="false">med_id</string>
+    <string name="time_for_your_dose">حان وقت الجرعة</string>
+    <string name="new_medication">دواء جديد</string>
+    <string name="medication_details">تفاصيل الدواء</string>
+    <string name="edit_medication">تعديل الدواء</string>
+    <string name="about">حول</string>
+    <string name="app_description">v%1$s by Noah Stanford (aka CorruptedArk)\n\nDid I Take My Meds? is a FOSS app to keep track of medications\nDid I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\nDid I Take My Meds? is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nDid I Take My Meds? is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see https://www.gnu.org/licenses.</string>
+    <string name="support_me_on_liberapay">Support me on Liberapay</string>
+    <string name="view_the_project_on_github">View the project on GitHub</string>
+    <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
+    <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
+    <string name="play_release" translatable="false">playRelease</string>
+    <string name="sorry">عذراً!</string>
+    <string name="okay">حسناً</string>
+    <string name="cannot_donate_explanation">Google doesn\'t allow developers to place donation links in apps to support themselves if they are not tax exempt charities. If you still want to support me, you can find CorruptedArk on Liberapay in a separate browser. My GitHub repository is a good place to start.</string>
+    <string name="last_version_used_key" translatable="false">last_version_used</string>
+    <string name="add_another_dose">إضافة جرعة أخرى</string>
+    <string name="taken_as_needed">تم أخذتها</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_a_start_date">تاريخ البداية</string>
+    <string name="time_between_doses">الوقت بين الجرعات:</string>
+    <string name="days">يوم/أيام</string>
+    <string name="weeks">أسبوع/أسابيع</string>
+    <string name="months">شهر/أشهر</string>
+    <string name="years">سنة/سنين</string>
+    <string name="schedule_dose">جدولة جرعة</string>
+    <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
+    <string name="date_picker_tag" translatable="false">date_picker</string>
+    <string name="schedule_format">%1$s\nStarts %2$s\nتتكرر كل\n%3$d يوم/أيام, %4$d أسبوع/أسابيع,\n%5$d شهر/أشهر %6$d سنة/سنين</string>
+    <string name="utc" translatable="false">UTC</string>
+    <string name="fill_out_all_schedules">إملأ الجداول قبل الحفظ</string>
+    <string name="fill_out_schedule">جداول قبل الحفظ التأكيد</string>
+    <string name="next_dose_label">الجرعة التالية: %1$s</string>
+    <string name="taken">مأخوذة</string>
+    <string name="not_taken">غير مأخوذة</string>
+    <string name="sort">فرز</string>
+    <string name="sort_key" translatable="false">Sort</string>
+    <string name="restore_database">إرجاع قاعدة البيانات</string>
+    <string name="back_up_database">نسخ قاعدة البيانات</string>
+    <string name="database_is_invalid">قاعدة البيانات غير صالحة</string>
+    <string name="database_restored">تم إرجاع قاعدة البيانات</string>
+    <string name="took_it">أخذتها</string>
+    <string name="app_name_short">DITMM?</string>
+    <string name="remind_in_15">تنبيه بعد 15 دقيقة</string>
+    <string name="dose_record_delete_warning">سيتم حذف الجرعة نهائياً</string>
+    <string name="record_delete_hint">(Long click a record to delete it)</string>
+    <string name="time_since_dose_sample">Approximately 0 day(s), 0 hour(s), and 0 minute(s) since last taken dose</string>
+    <string name="time_since_dose_template">Approximately %1$d day(s), %2$d hour(s), and %3$d minute(s) since last taken dose</string>
+    <string name="require_photo_proof">طلب صورة كدليل</string>
+    <string name="image_path" translatable="false">images</string>
+    <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
+    <string name="dose_and_proof_saved">تم حفظ الجرعة و الدليل</string>
+    <string name="failed_to_get_proof">فشل تسجيل دليل</string>
+    <string name="dose_time_key" translatable="false">dose_time</string>
+    <string name="no_image_available">لا يوجد صورة متوفرة</string>
+    <string name="temp_dir" translatable="false">tmp</string>
+    <string name="record_detail_hint">(Tap a record to view details)</string>
+    <string name="time_taken_key" translatable="false">time_taken</string>
+    <string name="take_med_key" translatable="false">take_med</string>
+    <string name="back_up_successful">تم عمل نسخة إحتياطية بنجاح</string>
+    <string name="back_up_failed">فشل عمل نسخة إحتياطية</string>
+    <string name="dose_details">تفاصيل الجرعة</string>
+    <string name="medication_active">الدواء نشط</string>
+    <string name="inactive">غير نشط</string>
+    <string name="medication_type">نوع الدواء</string>
+    <string name="undefined">غير محدد</string>
+    <string name="type_label_format">النوع: %1$s</string>
+    <string name="sample_type_label">النوع: غير محدد</string>
+    <string name="rx_number_hint">Rx #</string>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
+    <string name="sample_rx_number_label">Rx #: غير محدد</string>
+    <string name="pharmacy">صيدلية</string>
+    <string name="pharmacy_label_format">صيدلية: %1$s</string>
+    <string name="sample_pharmacy_label">صيدلية: غير محددة</string>
+    <string name="dose_unit">وحدة الجرعة</string>
+    <string name="dose_amount">كمية الجرعة</string>
+    <string name="dose_amount_label_format">%1$s%2$s للجرعة</string>
+    <string name="sample_dose_amount_label">5ميلي غرام للجرعة</string>
+    <string name="remaining_doses">الجرعات المتبقية</string>
+    <string name="sample_remaining_doses_label">10 جرع متبقية</string>
+    <string name="remaining_doses_label_format">%1$d جرعات متبقية</string>
+    <string name="no_remaining_doses_message">لا يوجد جرع متبفية\nإن كان هاذا خطأً, حدث الجرع المتبقية عن طريق تعديل الدواء</string>
+    <string name="take_with_food">خذها مع الطعام</string>
+    <string name="translation_credits">Brazilian Portuguese translations by mezysinc on GitHub, lnux-usr on GitHub, and Card151915 on Weblate\n\nGerman translations by jpameli on GitHub\n\nFrench translations by Edanas on Weblate\n\nHebrew translations by Yaron on Weblate\n\nChinese Simplified translations by luxu on Weblate\n\nSpanish translations by sguinetti on Weblate, caos30 on Weblate, and nzgha on Weblate\n\nCatalan translations by caos30 on Weblate\n\nBug fix by johannes87 on GitHub\n\n</string>
+    <string name="app_widget_description">A widget that displays a single medication, the time since the last taken dose, and a button to submit a taken dose</string>
+    <string name="choose_a_medication">إختر دواءً</string>
+	#You will update the taken time of this dose and delete the associated proof image if it exists.
+    <string name="dose_update_warning">سوف تحدث وقت الجرعة و تحذف الدليل</string>
+    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
+    <string name="was_this_dose_really_taken">Was this dose really taken?</string>
+    <string name="remaining_doses_correction_message">If not, the number of remaining doses will be corrected</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+
+</resources>
