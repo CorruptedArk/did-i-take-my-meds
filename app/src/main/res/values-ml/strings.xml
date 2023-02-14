@@ -15,134 +15,149 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
-    <string name="app_name"></string>
-    <string name="add"></string>
-    <string name="add_medications"></string>
-    <string name="medication_name"></string>
-    <string name="description"></string>
-    <string name="select_a_time"></string>
-    <string name="time_picker_tag" translatable="false"></string>
-    <string name="save"></string>
-    <string name="cancel"></string>
-    <string name="pick_a_time"></string>
-    <string name="fill_fields"></string>
-    <string name="med_saved"></string>
-    <string name="cancelled"></string>
-    <string name="time_24"></string>
-    <string name="time_12"></string>
-    <string name="sample_medicine"></string>
-    <string name="midnight"></string>
-    <string name="sample_description"></string>
-    <string name="previous_doses"></string>
-    <string name="i_just_took_it"></string>
-    <string name="closest_dose_sample"></string>
-    <string name="med_position_key" translatable="false"></string>
-    <string name="today"></string>
-    <string name="yesterday"></string>
-    <string name="tomorrow"></string>
-    <string name="closest_dose_label"></string>
-    <string name="already_took_dose"></string>
-    <string name="date_format"></string>
-    <string name="time_taken"></string>
-    <string name="delete"></string>
-    <string name="are_you_sure"></string>
-    <string name="medication_delete_warning"></string>
-    <string name="confirm"></string>
-    <string name="took_this_already"></string>
-    <string name="edit"></string>
-    <string name="edit_cancelled"></string>
-    <string name="notifications_enabled"></string>
-    <string name="notifications_disabled"></string>
-    <string name="channel_name" translatable="false"></string>
-    <string name="channel_description"></string>
-    <string name="med_id_key" translatable="false"></string>
-    <string name="time_for_your_dose"></string>
-    <string name="new_medication"></string>
-    <string name="medication_details"></string>
-    <string name="edit_medication"></string>
-    <string name="about"></string>
-    <string name="app_description"></string>
-    <string name="support_me_on_liberapay"></string>
-    <string name="view_the_project_on_github"></string>
-    <string name="github_link" translatable="false"></string>
-    <string name="liberapay_link" translatable="false"></string>
-    <string name="play_release" translatable="false"></string>
-    <string name="sorry"></string>
-    <string name="okay"></string>
-    <string name="cannot_donate_explanation"></string>
-    <string name="last_version_used_key" translatable="false"></string>
-    <string name="add_another_dose"></string>
-    <string name="taken_as_needed"></string>
-    <string name="hello_blank_fragment"></string>
-    <string name="select_a_start_date"></string>
-    <string name="time_between_doses"></string>
-    <string name="days"></string>
-    <string name="weeks"></string>
-    <string name="months"></string>
-    <string name="years"></string>
-    <string name="schedule_dose"></string>
-    <string name="schedule_picker_tag" translatable="false"></string>
-    <string name="date_picker_tag" translatable="false"></string>
-    <string name="schedule_format"></string>
-    <string name="utc" translatable="false"></string>
-    <string name="fill_out_all_schedules"></string>
-    <string name="fill_out_schedule"></string>
-    <string name="next_dose_label"></string>
-    <string name="taken"></string>
-    <string name="not_taken"></string>
-    <string name="sort"></string>
-    <string name="sort_key" translatable="false"></string>
-    <string name="restore_database"></string>
-    <string name="back_up_database"></string>
-    <string name="database_is_invalid"></string>
-    <string name="database_restored"></string>
-    <string name="took_it"></string>
-    <string name="app_name_short"></string>
-    <string name="remind_in_15"></string>
-    <string name="dose_record_delete_warning"></string>
-    <string name="record_delete_hint"></string>
-    <string name="time_since_dose_sample"></string>
-    <string name="time_since_dose_template"></string>
-    <string name="require_photo_proof"></string>
-    <string name="image_path" translatable="false"></string>
-    <string name="file_provider" translatable="false"></string>
-    <string name="dose_and_proof_saved"></string>
-    <string name="failed_to_get_proof"></string>
-    <string name="dose_time_key" translatable="false"></string>
-    <string name="no_image_available"></string>
-    <string name="temp_dir" translatable="false"></string>
-    <string name="record_detail_hint"></string>
-    <string name="time_taken_key" translatable="false"></string>
-    <string name="take_med_key" translatable="false"></string>
-    <string name="back_up_successful"></string>
-    <string name="back_up_failed"></string>
-    <string name="dose_details"></string>
-    <string name="medication_active"></string>
-    <string name="inactive"></string>
-    <string name="medication_type"></string>
-    <string name="undefined"></string>
-    <string name="type_label_format"></string>
-    <string name="sample_type_label"></string>
-    <string name="rx_number_hint"></string>
-    <string name="rx_number_label_format"></string>
-    <string name="sample_rx_number_label"></string>
-    <string name="pharmacy"></string>
-    <string name="pharmacy_label_format"></string>
-    <string name="sample_pharmacy_label"></string>
-    <string name="dose_unit"></string>
-    <string name="dose_amount"></string>
-    <string name="dose_amount_label_format"></string>
-    <string name="sample_dose_amount_label"></string>
-    <string name="remaining_doses"></string>
-    <string name="sample_remaining_doses_label"></string>
-    <string name="remaining_doses_label_format"></string>
-    <string name="no_remaining_doses_message"></string>
-    <string name="take_with_food"></string>
-    <string name="translation_credits"></string>
-    <string name="app_widget_description"></string>
-    <string name="choose_a_medication"></string>
-    <string name="dose_update_warning"></string>
-    <string name="birth_control_schedule"></string>
-    <string name="_21_7"></string>
-    <string name="_63_7"></string>
+    <string name="app_name">ഞാൻ എന്റെ മരുന്നുകൾ കഴിച്ചോ\?</string>
+    <string name="add">ചേർക്കുക</string>
+    <string name="add_medications">നിങ്ങളുടെ പട്ടികയിൽ മരുന്നുകൾ ചേർക്കുക</string>
+    <string name="medication_name">മരുന്നിന്റെ പേര്</string>
+    <string name="description">വിവരണം</string>
+    <string name="select_a_time">ഒരു സമയം തിരഞ്ഞെടുക്കുക</string>
+    <string name="time_picker_tag" translatable="false"/>
+    <string name="save">സംരക്ഷിക്കുക</string>
+    <string name="cancel">റദ്ദാക്കുക</string>
+    <string name="pick_a_time">സംരക്ഷിക്കുന്നതിന് മുമ്പ് ഒരു സമയം തിരഞ്ഞെടുക്കുക</string>
+    <string name="fill_fields">സംരക്ഷിക്കുന്നതിന് മുമ്പ് പേര് പൂരിപ്പിക്കുക</string>
+    <string name="med_saved">മരുന്ന് സംരക്ഷിച്ചു</string>
+    <string name="cancelled">പുതിയ മരുന്ന് റദ്ദാക്കി</string>
+    <string name="time_24">എച്ച്:എംഎം</string>
+    <string name="time_12">എച്ച്:എംഎംഎ</string>
+    <string name="sample_medicine">മാതൃക മരുന്ന്</string>
+    <string name="midnight">12:00എഎം</string>
+    <string name="sample_description">ഇത് ഒരു മരുന്നിന്റെ മാതൃക വിവരണമാണ്. ഇതിന് ഒന്നിലധികം വാക്യങ്ങളുണ്ട്, ഒന്നിലധികം വരികൾ ഉൾക്കൊള്ളുന്നു.</string>
+    <string name="previous_doses">മുമ്പത്തെ അളവുകൾ:</string>
+    <string name="i_just_took_it">ഞാൻ അത് എടുത്തു!</string>
+    <string name="closest_dose_sample"/>
+    <string name="med_position_key" translatable="false"/>
+    <string name="today">ഇന്ന്</string>
+    <string name="yesterday">ഇന്നലെ</string>
+    <string name="tomorrow">നാളെ</string>
+    <string name="closest_dose_label"/>
+    <string name="already_took_dose">നിങ്ങൾ ഇതിനകം ഈ മരുന്ന് എടുത്തിട്ടുണ്ട്
+\nനിങ്ങൾ അത് വീണ്ടും എടുത്തില്ലെന്ന് ഞാൻ പ്രതീക്ഷിക്കുന്നു</string>
+    <string name="date_format">എംഎംഎം ഡി, വൈവൈവൈവൈ</string>
+    <string name="time_taken">എടുത്ത സമയം: %1$s</string>
+    <string name="delete">ഇല്ലാതാക്കുക</string>
+    <string name="are_you_sure">നിങ്ങൾക്ക് ഉറപ്പാണോ\?</string>
+    <string name="medication_delete_warning">മരുന്ന് ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും</string>
+    <string name="confirm">സ്ഥിരീകരിക്കുക</string>
+    <string name="took_this_already">നിങ്ങൾ ഇത് ഇതിനകം എടുത്തു</string>
+    <string name="edit">തിരുത്തുക</string>
+    <string name="edit_cancelled">തിരുത്തൽ റദ്ദാക്കി</string>
+    <string name="notifications_enabled">അറിയിപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കി</string>
+    <string name="notifications_disabled">അറിയിപ്പുകൾ പ്രവർത്തനരഹിതമാക്കി</string>
+    <string name="channel_name" translatable="false"/>
+    <string name="channel_description">ഓർമ്മപ്പെടുത്തൽ അറിയിപ്പുകൾ</string>
+    <string name="med_id_key" translatable="false"/>
+    <string name="time_for_your_dose">നിങ്ങളുടെ മരുന്നിനുള്ള സമയം</string>
+    <string name="new_medication">പുതിയ മരുന്ന്</string>
+    <string name="medication_details">മരുന്നുകളുടെ വിശദാംശങ്ങൾ</string>
+    <string name="edit_medication">മരുന്ന് തിരുത്തുക</string>
+    <string name="about">കുറിച്ച്</string>
+    <string name="app_description">നോഹ സ്റ്റാൻഫോർഡിന്റെ (CorruptedArk) v%1$s
+\n
+\nഞാൻ എന്റെ മരുന്നുകൾ കഴിച്ചോ\? മരുന്നുകളുടെ ട്രാക്ക് സൂക്ഷിക്കുന്നതിനുള്ള ഒരു FOSS ആപ്പ് ആണ്
+\nഞാൻ എന്റെ മരുന്നുകൾ കഴിച്ചോ\? ഡോസുകൾ ഒഴിവാക്കുന്നതിൽ നിന്നും കൂടാതെ/അല്ലെങ്കിൽ അമിതമായി കഴിക്കുന്നതിൽ നിന്നും ഒരു ഉപയോക്താവിനെ തടയാൻ സഹായിക്കുന്നതിനാണ് രൂപകൽപ്പന ചെയ്തിരിക്കുന്നത്
+\nപകർപ്പവകാശം © 2021 Noah Stanford noahstandingford@gmail.com
+\n
+\nഞാൻ എന്റെ മരുന്നുകൾ കഴിച്ചോ\? സ്വതന്ത്ര സോഫ്‌റ്റ്‌വെയറാണ്: ഫ്രീ സോഫ്റ്റ്‌വെയർ ഫൗണ്ടേഷൻ പ്രസിദ്ധീകരിച്ച ഗ്നു ജനറൽ പബ്ലിക് ലൈസൻസിന്റെ നിബന്ധനകൾ പ്രകാരം നിങ്ങൾക്ക് ഇത് പുനർവിതരണം ചെയ്യാനും കൂടാതെ/അല്ലെങ്കിൽ പരിഷ്‌ക്കരിക്കാനുമാകും, ഒന്നുകിൽ ലൈസൻസിന്റെ പതിപ്പ് 3, അല്ലെങ്കിൽ (നിങ്ങളുടെ ഇഷ്ടാനുസരണം) മറ്റേതെങ്കിലും പതിപ്പ്.
+\n
+\nഞാൻ എന്റെ മരുന്നുകൾ കഴിച്ചോ\? ഇത് ഉപയോഗപ്രദമാകുമെന്ന പ്രതീക്ഷയിലാണ് വിതരണം ചെയ്യുന്നത്, എന്നാൽ യാതൊരു വാറന്റിയും ഇല്ലാതെ; ഒരു പ്രത്യേക ആവശ്യത്തിനായി വ്യാപാരത്തിന്റെയോ ഫിറ്റ്നസിന്റെയോ സൂചിപ്പിച്ച വാറന്റി പോലുമില്ലാതെ. കൂടുതൽ വിവരങ്ങൾക്ക് ഗ്നു ജനറൽ പബ്ലിക് ലൈസൻസ് കാണുക.
+\n
+\nഈ പ്രോഗ്രാമിനൊപ്പം നിങ്ങൾക്ക് ഗ്നു ജനറൽ പബ്ലിക് ലൈസൻസിന്റെ ഒരു പകർപ്പ് ലഭിച്ചിരിക്കണം. ഇല്ലെങ്കിൽ, https://www.gnu.org/licenses കാണുക.</string>
+    <string name="support_me_on_liberapay">Liberapay-യിൽ എന്നെ പിന്തുണയ്ക്കുക</string>
+    <string name="view_the_project_on_github">GitHub-ൽ പദ്ധതി കാണുക</string>
+    <string name="github_link" translatable="false"/>
+    <string name="liberapay_link" translatable="false"/>
+    <string name="play_release" translatable="false"/>
+    <string name="sorry">ക്ഷമിക്കണം!</string>
+    <string name="okay">ശരി</string>
+    <string name="cannot_donate_explanation">പ്രയോഗങ്ങളിൽ സംഭാവന ശൃംഗലാംഗങ്ങൾ സ്ഥാപിക്കാൻ വികസിപ്പിക്കുന്നയാള്‍കാരെ ഗൂഗിൾ അനുവദിക്കുന്നില്ല, അവർ നികുതി ഒഴിവാക്കിയ ധര്‍മ്മസ്ഥാപനമല്ലെങ്കിൽ. നിങ്ങൾക്ക് ഇപ്പോഴും എന്നെ പിന്തുണയ്ക്കാൻ താൽപ്പര്യമുണ്ടെങ്കിൽ, ഒരു പ്രത്യേക ബ്രൗസറിൽ നിങ്ങൾക്ക് Liberapay-യിൽ CorruptedArk കണ്ടെത്താനാകും. എന്റെ GitHub ശേഖരം ആരംഭിക്കാനുള്ള നല്ലൊരു സ്ഥലമാണ്.</string>
+    <string name="last_version_used_key" translatable="false"/>
+    <string name="add_another_dose"/>
+    <string name="taken_as_needed">ആവശ്യാനുസരണം എടുത്തു</string>
+    <string name="hello_blank_fragment">നമസ്കാരം ശൂന്യ ശകലം</string>
+    <string name="select_a_start_date">ആരംഭിക്കുന്ന തീയതി</string>
+    <string name="time_between_doses">അളവുകൾ തമ്മിലുള്ള സമയം:</string>
+    <string name="days">ദിവസം(ങ്ങൾ)</string>
+    <string name="weeks">ആഴ്ച(കൾ)</string>
+    <string name="months">മാസം(ങ്ങൾ)</string>
+    <string name="years">വർഷം(ങ്ങൾ)</string>
+    <string name="schedule_dose"/>
+    <string name="schedule_picker_tag" translatable="false"/>
+    <string name="date_picker_tag" translatable="false"/>
+    <string name="schedule_format">%1$s
+\nആരംഭിക്കുന്നു %2$s
+\nഓരോന്നും ആവർത്തിക്കുന്നു
+\n%3$d ദിവസം(ങ്ങൾ), %4$d ആഴ്ച(കൾ),
+\n%5$d മാസം(ങ്ങൾ), %6$d വർഷം(ങ്ങൾ)</string>
+    <string name="utc" translatable="false"/>
+    <string name="fill_out_all_schedules">സംരക്ഷിക്കുന്നതിന് മുമ്പ് എല്ലാ സമയപ്പട്ടികകളും പൂരിപ്പിക്കുക</string>
+    <string name="fill_out_schedule">സ്ഥിരീകരിക്കുന്നതിന് മുമ്പ് സമയപ്പട്ടികകൾ പൂരിപ്പിക്കുക</string>
+    <string name="next_dose_label">അടുത്ത അളവ്: %1$s</string>
+    <string name="taken">എടുത്തത്</string>
+    <string name="not_taken">എടുത്തിട്ടില്ല</string>
+    <string name="sort">അടുക്കുക</string>
+    <string name="sort_key" translatable="false"/>
+    <string name="restore_database"/>
+    <string name="back_up_database"/>
+    <string name="database_is_invalid"/>
+    <string name="database_restored"/>
+    <string name="took_it">അത് എടുത്തു</string>
+    <string name="app_name_short">ഞഎമക\?</string>
+    <string name="remind_in_15">15 മിനിറ്റിനുള്ളിൽ ഓർമ്മിപ്പിക്കുക</string>
+    <string name="dose_record_delete_warning">അളവിന്റെ രേഖ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
+    <string name="record_delete_hint"/>
+    <string name="time_since_dose_sample">അവസാനം എടുത്ത അളവ് മുതൽ ഏകദേശം 0 ദിവസം(ങ്ങൾ), 0 മണിക്കൂർ(കൾ), 0 മിനിറ്റ്(കൾ)</string>
+    <string name="time_since_dose_template">ഏകദേശം %1$d ദിവസം(ങ്ങൾ), %2$d മണിക്കൂർ(കൾ), %3$d മിനിറ്റ്(കൾ) എന്നിവ അവസാനമായി എടുത്ത അളവ് മുതൽ</string>
+    <string name="require_photo_proof">ഛായാപട തെളിവ് ആവശ്യമാണ്</string>
+    <string name="image_path" translatable="false"/>
+    <string name="file_provider" translatable="false"/>
+    <string name="dose_and_proof_saved">അളവും തെളിവും സംരക്ഷിച്ചു</string>
+    <string name="failed_to_get_proof">തെളിവ് നേടുന്നതിൽ പരാജയപ്പെട്ടു</string>
+    <string name="dose_time_key" translatable="false"/>
+    <string name="no_image_available">ചിത്രമൊന്നും ലഭ്യമല്ല</string>
+    <string name="temp_dir" translatable="false"/>
+    <string name="record_detail_hint"/>
+    <string name="time_taken_key" translatable="false"/>
+    <string name="take_med_key" translatable="false"/>
+    <string name="back_up_successful"/>
+    <string name="back_up_failed"/>
+    <string name="dose_details">മരുന്ന് വിശദാംശങ്ങൾ</string>
+    <string name="medication_active">മരുന്ന് സജീവമാണ്</string>
+    <string name="inactive">നിഷ്ക്രിയം</string>
+    <string name="medication_type">മരുന്ന് തരം</string>
+    <string name="undefined">നിർവചിക്കാത്തത്</string>
+    <string name="type_label_format">തരം: %1$s</string>
+    <string name="sample_type_label">തരം: നിർവചിക്കാത്തത്</string>
+    <string name="rx_number_hint">ആർഎക്സ് #</string>
+    <string name="rx_number_label_format">ആർഎക്സ്: %1$s</string>
+    <string name="sample_rx_number_label">ആർഎക്സ്: നിർവചിക്കാത്തത്</string>
+    <string name="pharmacy">ഔഷധശാല</string>
+    <string name="pharmacy_label_format">ഔഷധശാല: %1$s</string>
+    <string name="sample_pharmacy_label">ഔഷധശാല: നിർവചിക്കാത്തത്</string>
+    <string name="dose_unit"/>
+    <string name="dose_amount"/>
+    <string name="dose_amount_label_format"/>
+    <string name="sample_dose_amount_label"/>
+    <string name="remaining_doses"/>
+    <string name="sample_remaining_doses_label"/>
+    <string name="remaining_doses_label_format"/>
+    <string name="no_remaining_doses_message"/>
+    <string name="take_with_food">ഭക്ഷണത്തോടൊപ്പം എടുക്കുക</string>
+    <string name="translation_credits"/>
+    <string name="app_widget_description"/>
+    <string name="choose_a_medication">ഒരു മരുന്ന് തിരഞ്ഞെടുക്കുക</string>
+    <string name="dose_update_warning"/>
+    <string name="birth_control_schedule"/>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
 </resources>
