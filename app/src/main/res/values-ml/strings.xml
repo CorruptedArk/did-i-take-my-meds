@@ -40,7 +40,7 @@
     <string name="today">ഇന്ന്</string>
     <string name="yesterday">ഇന്നലെ</string>
     <string name="tomorrow">നാളെ</string>
-    <string name="closest_dose_label"/>
+    <string name="closest_dose_label">ഏറ്റവും അടുത്തുള്ള അളവ്: %1$s</string>
     <string name="already_took_dose">നിങ്ങൾ ഇതിനകം ഈ മരുന്ന് എടുത്തിട്ടുണ്ട്
 \nനിങ്ങൾ അത് വീണ്ടും എടുത്തില്ലെന്ന് ഞാൻ പ്രതീക്ഷിക്കുന്നു</string>
     <string name="date_format">എംഎംഎം ഡി, വൈവൈവൈവൈ</string>
@@ -82,7 +82,7 @@
     <string name="okay">ശരി</string>
     <string name="cannot_donate_explanation">പ്രയോഗങ്ങളിൽ സംഭാവന ശൃംഗലാംഗങ്ങൾ സ്ഥാപിക്കാൻ വികസിപ്പിക്കുന്നയാള്‍കാരെ ഗൂഗിൾ അനുവദിക്കുന്നില്ല, അവർ നികുതി ഒഴിവാക്കിയ ധര്‍മ്മസ്ഥാപനമല്ലെങ്കിൽ. നിങ്ങൾക്ക് ഇപ്പോഴും എന്നെ പിന്തുണയ്ക്കാൻ താൽപ്പര്യമുണ്ടെങ്കിൽ, ഒരു പ്രത്യേക ബ്രൗസറിൽ നിങ്ങൾക്ക് Liberapay-യിൽ CorruptedArk കണ്ടെത്താനാകും. എന്റെ GitHub ശേഖരം ആരംഭിക്കാനുള്ള നല്ലൊരു സ്ഥലമാണ്.</string>
     <string name="last_version_used_key" translatable="false"/>
-    <string name="add_another_dose"/>
+    <string name="add_another_dose">മറ്റൊരു ഡോസ് ചേർക്കുക</string>
     <string name="taken_as_needed">ആവശ്യാനുസരണം എടുത്തു</string>
     <string name="hello_blank_fragment">നമസ്കാരം ശൂന്യ ശകലം</string>
     <string name="select_a_start_date">ആരംഭിക്കുന്ന തീയതി</string>
@@ -91,7 +91,7 @@
     <string name="weeks">ആഴ്ച(കൾ)</string>
     <string name="months">മാസം(ങ്ങൾ)</string>
     <string name="years">വർഷം(ങ്ങൾ)</string>
-    <string name="schedule_dose"/>
+    <string name="schedule_dose">മരുന്നുനിന്റെ സമയപ്പട്ടിക തയ്യാറാക്കുക</string>
     <string name="schedule_picker_tag" translatable="false"/>
     <string name="date_picker_tag" translatable="false"/>
     <string name="schedule_format">%1$s
@@ -107,15 +107,15 @@
     <string name="not_taken">എടുത്തിട്ടില്ല</string>
     <string name="sort">അടുക്കുക</string>
     <string name="sort_key" translatable="false"/>
-    <string name="restore_database"/>
-    <string name="back_up_database"/>
-    <string name="database_is_invalid"/>
-    <string name="database_restored"/>
+    <string name="restore_database">രേഖ പുനഃസ്ഥാപിക്കുക</string>
+    <string name="back_up_database">രേഖയുടെ ശരിപ്പകര്‍പ്പ്‌ സംഭരിക്കുക</string>
+    <string name="database_is_invalid">രേഖ അസാധുവാണ്</string>
+    <string name="database_restored">രേഖ പുനഃസ്ഥാപിച്ചു</string>
     <string name="took_it">അത് എടുത്തു</string>
     <string name="app_name_short">ഞഎമക\?</string>
     <string name="remind_in_15">15 മിനിറ്റിനുള്ളിൽ ഓർമ്മിപ്പിക്കുക</string>
     <string name="dose_record_delete_warning">അളവിന്റെ രേഖ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
-    <string name="record_delete_hint"/>
+    <string name="record_delete_hint">(ഒരു രേഖ ഇല്ലാതാക്കാൻ ദീർഘമായി അമര്‍ത്തുക)</string>
     <string name="time_since_dose_sample">അവസാനം എടുത്ത അളവ് മുതൽ ഏകദേശം 0 ദിവസം(ങ്ങൾ), 0 മണിക്കൂർ(കൾ), 0 മിനിറ്റ്(കൾ)</string>
     <string name="time_since_dose_template">ഏകദേശം %1$d ദിവസം(ങ്ങൾ), %2$d മണിക്കൂർ(കൾ), %3$d മിനിറ്റ്(കൾ) എന്നിവ അവസാനമായി എടുത്ത അളവ് മുതൽ</string>
     <string name="require_photo_proof">ഛായാപട തെളിവ് ആവശ്യമാണ്</string>
@@ -126,11 +126,11 @@
     <string name="dose_time_key" translatable="false"/>
     <string name="no_image_available">ചിത്രമൊന്നും ലഭ്യമല്ല</string>
     <string name="temp_dir" translatable="false"/>
-    <string name="record_detail_hint"/>
+    <string name="record_detail_hint">(വിശദാംശങ്ങൾ കാണാൻ ഒരു രേഖ തൊടുക)</string>
     <string name="time_taken_key" translatable="false"/>
     <string name="take_med_key" translatable="false"/>
-    <string name="back_up_successful"/>
-    <string name="back_up_failed"/>
+    <string name="back_up_successful">സംഭരണം വിജയിച്ചു</string>
+    <string name="back_up_failed">സംഭരണം പരാജയപ്പെട്ടു</string>
     <string name="dose_details">മരുന്ന് വിശദാംശങ്ങൾ</string>
     <string name="medication_active">മരുന്ന് സജീവമാണ്</string>
     <string name="inactive">നിഷ്ക്രിയം</string>
@@ -144,20 +144,21 @@
     <string name="pharmacy">ഔഷധശാല</string>
     <string name="pharmacy_label_format">ഔഷധശാല: %1$s</string>
     <string name="sample_pharmacy_label">ഔഷധശാല: നിർവചിക്കാത്തത്</string>
-    <string name="dose_unit"/>
-    <string name="dose_amount"/>
-    <string name="dose_amount_label_format"/>
-    <string name="sample_dose_amount_label"/>
-    <string name="remaining_doses"/>
-    <string name="sample_remaining_doses_label"/>
-    <string name="remaining_doses_label_format"/>
-    <string name="no_remaining_doses_message"/>
+    <string name="dose_unit">ഡോസ് ഘടകം</string>
+    <string name="dose_amount">മരുന്നിന്റെ അളവ്</string>
+    <string name="dose_amount_label_format">ഒരു ഡോസിന് %1$s%2$s</string>
+    <string name="sample_dose_amount_label">ഒരു ഡോസിന് 5 മില്ലിഗ്രാം</string>
+    <string name="remaining_doses">ശേഷിക്കുന്ന ഡോസുകൾ</string>
+    <string name="sample_remaining_doses_label">10 ശേഷിക്കുന്ന ഡോസുകൾ</string>
+    <string name="remaining_doses_label_format">%1$d ശേഷിക്കുന്ന ഡോസുകൾ</string>
+    <string name="no_remaining_doses_message">ഡോസുകളൊന്നും അവശേഷിക്കുന്നില്ല
+\nഇത് തെറ്റാണെങ്കിൽ, മരുന്നുകൾ തിരുത്തികൊണ്ട് ശേഷിക്കുന്ന ഡോസുകൾ പുതുക്കുക</string>
     <string name="take_with_food">ഭക്ഷണത്തോടൊപ്പം എടുക്കുക</string>
     <string name="translation_credits"/>
-    <string name="app_widget_description"/>
+    <string name="app_widget_description">ഒരൊറ്റ മരുന്ന് പ്രദർശിപ്പിക്കുന്ന ഒരു വിജറ്റ്, അവസാനം എടുത്ത ഡോസ് മുതലുള്ള സമയം, എടുത്ത ഡോസ് സമർപ്പിക്കാനുള്ള ബട്ടൺ</string>
     <string name="choose_a_medication">ഒരു മരുന്ന് തിരഞ്ഞെടുക്കുക</string>
-    <string name="dose_update_warning"/>
-    <string name="birth_control_schedule"/>
+    <string name="dose_update_warning">ഈ ഡോസ് എടുത്ത സമയം നിങ്ങൾ പുതുക്കുകയും അതുമായി ബന്ധപ്പെട്ട തെളിവ് ചിത്രം ഉണ്ടെങ്കിൽ അത് ഇല്ലാതാക്കുകയും ചെയ്യും.</string>
+    <string name="birth_control_schedule">ജനന നിയന്ത്രണ സമയപ്പട്ടിക</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
 </resources>
