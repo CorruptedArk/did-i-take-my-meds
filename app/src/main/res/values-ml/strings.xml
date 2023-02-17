@@ -35,7 +35,7 @@
     <string name="sample_description">ഇത് ഒരു മരുന്നിന്റെ മാതൃക വിവരണമാണ്. ഇതിന് ഒന്നിലധികം വാക്യങ്ങളുണ്ട്, ഒന്നിലധികം വരികൾ ഉൾക്കൊള്ളുന്നു.</string>
     <string name="previous_doses">മുമ്പത്തെ അളവുകൾ:</string>
     <string name="i_just_took_it">ഞാൻ അത് എടുത്തു!</string>
-    <string name="closest_dose_sample"/>
+    <string name="closest_dose_sample">ഏറ്റവും അടുത്ത അളവ്: ഇന്ന് 1:00PM</string>
     <string name="med_position_key" translatable="false"/>
     <string name="today">ഇന്ന്</string>
     <string name="yesterday">ഇന്നലെ</string>
