@@ -1,1 +1,1 @@
-Aplikacja do zarządzania i śledzenia dawek leków
+Aplikacja do zarządzania i rejestrowania dawek leków
