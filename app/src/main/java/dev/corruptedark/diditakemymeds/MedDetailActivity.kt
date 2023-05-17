@@ -305,21 +305,36 @@ class MedDetailActivity : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .setPositiveButton(getString(R.string.confirm)) { dialog, which ->
-                    lifecycleScope.launch(lifecycleDispatcher) {
-                        val medId = medication!!.id
-                        val doseTime = medication!!.doseRecord[i].doseTime
+                    var realDose = true
 
-                        if (proofImageDao(context).proofImageExists(medId, doseTime)) {
-                            val proofImage = proofImageDao(context).get(medId, doseTime)
-                            imageFolder?.apply {
-                                proofImage.deleteImageFile(imageFolder!!)
-                            }
-                            proofImageDao(context).delete(proofImage)
+                    val realDoseRecordDialogBuilder = MaterialAlertDialogBuilder(this)
+                        .setTitle(getString(R.string.was_this_dose_really_taken))
+                        .setMessage(getString(R.string.remaining_doses_correction_message))
+                        .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                            realDose = true
                         }
+                        .setNegativeButton(getString(R.string.no)) { _, _ ->
+                            realDose = false
+                        }
+                        .setOnDismissListener {
+                            lifecycleScope.launch(lifecycleDispatcher) {
+                                val medId = medication!!.id
+                                val doseTime = medication!!.doseRecord[i].doseTime
 
-                        medication!!.doseRecord.removeAt(i)
-                        medicationDao(context).updateMedications(medication!!)
-                    }
+                                if (proofImageDao(context).proofImageExists(medId, doseTime)) {
+                                    val proofImage = proofImageDao(context).get(medId, doseTime)
+                                    imageFolder?.apply {
+                                        proofImage.deleteImageFile(imageFolder!!)
+                                    }
+                                    proofImageDao(context).delete(proofImage)
+                                }
+
+                                medication!!.removeTakenDose(i, realDose)
+                                medicationDao(context).updateMedications(medication!!)
+                            }
+                        }
+                    realDoseRecordDialogBuilder.show()
+
                 }
 
             dialogBuilder.show()

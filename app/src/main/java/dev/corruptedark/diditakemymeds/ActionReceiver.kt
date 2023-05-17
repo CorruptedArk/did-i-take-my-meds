@@ -69,7 +69,7 @@ class ActionReceiver : BroadcastReceiver() {
             //End building "took med" notification action
 
             //Start building "remind" notification action
-             val remindIntent = Intent(context, ActionReceiver::class.java).apply {
+            val remindIntent = Intent(context, ActionReceiver::class.java).apply {
                 action = REMIND_ACTION
                 putExtra(context.getString(R.string.med_id_key), medication.id)
             }
@@ -81,7 +81,7 @@ class ActionReceiver : BroadcastReceiver() {
             //End building "remind" notification action
 
 
-            return NotificationCompat.Builder(
+            val notificationBuilder = NotificationCompat.Builder(
                 context,
                 context.getString(R.string.channel_name)
             )
@@ -99,8 +99,15 @@ class ActionReceiver : BroadcastReceiver() {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false)
-                .addAction(NO_ICON, context.getString(R.string.took_it), tookMedPendingIntent)
-                .addAction(NO_ICON, context.getString(R.string.remind_in_15), remindPendingIntent)
+
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || !medication.requirePhotoProof) {
+                notificationBuilder.addAction(NO_ICON, context.getString(R.string.took_it), tookMedPendingIntent)
+            }
+
+            notificationBuilder.addAction(NO_ICON, context.getString(R.string.remind_in_15), remindPendingIntent)
+
+            return notificationBuilder
         }
     }
 
@@ -181,7 +188,8 @@ class ActionReceiver : BroadcastReceiver() {
 
                         if (medication.requirePhotoProof) {
                             val takeMedIntent = Intent(context, MainActivity::class.java).apply {
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 putExtra(context.getString(R.string.med_id_key), medication.id)
                                 putExtra(context.getString(R.string.take_med_key), true)
                             }
