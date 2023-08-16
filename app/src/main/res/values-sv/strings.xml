@@ -17,7 +17,7 @@
     along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
     <string name="app_name"/>
     <string name="add">Lägg till</string>
-    <string name="add_medications"/>
+    <string name="add_medications">Lägg till mediciner i din lista</string>
     <string name="medication_name">Medicinens namn</string>
     <string name="description">Beskrivning</string>
     <string name="select_a_time">välj en tid</string>
@@ -30,25 +30,25 @@
     <string name="cancelled">Ny medicinering avbruten</string>
     <string name="time_24"/>
     <string name="time_12"/>
-    <string name="sample_medicine"/>
+    <string name="sample_medicine">Exempelmedicin</string>
     <string name="midnight"/>
-    <string name="sample_description"/>
+    <string name="sample_description">Det här är ett exempel på en beskrivning av en medicin. Det består av flera meningar och löper över flera rader.</string>
     <string name="previous_doses"/>
-    <string name="i_just_took_it"/>
+    <string name="i_just_took_it">Jag tog den just!</string>
     <string name="closest_dose_sample"/>
     <string name="med_position_key" translatable="false">medication_position</string>
-    <string name="today"/>
-    <string name="yesterday"/>
-    <string name="tomorrow"/>
+    <string name="today">Idag</string>
+    <string name="yesterday">Igår</string>
+    <string name="tomorrow">Imorgon</string>
     <string name="closest_dose_label"/>
     <string name="already_took_dose"/>
     <string name="date_format"/>
     <string name="time_taken"/>
-    <string name="delete"/>
-    <string name="are_you_sure"/>
+    <string name="delete">ta bort</string>
+    <string name="are_you_sure">Är du säker\?</string>
     <string name="medication_delete_warning"/>
-    <string name="confirm"/>
-    <string name="took_this_already"/>
+    <string name="confirm">bekräfta</string>
+    <string name="took_this_already">Du har redan tagit den</string>
     <string name="edit"/>
     <string name="edit_cancelled"/>
     <string name="notifications_enabled"/>
