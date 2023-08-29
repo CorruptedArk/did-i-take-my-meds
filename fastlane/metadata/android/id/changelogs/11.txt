@@ -1,0 +1,11 @@
+v1.1.4
+
+Perubahan - Pemberitahuan sekarang tetap ada setelah diklik kecuali jika dibatalkan secara manual 
+- Pemberitahuan sekarang dapat membuka obat lebih dari satu kali saat diklik
+
+Penambahan
+- Menambahkan terjemahan bahasa Jerman oleh jpameli di GitHub
+
+Perbaikan
+- Memperbaiki EditMedActivity yang selalu menampilkan notifikasi yang diaktifkan saat dibuka
+- Memperbaiki notifikasi yang terkadang membuka obat yang salah saat diklik
