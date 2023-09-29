@@ -1,0 +1,16 @@
+V1.2.0
+
+Değişiklikler
+- 'İlaç Ekle' özelliğini kayan eylem butonuna taşındı
+- Almanca çevirisi jpameli tarafından GitHub'ta güncellendi
+- Kenar boşlukları düzenlenerek sayfanın görünüşü iyileştirildi
+- Brezilya Portekizcesi çevirisi mezysinc tarafından GitHub'ta güncellendi
+- Changed default launcher label to abbreviation "DITMM?"
+
+Addition
+- Added database backup and restore
+- Added notification action to take medication
+- Added notification action to resend a notification in 15 minutes
+
+Fixes
+- Fix crashes caused by clicking on a notification for a deleted medication
