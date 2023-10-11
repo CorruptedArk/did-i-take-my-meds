@@ -1,0 +1,7 @@
+v1.6.0
+
+Değişiklikler
+- Program numarası seçicilerin artık üst sınırı yok
+
+Eklenenler
+- 21+7 ve 63+7 doğum kontrol programlarını kolayca eklemek için yeni seçenekler

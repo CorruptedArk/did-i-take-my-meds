@@ -5,12 +5,12 @@ Değişiklikler
 - Almanca çevirisi jpameli tarafından GitHub'ta güncellendi
 - Kenar boşlukları düzenlenerek sayfanın görünüşü iyileştirildi
 - Brezilya Portekizcesi çevirisi mezysinc tarafından GitHub'ta güncellendi
-- Changed default launcher label to abbreviation "DITMM?"
+- Varsayılan başlatıcı etiketi "DITMM?" kısaltmasıyla değiştirildi.
 
-Addition
-- Added database backup and restore
-- Added notification action to take medication
-- Added notification action to resend a notification in 15 minutes
+Yenilikler
+- Veritabanı yedekleme ve geri yükleme eklendi
+- İlaç almak için bildirim eylemi eklendi
+- Bir bildirimi 15 dakika içinde yeniden göndermek için bildirim eylemi eklendi
 
-Fixes
-- Fix crashes caused by clicking on a notification for a deleted medication
+Düzeltmeler
+- Silinen bir ilaç için bildirime tıklamanın neden olduğu çökmeler düzeltildi

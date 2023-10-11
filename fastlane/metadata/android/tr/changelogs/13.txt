@@ -1,0 +1,4 @@
+v1.2.1
+
+Değişiklikler
+- Kontrastı iyileştirmek için arka plan karartıldı
