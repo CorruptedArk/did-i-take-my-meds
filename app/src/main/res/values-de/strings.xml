@@ -124,11 +124,11 @@
     <string name="app_widget_description">Ein Widget, das ein einzelnes Medikament, die Zeit seit der letzten Einnahme und eine Schaltfläche zum Übermitteln einer eingenommenen Dosis anzeigt</string>
     <string name="choose_a_medication">Wählen Sie ein Medikament</string>
     <string name="dose_update_warning">Sie ändern damit die Einnahmezeit dieser Dosis und löschen das zugehörige Beweisbild, falls es existiert.</string>
-    <string name="birth_control_schedule">Birth control schedule</string>
+    <string name="birth_control_schedule">Verhütungsplan</string>
     <string name="_21_7">21 + 7</string>
     <string name="_63_7">63 + 7</string>
-    <string name="was_this_dose_really_taken">Was this dose really taken?</string>
-    <string name="remaining_doses_correction_message">If not, the number of remaining doses will be corrected</string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
+    <string name="was_this_dose_really_taken">Wurde die Dosis wirklich eingenommen?</string>
+    <string name="remaining_doses_correction_message">Wenn nicht, wird die Anzahl der verbleibenden Dosen korrigiert</string>
+    <string name="yes">ja</string>
+    <string name="no">nein</string>
 </resources>
