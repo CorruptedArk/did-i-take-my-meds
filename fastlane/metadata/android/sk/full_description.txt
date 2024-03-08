@@ -1,0 +1,3 @@
+Zobral som si lieky? pomáha nestratiť prehľad kedy si vziať lieky. Je navrhnutá na prevenciu vynechaných dávok a/alebo predávkovania.
+
+Zobral som si lieky? umožňuje používateľovi uložiť viacero liekov s komplexným rozvrhom. Každý liek môže spustiť rôzne nezávislé pripomienky. Navyše, táto aplikácia umožňuje používateľovi zaznamenávať užité dávky. Ako súčasť liečebnej procedúry, môže pomôcť predchádzať predávkovaniu a vynechaným dávkam.

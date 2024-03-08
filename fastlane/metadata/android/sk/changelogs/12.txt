@@ -1,0 +1,16 @@
+v1.2.0
+
+Zmeny
+- Presunutá funkcia "pridať liek" na plávajúce akčné tlačidlo
+- Aktualizácia nemeckého prekladu od jpameli na GitHube
+- Upravené okraje aby rozloženie vyzeralo krajšie
+- Aktualizovaný preklad do brazílskej portugalčiny od mezysinc na GitHube
+- Zmenený štítok predvoleného spúšťača na skratku "DITMM?"
+
+Doplnenie
+- Pridaná záloha databázy a jej obnovenie
+- Pridané upozornenie na užitie lieku
+- Pridané upozornenie na odloženie upozornenia o 15 minút
+
+Opravy
+- Opravený pád, ktorý spôsobovalo kliknutie na notifikáciu vymazaného lieku

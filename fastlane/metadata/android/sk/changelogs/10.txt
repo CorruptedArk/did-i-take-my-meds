@@ -1,0 +1,5 @@
+v1.1.3
+
+Opravy:
+- Oprava nesprávnych prepočtov najbližšej dávky s rôznym časom medzi jednotlivými dávkami a prvou dávkou v zozname
+- Oprava nesprávneho zobrazovania času medzi tlačidlom voľby rozvrhu pre ďalšie dávky s iným časom medzi dávkami ako čas prvej dávky v zozname

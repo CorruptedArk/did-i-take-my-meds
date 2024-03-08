@@ -1,0 +1,12 @@
+v1.1.4
+
+Zmeny
+- Upozornenia teraz ostávajú aj po kliknutí ak nie sú ručne zrušené
+- Upozornenia teraz môžu otvoriť liek viac ako raz pri kliknutí
+
+Doplnenia
+- Pridaný nemecký preklad od jpameli na GitHube
+
+Opravy
+- Opravené EditMedActivity, ktorý stále upozorňoval na zapnuté upozornenia pri otvorení
+- Opravené upozornenia, ktoré niekedy otvorili nesprávny liek pri kliknutí
