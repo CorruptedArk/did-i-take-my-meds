@@ -1,0 +1,1 @@
+Sovellus, joka ylläpitää ja seuraa lääkeannostuksiasi.

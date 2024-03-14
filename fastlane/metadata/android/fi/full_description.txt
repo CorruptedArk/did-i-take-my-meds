@@ -1,0 +1,3 @@
+Did I Take My Meds? Auttaa seuraamaan, milloin ottaa lääkkeesi. Se on suunniteltu ehkäisemään käyttäjää unohtamasta annostuksiaan ja/tai yliannostuksia.
+
+Did I Take My Meds? Sallii käyttäjän tallentaa useamman lääkkeen, monimutkaisten rytmien kera. Jokainen lääke voi lähettää oman muistutuksen. Tällä sovelluksella käyttäjä voi myös tallentaa, milloin he ottavat lääkkeensä. Osana lääkitysrutiinia, tämä sovellus voi ehkäistä yliannostuksilta ja unohtuneilta annostuksilta.

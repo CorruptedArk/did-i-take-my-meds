@@ -1,0 +1,3 @@
+versio 1.0.0
+
+Ensimmäinen F-Droid versio
