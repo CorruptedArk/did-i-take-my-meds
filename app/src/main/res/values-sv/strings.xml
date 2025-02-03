@@ -32,7 +32,7 @@
     <string name="time_12">h:mma</string>
     <string name="sample_medicine">Exempelmedicin</string>
     <string name="midnight">00:00</string>
-    <string name="sample_description">Detta är en exempelbeskrivning utav en medicin. Den har flera meningar och täcker flera rader. This is a sample description of a medication.</string>
+    <string name="sample_description">Detta är en exempelbeskrivning utav en medicin. Den har flera meningar och täcker flera rader.</string>
     <string name="previous_doses">Föregående doser:</string>
     <string name="i_just_took_it">Jag tog den just!</string>
     <string name="closest_dose_sample">Närmsta dos: 13:00 idag</string>
