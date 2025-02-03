@@ -83,7 +83,7 @@
     <string name="schedule_dose">Schemalägg dosering</string>
     <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
     <string name="date_picker_tag" translatable="false">date_picker</string>
-    <string name="schedule_format">%1$s\nStarts %2$s\nRepeats every\n%3$d day(s), %4$d week(s),\n%5$d month(s), %6$d year(s)</string>
+    <string name="schedule_format">%1$s\nBörjar %2$s\nUpprepas var\n%3$d dagar, %4$d veckor,\n%5$d månader, %6$d år</string>
     <string name="utc" translatable="false">UTC</string>
     <string name="fill_out_all_schedules">Fyll ut alla scheman innan du sparar</string>
     <string name="fill_out_schedule">Fyll ut schema innan bekräftelse</string>
