@@ -1,0 +1,153 @@
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.-->
+<resources>
+    <string name="app_name">Tog jag mina mediciner?</string>
+    <string name="add">Lägg till</string>
+    <string name="add_medications">Lägger till mediciner i din lista</string>
+    <string name="medication_name">Medicin-namn</string>
+    <string name="description">Beskrivning</string>
+    <string name="select_a_time"> Välj en tid</string>
+    <string name="time_picker_tag" translatable="false">tidsväljare</string>
+    <string name="save">Spara</string>
+    <string name="cancel">Avbryt</string>
+    <string name="pick_a_time">Välj en tid innan du sparar</string>
+    <string name="fill_fields">Mata in ett namn innan du sparar</string>
+    <string name="med_saved">Medicin sparad</string>
+    <string name="cancelled">Ny medicin avbruten</string>
+    <string name="time_24">H:mm</string>
+    <string name="time_12">h:mma</string>
+    <string name="sample_medicine">Exempelmedicin</string>
+    <string name="midnight">00:00</string>
+    <string name="sample_description">Detta är en exempelbeskrivning utav en medicin. Den har flera meningar och täcker flera rader.</string>
+    <string name="previous_doses">Föregående doser:</string>
+    <string name="i_just_took_it">Jag tog den just!</string>
+    <string name="closest_dose_sample">Närmsta dos: 13:00 idag</string>
+    <string name="med_position_key" translatable="false">medication_position</string>
+    <string name="today">Idag</string>
+    <string name="yesterday">Igår</string>
+    <string name="tomorrow">I morgon</string>
+    <string name="closest_dose_label">Närmsta dos: %1$s</string>
+    <string name="already_took_dose">Du har redan tagit den här dosen, hoppas du inte tog den igen</string>
+    <string name="date_format">MMM, d, åååå</string>
+    <string name="time_taken">Tid intagen: %1$s</string>
+    <string name="delete">Ta bort</string>
+    <string name="are_you_sure">Är du säker?</string>
+    <string name="medication_delete_warning">Medicinen kommer tas bort helt (raderas)</string>
+    <string name="confirm">Bekräfta</string>
+    <string name="took_this_already">Du har redan tagit det här</string>
+    <string name="edit">Redigera</string>
+    <string name="edit_cancelled">Ändring förkastad</string>
+    <string name="notifications_enabled">Notifieringar påslagna</string>
+    <string name="notifications_disabled">Notifieringar avslagna</string>
+    <string name="channel_name" translatable="false">did_i_take_my_meds</string>
+    <string name="channel_description">Påminnelsenotifikationer</string>
+    <string name="med_id_key" translatable="false">med_id</string>
+    <string name="time_for_your_dose">Dags för din dos</string>
+    <string name="new_medication">Ny medicin</string>
+    <string name="medication_details">Medicindetaljer</string>
+    <string name="edit_medication">Redigera Medicin</string>
+    <string name="about">om</string>
+    <string name="app_description">v%1$s av Noah Stanford (aka CorruptedArk)\n\n"Did I Take My Meds?" är en FOSS-app för att hålla kåll på medicineringar\n"Did I Take My Meds?" är designad i syfte att förhindra användare från att oavsiktligt hoppa över doser och/eller från att överdosera\nCopyright © 2021  Noah Stanford noahstandingford@gmail.com\n\n"Did I Take My Meds?" är fri programvara: du kan sprida den och/eller modifiera den sålänge du följer villkoren i "GNU General Public"-Licensen som den lyder i Free Software Foundation publikationen, antingen version 3 av Licensen, eller (du väljer) en senare verion (vilken som helst).\n\n"Did I Take My Meds?" delas ut i förhoppningen att det kommet till nytta, men UTAN NÅGÅN GARANTI, ÖVERHUVUDTAGET (inte ens någon implicit).  Se "GNU General Public"-Licensen för mer information.\n\nDu ska ha erhållit en kopia av "GNU General Public"-Licensen tillsammans med detta program. Om inte, se https://www.gnu.org/licenses. (obs: appbeskrivningen behåller applikationens engelska namn i referenssyfte)</string>
+    <string name="support_me_on_liberapay">Stöd mig på Liberapay</string>
+    <string name="view_the_project_on_github">Kika på projektets GitHub</string>
+    <string name="github_link" translatable="false">https://github.com/CorruptedArk/did-i-take-my-meds</string>
+    <string name="liberapay_link" translatable="false">https://liberapay.com/CorruptedArk</string>
+    <string name="play_release" translatable="false">playRelease</string>
+    <string name="sorry">Förlåt!</string>
+    <string name="okay">Okej</string>
+    <string name="cannot_donate_explanation">Google tillåter inte utvecklare att placera donationslänkar i appar för att stödja sig själva, såvida de inte är skattebefriade välgörenhetsorganisationer. Om du fortfarande vill stödja mig, kan du hitta CorruptedArk på Liberapay i ett seperat webbläsarfönster. Min GitHub-repertoar är en utmärkt plats att börja på.</string>
+    <string name="last_version_used_key" translatable="false">last_version_used</string>
+    <string name="add_another_dose">Lägg till ännu en dos</string>
+    <string name="taken_as_needed">Intas efter behov</string>
+    <string name="hello_blank_fragment">Hej blanktfragment</string>
+    <string name="select_a_start_date">Startdatum</string>
+    <string name="time_between_doses">Tid mellan doser:</string>
+    <string name="days">Dagar</string>
+    <string name="weeks">Veckor</string>
+    <string name="months">Månader</string>
+    <string name="years">År</string>
+    <string name="schedule_dose">Schemalägg dosering</string>
+    <string name="schedule_picker_tag" translatable="false">schedule_picker</string>
+    <string name="date_picker_tag" translatable="false">date_picker</string>
+    <string name="schedule_format">%1$s\nBörjar %2$s\nUpprepas var\n%3$d dagar, %4$d veckor,\n%5$d månader, %6$d år</string>
+    <string name="utc" translatable="false">UTC</string>
+    <string name="fill_out_all_schedules">Fyll ut alla scheman innan du sparar</string>
+    <string name="fill_out_schedule">Fyll ut schema innan bekräftelse</string>
+    <string name="next_dose_label">Nästa dos: %1$s</string>
+    <string name="taken">Intagen</string>
+    <string name="not_taken">Inte intagen</string>
+    <string name="sort">Sortera</string>
+    <string name="sort_key" translatable="false">Sort</string>
+    <string name="restore_database">Återställ databas</string>
+    <string name="back_up_database">Ta databas-backup</string>
+    <string name="database_is_invalid">Databasen är ogiltig</string>
+    <string name="database_restored">Databas återställd</string>
+    <string name="took_it">Intaget</string>
+    <string name="app_name_short">TJMM?</string>
+    <string name="remind_in_15">Påminn om 15 minuter</string>
+    <string name="dose_record_delete_warning">Doshistoriken kommer tas bort helt.</string>
+    <string name="record_delete_hint">(Tryck länge på en logganteckning för att ta bort den)</string>
+    <string name="time_since_dose_sample">Ungefär 0 dagar, 0 timmar, and 0 minuter sedan sist intagen dos</string>
+    <string name="time_since_dose_template">Ungefär %1$d dagar, %2$d timmar, och %3$d minuter sedan sist intagen dos</string>
+    <string name="require_photo_proof">Begär bildbevis</string>
+    <string name="image_path" translatable="false">images</string>
+    <string name="file_provider" translatable="false">dev.corruptedark.diditakemymeds.fileprovider</string>
+    <string name="dose_and_proof_saved">Dos och bevis sparade</string>
+    <string name="failed_to_get_proof">Misslyckades att få bevis</string>
+    <string name="dose_time_key" translatable="false">dose_time</string>
+    <string name="no_image_available">Ingen bild tillgänglig</string>
+    <string name="temp_dir" translatable="false">tmp</string>
+    <string name="record_detail_hint">(Tryck på en logganteckning för att se detaljer)</string>
+    <string name="time_taken_key" translatable="false">time_taken</string>
+    <string name="take_med_key" translatable="false">take_med</string>
+    <string name="back_up_successful">Backup lyckades</string>
+    <string name="back_up_failed">Backup misslyckades</string>
+    <string name="dose_details">Dosdetalier</string>
+    <string name="medication_active">Medicin aktiv</string>
+    <string name="inactive">Inaktiv</string>
+    <string name="medication_type">Medicintyp</string>
+    <string name="undefined">Undefined</string>
+    <string name="type_label_format">Typ: %1$s</string>
+    <string name="sample_type_label">Typ: odefinierad</string>
+    <string name="rx_number_hint">Rx #</string>
+    <string name="rx_number_label_format">Rx #: %1$s</string>
+    <string name="sample_rx_number_label">Rx #: odefinerad</string>
+    <string name="pharmacy">Apotek</string>
+    <string name="pharmacy_label_format">Apotek: %1$s</string>
+    <string name="sample_pharmacy_label">Apotek: odefinierat</string>
+    <string name="dose_unit">Doseringsenhet</string>
+    <string name="dose_amount">Doseringsmängd</string>
+    <string name="dose_amount_label_format">%1$s%2$s per dos</string>
+    <string name="sample_dose_amount_label">5mg per dos</string>
+    <string name="remaining_doses">Doser i lager</string>
+    <string name="sample_remaining_doses_label">10 i lager</string>
+    <string name="remaining_doses_label_format">%1$d i lager</string>
+    <string name="no_remaining_doses_message">Det finns inga doser i lagret\nOm det här är fel, uppdatera lagret genom att ändra medicineringens inställningar</string>
+    <string name="take_with_food">Intas med mat</string>
+    <string name="translation_credits">Braziliansk-Portugisiska översättningar av mezysinc på GitHub, lnux-usr på GitHub, och Card151915 på Weblate\n\nTysk översättning av jpameli på GitHub\n\nFransk översättning av Edanas på Weblate\n\nHebreisk översättning av Yaron på Weblate\n\nKinesisk (förenklad) översättning av luxu på Weblate\n\nSpanska översättningar av sguinetti på Weblate, caos30 på Weblate, och nzgha på Weblate\n\nKatalansk översättning av caos30 på Weblate\n\nBug fix av johannes87 på GitHub\n\nSvensk översättning av T50-La på Github\n\n</string>
+    <string name="app_widget_description">En widget som visar en medicin, tiden sedan den senaste dosen, samt en knapp för att registrera en intagen dos</string>
+    <string name="choose_a_medication">Välj en medicin</string>
+    <string name="dose_update_warning">Du uppdaterar intagningstiden för denna dos och tar bort det associerade bildbeviset om ett sådant finns.</string>
+    <string name="birth_control_schedule">Preventivschema</string>
+    <string name="_21_7">21 + 7</string>
+    <string name="_63_7">63 + 7</string>
+    <string name="was_this_dose_really_taken">Intogs verkligen den här dosen?</string>
+    <string name="remaining_doses_correction_message">Om inte, kommer antalet doser kvar i lager att rättas</string>
+    <string name="yes">ja</string>
+    <string name="no">nej</string>
+
+</resources>
