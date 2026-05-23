@@ -1,0 +1,4 @@
+v1.3.1
+
+Correções
+- Corrigido restauração falhada em alguns dispositivos

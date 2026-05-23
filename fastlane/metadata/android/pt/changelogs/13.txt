@@ -1,0 +1,4 @@
+v1.2.1
+
+Mudançaas
+- Escurecemos o plano de fundo para melhorar o contraste

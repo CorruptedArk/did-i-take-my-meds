@@ -1,0 +1,5 @@
+v1.6.1
+
+Correções
+- A caixa de diálogo de repetição de agendamento agora exibe um agendamento normal sempre que é aberta
+- Corrigido o problema dos botões de agendamento não funcionarem quando adicionados a partir de um agendamento de controlo de natalidade

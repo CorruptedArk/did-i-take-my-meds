@@ -1,0 +1,8 @@
+v1.2.6
+
+Alterações
+- Reativada a atualização periódica da interface do utilizador sem causar travamentos
+- Traduções para português brasileiro atualizadas por lnux-usr no GitHub
+
+Adição
+- Adicionada etiqueta à atividade de pormenores da medicação que regista o tempo decorrido desde a última dose tomada

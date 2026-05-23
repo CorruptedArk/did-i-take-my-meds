@@ -1,0 +1,11 @@
+v1.2.4
+
+Alterações
+- As cores dos ícones de notificação e dos textos de ação agora estão conforme as WCAG. No entanto, se alterar o tema do dispositivo, uma notificação ativa não terá as suas cores alteradas para manter a conformidade. Novas notificações após a alteração voltarão a estar em conformidade.
+- As notificações agora devem reaparecer na inicialização e na substituição de pacotes, caso não tenham sido utilizadas, mas esses recursos dependem da permissão do sistema
+
+Adição
+- As atividades agora são atualizadas quando a dose mais próxima é alterada
+
+Correção
+- Corrigido um problema que impedia o agendamento de semanas com números inteiros diferentes de zero

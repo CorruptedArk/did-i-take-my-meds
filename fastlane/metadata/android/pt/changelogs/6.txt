@@ -1,0 +1,4 @@
+v1.0.5
+
+Correção:
+- Corrigido o problema que impedia a configuração da notificação após a adição de medicamentos

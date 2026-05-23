@@ -1,0 +1,7 @@
+v1.6.0
+
+Alterações
+- Os seletores de número de ciclos agora não têm limite superior
+
+Adição
+- Novas opções para adicionar facilmente ciclos de contracepção 21+7 e 63+7

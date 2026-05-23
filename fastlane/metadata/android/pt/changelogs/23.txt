@@ -1,0 +1,4 @@
+v1.4.1
+
+Corrigido
+- Corrigido rótulos exibindo texto incorreto em pormenores de atividade de medicação

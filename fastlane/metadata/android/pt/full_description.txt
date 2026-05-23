@@ -1,0 +1,3 @@
+A app Já Tomei Os Meus Remédios? ajuda a manter registos de quando quais remédios precisam ser tomados. Com o objetivo de ajudar o usuario a não se esquecer de tomar os seus remédios ou de repetir doses por acidentes.
+
+Já Tomei Os Meus Remédios? permite que o utilizador grave vários cronogramas complexos de remédios. Cada remédio pode ter uma notificação de lembrete independente. Além disso, esta aplicação permite registar quando uma dose foi tomada e com funcionalidade de agenda de remédios ajuda a prevenir overdoses e avisa para não se esquecer de tomá-los.

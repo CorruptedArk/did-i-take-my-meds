@@ -1,0 +1,8 @@
+v1.5.1
+
+Alterações
+- Traduções para chinês simplificado atualizadas
+- Traduções para hebraico atualizadas
+
+Adição
+- Adicionada opção para editar o tempo de administração das doses anteriores

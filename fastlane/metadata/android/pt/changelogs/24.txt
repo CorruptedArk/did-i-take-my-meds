@@ -1,0 +1,4 @@
+v1.4.2
+
+Correções
+- Corrigida a exibição de tipos de remédios incorretos na atividade principal

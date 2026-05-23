@@ -1,0 +1,12 @@
+v1.1.0
+
+Alterações:
+- Pequenos ajustes visuais em algumas visualizações
+- Clicar numa notificação agora abre a visualização detalhada do medicamento correspondente
+
+Adições:
+- Vários esquemas de dosagem por medicamento com intervalos de repetição arbitrários
+- Opção para adicionar medicamentos de uso conforme necessário, sem horários predefinidos
+- Traduções para português brasileiro por mezysinc no GitHub
+- Botão Voltar nas barras de ferramentas
+- Opções para classificar por horário de dose mais próximo e por nome do medicamento

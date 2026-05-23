@@ -1,0 +1,12 @@
+v1.3.0
+
+Alterações
+- Melhoria no preenchimento
+- Os novos backups agora estão em formato zip para incluir imagens (backups antigos ainda podem ser restaurados)
+
+Adições
+- Adicionada opção para exigir uma foto ao tomar medicamentos
+- Adicionada visualização para exibir pormenores do registo de doses
+
+Correções
+- Corrigidas algumas cadeias de formatação em português brasileiro

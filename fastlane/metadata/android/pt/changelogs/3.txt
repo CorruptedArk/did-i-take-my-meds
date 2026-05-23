@@ -1,0 +1,4 @@
+v1.0.2
+
+Alteração:
+- As notificações agora são exibidas em horários exatos, mesmo quando o dispositivo está ocioso

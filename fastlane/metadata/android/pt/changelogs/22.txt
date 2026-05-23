@@ -1,0 +1,18 @@
+v1.4.0
+
+Alterações
+- Os tipos de medicamentos agora são exibidos na lista principal de medicamentos
+- As visualizações foram reorganizadas e ajustadas para acomodar as novas opções
+- As traduções para alemão foram atualizadas por jpameli no GitHub
+
+Adições
+- Adicionada opção para desativar um medicamento
+- Adicionada opção para especificar os tipos de medicamentos
+- Adicionada opção para classificar por tipo de medicamento
+- Adicionada opção para especificar o número da receita médica para cada medicamento
+- Adicionada opção para especificar a dosagem para cada medicamento
+- Adicionada opção para especificar o nome da farmácia para cada medicamento
+- Adicionada opção para acompanhar o número de doses restantes para cada medicamento
+- Adicionada opção para especificar se cada medicamento deve ser tomado com alimentos
+- Adicionadas traduções para francês por Edanas no Weblate
+- Adicionadas traduções para hebraico por Yaron no Weblate

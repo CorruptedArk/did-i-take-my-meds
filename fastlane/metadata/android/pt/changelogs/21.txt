@@ -1,0 +1,10 @@
+v1.3.2
+
+Alterações
+- Ajustes na aparência da atividade de pormenores da dose
+
+Adições
+- Adição de notificações de feedback ao fazer backup do banco de dados
+
+Correções
+- Correção de algumas falhas após a restauração do banco de dados

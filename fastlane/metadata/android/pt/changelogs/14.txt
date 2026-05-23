@@ -1,0 +1,13 @@
+v1.2.2
+
+Mudanças
+- Convertidas instruções ExecutorService para corotinas Kotlin
+- Atualizadas as cores para cumprir as Diretrizes de Acessibilidade de Conteúdo da Web
+- Por alta necessidade, notificações agora serão descartadas após uma dose ser tomada
+
+Adições
+- Adicionada opção de apagar um registo de dose quando o botão "tomado" é apertado por acidente
+
+Correções
+- Consertadas falhas causas ao tentar recuperar dados da base de dados sem êxito
+- Consertado estranho ciclo de visão ao apertar o botão de retorno
