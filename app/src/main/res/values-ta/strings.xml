@@ -124,8 +124,8 @@
     <string name="type_label_format">வகை: %1$s</string>
     <string name="sample_type_label">வகை: வரையறுக்கப்படாதது</string>
     <string name="rx_number_hint">Rx #</string>
-    <string name="rx_number_label_format">RX #: %1$s</string>
-    <string name="sample_rx_number_label">RX #: வரையறுக்கப்படவில்லை</string>
+    <string name="rx_number_label_format">பெறு #: %1$s</string>
+    <string name="sample_rx_number_label">பெறு #: வரையறுக்கப்படவில்லை</string>
     <string name="pharmacy">மருந்தகம்</string>
     <string name="pharmacy_label_format">மருந்தகம்: %1$s</string>
     <string name="sample_pharmacy_label">மருந்தகம்: வரையறுக்கப்படவில்லை</string>
@@ -138,7 +138,7 @@
     <string name="remaining_doses_label_format">%1$d மீதமுள்ள அளவுகள்</string>
     <string name="no_remaining_doses_message">எஞ்சியிருக்கும் அளவுகள் இல்லை\n இது தவறு என்றால், மருந்துகளைத் திருத்துவதன் மூலம் மீதமுள்ள அளவுகளைப் புதுப்பிக்கவும்</string>
     <string name="take_with_food">உணவுடன் எடுத்துக் கொள்ளுங்கள்</string>
-    <string name="translation_credits">கிட்அப்பில் MEZYSINC, Github இல் lnux-USR, மற்றும் வெப்லேட்டில் CARD151915 ஆகியோரால் பிரேசிலிய போர்த்துகீசிய மொழிபெயர்ப்புகள்\n\n கிட்அப்பில் jpameli எழுதிய செர்மன் மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் எடானாச் எழுதிய பிரஞ்சு மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் யாரோன் எழுதிய எபிரேய மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் லக்சுவின் சீன எளிமைப்படுத்தப்பட்ட மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் Sguinetti, வெப்லேட்டில் CAOS30, மற்றும் வெப்லேட்டில் NZGHA வழங்கிய ச்பானிச் மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் CAOS30 இன் கற்றலான் மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் லயன் மூலம் துருக்கிய மொழிபெயர்ப்பு\n\n கிட்அப்பில் JOHANNES87 ஆல் பிழை திருத்தம் \n \n</string>
+    <string name="translation_credits">கிட்அப்பில் mezysinc, Github இல் lnux-usr, மற்றும் வெப்லேட்டில் Card151915 ஆகியோரால் பிரேசிலிய போர்த்துகீசிய மொழிபெயர்ப்புகள்\n\n கிட்அப்பில் jpameli எழுதிய செர்மன் மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் எடானாச் எழுதிய பிரஞ்சு மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் யாரோன் எழுதிய எபிரேய மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் லக்சுவின் சீன எளிமைப்படுத்தப்பட்ட மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் Sguinetti, வெப்லேட்டில் caos30, மற்றும் வெப்லேட்டில் nzgha வழங்கிய ச்பானிச் மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் caos30 இன் கற்றலான் மொழிபெயர்ப்புகள்\n\n வெப்லேட்டில் லயன் மூலம் துருக்கிய மொழிபெயர்ப்பு\n\n கிட்அப்பில் johannes87 ஆல் பிழை திருத்தம் \n \n</string>
     <string name="app_widget_description">ஒரு மருந்தைக் காண்பிக்கும் ஒரு விட்செட், கடைசியாக எடுக்கப்பட்ட டோச் முதல் நேரம், மற்றும் எடுக்கப்பட்ட அளவை சமர்ப்பிக்க ஒரு பொத்தானை</string>
     <string name="choose_a_medication">ஒரு மருந்தைத் தேர்வுசெய்க</string>
     <string name="dose_update_warning">இந்த டோசின் எடுக்கப்பட்ட நேரத்தை நீங்கள் புதுப்பித்து, அதனுடன் தொடர்புடைய சான்று படத்தை வைத்திருந்தால் அதை நீக்குவீர்கள்.</string>
