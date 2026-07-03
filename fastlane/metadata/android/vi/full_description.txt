@@ -1,0 +1,3 @@
+Tôi Đã Uống Thuốc Chưa? giúp theo dõi thời điểm uống thuốc. Ứng dụng được thiết kế để giúp người dùng khỏi quên uống thuốc hoặc uống thuốc quá liều
+
+Tôi Đã Uống Thuốc Chưa? cho phép người dùng lưu nhiều loại thuốc với lịch trình phức tạp. Mỗi loại thuốc sẽ có một thông báo nhắc lịch riêng. Ngoài ra, ứng dụng còn cho phép người dùng ghi lại thời điểm uống thuốc. Khi tích hợp vào chế độ dùng thuốc, ứng dụng này có thể ngăn ngừa tình trạng quá liều hoặc quên uống thuốc.
