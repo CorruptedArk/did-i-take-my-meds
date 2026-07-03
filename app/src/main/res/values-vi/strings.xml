@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Did I Take My Meds? is a FOSS app to keep track of medications
+    Did I Take My Meds? is designed to help prevent a user from skipping doses and/or overdosing
+    Copyright (C) 2021  Noah Stanford <noahstandingford@gmail.com>
+
+    Did I Take My Meds? is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Did I Take My Meds? is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see https://www.gnu.org/licenses.--><resources>
+    <string name="app_name"></string>
+    <string name="add"></string>
+    <string name="add_medications"></string>
+    <string name="medication_name"></string>
+    <string name="description"></string>
+    <string name="select_a_time"></string>
+    <string name="time_picker_tag" translatable="false"></string>
+    <string name="save"></string>
+    <string name="cancel"></string>
+    <string name="pick_a_time"></string>
+    <string name="fill_fields"></string>
+    <string name="med_saved"></string>
+    <string name="cancelled"></string>
+    <string name="time_24"></string>
+    <string name="time_12"></string>
+    <string name="sample_medicine"></string>
+    <string name="midnight"></string>
+    <string name="sample_description"></string>
+    <string name="previous_doses"></string>
+    <string name="i_just_took_it"></string>
+    <string name="closest_dose_sample"></string>
+    <string name="med_position_key" translatable="false"></string>
+    <string name="today"></string>
+    <string name="yesterday"></string>
+    <string name="tomorrow"></string>
+    <string name="closest_dose_label"></string>
+    <string name="already_took_dose"></string>
+    <string name="date_format"></string>
+    <string name="time_taken"></string>
+    <string name="delete"></string>
+    <string name="are_you_sure"></string>
+    <string name="medication_delete_warning"></string>
+    <string name="confirm"></string>
+    <string name="took_this_already"></string>
+    <string name="edit"></string>
+    <string name="edit_cancelled"></string>
+    <string name="notifications_enabled"></string>
+    <string name="notifications_disabled"></string>
+    <string name="channel_name" translatable="false"></string>
+    <string name="channel_description"></string>
+    <string name="med_id_key" translatable="false"></string>
+    <string name="time_for_your_dose"></string>
+    <string name="new_medication"></string>
+    <string name="medication_details"></string>
+    <string name="edit_medication"></string>
+    <string name="about"></string>
+    <string name="app_description"></string>
+    <string name="support_me_on_liberapay"></string>
+    <string name="view_the_project_on_github"></string>
+    <string name="github_link" translatable="false"></string>
+    <string name="liberapay_link" translatable="false"></string>
+    <string name="play_release" translatable="false"></string>
+    <string name="sorry"></string>
+    <string name="okay"></string>
+    <string name="cannot_donate_explanation"></string>
+    <string name="last_version_used_key" translatable="false"></string>
+    <string name="add_another_dose"></string>
+    <string name="taken_as_needed"></string>
+    <string name="hello_blank_fragment"></string>
+    <string name="select_a_start_date"></string>
+    <string name="time_between_doses"></string>
+    <string name="days"></string>
+    <string name="weeks"></string>
+    <string name="months"></string>
+    <string name="years"></string>
+    <string name="schedule_dose"></string>
+    <string name="schedule_picker_tag" translatable="false"></string>
+    <string name="date_picker_tag" translatable="false"></string>
+    <string name="schedule_format"></string>
+    <string name="utc" translatable="false"></string>
+    <string name="fill_out_all_schedules"></string>
+    <string name="fill_out_schedule"></string>
+    <string name="next_dose_label"></string>
+    <string name="taken"></string>
+    <string name="not_taken"></string>
+    <string name="sort"></string>
+    <string name="sort_key" translatable="false"></string>
+    <string name="restore_database"></string>
+    <string name="back_up_database"></string>
+    <string name="database_is_invalid"></string>
+    <string name="database_restored"></string>
+    <string name="took_it"></string>
+    <string name="app_name_short"></string>
+    <string name="remind_in_15"></string>
+    <string name="dose_record_delete_warning"></string>
+    <string name="record_delete_hint"></string>
+    <string name="time_since_dose_sample"></string>
+    <string name="time_since_dose_template"></string>
+    <string name="require_photo_proof"></string>
+    <string name="image_path" translatable="false"></string>
+    <string name="file_provider" translatable="false"></string>
+    <string name="dose_and_proof_saved"></string>
+    <string name="failed_to_get_proof"></string>
+    <string name="dose_time_key" translatable="false"></string>
+    <string name="no_image_available"></string>
+    <string name="temp_dir" translatable="false"></string>
+    <string name="record_detail_hint"></string>
+    <string name="time_taken_key" translatable="false"></string>
+    <string name="take_med_key" translatable="false"></string>
+    <string name="back_up_successful"></string>
+    <string name="back_up_failed"></string>
+    <string name="dose_details"></string>
+    <string name="medication_active"></string>
+    <string name="inactive"></string>
+    <string name="medication_type"></string>
+    <string name="undefined"></string>
+    <string name="type_label_format"></string>
+    <string name="sample_type_label"></string>
+    <string name="rx_number_hint"></string>
+    <string name="rx_number_label_format"></string>
+    <string name="sample_rx_number_label"></string>
+    <string name="pharmacy"></string>
+    <string name="pharmacy_label_format"></string>
+    <string name="sample_pharmacy_label"></string>
+    <string name="dose_unit"></string>
+    <string name="dose_amount"></string>
+    <string name="dose_amount_label_format"></string>
+    <string name="sample_dose_amount_label"></string>
+    <string name="remaining_doses"></string>
+    <string name="sample_remaining_doses_label"></string>
+    <string name="remaining_doses_label_format"></string>
+    <string name="no_remaining_doses_message"></string>
+    <string name="take_with_food"></string>
+    <string name="translation_credits"></string>
+    <string name="app_widget_description"></string>
+    <string name="choose_a_medication"></string>
+    <string name="dose_update_warning"></string>
+    <string name="birth_control_schedule"></string>
+    <string name="_21_7"></string>
+    <string name="_63_7"></string>
+</resources>
