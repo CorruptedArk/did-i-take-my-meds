@@ -1,0 +1,8 @@
+v1.5.2
+
+Các thay đổi
+- Cập nhật bản dịch tiếng Hebrew
+- Cập nhật bản dịch tiếng Trung giản thể
+
+Sửa lỗi
+- Sửa lỗi định dạng ngày và giờ trong tiếng Trung giản thể

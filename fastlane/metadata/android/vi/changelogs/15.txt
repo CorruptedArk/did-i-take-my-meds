@@ -1,0 +1,4 @@
+v1.2.3
+
+Sửa lỗi
+- Khắc phục sự cố ứng dụng không nhận được ý định khởi động hoặc ý định cập nhật gói

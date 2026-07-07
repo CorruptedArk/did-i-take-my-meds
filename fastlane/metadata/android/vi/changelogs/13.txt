@@ -1,0 +1,4 @@
+v1.2.1
+
+Thay đổi
+- Phông nền tối màu hơn để cải thiện độ tương phản

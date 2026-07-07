@@ -1,0 +1,4 @@
+v1.3.1
+
+Sửa lỗi
+- Sửa lỗi không khôi phục được trên một số thiết bị

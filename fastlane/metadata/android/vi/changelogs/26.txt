@@ -1,0 +1,8 @@
+v1.5.1
+
+Thay đổi
+- Cập nhật bản dịch tiếng Trung giản thể
+- Cập nhật bản dịch tiếng Hebrew
+
+Bổ sung
+- Thêm lựa chọn sửa thời gian cho các liều thuốc đã uống

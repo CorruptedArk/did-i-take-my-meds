@@ -1,0 +1,4 @@
+v1.4.1
+
+Sửa lỗi
+- Sửa lỗi các nhãn hiển thị chữ sai trong mục chi tiết về thuốc

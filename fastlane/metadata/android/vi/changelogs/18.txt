@@ -1,0 +1,8 @@
+v1.2.6
+
+Các thay đổi
+- Lại cho phép làm mới UI theo định kỳ mà không gây ra tình trạng đóng băng
+- Bản dịch tiếng Bồ Đào Nha Brazil được lnux-usr cập nhật trên GitHub
+
+Bổ sung
+- Thêm nhãn vào hoạt động ghi chép chi tiết về thuốc để theo dõi khoảng thời gian kể từ liều thuốc gần nhất

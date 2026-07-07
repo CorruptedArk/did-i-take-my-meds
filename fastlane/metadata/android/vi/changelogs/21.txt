@@ -1,0 +1,10 @@
+v1.3.2
+
+Thay đổi
+- Điều chỉnh nhỏ giao diện ghi chép chi tiết liều thuốc
+
+Bổ sung
+- Thêm thông báo Toast phản hồi về việc sao lưu cơ sở dữ liệu
+
+Sửa lỗi
+- Sửa một số lỗi treo ứng dụng sau khi khôi phục cơ sở dữ liệu

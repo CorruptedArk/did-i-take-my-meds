@@ -1,0 +1,12 @@
+v1.1.0
+
+Thay đổi:
+- Thay đổi nhỏ về cách trình bày một số giao diện
+- Giờ đây, nhấn vào thông báo sẽ mở ra giao diện về thuốc chi tiết 
+
+Bổ sung:
+- Nhiều lịch trình dùng thuốc cho mỗi loại thuốc với tần suất lặp lại tùy ý
+- Lựa chọn thêm loại thuốc uống khi cần và không theo lịch
+- Bản dịch tiếng Bồ Đào Nha Brazil của mezysinc trên GitHub
+- Nút bấm Quay lại ở thanh công cụ
+- Lựa chọn sắp xếp theo thời gian liều uống gần nhất và tên loại thuốc

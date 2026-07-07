@@ -1,0 +1,11 @@
+v1.5.0
+
+Thay đổi
+- Điều chỉnh để giao diện chữ sử dụng cỡ chữ tiêu chuẩn
+- Cập nhật bản dịch tiếng Đức của jpameli trên GitHub
+
+Bổ sung
+- Thêm lựa chọn thêm widget cho mỗi loại thuốc vào màn hình chính
+- Thêm bản dịch tiếng Trung (Giản thể) của luxu trên Weblate
+- Thêm bản dịch tiếng Tây Ban Nha của sguinetti và caos30 trên Weblate
+- Thêm bản dịch tiếng Catalan của caos30 trên Weblate

@@ -1,0 +1,12 @@
+v1.1.4
+
+Các thay đổi
+- Thông báo vẫn sẽ hiển thị sau khi nhấn trừ khi được huỷ thủ công
+- Giờ đây có thể mở một loại thuốc nhiều lần khi nhấn vào thông báo 
+
+Bổ sung
+- Thêm bản dịch Tiếng Đức của jpameli trên GitHub
+
+Sửa lỗi
+- Sửa lỗi EditMedActivity luôn hiển thị cho phép thông báo khi được mở
+- Sửa lỗi đôi khi hiển thị sai loại thuốc khi nhấn vào thông báo

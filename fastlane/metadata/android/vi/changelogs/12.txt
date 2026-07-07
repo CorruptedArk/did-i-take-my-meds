@@ -1,0 +1,16 @@
+v1.2.0
+
+Thay đổi
+- Chuyển chức năng 'thêm loại thuốc' vào nút bấm lơ lửng thực hiện hành động 
+- Cập nhật bản dịch tiếng Đức của jpameli trên GitHub
+- Điều chỉnh lề để cải thiện giao diện bố cục
+- Cập nhật bản dịch tiếng Bồ Đào Nha Brazil của mezysinc trên GitHub
+- Thay đổi nhãn trình khởi chạy mặc định thành từ viết tắt "DITMM?"
+
+Bổ sung
+- Thêm sao lưu và khôi phục cơ sở dữ liệu
+- Thêm hành động thông báo uống thuốc
+- Thêm hành động thông báo gửi lại thông báo sau 15 phút
+
+Sửa lỗi
+- Sửa lỗi treo ứng dụng sau khi nhấn vào thông báo khi một loại thuốc bị xoá

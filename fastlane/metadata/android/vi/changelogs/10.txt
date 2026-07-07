@@ -1,0 +1,5 @@
+v1.1.3
+
+Sửa lỗi:
+- Sửa lỗi tính sai liều gần nhất đối với các liều bổ sung có thời gian uống khác với liều đầu tiên trong danh sách
+- Sửa lỗi hiển thị thời gian không chính xác trên các nút chọn lịch trình cho các liều bổ sung có thời gian uống khác với liều đầu tiên trong danh sách

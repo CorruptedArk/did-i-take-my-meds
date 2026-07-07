@@ -1,0 +1,5 @@
+v1.6.1
+
+Thay đổi
+- Đặt mặc định RepeatScheduleDialog về lịch trình bình thường mỗi khi mở
+- Sửa lỗi các nút bấm hẹn lịch không phản ứng khi được thêm từ lịch tránh thai

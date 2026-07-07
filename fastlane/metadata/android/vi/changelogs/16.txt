@@ -1,0 +1,11 @@
+v1.2.4
+
+Thay đổi
+- Icon thông báo và màu sắc văn bản hành động đã phù hợp với hướng dẫn WCAG, tuy nhiên nếu bạn thay đổi giao diện thiết bị, thông báo đã gửi sẽ không thay đổi màu sắc cho phù hợp. Thông báo gửi sau khi đổi sẽ đổi màu phù hợp.
+- Thông báo sẽ xuất hiện lại sau khi khởi động lại máy và thay thế gói phần mềm nếu chưa được xử lý, nhưng các chức năng này phụ thuộc vào việc hệ thống có cho phép không 
+
+Bổ sung
+- Các hoạt động sẽ cập nhật mỗi khi liều uống gần nhất thay đổi
+
+Sửa lỗi
+- Sửa lỗi không cho phép tạo lịch có số tuần là số nguyên khác 0

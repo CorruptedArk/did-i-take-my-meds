@@ -1,0 +1,13 @@
+v1.2.2
+
+Thay đổi
+- Chuyển đổi ExecutorService multithreading sang coroutines trong Kotlin 
+- Cập nhật màu sắc cho phù hợp với Hướng dẫn về Khả năng tiếp cận Nội dung Web 
+- Theo ý kiến số đông, các thông báo sẽ được loại bỏ sau khi hoàn thành một liều thuốc
+
+Bổ sung
+- Thêm tuỳ chọn xoá bản ghi một liều thuốc khi vô tình chạm phải nút "đã uống"
+
+Sửa lỗi
+- Sửa lỗi treo ứng dụng do lỗi tải dữ liệu từ cơ sở dữ liệu
+- Sửa lỗi chuyển đổi chế độ xem bất thường khi nhấn nút Quay lại

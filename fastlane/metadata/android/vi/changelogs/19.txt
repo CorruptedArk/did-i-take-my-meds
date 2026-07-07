@@ -1,0 +1,12 @@
+v1.3.0
+
+Thay đổi
+- Cải thiện khoảng cách lề
+- Các bản sao lưu mới sẽ có định dạng zip để bao gồm cả hình ảnh (vẫn khôi phục được các bản sao lưu cũ) 
+
+Bổ sung
+- Thêm lựa chọn yêu cầu ảnh chụp khi uống thuốc
+- Thêm một chế độ để xem chi tiết bản ghi liều thuốc
+
+Sửa lỗi
+- Sửa một số định dạng chuỗi tiếng Bồ Đào Nha Brazil

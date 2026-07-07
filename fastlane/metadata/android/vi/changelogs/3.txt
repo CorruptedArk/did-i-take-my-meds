@@ -1,0 +1,4 @@
+v1.0.2
+
+Thay đổi:
+- Thông báo sẽ được gửi đúng giờ kể cả khi thiết bị đang tạm nghỉ

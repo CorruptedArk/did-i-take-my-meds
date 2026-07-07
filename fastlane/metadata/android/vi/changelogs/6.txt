@@ -1,0 +1,4 @@
+v1.0.5
+
+Sửa lỗi:
+- Sửa lỗi thông báo không được đặt sau khi thêm loại thuốc

@@ -1,0 +1,6 @@
+v1.5.3
+
+Các thay đổi
+- Cập nhật bản dịch tiếng Tây Ban Nha của nzgha trên Weblate
+- Cập nhật bản dịch tiếng Bồ Đào Nha Brazil của Card151915 trên Weblate
+- Cập nhật bản dịch tiếng Đức của jpameli trên GitHub

@@ -1,0 +1,7 @@
+v1.6.0
+
+Thay đổi
+- Chức năng chọn số trên Lịch không còn giới hạn tối đa nữa
+
+Bổ sung
+- Thêm các tuỳ chọn để dễ dàng thêm lịch tránh thai 21+7 và 63+7

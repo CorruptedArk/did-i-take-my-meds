@@ -1,0 +1,18 @@
+v1.4.0
+
+Thay đổi
+- Đã hiển thị loại thuốc trong danh sách thuốc chính
+- Các chế độ xem đã được sắp xếp lại và điều chỉnh để phù hợp với các tuỳ chọn mới
+- Cập nhật bản dịch tiếng Đức của jpameli trên GitHub
+
+Bổ sung
+- Thêm tuỳ chọn vô hiệu một loại thuốc
+- Thêm tuỳ chọn ghi cụ thể loại thuốc
+- Thêm tuỳ chọn sắp xếp theo loại thuốc
+- Thêm tuỳ chọn ghi cụ thể mã số đơn thuốc cho mỗi loại thuốc
+- Thêm tuỳ chọn ghi cụ thể lượng uống theo liều cho mỗi loại thuốc
+- Thêm tuỳ chọn ghi cụ thể tên hiệu thuốc cho mỗi loại thuốc
+- Thêm tuỳ chọn theo dõi số liều còn lại cho mỗi loại thuốc
+- Thêm tuỳ chọn ghi cụ thể thuốc có cần uống khi ăn không
+- Thêm bản dịch tiếng Pháp của Edanas trên Weblate
+- Thêm bản dịch tiếng Hebrew của Yaron trên Weblate
