@@ -1,1 +1,16 @@
 v1.2.0
+
+Änderungen
+- Funktion „Medikament hinzufügen“ auf schwebenden Button verschoben
+- Deutsche Übersetzungen von jpameli auf GitHub aktualisiert
+- Margins für schönere Layouts angepasst
+- Brasilianische Portugiesisch-Übersetzungen von mezysinc auf GitHub aktualisiert
+- Standard-App-Namen im Launcher auf die Abkürzung „DITMM?“ geändert
+
+Hinzugefügt
+- Datenbanksicherung und -wiederherstellung hinzugefügt
+- Benachrichtigungs-Aktion zur Medikamenteneinnahme hinzugefügt
+- Benachrichtigungs-Aktion zum erneuten Senden in 15 Minuten hinzugefügt
+
+Fehlerbehebungen
+- Abstürze beim Klicken auf Benachrichtigungen gelöschter Medikamente behoben

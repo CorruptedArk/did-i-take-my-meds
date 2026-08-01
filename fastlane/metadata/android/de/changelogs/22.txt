@@ -1,14 +1,18 @@
 v1.4.0
 
 Änderungen
-- Medikationstypen in Hauptmedikationsliste 
-- Deutsche Übersetzungen wurden von jpameli auf GitHub aktualisiert
+- Medikamententypen werden jetzt in der Hauptliste angezeigt
+- Ansichten für die neuen Optionen angepasst und optimiert
+- Deutsche Übersetzungen von jpameli auf GitHub aktualisiert
 
-Ergänzungen
-- Medikament inaktiv zu machen
-- Medikationstypen und Sortieren
-- Dosierungsgröße, Apothekennamen jedes Medikaments
-- Anzahl der Dosen für jedes Medikament
-- Medikament mit Nahrung eingenommen werden sollte
-- Französische Übersetzungen von Edanas auf Weblate hinzufügen
-- Hebräische Übersetzungen von Yaron auf Weblate hinzufügen
+Hinzugefügt
+- Option zum Deaktivieren von Medikamenten hinzugefügt
+- Option zur Angabe von Medikamententypen hinzugefügt
+- Option zum Sortieren nach Medikamententypen hinzugefügt
+- Option zur Angabe der Rezeptnummer hinzugefügt
+- Option zur Angabe der Dosierungsgröße hinzugefügt
+- Option zur Angabe des Apothekenbündnisses hinzugefügt
+- Option zur Verfolgung verbleibender Dosen hinzugefügt
+- Option zur Angabe der Einnahme mit Nahrung hinzugefügt
+- Französische Übersetzungen von Edanas auf Weblate hinzugefügt
+- Hebräische Übersetzungen von Yaron auf Weblate hinzugefügt
