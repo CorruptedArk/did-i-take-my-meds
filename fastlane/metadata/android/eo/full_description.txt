@@ -1,0 +1,3 @@
+Ĉu mi prenis miajn medikamentojn? helpas spuri kiam preni medikamentojn. Ĝi estas dizajnita por helpi malhelpi uzanton preterlasi dozojn aŭ superdozi.
+
+Ĉu mi prenis miajn medikamentojn? permesas al uzanto savi plurajn medikamentojn kun kompleksaj horaroj. Ĉiu medikamento povas ekigi sendependan memorigilan sciigon. Krome, ĉi tiu aplikaĵo permesas al uzanto registri, kiam ri prenas dozon. Kiel parto de medikamenta reĝimento, ĉi tiu aplikaĵo povas helpi malhelpi superdozojn kaj preterlasitajn dozojn.
